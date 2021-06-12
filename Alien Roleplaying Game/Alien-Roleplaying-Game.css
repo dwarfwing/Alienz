@@ -4,7 +4,8 @@
 .sheet-background-wrap{
     background-color: black;
     padding: 5px;
-    min-width: 1128px;
+    -min-width: 1128px;
+    min-width: 830px;
 }
 .sheet-header-image{
     background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Weyland-Yutani.png?raw=true");
@@ -14,6 +15,15 @@
     padding-top: 25px;
     margin-bottom: 10px;
     margin-top: 2px;
+}
+
+.sheet-header-tabs {
+    display: flex;
+    flex-direction: column;
+    -align-items: flex-end;
+    justify-items: right;
+    justify-content: flex-end;
+    align-self: end;
 }
 
 .sheet-footer-text{
@@ -46,6 +56,10 @@
     border-color: transparent;
 }
 
+.sheet-contains-fourteen-columns {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
 .sheet-roll-buttons{
     display: grid;
     grid-gap: 5px;
@@ -75,6 +89,18 @@
     grid-column: 1 / 5;
 }
 
+.sheet-span-one-thru-five {
+    grid-column: 1 / 6;
+}
+
+.sheet-span-one-thru-six {
+    grid-column: 1 / 7;
+}
+
+.sheet-span-one-thru-seven {
+    grid-column: 1 / 8;
+}
+
 .sheet-span-two-three {
     grid-column: 2 / 4;
 }
@@ -99,12 +125,28 @@
     grid-column: 5 / 7;
 }
 
+.sheet-span-five-thru-seven {
+    grid-column: 5 / 8;
+}
+
 .sheet-span-five-thru-nine {
     grid-column: 5 / 10;
 }
 
+.sheet-span-five-thru-ten {
+    grid-column: 5 / 11;
+}
+
+.sheet-span-six-seven {
+    grid-column: 6 / 8;
+}
+
 .sheet-span-six-thru-eight {
     grid-column: 6 / 9;
+}
+
+.sheet-span-six-thru-fourteen {
+    grid-column: 6 / 15;
 }
 
 .sheet-span-seven-eight {
@@ -115,8 +157,28 @@
     grid-column: 7 / 10;
 }
 
+.sheet-span-seven-thru-fourteen {
+    grid-column: 7 / 15;
+}
+
 .sheet-span-eight-nine {
     grid-column: 8 / 10;
+}
+
+.sheet-span-eight-thru-ten {
+    grid-column: 8 / 11;
+}
+
+.sheet-span-eight-thru-eleven {
+    grid-column: 8 / 12;
+}
+
+.sheet-span-eight-thru-twelve {
+    grid-column: 8 / 13;
+}
+
+.sheet-span-eight-thru-fourteen {
+    grid-column: 8 / 15;
 }
 
 .sheet-span-nine-ten {
@@ -125,6 +187,10 @@
 
 .sheet-span-nine-thru-eleven {
     grid-column: 9 / 12;
+}
+
+.sheet-span-ten {
+    grid-column: 10;
 }
 
 .sheet-span-ten-eleven {
@@ -139,12 +205,44 @@
     grid-column: 10 / 14;
 }
 
+.sheet-span-ten-thru-fourteen {
+    grid-column: 10 / 15;
+}
+
+.sheet-span-eleven {
+    grid-column: 11;
+}
+
 .sheet-span-eleven-thru-thirteen {
     grid-column: 11 / 14;
 }
 
+.sheet-span-eleven-thru-fourteen {
+    grid-column: 11 / 15;
+}
+
+.sheet-span-twelve {
+    grid-column: 12;
+}
+
 .sheet-span-twelve-thirteen {
     grid-column: 12 / 14;
+}
+
+.sheet-span-twelve-thru-fourteen {
+    grid-column: 12 / 15;
+}
+
+.sheet-span-thirteen {
+    grid-column: 13;
+}
+
+.sheet-span-thirteen-fourteen {
+    grid-column: 13 / 15;
+}
+
+.sheet-span-fourteen {
+    grid-column: 14;
 }
 
 .sheet-span-personal-agenda {
@@ -152,6 +250,14 @@
 }
 
 .sheet-span-talents {
+    grid-row: 1 / 5;
+}
+
+.sheet-span-modules {
+    grid-row: 1 / 5;
+}
+
+.sheet-span-log {
     grid-row: 1 / 5;
 }
 
@@ -177,6 +283,14 @@
 
 .sheet-span-weapons {
     grid-row: 13 / 16;
+}
+
+.sheet-span-comp-dmg {
+    grid-row: 6;
+}
+
+.sheet-span-upg-arm {
+    grid-row: 7;
 }
 
 .sheet-grid-item {
@@ -235,7 +349,7 @@
 	visibility: hidden;
     white-space: pre-wrap;
 	display: block;
-    font-family: 
+    -font-family: Serif;
 }
 
 .sheet-auto-expand textarea {
@@ -287,6 +401,14 @@
     letter-spacing: .1em;
 }
 
+.sheet-darkest-teal-header {
+    color: #354b44; /* Darkest Teal Varient */
+    font-family: 'Graduate', cursive;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: .1em;
+}
+
 button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-teal-header{
     color: #008b8b; /* Dark Cyan #008b8b */
     font-family: 'Montserrat';
@@ -305,7 +427,7 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     font-weight: bold;
 }
 .sheet-vertical-adjust-one {
-     margin-top: 5px;
+     margin-top: 6px;
 }
 
 .sheet-vertical-balance {
@@ -323,6 +445,20 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     margin: -14px 15% 0px -7px;
     text-align: left;
     padding: 0px 0px 0px 5px;
+    
+}
+ 
+.sheet-floating-header {
+    -background-color: rgba(0, 0, 0, 1); /* Black #000000 */
+    -border: 1px solid rgba(0, 0, 0, 1); /* Black #000000 */
+    -border-radius: 0px 20px 20px 0px;
+    float: center;
+    height: 1em;
+    width: 100%;
+    line-height: 1em;
+    margin: -5px 0 -5px 0;
+    -text-align: left;
+    padding: 0px 0px 4px 0px;
     
 }
 
@@ -415,7 +551,7 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
 
 /* - - - - - Remove Number Spinner - - - - - */
 input[type="number"].sheet-no-spin-input::-webkit-outer-spin-button, input[type="number"].sheet-number-input::-webkit-outer-spin-button,
-input[type="number"].sheet-no-spin-input::-webkit-inner-spin-button, input[type="number"].sheet-number-input::-webkit-inner-spin-button, {
+input[type="number"].sheet-no-spin-input::-webkit-inner-spin-button, input[type="number"].sheet-number-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -484,6 +620,8 @@ input[type="number"].sheet-low-visibility-number {
     height: 18px;
 }
 
+.sheet-skinny-div
+
 /* ACTION BUTTONS FOR TABULAR SHEET */
 button[type="action"].sheet-action-tab {
     width: 20%;
@@ -496,6 +634,9 @@ button[type="action"].sheet-action-tab {
     color: rgba(105, 105, 105, 0.33);
     padding: 0px 0px 2px 0px;
 }
+button[type="action"].sheet-action-tab.sheet-fit-five {
+    width: 15%;
+} 
 
 button[type="action"].sheet-action-tab:hover {
     color: #ffffff;
@@ -516,12 +657,29 @@ button[type="action"].sheet-action-tab:focus {
 }
 
 button[type="action"].sheet-tab-weapon {
-    width: 15%;
+    width: 15% !important;
 }
 
 /*  TABS  */
 div.sheet-tab-content, div.sheet-box-under-the-bed { 
     display: none;
+}
+
+input.sheet-tab-sheet[value="Character"] ~ div .sheet-ship,
+input.sheet-tab-sheet[value="Ship"] ~ div .sheet-character {
+	display: none;
+}
+
+input.sheet-tab-sheet[value="Character"] ~ div .sheet-character,
+input.sheet-tab-sheet[value="Ship"] ~ div .sheet-ship {
+	display: grid;
+}
+
+.sheet-header-tabs button[type=action].sheet-action-tab {
+    width: 65px;
+    color: rgb(204, 204, 204);
+    background-color: #696969;
+    border: 1px solid #696969;
 }
 
 input.sheet-tab-one:checked ~ div.sheet-tab-one-contents,
@@ -537,6 +695,28 @@ input.sheet-tab-gamma:checked ~ div.sheet-tab-gamma-contents,
 input.sheet-tab-delta:checked ~ div.sheet-tab-delta-contents,
 input.sheet-tab-epsilon:checked ~ div.sheet-tab-epsilon-contents,
 input.sheet-tab-zeta:checked ~ div.sheet-tab-zeta-contents{
+	display: block;
+}
+
+input.sheet-tab-modules1:checked ~ div.sheet-tab-modules1-contents,
+input.sheet-tab-modules2:checked ~ div.sheet-tab-modules2-contents,
+input.sheet-tab-modules3:checked ~ div.sheet-tab-modules3-contents,
+input.sheet-tab-modules4:checked ~ div.sheet-tab-modules4-contents {
+	display: block;
+}
+
+input.sheet-tab-log1:checked ~ div.sheet-tab-log1-contents,
+input.sheet-tab-log2:checked ~ div.sheet-tab-log2-contents,
+input.sheet-tab-log3:checked ~ div.sheet-tab-log3-contents,
+input.sheet-tab-log4:checked ~ div.sheet-tab-log4-contents {
+	display: block;
+}
+
+input.sheet-tab-armament1:checked ~ div.sheet-tab-armament1-contents,
+input.sheet-tab-armament2:checked ~ div.sheet-tab-armament2-contents,
+input.sheet-tab-armament3:checked ~ div.sheet-tab-armament3-contents,
+input.sheet-tab-armament4:checked ~ div.sheet-tab-armament4-contents,
+input.sheet-tab-armament5:checked ~ div.sheet-tab-armament5-contents {
 	display: block;
 }
 
@@ -645,6 +825,10 @@ input.sheet-letter-box:checked + span::before {
     background: #808080;
     border: solid 1px #808080;
     box-shadow: 0px 0px 10px #008b8b;
+}
+
+input.sheet-dotted-underline {
+    border-bottom: 1px dashed rgba(0, 139, 139, 1); /* Dark Cyan #008b8b */
 }
 
 
