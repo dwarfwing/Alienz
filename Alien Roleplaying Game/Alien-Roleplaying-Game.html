@@ -706,42 +706,37 @@
                 <span class="teal-header" -data-i18n="internal-modules-u" >INTERNAL MODULES</span>
             </div>
             <div class="skinny-div">
-                <button type="action" name="act_tab_modules1" class="action-tab" value="1">I</button>
-                <button type="action" name="act_tab_modules2" class="action-tab" value="2">II</button>
-                <button type="action" name="act_tab_modules3" class="action-tab" value="3">III</button>
-                <button type="action" name="act_tab_modules4" class="action-tab" value="4">IV</button>
+                <button type="action" name="act_tab_modules1" class="action-tab fit-two" value="1">I</button>
+                <button type="action" name="act_tab_modules2" class="action-tab fit-two" value="2">II</button>
             </div>
             <input type="radio" class="sheet-tab sheet-tab-modules1" name="attr_tab_modules" value="1" checked="checked"/>
             <input type="radio" class="sheet-tab sheet-tab-modules2" name="attr_tab_modules" value="2" />
-            <input type="radio" class="sheet-tab sheet-tab-modules3" name="attr_tab_modules" value="3" />
-            <input type="radio" class="sheet-tab sheet-tab-modules4" name="attr_tab_modules" value="4" />
-            <div class="tab-content tab-modules1-contents"> <!--TAB 1 TALENT -->
-                <input type="text" name="attr_modules1" value="" class="text-input" title="@{talent_one}" spellcheck="false" data-i18n-placeholder="modules1-name.place" placeholder="Modules One Name"/>
-                <div class="auto-expand">
-                    <span name="attr_modules1_description"></span>
-                    <textarea name="attr_modules1_description" value="" data-i18n-placeholder="modules1-description.place" placeholder="Talent One Description..." title="@{talent_one_description}" spellcheck="false" ></textarea>
-                </div>
+            <div class="cover-100-flex"><span class="darkest-teal-header cover-75">&nbsp;</span><span class="darkest-teal-header cover-25">Size</span></div>
+            <div class="tab-content tab-modules1-contents"> <!--TAB 1 MODULES -->
+                <input type="text" name="attr_module1" value="" class="text-input dotted-underline cover-75" title="@{module1}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module1_sz" />
+                <input type="text" name="attr_module2" value="" class="text-input dotted-underline cover-75" title="@{module2}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module2_sz" />
+                <input type="text" name="attr_module3" value="" class="text-input dotted-underline cover-75" title="@{module3}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module3_sz" />
+                <input type="text" name="attr_module4" value="" class="text-input dotted-underline cover-75" title="@{module4}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module4_sz" />
+                <input type="text" name="attr_module5" value="" class="text-input dotted-underline cover-75" title="@{module5}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module5_sz" />
+                <input type="text" name="attr_module6" value="" class="text-input dotted-underline cover-75" title="@{module6}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module6_sz" />
+                <input type="text" name="attr_module7" value="" class="text-input dotted-underline cover-75" title="@{module7}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module7_sz" />
+                <input type="text" name="attr_module8" value="" class="text-input dotted-underline cover-75" title="@{module8}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module8_sz" />
+                <input type="text" name="attr_module9" value="" class="text-input dotted-underline cover-75" title="@{module9}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module9_sz" />
+                <input type="text" name="attr_module10" value="" class="text-input dotted-underline cover-75" title="@{module10}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module10_sz" />
+                <input type="text" name="attr_module11" value="" class="text-input dotted-underline cover-75" title="@{module11}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module11_sz" />
             </div>
-            <div class="tab-content tab-modules2-contents"> <!--TAB 2 TALENT -->
-                <input type="text" name="attr_modules2" value="" class="text-input" title="@{talent_two}" spellcheck="false" data-i18n-placeholder="modules2-name.place" placeholder="Modules Two Name"/>
-                <div class="auto-expand">
-                    <span name="attr_modules2_description"></span>
-                    <textarea name="attr_modules2_description" value="" data-i18n-placeholder="modules2-description.place" placeholder="Talent Two Description..." title="@{talent_two_description}" spellcheck="false" ></textarea>
-                </div>
-            </div>
-            <div class="tab-content tab-modules3-contents"> <!--TAB 3 TALENT -->
-                <input type="text" name="attr_modules3" value="" class="text-input" title="@{talent_three}" spellcheck="false" data-i18n-placeholder="modules3-name.place" placeholder="Modules Three Name"/>
-                <div class="auto-expand">
-                    <span name="attr_modules3_description"></span>
-                    <textarea name="attr_modules3_description" value="" data-i18n-placeholder="modules3-description.place" placeholder="Talent Three Description..." title="@{talent_three_description}" spellcheck="false" ></textarea>
-                </div>
-            </div>
-            <div class="tab-content tab-modules4-contents"> <!--TAB 4 TALENT -->
-                <input type="text" name="attr_modules4" value="" class="text-input" title="@{talent_four}" spellcheck="false" data-i18n-placeholder="modules4-name.place" placeholder="Modules Four Name"/>
-                <div class="auto-expand">
-                    <span name="attr_modules4_description"></span>
-                    <textarea name="attr_modules4_description" value="" data-i18n-placeholder="modules4-description.place" placeholder="Talent Four Description..." title="@{talent_four_description}" spellcheck="false" ></textarea>
-                </div>
+            <div class="tab-content tab-modules2-contents"> <!--TAB 2 MODULES -->
+                <input type="text" name="attr_module12" value="" class="text-input dotted-underline cover-75" title="@{module12}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module12_sz" />
+                <input type="text" name="attr_module13" value="" class="text-input dotted-underline cover-75" title="@{module13}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module13_sz" />
+                <input type="text" name="attr_module14" value="" class="text-input dotted-underline cover-75" title="@{module14}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module14_sz" />
+                <input type="text" name="attr_module15" value="" class="text-input dotted-underline cover-75" title="@{module15}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module15_sz" />
+                <input type="text" name="attr_module16" value="" class="text-input dotted-underline cover-75" title="@{module16}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module16_sz" />
+                <input type="text" name="attr_module17" value="" class="text-input dotted-underline cover-75" title="@{module17}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module17_sz" />
+                <input type="text" name="attr_module18" value="" class="text-input dotted-underline cover-75" title="@{module18}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module18_sz" />
+                <input type="text" name="attr_module19" value="" class="text-input dotted-underline cover-75" title="@{module19}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module19_sz" />
+                <input type="text" name="attr_module20" value="" class="text-input dotted-underline cover-75" title="@{module20}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module20_sz" />
+                <input type="text" name="attr_module21" value="" class="text-input dotted-underline cover-75" title="@{module21}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module21_sz" />
+                <input type="text" name="attr_module22" value="" class="text-input dotted-underline cover-75" title="@{module22}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module22_sz" />
             </div>
         </div> 
 
@@ -761,211 +756,134 @@
             <input type="radio" class="sheet-tab sheet-tab-log2" name="attr_tab_log" value="2" />
             <input type="radio" class="sheet-tab sheet-tab-log3" name="attr_tab_log" value="3" />
             <input type="radio" class="sheet-tab sheet-tab-log4" name="attr_tab_log" value="4" />
-            <div class="tab-content tab-log1-contents"> <!--TAB 1 TALENT -->
-                <input type="text" name="attr_log1" value="" class="text-input" title="@{talent_one}" spellcheck="false" data-i18n-placeholder="log1-name.place" placeholder="Talent One Name"/>
-                <div class="auto-expand">
-                    <span name="attr_log1_description"></span>
-                    <textarea name="attr_log1_description" value="" data-i18n-placeholder="log1-description.place" placeholder="Talent One Description..." title="@{talent_one_description}" spellcheck="false" ></textarea>
-                </div>
+            <div class="cover-100-flex"><span class="darkest-teal-header cover-25">Date</span><span class="darkest-teal-header cover-75">Location</span></div>
+            <div class="tab-content tab-log1-contents"> <!--TAB 1 STAR LOGS -->                
+                <input type="text" name="attr_log1_date" value="" class="text-input dotted-underline cover-40 centered some-padding" title="@{log1_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60 some-padding" name="attr_log1" />
+                <input type="text" name="attr_log2_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log2_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log2" />
+                <input type="text" name="attr_log3_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log3_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log3" />
+                <input type="text" name="attr_log4_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log4_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log4" />
+                <input type="text" name="attr_log5_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log5_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log5" />
+                <input type="text" name="attr_log6_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log6_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log6" />
+                <input type="text" name="attr_log7_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log7_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log7" />
+                <input type="text" name="attr_log8_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log8_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log8" />
+                <input type="text" name="attr_log9_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log9_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log9" />
+                <input type="text" name="attr_log10_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log10_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log10" />
             </div>
-            <div class="tab-content tab-log2-contents"> <!--TAB 2 TALENT -->
-                <input type="text" name="attr_log2" value="" class="text-input" title="@{talent_two}" spellcheck="false" data-i18n-placeholder="log2-name.place" placeholder="Talent Two Name"/>
-                <div class="auto-expand">
-                    <span name="attr_log2_description"></span>
-                    <textarea name="attr_log2_description" value="" data-i18n-placeholder="log2-description.place" placeholder="Talent Two Description..." title="@{talent_two_description}" spellcheck="false" ></textarea>
-                </div>
+            <div class="tab-content tab-log2-contents"> <!--TAB 2 STAR LOGS -->
+                <input type="text" name="attr_log11_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log11_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log11" />
+                <input type="text" name="attr_log12_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log12_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log12" />
+                <input type="text" name="attr_log13_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log13_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log13" />
+                <input type="text" name="attr_log14_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log14_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log14" />
+                <input type="text" name="attr_log15_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log15_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log15" />
+                <input type="text" name="attr_log16_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log16_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log16" />
+                <input type="text" name="attr_log17_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log17_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log17" />
+                <input type="text" name="attr_log18_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log18_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log18" />
+                <input type="text" name="attr_log19_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log19_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log19" />
+                <input type="text" name="attr_log20_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log20_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log20" />
             </div>
-            <div class="tab-content tab-log3-contents"> <!--TAB 3 TALENT -->
-                <input type="text" name="attr_log3" value="" class="text-input" title="@{talent_three}" spellcheck="false" data-i18n-placeholder="log3-name.place" placeholder="Talent Three Name"/>
-                <div class="auto-expand">
-                    <span name="attr_log3_description"></span>
-                    <textarea name="attrlog3_description" value="" data-i18n-placeholder="log3-description.place" placeholder="Talent Three Description..." title="@{talent_three_description}" spellcheck="false" ></textarea>
-                </div>
+            <div class="tab-content tab-log3-contents"> <!--TAB 3 STAR LOG -->
+                <input type="text" name="attr_log21_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log21_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log21" />
+                <input type="text" name="attr_log22_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log22_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log22" />
+                <input type="text" name="attr_log23_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log23_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log23" />
+                <input type="text" name="attr_log24_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log24_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log24" />
+                <input type="text" name="attr_log25_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log25_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log25" />
+                <input type="text" name="attr_log26_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log26_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log26" />
+                <input type="text" name="attr_log27_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log27_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log27" />
+                <input type="text" name="attr_log28_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log28_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log28" />
+                <input type="text" name="attr_log29_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log29_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log29" />
+                <input type="text" name="attr_log30_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log30_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log30" />
             </div>
-            <div class="tab-content tab-log4-contents"> <!--TAB 4 TALENT -->
-                <input type="text" name="attr_log4" value="" class="text-input" title="@{talent_four}" spellcheck="false" data-i18n-placeholder="log4-name.place" placeholder="Talent Four Name"/>
-                <div class="auto-expand">
-                    <span name="attr_log4_description"></span>
-                    <textarea name="attr_log4_description" value="" data-i18n-placeholder="log4-description.place" placeholder="Talent Four Description..." title="@{talent_four_description}" spellcheck="false" ></textarea>
-                </div>
+            <div class="tab-content tab-log4-contents"> <!--TAB 4 STAR LOG -->                
+                <input type="text" name="attr_log31_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log31_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log31" />
+                <input type="text" name="attr_log32_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log32_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log32" />
+                <input type="text" name="attr_log33_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log33_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log33" />
+                <input type="text" name="attr_log34_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log34_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log34" />
+                <input type="text" name="attr_log35_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log35_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log35" />
+                <input type="text" name="attr_log36_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log36_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log36" />
+                <input type="text" name="attr_log37_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log37_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log37" />
+                <input type="text" name="attr_log38_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log38_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log38" />
+                <input type="text" name="attr_log39_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log39_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log39" />
+                <input type="text" name="attr_log40_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log40_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log40" />
             </div>
         </div> <!-- END OF ROW 1-5 --> 
 
         <!-- START OF ROW 6-->
-        <div class="grid-item span-one-thru-four span-comp-dmg">
-            <div class="black-floating-header more-curves">
+        <div class="grid-item span-one-thru-seven span-cmp-dmg grid-container contains-seven-columns">
+            <div class="black-floating-header more-curves span-one-thru-four">
                 <span class="teal-header" -data-i18n="min-comp-dmg-u" >MINOR COMPONENT DAMAGE</span>
             </div>
-            <div class="vertical-adjust-one">
-                <input type="text" name="attr_mincompdmg1" value="" class="text-input" title="@{mincompdmg1}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_mincompdmg2" value="" class="text-input" title="@{mincompdmg2}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_mincompdmg3" value="" class="text-input" title="@{mincompdmg3}" spellcheck="false" />
-                <hr class="dotted-line">
-             </div>
-        </div>        
-        <div class="grid-item span-five-thru-seven span-comp-dmg">
-            <div class="floating-header more-curves">
-                <span class="darkest-teal-header" -data-i18n="min-comp-dmg-u" >EFFECT</span>
+            <div class="grid-item span-one-thru-four span-comp-dmg">
+                <div class="">
+                    <input type="text" name="attr_mincompdmg1" value="" class="text-input dotted-underline" title="@{mincompdmg1}" spellcheck="false" />
+                    <input type="text" name="attr_mincompdmg2" value="" class="text-input dotted-underline" title="@{mincompdmg2}" spellcheck="false" />
+                    <input type="text" name="attr_mincompdmg3" value="" class="text-input dotted-underline" title="@{mincompdmg3}" spellcheck="false" />
+                </div>
+            </div>        
+            <div class="grid-item span-five-thru-seven span-comp-dmg">
+                <div class="floating-header more-curves">
+                    <span class="darkest-teal-header" -data-i18n="min-comp-dmg-u" >EFFECT</span>
+                </div>
+                <div class="">
+                    <input type="text" name="attr_mincompdmg1_effect" value="" class="text-input dotted-underline" title="@{mincompdmg1_effect}" spellcheck="false" />
+                    <input type="text" name="attr_mincompdmg2_effect" value="" class="text-input dotted-underline" title="@{mincompdmg2_effect}" spellcheck="false" />
+                    <input type="text" name="attr_mincompdmg3_effect" value="" class="text-input dotted-underline" title="@{mincompdmg3_effect}" spellcheck="false" />
+                </div>
             </div>
-            <div class="">
-                <input type="text" name="attr_mincompdmg1_effect" value="" class="text-input" title="@{mincompdmg1_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_mincompdmg2_effect" value="" class="text-input" title="@{mincompdmg2_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_mincompdmg3_effect" value="" class="text-input" title="@{mincompdmg3_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-             </div>
         </div>
-        <div class="grid-item span-eight-thru-eleven span-comp-dmg">
-            <div class="black-floating-header more-curves">
+        
+        <div class="grid-item span-eight-thru-fourteen span-cmp-dmg grid-container contains-seven-columns">
+            <div class="black-floating-header more-curves span-one-thru-four">
                 <span class="teal-header" -data-i18n="maj-comp-dmg-u" >MAJOR COMPONENT DAMAGE</span>
             </div>
-            <div class="vertical-adjust-one">
-                <input type="text" name="attr_majcompdmg1" value="" class="text-input" title="@{majcompdmg1}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_majcompdmg2" value="" class="text-input" title="@{majcompdmg2}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_majcompdmg3" value="" class="text-input" title="@{majcompdmg3}" spellcheck="false" />
-                <hr class="dotted-line">
+            <div class="grid-item span-one-thru-four span-comp-dmg">
+                <div class="">
+                    <input type="text" name="attr_majcompdmg1" value="" class="text-input dotted-underline" title="@{majcompdmg1}" spellcheck="false" />
+                    <input type="text" name="attr_majcompdmg2" value="" class="text-input dotted-underline" title="@{majcompdmg2}" spellcheck="false" />
+                    <input type="text" name="attr_majcompdmg3" value="" class="text-input dotted-underline" title="@{majcompdmg3}" spellcheck="false" />
+                </div>
             </div>
+            <div class="grid-item span-five-thru-seven span-comp-dmg">
+                <div class="floating-header more-curves">
+                    <span class="darkest-teal-header" -data-i18n="maj-comp-dmg-u" >EFFECT</span>
+                </div>
+                <div class="">
+                    <input type="text" name="attr_majcompdmg1_effect" value="" class="text-input dotted-underline" title="@{majcompdmg1_effect}" spellcheck="false" />
+                    <input type="text" name="attr_majcompdmg2_effect" value="" class="text-input dotted-underline" title="@{majcompdmg2_effect}" spellcheck="false" />
+                    <input type="text" name="attr_majcompdmg3_effect" value="" class="text-input dotted-underline" title="@{majcompdmg3_effect}" spellcheck="false" />
+                </div>
+            </div>
+
         </div>
-        <div class="grid-item span-twelve-thru-fourteen span-comp-dmg">
-            <div class="floating-header more-curves">
-                <span class="darkest-teal-header" -data-i18n="maj-comp-dmg-u" >EFFECT</span>
-            </div>
-            <div class="">
-                <input type="text" name="attr_majcompdmg1_effect" value="" class="text-input" title="@{majcompdmg1_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_majcompdmg2_effect" value="" class="text-input" title="@{majcompdmg2_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_majcompdmg3_effect" value="" class="text-input" title="@{majcompdmg3_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-            </div>
-        </div><!-- END OF ROW 6-->
+        <!-- END OF ROW 6-->
 
         <!-- START OF ROW 7-->
-        <div class="grid-item span-one-thru-four span-upg-arm">
-            <div class="black-floating-header more-curves">
-                <span class="teal-header" -data-i18n="upgrades-u" >UPGRADES</span>
+        <div class="grid-item span-one-thru-seven span-upg-arm grid-container contains-seven-columns">
+            <div class="black-floating-header more-curves span-one-thru-four">
+                <span class="teal-header" -data-i18n="upgrades-u">UPGRADES</span>
             </div>
-            <div class="vertical-adjust-one">
-                <input type="text" name="attr_upgrades1" value="" class="text-input" title="@{upgrades1}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_upgrades2" value="" class="text-input" title="@{upgrades2}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_upgrades3" value="" class="text-input" title="@{upgrades3}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_upgrades4" value="" class="text-input" title="@{upgrades4}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_upgrades5" value="" class="text-input" title="@{upgrades5}" spellcheck="false" />
-                <hr class="dotted-line">
-             </div>
-        </div>
-        <div class="grid-item span-five-thru-seven span-upg-arm">
-            <div class="floating-header more-curves">
-                <span class="darkest-teal-header" -data-i18n="upgrades-u" >EFFECT</span>
+            <div class="grid-item span-one-thru-four">
+                <div class="">
+                    <input type="text" name="attr_upgrades1" value="" class="text-input dotted-underline" title="@{upgrades1}" spellcheck="false" />
+                    <input type="text" name="attr_upgrades2" value="" class="text-input dotted-underline" title="@{upgrades2}" spellcheck="false" />
+                    <input type="text" name="attr_upgrades3" value="" class="text-input dotted-underline" title="@{upgrades3}" spellcheck="false" />
+                    <input type="text" name="attr_upgrades4" value="" class="text-input dotted-underline" title="@{upgrades4}" spellcheck="false" />
+                    <input type="text" name="attr_upgrades5" value="" class="text-input dotted-underline" title="@{upgrades5}" spellcheck="false" />
+                </div>
             </div>
-            <div class="">
-                <input type="text" name="attr_upgrades1_effect" value="" class="text-input" title="@{upgrades1_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_upgrades2_effect" value="" class="text-input" title="@{upgrades2_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_upgrades3_effect" value="" class="text-input" title="@{upgrades3_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_upgrades4_effect" value="" class="text-input" title="@{upgrades4_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_upgrades5_effect" value="" class="text-input" title="@{upgrades5_effect}" spellcheck="false" />
-                <hr class="dotted-line">
-             </div>
-        </div>
-        <!-- <div class="grid-item span-eight-thru-ten span-upg-arm">
-            <div class="black-floating-header more-curves">
-                <span class="teal-header" -data-i18n="armaments-u" >ARMAMENTS</span>
-            </div>
-            <div class="vertical-adjust-one">
-                <input type="text" name="attr_armaments1" value="" class="text-input" title="@{armaments1}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments2" value="" class="text-input" title="@{armaments2}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments3" value="" class="text-input" title="@{armaments3}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments4" value="" class="text-input" title="@{armaments4}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments5" value="" class="text-input" title="@{armaments5}" spellcheck="false" />
-                <hr class="dotted-line">
+            <div class="grid-item span-five-thru-seven">
+                <div class="floating-header more-curves">
+                    <span class="darkest-teal-header" -data-i18n="upgrades-u" >EFFECT</span>
+                </div>
+                <div class="">
+                    <input type="text" name="attr_upgrades1_effect" value="" class="text-input dotted-underline" title="@{upgrades1_effect}" spellcheck="false" />
+                    <input type="text" name="attr_upgrades2_effect" value="" class="text-input dotted-underline" title="@{upgrades2_effect}" spellcheck="false" />
+                    <input type="text" name="attr_upgrades3_effect" value="" class="text-input dotted-underline" title="@{upgrades3_effect}" spellcheck="false" />
+                    <input type="text" name="attr_upgrades4_effect" value="" class="text-input dotted-underline" title="@{upgrades4_effect}" spellcheck="false" />
+                    <input type="text" name="attr_upgrades5_effect" value="" class="text-input dotted-underline" title="@{upgrades5_effect}" spellcheck="false" />
+                </div>
             </div>
         </div>
-        <div class="grid-item span-eleven span-upg-arm">
-            <div class="floating-header more-curves">
-                <span class="darkest-teal-header" -data-i18n="armaments-bonus-u" >BONUS</span>
-            </div>
-            <div class="">
-                <input type="text" name="attr_armaments1_bonus" value="" class="text-input" title="@{armaments1_bonus}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments2_bonus" value="" class="text-input" title="@{armaments2_bonus}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments3_bonus" value="" class="text-input" title="@{armaments3_bonus}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments4_bonus" value="" class="text-input" title="@{armaments4_bonus}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments5_bonus" value="" class="text-input" title="@{armaments5_bonus}" spellcheck="false" />
-                <hr class="dotted-line">
-            </div>
-        </div>
-        <div class="grid-item span-twelve span-upg-arm">
-            <div class="floating-header more-curves">
-                <span class="darkest-teal-header" -data-i18n="armaments-damage-u" >DAMAGE</span>
-            </div>
-            <div class="">
-                <input type="text" name="attr_armaments1_damage" value="" class="text-input" title="@{armaments1_damage}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments2_damage" value="" class="text-input" title="@{armaments2_damage}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments3_damage" value="" class="text-input" title="@{armaments3_damage}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments4_damage" value="" class="text-input" title="@{armaments4_damage}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments5_damage" value="" class="text-input" title="@{armaments5_damage}" spellcheck="false" />
-                <hr class="dotted-line">
-            </div>
-        </div>
-        <div class="grid-item span-thirteen span-upg-arm">
-            <div class="floating-header more-curves">
-                <span class="darkest-teal-header" -data-i18n="armaments-range-u" >RANGE</span>
-            </div>
-            <div class="">
-                <input type="text" name="attr_armaments1_range" value="" class="text-input" title="@{armaments1_range}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments2_range" value="" class="text-input" title="@{armaments2_range}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments3_range" value="" class="text-input" title="@{armaments3_range}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments4_range" value="" class="text-input" title="@{armaments4_range}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments5_range" value="" class="text-input" title="@{armaments5_range}" spellcheck="false" />
-                <hr class="dotted-line">
-            </div>
-        </div>
-        <div class="grid-item span-fourteen span-upg-arm">
-            <div class="floating-header more-curves">
-                <span class="darkest-teal-header" -data-i18n="armaments-size-u" >SIZE</span>
-            </div>
-            <div class="">
-                <input type="text" name="attr_armaments1_size" value="" class="text-input" title="@{armaments1_size}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments2_size" value="" class="text-input" title="@{armaments2_size}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments3_size" value="" class="text-input" title="@{armaments3_size}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments4_size" value="" class="text-input" title="@{armaments4_size}" spellcheck="false" />
-                <hr class="dotted-line">
-                <input type="text" name="attr_armaments5_size" value="" class="text-input" title="@{armaments5_size}" spellcheck="false" />
-                <hr class="dotted-line">
-            </div>
-        </div> -->
-
+        
         <div class="grid-item span-eight-thru-fourteen span-upg-arm"> <!-- START OF ROW 13 -->
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="armaments-u">ARMAMENTS</span>
@@ -988,25 +906,25 @@
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_armament1_bonus" value="0" class="number-input" title="@{armament1_bonus}" />
                         <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
+                        <input type="number" name="attr_armament1_bonus" value="0" class="number-input" title="@{armament1_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_armament1_damage" value="0" class="number-input" title="@{armament1_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
+                        <input type="number" name="attr_armament1_damage" value="0" class="number-input" title="@{armament1_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
+                        <span class="mini-header" data-i18n="max-range-u">Max Range</span>
                         <select name="attr_armament1_range" class="select-input" title="@{armament1_range}">
-                            <option vale="Engaged" data-i18n="contact-range-u" >Contact</option>
-                            <option vale="Short" data-i18n="short-u" >Short</option>
-                            <option vale="Medium" selected="selected" data-i18n="medium-u" >Medium</option>
-                            <option vale="Long" data-i18n="long-u" >Long</option>
-                            <option vale="Extreme" data-i18n="extreme-u" >Extreme</option>
+                            <option vale="Engaged" data-i18n="contact-range-u">Contact</option>
+                            <option vale="Short" data-i18n="short-range-u">Short</option>
+                            <option vale="Medium" data-i18n="medium-range-u" selected="selected">Medium</option>
+                            <option vale="Long" data-i18n="long-range-u">Long</option>
+                            <option vale="Extreme" data-i18n="extreme-range-u">Extreme</option>
                         </select>
-                        <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
                     <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_armament1_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
+                        <!-- <input type="radio" name="attr_armament1_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span> -->
                         <input type="radio" name="attr_armament1_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
                     </div>
                 </div>
@@ -1021,14 +939,15 @@
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_armament2_bonus" value="0" class="number-input" title="@{armament2_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
+                        <input type="number" name="attr_armament2_bonus" value="0" class="number-input" title="@{armament2_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_armament2_damage" value="0" class="number-input" title="@{armament2_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
+                        <input type="number" name="attr_armament2_damage" value="0" class="number-input" title="@{armament2_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
+                        <span class="mini-header" data-i18n="range-u" >Range</span>
                         <select name="attr_armament2_range" class="select-input" title="@{armament2_range}">
                             <option vale="Engaged" data-i18n="contact-range-u" >Contact</option>
                             <option vale="Short" data-i18n="short-u" >Short</option>
@@ -1036,7 +955,6 @@
                             <option vale="Long" data-i18n="long-u" >Long</option>
                             <option vale="Extreme" data-i18n="extreme-u" >Extreme</option>
                         </select>
-                        <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="radio" name="attr_armament2_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span data-i18n-title="cc-title" title="CC" ></span>
@@ -1054,14 +972,15 @@
                 <hr class="dotted-line">
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_armament3_bonus" value="0" class="number-input" title="@{armament3_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
+                        <input type="number" name="attr_armament3_bonus" value="0" class="number-input" title="@{armament3_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_armament3_damage" value="0" class="number-input" title="@{armament3_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
+                        <input type="number" name="attr_armament3_damage" value="0" class="number-input" title="@{armament3_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
+                        <span class="mini-header" data-i18n="range-u" >Range</span>
                         <select name="attr_armament3_range" class="select-input" title="@{armament3_range}">
                             <option vale="Engaged" data-i18n="contact-range-u" >Contact</option>
                             <option vale="Short" data-i18n="short-u" >Short</option>
@@ -1069,7 +988,6 @@
                             <option vale="Long" data-i18n="long-u" >Long</option>
                             <option vale="Extreme" data-i18n="extreme-u" >Extreme</option>
                         </select>
-                        <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="radio" name="attr_armament3_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
@@ -1087,14 +1005,15 @@
                 <hr class="dotted-line">
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_armament4_bonus" value="0" class="number-input" title="@{armament4_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
+                        <input type="number" name="attr_armament4_bonus" value="0" class="number-input" title="@{armament4_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_armament4_damage" value="0" class="number-input" title="@{armament4_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
+                        <input type="number" name="attr_armament4_damage" value="0" class="number-input" title="@{armament4_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
+                        <span class="mini-header" data-i18n="range-u" >Range</span>
                         <select name="attr_armament4_range" class="select-input" title="@{armament4_range}">
                             <option vale="Engaged" data-i18n="contact-range-u" >Contact</option>
                             <option vale="Short" data-i18n="short-u" >Short</option>
@@ -1102,7 +1021,6 @@
                             <option vale="Long" data-i18n="long-u" >Long</option>
                             <option vale="Extreme" data-i18n="extreme-u" >Extreme</option>
                         </select>
-                        <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="radio" name="attr_armament4_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
@@ -1120,14 +1038,15 @@
                 <hr class="dotted-line">
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_armament5_bonus" value="0" class="number-input" title="@{armament5_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
+                        <input type="number" name="attr_armament5_bonus" value="0" class="number-input" title="@{armament5_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_armament5_damage" value="0" class="number-input" title="@{armament5_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
+                        <input type="number" name="attr_armament5_damage" value="0" class="number-input" title="@{armament5_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
+                        <span class="mini-header" data-i18n="range-u" >Range</span>
                         <select name="attr_armament5_range" class="select-input" title="@{armament5_range}">
                             <option vale="Engaged" data-i18n="contact-range-u" >Contact</option>
                             <option vale="Short" data-i18n="short-u" >Short</option>
@@ -1135,7 +1054,6 @@
                             <option vale="Long" data-i18n="long-u" >Long</option>
                             <option vale="Extreme" data-i18n="extreme-u" >Extreme</option>
                         </select>
-                        <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="radio" name="attr_armament5_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>

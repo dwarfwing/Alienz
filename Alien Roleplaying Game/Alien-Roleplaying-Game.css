@@ -60,6 +60,11 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+.sheet-contains-seven-columns {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 2px;
+}
+
 .sheet-roll-buttons{
     display: grid;
     grid-gap: 5px;
@@ -293,6 +298,35 @@
     grid-row: 7;
 }
 
+.sheet-cover-100-flex {
+    width: 100% !important;
+    display: flex;
+}
+
+.sheet-cover-100 {
+    width: 100% !important;
+}
+
+.sheet-cover-75 {
+    width: 73% !important;
+    margin: 2px;
+}
+
+.sheet-cover-25 {
+    width: 23% !important;
+    margin: 2px;
+}
+
+.sheet-cover-60 {
+    width: 58% !important;
+    margin: 2px;
+}
+
+.sheet-cover-40 {
+    width: 38% !important;
+    margin: 2px;
+}
+
 .sheet-grid-item {
     background-color: rgba(204, 217, 207, 1);
     border: 1px solid rgba(211, 211, 211, 1); /* LightGrey */
@@ -309,6 +343,15 @@
 
 .sheet-what-padding {
     padding: 0px;
+}
+
+.sheet-some-padding {
+    padding: 4px;
+}
+
+.sheet-centered {
+    text-align: center; 
+    align-self: center;
 }
 
 .sheet-weapon-item {
@@ -388,6 +431,10 @@
     margin: 3px;
 }
 
+.sheet-dotted-underline {
+    border-bottom: 1px dashed rgba(0, 139, 139, 1) !important; /* Dark Cyan #008b8b */
+}
+
 .sheet-span-relationships .sheet-dotted-line,
 .sheet-span-critical-injuries .sheet-dotted-line{
     margin: 8px;
@@ -456,9 +503,9 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     height: 1em;
     width: 100%;
     line-height: 1em;
-    margin: -5px 0 -5px 0;
+    margin: -20px 0 0 0;
     -text-align: left;
-    padding: 0px 0px 4px 0px;
+    padding: 0px 0px 7px 0px;
     
 }
 
@@ -636,6 +683,9 @@ button[type="action"].sheet-action-tab {
 }
 button[type="action"].sheet-action-tab.sheet-fit-five {
     width: 15%;
+} 
+button[type="action"].sheet-action-tab.sheet-fit-two {
+    width: 35%;
 } 
 
 button[type="action"].sheet-action-tab:hover {
@@ -825,10 +875,6 @@ input.sheet-letter-box:checked + span::before {
     background: #808080;
     border: solid 1px #808080;
     box-shadow: 0px 0px 10px #008b8b;
-}
-
-input.sheet-dotted-underline {
-    border-bottom: 1px dashed rgba(0, 139, 139, 1); /* Dark Cyan #008b8b */
 }
 
 
