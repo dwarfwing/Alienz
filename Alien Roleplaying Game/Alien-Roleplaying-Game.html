@@ -22,6 +22,9 @@
             <input type="radio" class="sheet-tab sheet-tab-ship character" name="attr_tab_sheet" value="Ship" />
         </div>
     </div>
+    
+    <!----------------------------------------------------------------------------- CHARACTER TAB --------------------------------------------------------------------------------------------------->
+
     <div class="grid-container character contains-thirteen-columns">
         <div class="grid-item span-one-thru-four span-personal-agenda"> <!-- START OF ROW 1 -->
             <div class="black-floating-header">
@@ -1073,7 +1076,7 @@
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="hidden" name="attr_armament1_rangemod" readonly hidden />
-                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{armament1_name} }} {{roll-type=@{armament1_type} }} {{base-dice=[[@{armament1_bonus} + @{armament1_ranged} + @{armament1_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament1_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament1_bonus} }} {{current-damage=@{armament1_damage} }} {{current-range=@{armament1_targetrange} }} {{current-comment=@{armament1_comment} }}" data-i18n="attack-u">Attack</button>
+                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name}}} {{roll-name=@{armament1_name}}} {{roll-type=@{armament1_type}}} {{base-dice=[[@{armament1_bonus} + @{armament1_ranged} + @{armament1_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament1_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament1_bonus} }} {{current-damage=@{armament1_damage} }} {{current-range=@{armament1_targetrange} }} {{current-comment=@{armament1_comment} }}" data-i18n="attack-u">Attack</button>
                  </div>
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
@@ -1131,7 +1134,7 @@
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="hidden" name="attr_armament2_rangemod" readonly hidden />
-                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{armament2_name} }} {{roll-type=@{armament2_type} }} {{base-dice=[[@{armament2_bonus} + @{armament2_ranged} + @{armament2_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament2_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament2_bonus} }} {{current-damage=@{armament2_damage} }} {{current-range=@{armament2_targetrange} }} {{current-comment=@{armament2_comment} }}" data-i18n="attack-u">Attack</button>
+                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name}}} {{roll-name=@{armament2_name}}} {{roll-type=@{armament2_type}}} {{base-dice=[[@{armament2_bonus} + @{armament2_ranged} + @{armament2_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament2_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament2_bonus} }} {{current-damage=@{armament2_damage} }} {{current-range=@{armament2_targetrange} }} {{current-comment=@{armament2_comment} }}" data-i18n="attack-u">Attack</button>
                  </div>
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
@@ -1189,7 +1192,7 @@
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="hidden" name="attr_armament3_rangemod" readonly hidden />
-                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{armament3_name} }} {{roll-type=@{armament3_type} }} {{base-dice=[[@{armament3_bonus} + @{armament3_ranged} + @{armament3_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament3_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament3_bonus} }} {{current-damage=@{armament3_damage} }} {{current-range=@{armament3_targetrange} }} {{current-comment=@{armament3_comment} }}" data-i18n="attack-u">Attack</button>
+                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name}}} {{roll-name=@{armament3_name}}} {{roll-type=@{armament3_type}}} {{base-dice=[[@{armament3_bonus} + @{armament3_ranged} + @{armament3_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament3_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament3_bonus} }} {{current-damage=@{armament3_damage} }} {{current-range=@{armament3_targetrange} }} {{current-comment=@{armament3_comment} }}" data-i18n="attack-u">Attack</button>
                  </div>
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
@@ -1247,7 +1250,7 @@
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="hidden" name="attr_armament4_rangemod" readonly hidden />
-                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{armament4_name} }} {{roll-type=@{armament4_type} }} {{base-dice=[[@{armament4_bonus} + @{armament4_ranged} + @{armament4_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament4_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament4_bonus} }} {{current-damage=@{armament4_damage} }} {{current-range=@{armament4_targetrange} }} {{current-comment=@{armament4_comment} }}" data-i18n="attack-u">Attack</button>
+                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name}}} {{roll-name=@{armament4_name}}} {{roll-type=@{armament4_type}}} {{base-dice=[[@{armament4_bonus} + @{armament4_ranged} + @{armament4_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament4_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament4_bonus} }} {{current-damage=@{armament4_damage} }} {{current-range=@{armament4_targetrange} }} {{current-comment=@{armament4_comment} }}" data-i18n="attack-u">Attack</button>
                  </div>
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
@@ -1305,7 +1308,7 @@
                     </div>
                     <div class="grid-item weapon-item type">
                         <input type="hidden" name="attr_armament5_rangemod" readonly hidden />
-                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{armament5_name} }} {{roll-type=@{armament5_type} }} {{base-dice=[[@{armament5_bonus} + @{armament5_ranged} + @{armament5_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament5_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament5_bonus} }} {{current-damage=@{armament5_damage} }} {{current-range=@{armament5_targetrange} }} {{current-comment=@{armament5_comment} }}" data-i18n="attack-u">Attack</button>
+                        <button type="roll" name="armament" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name}}} {{roll-name=@{armament5_name}}} {{roll-type=@{armament5_type}}} {{base-dice=[[@{armament5_bonus} + @{armament5_ranged} + @{armament5_rangemod} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{armament5_stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{armament5_bonus} }} {{current-damage=@{armament5_damage} }} {{current-range=@{armament5_targetrange} }} {{current-comment=@{armament5_comment} }}" data-i18n="attack-u">Attack</button>
                  </div>
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
@@ -1317,15 +1320,12 @@
         </div> <!-- END OF ROW 7 -->
 
     </div>
+
     <div class="footer-image"><span class="footer-text" data-i18n="building-betterworlds-u">"Building Better Worlds"</span></div>
     <div class="box-under-the-bed"> <!-- HIDDEN DIV -->
         <input type="number" name="attr_radiation" value="0" class="" title="@{radiation}"/>
     </div>
 </div>
-
-
-
-
 
 
 
@@ -1775,15 +1775,8 @@
                     </div>
                 {{/current-damage}}
                 {{#current-range}}
-                    <div class="template-grid-item template-span-right">
-                        {{current-range}}
-                    </div>
+                    <div class="template-grid-item template-span-right">{{current-range}}</div>
                 {{/current-range}}
-                {{#current-comment}}
-                    <div class="template-grid-item template-span-six template-to-the-left">
-                        {{current-comment}}
-                    </div>
-                {{/current-comment}}
                 {{#current-comment}}
                     <div class="template-grid-item template-span-six template-to-the-left">
                         {{current-comment}}
@@ -1797,11 +1790,12 @@
                 {{/allprops() }} -->
         
         
-                {{#allprops() character-name roll-name roll-type roll-dice base-dice base-roll-one base-roll-two base-roll-three base-roll-four base-roll-five base-roll-six base-roll-seven base-roll-eight base-roll-nine base-roll-ten base-roll-eleven base-roll-twelve base-roll-thirteen base-roll-fourteen base-roll-fifteen base-roll-sixteen base-roll-seventeen base-roll-eighteen stress-dice stress-roll-one stress-roll-two stress-roll-three stress-roll-four stress-roll-five stress-roll-six stress-roll-seven stress-roll-eight stress-roll-nine stress-roll-ten supply-dice supply-roll-one supply-roll-two supply-roll-three supply-roll-four supply-roll-five supply-roll-six show-weapon current-bonus current-damage current-range current-comment }}
+          <!--       {{#allprops() character-name roll-name roll-type roll-dice base-dice base-roll-one base-roll-two base-roll-three base-roll-four base-roll-five base-roll-six base-roll-seven base-roll-eight base-roll-nine base-roll-ten base-roll-eleven base-roll-twelve base-roll-thirteen base-roll-fourteen base-roll-fifteen base-roll-sixteen base-roll-seventeen base-roll-eighteen stress-dice stress-roll-one stress-roll-two stress-roll-three stress-roll-four stress-roll-five stress-roll-six stress-roll-seven stress-roll-eight stress-roll-nine stress-roll-ten supply-dice supply-roll-one supply-roll-two supply-roll-three supply-roll-four supply-roll-five supply-roll-six show-weapon current-bonus current-damage current-range current-comment }}
                     <div class="template-grid-item template-span-six">
                         {{key}} {{value}}
                     </div>
                 {{/allprops() character-name roll-name roll-type roll-dice base-dice base-roll-one base-roll-two base-roll-three base-roll-four base-roll-five base-roll-six base-roll-seven base-roll-eight base-roll-nine base-roll-ten base-roll-eleven base-roll-twelve base-roll-thirteen base-roll-fourteen base-roll-fifteen base-roll-sixteen base-roll-seventeen base-roll-eighteen stress-dice stress-roll-one stress-roll-two stress-roll-three stress-roll-four stress-roll-five stress-roll-six stress-roll-seven stress-roll-eight stress-roll-nine stress-roll-ten supply-dice supply-roll-one supply-roll-two supply-roll-three supply-roll-four supply-roll-five supply-roll-six show-weapon current-bonus current-damage current-range current-comment }}
+         -->
         </div>
     </div>
 </rolltemplate>    
