@@ -3,6 +3,8 @@
 
 .sheet-background-wrap{
     background-color: black;
+    -background-image: url('https://wallpapercave.com/wp/wp9267865.jpg');
+    background-repeat: repeat;
     padding: 5px;
     min-width: 1128px;
     -min-width: 830px;
@@ -219,6 +221,13 @@
 .sheet-what-padding {     padding: 0px; }
 .sheet-some-padding {    padding: 4px; }
 
+.sheet-shift-up-5 {    margin-top: -5px; }
+.sheet-shift-up-8 {    margin-top: -8px; }
+.sheet-shift-up-10 {    margin-top: -10px; }
+.sheet-shift-down-5 {    margin-top: 5px; }
+.sheet-shift-down-8 {    margin-top: 8px; }
+.sheet-shift-down-10 {    margin-top: 10px; }
+
 .sheet-centered {
     text-align: center; 
     align-self: center;
@@ -238,6 +247,7 @@
 .sheet-w220 { max-width: 220px; min-width: 220px; }
 .sheet-w250 { max-width: 250px; min-width: 250px; }
 .sheet-w300 { max-width: 300px; min-width: 300px; }
+.sheet-w-fit { width: fit-content; }
 
 .sheet-weapon-item {
     padding: 0px;
@@ -872,7 +882,8 @@ input.sheet-letter-box:checked + span::before {
 }
 
 /* Only show radios up to the max value */
-/* input[name="attr_shipdamage_max"][value="0"] ~ div .sheet-row1.sheet-shipdamage:nth-of-type(1n+1), */
+input[name="attr_shipdamage_max"][value="0"] ~ div .sheet-shipdamage:nth-of-type(1n+3),
+input[name="attr_shipdamage_max"][value="0"] ~ div .sheet-shipdamage:nth-of-type(1n+3) + span,
 input[name="attr_shipdamage_max"][value="1"] ~ div .sheet-shipdamage:nth-of-type(1n+4),
 input[name="attr_shipdamage_max"][value="1"] ~ div .sheet-shipdamage:nth-of-type(1n+4) + span,
 input[name="attr_shipdamage_max"][value="2"] ~ div .sheet-shipdamage:nth-of-type(1n+5),
