@@ -1,0 +1,124 @@
+<style>
+html {
+    background: #f4f4f4;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+  }
+  .bg {
+      background-color: black;
+  }
+  .bg1 {
+      -background-color: black;
+      width: 100%;
+      height: 600px;
+      display:flex;
+      -align-content: center;
+      -justify-content: center;
+      flex-direction: column;	
+      position: relative;
+      top: 30px;
+  }
+  .field1 {
+      -align-self: center;
+      -justify-self: center;
+      background-color: grey;
+      color: black;
+      width: 400px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      padding-top: 35px;
+        -webkit-clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+    clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+  
+  }
+  .header1 {
+      -width: 150px;
+      height: 20px;
+      background-color: black;
+      color: grey;
+      position: absolute;
+      top: -15px;	
+      z-index: 2;
+      padding: 5px;
+      -padding-right: 10px;
+  }
+  .header1:after {
+          position: absolute;
+          z-index: -1;
+          content: "";
+          right: -30%;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          background-color: inherit;
+          -webkit-transform: skewX(-45deg);
+          -moz-transform: skewX(-45deg);
+          -ms-transform: skewX(-45deg);
+          transform: skewX(-45deg);
+  }
+  h1, h2, h3, h4 {
+    position: relative;
+    background: maroon;
+    display: inline-block;
+    color: white;
+    padding: .24em .3em .25em;
+  }
+  
+  h4 {
+    background: none;
+    color: #444;
+  }
+
+  h1:after, h2:after {
+          position: absolute;
+          z-index: -1;
+          content: "";
+          right: -10%;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          background-color: inherit;
+          -webkit-transform: skewX(-10deg);
+          -moz-transform: skewX(-10deg);
+          -ms-transform: skewX(-10deg);
+          transform: skewX(-10deg);
+  }
+
+  h1:before, h3:before {
+          z-index: -1;
+          content: "";
+          position: absolute;
+          left: -10%;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          background-color: inherit;
+          -webkit-transform: skewX(-10deg);
+          -moz-transform: skewX(-10deg);
+          -ms-transform: skewX(-10deg);
+          transform: skewX(-10deg);
+  }
+
+  h4:after {
+      z-index: -1;
+          content: "";
+          position: absolute;
+          top: 0;
+       left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: inherit;
+       border: 1px solid maroon;
+          -webkit-transform: skewX(-10deg);
+          -moz-transform: skewX(-10deg);
+          -ms-transform: skewX(-10deg);
+          transform: skewX(-10deg);
+  }
+</style>
+<div class='bg'>
+    <div class='bg1'>
+        <div class='header1'>Header</div>
+        <div class='field1'>Simple after that<br>matches its parent. This technique is better if<br> you're always going to have both sides skewed,<br>the after will just match the parent element</div>
+</div>
