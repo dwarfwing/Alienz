@@ -15,7 +15,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     padding-top: 25px;
-    margin-bottom: 10px;
+    -margin-bottom: 10px;
     margin-top: 2px;
 }
 
@@ -26,6 +26,9 @@
     justify-items: right;
     justify-content: flex-end;
     align-self: end;
+    align-items: flex-end;
+    justify-self: flex-end;
+    margin-right: 0 !important;
 }
 
 .sheet-footer-text{
@@ -113,6 +116,8 @@
 .sheet-span-eight-thru-fourteen { grid-column: 8 / 15;}
 .sheet-span-nine-ten { grid-column: 9 / 11;}
 .sheet-span-nine-thru-eleven { grid-column: 9 / 12;}
+.sheet-span-nine-thru-thirteen { grid-column: 9 / 14;}
+.sheet-span-nine-thru-fourteen { grid-column: 9 / 15;}
 .sheet-span-ten { grid-column: 10;}
 .sheet-span-ten-eleven { grid-column: 10 / 12;}
 .sheet-span-ten-thru-twelve {    grid-column: 10 / 13;}
@@ -227,6 +232,8 @@
 .sheet-shift-down-5 {    margin-top: 5px; }
 .sheet-shift-down-8 {    margin-top: 8px; }
 .sheet-shift-down-10 {    margin-top: 10px; }
+.sheet-shift-down-15 {    margin-top: 15px; }
+.sheet-shift-down-17 {    margin-top: 17px; }
 
 .sheet-centered {
     text-align: center; 
@@ -695,7 +702,16 @@ input.sheet-tab-sheet[value="Ship"] ~ div .sheet-ship {
     width: 65px;
     color: rgb(204, 204, 204);
     background-color: #696969;
-    border: 1px solid #696969;
+    -border: 1px solid #696969;
+    border: 0;
+    border-radius: 0;
+    margin-right: 0;
+}
+
+input.sheet-tab-sheet[value="Character"] ~ div .sheet-header-tabs button[name="act_tab_character"],
+input.sheet-tab-sheet[value="Ship"] ~ div .sheet-header-tabs button[name="act_tab_ship"] {
+    color: black;
+    background-color: #d3d3d3;
 }
 
 input.sheet-tab-one:checked ~ div.sheet-tab-one-contents,
