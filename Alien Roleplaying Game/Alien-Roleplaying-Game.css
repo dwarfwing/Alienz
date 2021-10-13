@@ -3,7 +3,7 @@
 
 .sheet-background-wrap{
     background-color: black;
-    -background-image: url('https://wallpapercave.com/wp/wp9267865.jpg');
+    -background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/bg.png?raw=true");
     background-repeat: repeat;
     padding: 5px;
     min-width: 1128px;
@@ -352,6 +352,24 @@
     letter-spacing: .1em;
 }
 
+.sheet-teal-header-gear-l {
+    float: left;
+	color: rgba(204, 217, 207, 1); /* Teal Varient */
+    font-family: 'Graduate', cursive;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: .1em;
+}
+
+.sheet-teal-header-gear-r {
+    float: right;
+	color: rgba(204, 217, 207, 1); /* Teal Varient */
+    font-family: 'Graduate', cursive;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: .1em;
+}
+
 .sheet-darkest-teal-header {
     color: #354b44; /* Darkest Teal Varient */
     font-family: 'Graduate', cursive;
@@ -373,7 +391,7 @@
 .sheet-ship-header-black {
     background-color: black;
     color:  rgba(204, 217, 207, 1); /* Teal Varient */
-    top: -15px;
+    top: -8px;
     position: relative;
     z-index: 10;
     clip-path: polygon(0 0%, 100% 0%, calc(100% - 8px) 100%, 8px 100%);
@@ -389,6 +407,14 @@
 }
 .sheet-ship-header-ai {
     width: 50px;
+}
+.sheet-ship-attribute-name {
+    width: 80%;
+    justify-self: center;
+}
+.sheet-ship-attribute-ai {
+    width: 80%;
+    justify-self: center;
 }
 
 button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-teal-header {
@@ -432,6 +458,7 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     padding: 0px 0px 0px 5px;
     
 }
+
 .sheet-black-floating-header-clipped { 
     background-color: rgba(0, 0, 0, 1); /* Black #000000 */
     border: 1px solid rgba(0, 0, 0, 1); /* Black #000000 */
@@ -444,6 +471,20 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     padding: 0px 15px 0px 5px; 
     border-radius: unset;
     clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%); 
+}
+
+.sheet-black-floating-header-gear {
+    background-color: rgba(0, 0, 0, 1); /* Black #000000 */
+    border: 1px solid rgba(0, 0, 0, 1); /* Black #000000 */
+    border-radius: 0px 20px 20px 0px;
+    float: left;
+    height: 1em;
+    width: 100%;
+    line-height: 1em;
+    margin: -14px 15% 0px -7px;
+    text-align: left;
+    padding: 0px 0px 0px 5px;
+    
 }
  
 .sheet-floating-header {
@@ -514,7 +555,7 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     margin-left: 5px;
 }
 
-.sheet-text-input, .sheet-select-input, input[type="number"].sheet-number-input{
+.sheet-text-input, .sheet-text-inv, .sheet-select-input, input[type="number"].sheet-number-input{
     font-family: 'Courier Prime';
     font-family: 'Roboto';
     background: transparent;
@@ -525,6 +566,14 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     width: 99%;
     border: 1px solid transparent;
     padding: 3px;
+}
+
+.sheet-text-inv {
+    color: #000000;
+    width: 67%;
+    border: 1px solid transparent;
+    padding: 3px;
+	float: left;
 }
 
 .sheet-select-input{
@@ -547,16 +596,118 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     width: 89%;
 }
 
+
+
 /* - - - - - Remove Number Spinner - - - - - */
-input[type="number"].sheet-no-spin-input::-webkit-outer-spin-button, input[type="number"].sheet-number-input::-webkit-outer-spin-button,
-input[type="number"].sheet-no-spin-input::-webkit-inner-spin-button, input[type="number"].sheet-number-input::-webkit-inner-spin-button {
+input[type="number"].sheet-no-spin-input::-webkit-outer-spin-button,
+input[type="number"].sheet-no-spin-inv::-webkit-outer-spin-button,
+input[type="number"].sheet-no-spin-inv-tot::-webkit-outer-spin-button,
+input[type="number"].sheet-number-input::-webkit-outer-spin-button,
+input[type="number"].sheet-no-spin-input::-webkit-inner-spin-button,
+input[type="number"].sheet-no-spin-inv::-webkit-inner-spin-button,
+input[type="number"].sheet-no-spin-inv-tot::-webkit-outer-spin-button,
+input[type="number"].sheet-number-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-input[type="number"].sheet-no-spin-input, input[type="number"].sheet-number-input {
+input[type="number"].sheet-no-spin-input, input[type="number"].sheet-no-spin-inv, input[type="number"].sheet-no-spin-inv-tot, input[type="number"].sheet-number-input {
     -moz-appearance: textfield;
 }
+
+.sheet-span-gear .sheet-vertical-adjust-one {
+    overflow-y: auto;
+    max-height: 280px;
+}
+.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar {
+    width: 6px;
+    margin-left: 4px;
+}
+.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background: grey;
+}
+.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+}
+.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-thumb:hover {
+    background: black;
+}
+span.sheet-gear-header {
+	float: right;
+    width: 32px !important;
+    min-width: 32px;
+    text-align: center;
+}
+input.sheet-gear-input, input.sheet-gear-input-total {
+    font-family: 'Courier Prime';
+    font-family: 'Roboto';
+    background: transparent;   
+    display: block;
+    margin-right: 0;
+    text-align: center;
+	float: right;
+    width: 32px !important;
+    height: 2em !important;
+}
+input[type="number"].sheet-gear-input::-webkit-outer-spin-button,
+input[type="number"].sheet-gear-input::-webkit-inner-spin-button,
+input[type="number"].sheet-gear-input-total::-webkit-outer-spin-button,
+input[type="number"].sheet-gear-input-total::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"].sheet-gear-input:hover::-webkit-outer-spin-button, input[type="number"].sheet-gear-input:active::-webkit-outer-spin-button, input[type="number"].sheet-gear-input:focus::-webkit-outer-spin-button,
+input[type="number"].sheet-gear-input:hover::-webkit-inner-spin-button, input[type="number"].sheet-gear-input:active::-webkit-inner-spin-button, input[type="number"].sheet-gear-input:focus::-webkit-inner-spin-button {
+    -webkit-appearance: auto;
+    max-width: 3px;
+    width: 3px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5;
+    margin: 10;
+}
+input.sheet-gear-input-total {
+    background-color: Grey;
+}
+
+input[type="number"].sheet-no-spin-inv {
+	float: right;
+	font-family: 'Courier Prime';
+    font-size: 1em;
+    font-weight: normal;
+    text-align: center;
+    height: 2em;
+    width: 2em;
+    background-color: White;
+    border: 1px solid White;
+    margin: -1px 3px;
+    padding: 3px 0px 0px 0px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 7px rgba(0, 139, 139, 1), -1px -1px 7px rgba(0, 139, 139, 1), 1px 1px 10px white, -1px -1px 10px white;
+}
+
+input[type="number"].sheet-no-spin-inv-tot {
+	float: right;
+	font-family: 'Courier Prime';
+    font-size: 1em;
+    font-weight: normal;
+	color: white;
+    text-align: center;
+    height: 2em;
+    width: 2em;
+    background-color: Grey;
+    border: 1px solid White;
+    margin: -1px 2px;
+    padding: 3px 0px 0px 0px;
+ 
+    border-radius: 50%;
+    box-shadow: 1px 1px 7px rgba(0, 139, 139, 1), -1px -1px 7px rgba(0, 139, 139, 1), 1px 1px 10px white, -1px -1px 10px white;
+}
+
 
 input[type="number"].sheet-no-spin-input {
     font-family: 'Courier Prime';
@@ -651,12 +802,14 @@ button[type="action"].sheet-action-tab {
     border-radius: 5px;
     font-size: 12px;
     line-height: 12px;
-    color: rgba(105, 105, 105, 0.33);
+    /*color: rgba(105, 105, 105, 0.33);*/
+	color: #008b8b;
     padding: 0px 0px 2px 0px;
 }
 button[type="action"].sheet-action-tab.sheet-fit-five {
     width: 15%;
 } 
+
 button[type="action"].sheet-action-tab.sheet-fit-two {
     width: 35%;
 } 
@@ -940,7 +1093,7 @@ input[name="attr_shipdamage_max"][value="19"] ~ div .sheet-shipdamage:nth-of-typ
 input[name="attr_shipdamage_max"][value="19"] ~ div .sheet-shipdamage:nth-of-type(1n+22) + span, 
 input[name="attr_shipdamage_max"][value="20"] ~ div .sheet-shipdamage:nth-of-type(1n+23), 
 input[name="attr_shipdamage_max"][value="20"] ~ div .sheet-shipdamage:nth-of-type(1n+23) + span {
-  display: none !important;
+  display: none;
 }
 
 input[name="attr_shipdamage"][value="0"] ~ .sheet-shipdamage + span::before,
@@ -975,6 +1128,17 @@ input.sheet-shipdamage + span:before {
     background: #cc0000;
     border: solid 1px #cc0000;
     box-shadow: 0px 0px 10px #b30000;
+}
+.sheet-hullpoints-missing {
+    display: none;
+}
+input[name="attr_shipdamage_max"][value="0"] ~ .sheet-hullpoints-missing {
+    display: inline-flex !important;
+    justify-self: center;
+    font-style: italic;
+}
+.sheet-ship-damage-row {
+    padding-top: 0;
 }
 
 
