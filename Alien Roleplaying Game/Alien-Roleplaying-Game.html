@@ -1929,8 +1929,8 @@
 
      // Set Armament tab indicator
      const arma_buttons = {"armament1":"I","armament2":"II","armament3":"III","armament4":"IV","armament5":"V"};
-     clog("Arma buttons: "+ JSON.stringify(arma_buttons));
-     clog("Arma button1 : "+ JSON.stringify(arma_buttons["armament1"]));
+     //clog("Arma buttons: "+ JSON.stringify(arma_buttons));
+     //clog("Arma button1 : "+ JSON.stringify(arma_buttons["armament1"]));
      armas.forEach( (arma) => { 
          const armament = arma,
          name = arma+"_name",
@@ -1939,12 +1939,12 @@
          button = arma+"_tab";
          on(`change:${name} change:${bonus} change:${damage} sheet:opened`, (eventInfo) => {
              getAttrs([name, bonus, damage, button], (values) => {
-                 clog("armament values for button status: "+JSON.stringify(values)); 
+                 //clog("armament values for button status: "+JSON.stringify(values)); 
                  var active = "-";
                  if( values[name] != "" || values[bonus] != "0" || values[damage] != "0" ) {
                      active = arma_buttons[arma];
                  }
-                 clog("active : "+active);
+                 //clog("active : "+active);
                  setAttrs({
                      [button]: active
                  },{silent:true});
