@@ -60,6 +60,13 @@
     text-align: left;
     border-color: transparent;
 }
+.sheet-contains-five-columns {
+    grid-template-columns: 15% 15% auto 20% 15%;
+    grid-gap: 0px;
+    padding: 0px;
+    text-align: left;
+    border-color: transparent;
+}
 
 .sheet-contains-fourteen-columns {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -114,6 +121,7 @@
 .sheet-span-eight-thru-eleven { grid-column: 8 / 12;}
 .sheet-span-eight-thru-twelve { grid-column: 8 / 13;}
 .sheet-span-eight-thru-fourteen { grid-column: 8 / 15;}
+.sheet-span-nine { grid-column: 9;}
 .sheet-span-nine-ten { grid-column: 9 / 11;}
 .sheet-span-nine-thru-eleven { grid-column: 9 / 12;}
 .sheet-span-nine-thru-thirteen { grid-column: 9 / 14;}
@@ -265,8 +273,15 @@
     border-right: 1px dashed rgb(0, 139, 139); /* Dark Cyan #008b8b */
 }
 
-.sheet-weapon-item.sheet-range{
+.sheet-weapon-item.sheet-range {
     padding: 0px 20px;
+}
+.sheet-weapon-item.sheet-weight {
+    padding: 0px 10px;
+}
+.sheet-weapon-item.sheet-weight select,
+.sheet-weapon-item.sheet-range select {
+    text-align: center;
 }
 
 .sheet-weapon-item.sheet-type{
@@ -596,7 +611,38 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     width: 89%;
 }
 
+.sheet-small-teal-label {
+    font-size: 10px;
+    color: rgb(204, 217, 207);   
+    font-family: 'Graduate', cursive;
+}
 
+.sheet-packmule {
+    padding: 0;
+}
+.sheet-packmule div {
+    margin-top: -4px;
+}
+.sheet-dark-pink-header {
+    color:rgb(165, 52, 52);
+}
+.sheet-dark-red-header {
+    color:rgb(165, 52, 52);
+}
+.sheet-hidden {
+    display: none;
+}
+input.sheet-overencumbered-check:checked ~ span,
+input.sheet-overloaded-check:checked ~ span {
+    display:none;
+}
+input.sheet-overencumbered-check:checked ~ span.sheet-dark-pink-header,
+input.sheet-overloaded-check:checked ~ span.sheet-dark-red-header {
+    display: inline-block
+}
+input.sheet-overloaded-check:checked ~ span.sheet-dark-pink-header {
+    display:none;
+}
 
 /* - - - - - Remove Number Spinner - - - - - */
 input[type="number"].sheet-no-spin-input::-webkit-outer-spin-button,
@@ -615,8 +661,11 @@ input[type="number"].sheet-no-spin-input, input[type="number"].sheet-no-spin-inv
     -moz-appearance: textfield;
 }
 
+
+
 .sheet-span-gear .sheet-vertical-adjust-one {
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 280px;
 }
 .sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar {
@@ -625,10 +674,11 @@ input[type="number"].sheet-no-spin-input, input[type="number"].sheet-no-spin-inv
 }
 .sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-track {
     border-radius: 3px;
-    background: grey;
+    background: darkgrey;
 }
 .sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-thumb {
     border-radius: 3px;
+    background: gray;
 }
 .sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-thumb:hover {
     background: black;
@@ -673,6 +723,41 @@ input[type="number"].sheet-gear-input:hover::-webkit-inner-spin-button, input[ty
 input.sheet-gear-input-total {
     background-color: Grey;
 }
+
+.sheet-span-gear div.repcontainer div.repitem {
+    height: 30px;
+}
+.sheet-span-gear div.repcontainer div.itemcontrol {
+    float: right;
+}
+.sheet-span-gear div.repcontrol {
+    width: fit-content;
+    margin-left: 6px;
+}
+.sheet-span-gear .repcontrol_add, .sheet-span-gear .repcontrol_edit { 
+    visibility: hidden;
+    width: 5px;
+    margin-left: -5px;
+    padding-left: 5px;
+  }
+  .sheet-span-gear .repcontrol_add::before, .sheet-span-gear .repcontrol_edit::before {
+    visibility:visible; 
+    color: grey;
+    font-family: "Pictos";
+  } 
+  .sheet-span-gear .repcontrol_add::before {
+    content: "&";
+  }
+  .sheet-span-gear .repcontrol_edit::before {
+    content: "(";
+  } 
+  .sheet-span-gear .repcontrol_add, .sheet-span-gear .repcontrol_edit, .sheet-span-gear .repcontrol_move {
+    float: right;
+  }  
+  .sheet-span-gear .repcontainer.editmode ~ .repcontrol button.repcontrol_edit::before {
+    font-family: "Pictos";
+    content: ")";
+  }
 
 input[type="number"].sheet-no-spin-inv {
 	float: right;

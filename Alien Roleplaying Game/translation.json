@@ -57,11 +57,12 @@
     "empathy-u": "Empathy",
     "medical-aid-u": "Medical Aid",
     "gear-u": "Gear",
+    "item-place": "Item",
     "item-1-place": "Item 1",
     "item-2-place": "Item 2",
     "item-3-place": "Item 3",
     "item-4-place": "Item 4",
-    "item-5-place": "Item 4",
+    "item-5-place": "Item 5",
     "item-6-place": "Item 6",
     "item-7-place": "Item 7",
     "item-8-place": "Item 8",
@@ -102,5 +103,11 @@
     "building-betterworlds-u": "\"Building Better Worlds\"",
     "template-bonus-u": "Bonus: ",
     "template-damage-u": "Damage: ",
-    "none-place": "None"
+    "none-place": "None",
+    "weight-u": "Weight",
+    "pack-mule-u": "Pack mule",
+    "overencumbered-u": "Over-encumbered",
+    "overencumbered-title":"You can temporarily carry up to twice your normal encumbrance limit, i.e. STRENGTH x 4 items. If over-encumbered, you must make a MOBILITY roll when you want to run or crawl in a Round of combat (see page 89). If you fail, you must either drop what you are carrying, or stay put.",
+    "overloaded-u": "Overloaded",
+    "overloaded-title": "If you carry more that twice your normal encumbrance limit, you are overloaded and cannot move. "
 }
