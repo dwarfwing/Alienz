@@ -115,11 +115,13 @@
 .sheet-span-six-thru-fourteen { grid-column: 6 / 15;}
 .sheet-span-seven-eight { grid-column: 7 / 9;}
 .sheet-span-seven-thru-nine { grid-column: 7 / 10;}
+.sheet-span-seven-thru-thirteen { grid-column: 7 / 14;}
 .sheet-span-seven-thru-fourteen { grid-column: 7 / 15;}
 .sheet-span-eight-nine { grid-column: 8 / 10;}
 .sheet-span-eight-thru-ten { grid-column: 8 / 11;}
 .sheet-span-eight-thru-eleven { grid-column: 8 / 12;}
 .sheet-span-eight-thru-twelve { grid-column: 8 / 13;}
+.sheet-span-eight-thru-thirteen { grid-column: 8 / 14;}
 .sheet-span-eight-thru-fourteen { grid-column: 8 / 15;}
 .sheet-span-nine { grid-column: 9;}
 .sheet-span-nine-ten { grid-column: 9 / 11;}
@@ -180,6 +182,7 @@
 
 .sheet-pad-left { padding-left: 8px !important; }
 .sheet-pad-right { padding-right: 8px !important; }
+.sheet-marg-right {margin-right: 3px;}
 
 .sheet-grid-item {
     background-color: rgba(204, 217, 207, 1);
@@ -188,6 +191,17 @@
     padding: 5px;
     line-height: 24px;
     vertical-align: bottom;
+}
+.sheet-grid-item-black {
+    background-color: transparent;
+    border: 0; 
+    padding: 5px;
+    line-height: 24px;
+    vertical-align: bottom;
+}
+.sheet-no-border {
+    border: 0 !important;
+    border-radius: unset; 
 }
 
 .sheet-clip-edges {
@@ -237,6 +251,9 @@
 .sheet-shift-up-5 {    margin-top: -5px; }
 .sheet-shift-up-8 {    margin-top: -8px; }
 .sheet-shift-up-10 {    margin-top: -10px; }
+.sheet-shift-up-16 {    margin-top: -16px; }
+.sheet-shift-up-20 {    margin-top: -20px; }
+.sheet-shift-up-24 {    margin-top: -24px; }
 .sheet-shift-down-5 {    margin-top: 5px; }
 .sheet-shift-down-8 {    margin-top: 8px; }
 .sheet-shift-down-10 {    margin-top: 10px; }
@@ -263,6 +280,8 @@
 .sheet-w250 { max-width: 250px; min-width: 250px; }
 .sheet-w300 { max-width: 300px; min-width: 300px; }
 .sheet-w-fit { width: fit-content; }
+.sheet-h-fit { height: fit-content; }
+
 
 .sheet-weapon-item {
     padding: 0px;
@@ -276,12 +295,36 @@
 .sheet-weapon-item.sheet-range {
     padding: 0px 20px;
 }
+.sheet-span-gear .sheet-weight,
 .sheet-weapon-item.sheet-weight {
     padding: 0px 10px;
 }
+.sheet-span-gear select.sheet-weight,
 .sheet-weapon-item.sheet-weight select,
 .sheet-weapon-item.sheet-range select {
     text-align: center;
+}
+.sheet-span-gear select.sheet-weight,
+.sheet-weapon-item.sheet-weight select {
+    -float: right;
+    width: 46px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.sheet-weapon-item.sheet-weight {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+.sheet-span-gear .sheet-weight:hover,
+.sheet-span-gear .sheet-weight:active,
+.sheet-span-gear .sheet-weight:focus,
+.sheet-weapon-item.sheet-weight select:hover,
+.sheet-weapon-item.sheet-weight select:active,
+.sheet-weapon-item.sheet-weight select:focus {
+    appearance: auto;
+    -webkit-appearance: auto;
 }
 
 .sheet-weapon-item.sheet-type{
@@ -478,14 +521,17 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     background-color: rgba(0, 0, 0, 1); /* Black #000000 */
     border: 1px solid rgba(0, 0, 0, 1); /* Black #000000 */
     float: left;
-    height: 1.2em;
+    height: 1.4em;
     -width: 80%;
-    line-height: 1em;
-    margin: -10px 15% 0px -7px;
+    -line-height: 1em;
+    margin: -8px 15% 0px -7px;
     text-align: left;
-    padding: 0px 15px 0px 5px; 
+    padding: 0px 15px 0px 8px; 
     border-radius: unset;
     clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%); 
+}
+.sheet-black-floating-header-clipped + .sheet-vertical-adjust-one-more {
+    margin-top: 12px;
 }
 
 .sheet-black-floating-header-gear {
@@ -585,7 +631,7 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
 
 .sheet-text-inv {
     color: #000000;
-    width: 67%;
+    width: 60%;
     border: 1px solid transparent;
     padding: 3px;
 	float: left;
@@ -616,6 +662,8 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     color: rgb(204, 217, 207);   
     font-family: 'Graduate', cursive;
 }
+
+
 
 .sheet-packmule {
     padding: 0;
@@ -654,6 +702,7 @@ input[type="number"].sheet-no-spin-inv::-webkit-inner-spin-button,
 input[type="number"].sheet-no-spin-inv-tot::-webkit-outer-spin-button,
 input[type="number"].sheet-number-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    appearance: none;
     margin: 0;
 }
 
@@ -805,8 +854,7 @@ input[type="number"].sheet-no-spin-input {
     background-color: White;
     border: 1px solid White;
     margin: -1px -2px;
-    padding: 3px 0px 0px 0px;
-    
+    padding: 3px 0px 0px 0px;    
     border-radius: 50%;
     box-shadow: 1px 1px 7px rgba(0, 139, 139, 1), -1px -1px 7px rgba(0, 139, 139, 1), 1px 1px 10px white, -1px -1px 10px white;
 }
@@ -926,13 +974,53 @@ div.sheet-tab-content, div.sheet-box-under-the-bed {
     display: none;
 }
 
+input.sheet-advencumbrance:checked ~ div .sheet-encumbrance_calc, 
+input.sheet-advencumbrance:not(:checked) ~ div .sheet-encumbrance_manual {
+    display: inline-block;
+}
+input.sheet-advencumbrance:not(:checked) ~ div .sheet-encumbrance_calc, 
+input.sheet-advencumbrance:checked ~ div .sheet-encumbrance_manual {
+    display: none;
+}
+input.sheet-advencumbrance:checked ~ div .sheet-showencumbrance {
+    display: inline-block;
+}
+input.sheet-advencumbrance:checked ~ div .sheet-showencumbrance-flex {
+    display: flex;
+}
+input.sheet-advencumbrance:not(:checked) ~ div .sheet-showencumbrance {
+    display: none;
+}
+
+input.sheet-advencumbrance:checked ~ div .sheet-weapon-item-details {
+    grid-template-columns: 15% 15% auto 20% 15%;
+    grid-gap: 0px;
+    padding: 0px;
+    text-align: left;
+    border-color: transparent;
+
+}
+input.sheet-advencumbrance:not(:checked) ~ div .sheet-weapon-item-details {
+    grid-template-columns: 20% 20% auto 25%;
+    grid-gap: 0px;
+    padding: 0px;
+    text-align: left;
+    border-color: transparent;
+
+}
+
 input.sheet-tab-sheet[value="Character"] ~ div .sheet-ship,
-input.sheet-tab-sheet[value="Ship"] ~ div .sheet-character {
+input.sheet-tab-sheet[value="Character"] ~ div .sheet-config,
+input.sheet-tab-sheet[value="Ship"] ~ div .sheet-character,
+input.sheet-tab-sheet[value="Ship"] ~ div .sheet-config,
+input.sheet-tab-sheet[value="Config"] ~ div .sheet-character,
+input.sheet-tab-sheet[value="Config"] ~ div .sheet-ship {
 	display: none;
 }
 
 input.sheet-tab-sheet[value="Character"] ~ div .sheet-character,
-input.sheet-tab-sheet[value="Ship"] ~ div .sheet-ship {
+input.sheet-tab-sheet[value="Ship"] ~ div .sheet-ship,
+input.sheet-tab-sheet[value="Config"] ~ div .sheet-config {
 	display: grid;
 }
 
@@ -945,9 +1033,14 @@ input.sheet-tab-sheet[value="Ship"] ~ div .sheet-ship {
     border-radius: 0;
     margin-right: 0;
 }
+.sheet-header-tabs button[type=action].sheet-action-tab[value=Config] { 
+    text-transform: lowercase;
+    font-family: "pictos";
+}
 
 input.sheet-tab-sheet[value="Character"] ~ div .sheet-header-tabs button[name="act_tab_character"],
-input.sheet-tab-sheet[value="Ship"] ~ div .sheet-header-tabs button[name="act_tab_ship"] {
+input.sheet-tab-sheet[value="Ship"] ~ div .sheet-header-tabs button[name="act_tab_ship"],
+input.sheet-tab-sheet[value="Config"] ~ div .sheet-header-tabs button[name="act_tab_config"] {
     color: black;
     background-color: #d3d3d3;
 }
@@ -993,6 +1086,28 @@ input.sheet-tab-armament5:checked ~ div.sheet-tab-armament5-contents {
 input.sheet-tab {
 	opacity: 0;
     display: none;
+}
+
+/* CONFIGURATION */
+
+div.sheet-changelog {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 780px;
+}
+div.sheet-changelog::-webkit-scrollbar {
+    width: 12px;
+}
+div.sheet-changelog::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: darkgrey;
+}
+div.sheet-changelog::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: gray;
+}
+div.sheet-changelog::-webkit-scrollbar-thumb:hover {
+    background: gray;
 }
 
 /* CUSTOM CHECKBOXES FOR ALIEN RPG */
