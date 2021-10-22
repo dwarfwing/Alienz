@@ -306,7 +306,7 @@
 }
 .sheet-span-gear select.sheet-weight,
 .sheet-weapon-item.sheet-weight select {
-    -float: right;
+    float: right;
     width: 46px;
     appearance: none;
     -webkit-appearance: none;
@@ -734,11 +734,11 @@ input[type="number"].sheet-no-spin-input, input[type="number"].sheet-no-spin-inv
 }
 span.sheet-gear-header {
 	float: right;
-    width: 32px !important;
-    min-width: 32px;
+    width: 40px !important;
+    min-width: 40px;
     text-align: center;
 }
-input.sheet-gear-input, input.sheet-gear-input-total {
+input.sheet-gear-input, input.sheet-gear-input-total, select.sheet-gear-input-wt {
     font-family: 'Courier Prime';
     font-family: 'Roboto';
     background: transparent;   
