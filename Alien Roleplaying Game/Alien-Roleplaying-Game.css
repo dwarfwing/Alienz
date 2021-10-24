@@ -498,6 +498,9 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
 .sheet-vertical-adjust-one-more {
      margin-top: 9px;
 }
+.sheet-vertical-adjust-two-more {
+     margin-top: 12px;
+}
 
 .sheet-vertical-balance {
      margin-top: 12px;
@@ -1051,14 +1054,30 @@ input.sheet-tab-three:checked ~ div.sheet-tab-three-contents,
 input.sheet-tab-four:checked ~ div.sheet-tab-four-contents {
 	display: block;
 }
+input.sheet-tab-one:checked ~ div.sheet-skinny-div button.sheet-action-tab-one,
+input.sheet-tab-two:checked ~ div.sheet-skinny-div button.sheet-action-tab-two,
+input.sheet-tab-three:checked ~ div.sheet-skinny-div button.sheet-action-tab-three,
+input.sheet-tab-four:checked ~ div.sheet-skinny-div button.sheet-action-tab-four {
+    background-color: #808080;
+    color: white;
+}
 
 input.sheet-tab-alpha:checked ~ div.sheet-tab-alpha-contents,
 input.sheet-tab-beta:checked ~ div.sheet-tab-beta-contents,
 input.sheet-tab-gamma:checked ~ div.sheet-tab-gamma-contents,
 input.sheet-tab-delta:checked ~ div.sheet-tab-delta-contents,
 input.sheet-tab-epsilon:checked ~ div.sheet-tab-epsilon-contents,
-input.sheet-tab-zeta:checked ~ div.sheet-tab-zeta-contents{
+input.sheet-tab-zeta:checked ~ div.sheet-tab-zeta-contents {
 	display: block;
+}
+input.sheet-tab-alpha:checked ~ div.sheet-skinny-div button.sheet-tab-alpha-button,
+input.sheet-tab-beta:checked ~ div.sheet-skinny-div button.sheet-tab-beta-button,
+input.sheet-tab-gamma:checked ~ div.sheet-skinny-div button.sheet-tab-gamma-button,
+input.sheet-tab-delta:checked ~ div.sheet-skinny-div button.sheet-tab-delta-button,
+input.sheet-tab-epsilon:checked ~ div.sheet-skinny-div button.sheet-tab-epsilon-button,
+input.sheet-tab-zeta:checked ~ div.sheet-skinny-div button.sheet-tab-zeta-button {
+    background-color: #808080;
+    color: white;
 }
 
 input.sheet-tab-modules1:checked ~ div.sheet-tab-modules1-contents,
@@ -1067,12 +1086,26 @@ input.sheet-tab-modules3:checked ~ div.sheet-tab-modules3-contents,
 input.sheet-tab-modules4:checked ~ div.sheet-tab-modules4-contents {
 	display: block;
 }
+input.sheet-tab-modules1:checked ~ div .sheet-tab-modules1-button,
+input.sheet-tab-modules2:checked ~ div .sheet-tab-modules2-button,
+input.sheet-tab-modules3:checked ~ div .sheet-tab-modules3-button,
+input.sheet-tab-modules4:checked ~ div .sheet-tab-modules4-button {
+    background-color: #808080;
+    color: white;
+}
 
 input.sheet-tab-log1:checked ~ div.sheet-tab-log1-contents,
 input.sheet-tab-log2:checked ~ div.sheet-tab-log2-contents,
 input.sheet-tab-log3:checked ~ div.sheet-tab-log3-contents,
 input.sheet-tab-log4:checked ~ div.sheet-tab-log4-contents {
 	display: block;
+}
+input.sheet-tab-log1:checked ~ div .sheet-tab-log1-button,
+input.sheet-tab-log2:checked ~ div .sheet-tab-log2-button,
+input.sheet-tab-log3:checked ~ div .sheet-tab-log3-button,
+input.sheet-tab-log4:checked ~ div .sheet-tab-log4-button {
+    background-color: #808080;
+    color: white;
 }
 
 input.sheet-tab-armament1:checked ~ div.sheet-tab-armament1-contents,
@@ -1081,6 +1114,14 @@ input.sheet-tab-armament3:checked ~ div.sheet-tab-armament3-contents,
 input.sheet-tab-armament4:checked ~ div.sheet-tab-armament4-contents,
 input.sheet-tab-armament5:checked ~ div.sheet-tab-armament5-contents {
 	display: block;
+}
+input.sheet-tab-armament1:checked ~ div .sheet-tab-armament1-button,
+input.sheet-tab-armament2:checked ~ div .sheet-tab-armament2-button,
+input.sheet-tab-armament3:checked ~ div .sheet-tab-armament3-button,
+input.sheet-tab-armament4:checked ~ div .sheet-tab-armament4-button,
+input.sheet-tab-armament5:checked ~ div .sheet-tab-armament5-button {
+    background-color: #808080;
+    color: white;
 }
 
 input.sheet-tab {

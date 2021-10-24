@@ -3,9 +3,13 @@
         v1.01 The Quick Start Rules Adjustments 8/04/2019
         v1.02 Updated some of the layout, adjusted to mirror the layout/tone of the game's character sheet and to make it a bit more understandable after play session feedback 15/08/2020
         V1.03 Yann : adding i18n 21/11/2020
-        v1.04 Richard W: Added ship tab
+        v2.0 Richard W: Added ship tab
+        v2.01 Richard W: Fixed Rolltemplate AllProps and Stress hits
+        v2.02 Richard W: Added encumbrance and list tab indicators
 -->
 
+<input class="tab-sheetversion" type="hidden" name="attr_sheetversion" value="2.02">
+<input class="tab-version" type="hidden" name="attr_version" value="0">
 <input class="tab-sheet" type="hidden" name="attr_tab_sheet" value="Character">
 <input class="advencumbrance" type="checkbox" hidden name="attr_config_advencumbrance">
 
@@ -13,8 +17,8 @@
     <div class="grid-container contains-fourteen-columns">
         <div class="header-image span-six-thru-nine span-row1">&nbsp;</div>
         <div class="header-tabs black-floating-header span-nine-thru-fourteen span-row1">
-<!--             <button type="action" class="action-tab" -data-i18n="character" name="act_tab_character" title="Character">Character</button>
-            <button type="action" class="action-tab" -data-i18n="ship" name="act_tab_ship" title="Ship">Ship</button>   -->     
+<!--             <button type="action" class="action-tab" data-i18n="character" name="act_tab_character" title="Character">Character</button>
+            <button type="action" class="action-tab" data-i18n="ship" name="act_tab_ship" title="Ship">Ship</button>   -->     
             <div class="skinny-div flex-row">
                 <button type="action" name="act_tab_character" class="action-tab w150 shift-down-17 sheet-darkest-teal-header sheet-ship-header sheet-ship-header-name sheet-flex-self-center sheet-flex-content-center" value="Character">Character</button>
                 <button type="action" name="act_tab_ship" class="action-tab w150 shift-down-17 sheet-darkest-teal-header sheet-ship-header sheet-ship-header-name sheet-flex-self-center sheet-flex-content-center" value="Ship">Ship</button>
@@ -59,20 +63,20 @@
 			<input class="tab-sheet" type="hidden" name="attr_tal_two" value="-"/>
 			<input class="tab-sheet" type="hidden" name="attr_tal_three" value="-"/>
 			<input class="tab-sheet" type="hidden" name="attr_tal_four" value="-"/>
+            <input type="radio" class="sheet-tab sheet-tab-one" name="attr_tab" value="1" checked="checked"/>
+            <input type="radio" class="sheet-tab sheet-tab-two" name="attr_tab" value="2" />
+            <input type="radio" class="sheet-tab sheet-tab-three" name="attr_tab" value="3" />
+            <input type="radio" class="sheet-tab sheet-tab-four" name="attr_tab" value="4" />
             <div class="skinny-div">
-                <button type="action" name="act_tab_one" class="action-tab" value="1"><span name="attr_tal_one"></span></button>
-                <button type="action" name="act_tab_two" class="action-tab" value="2"><span name="attr_tal_two"></span></button>
-                <button type="action" name="act_tab_three" class="action-tab" value="3"><span name="attr_tal_three"></span></button>
-                <button type="action" name="act_tab_four" class="action-tab" value="4"><span name="attr_tal_four"></span></button>
+                <button type="action" name="act_tab_one" class="action-tab action-tab-one" value="1"><span name="attr_tal_one"></span></button>
+                <button type="action" name="act_tab_two" class="action-tab action-tab-two" value="2"><span name="attr_tal_two"></span></button>
+                <button type="action" name="act_tab_three" class="action-tab action-tab-three" value="3"><span name="attr_tal_three"></span></button>
+                <button type="action" name="act_tab_four" class="action-tab action-tab-four" value="4"><span name="attr_tal_four"></span></button>
                 <!--<button type="action" name="act_tab_one" class="action-tab" value="1">I</button>
                 <button type="action" name="act_tab_two" class="action-tab" value="2">II</button>
                 <button type="action" name="act_tab_three" class="action-tab" value="3">III</button>
                 <button type="action" name="act_tab_four" class="action-tab" value="4">IV</button>-->
             </div>
-            <input type="radio" class="sheet-tab sheet-tab-one" name="attr_tab" value="1" checked="checked"/>
-            <input type="radio" class="sheet-tab sheet-tab-two" name="attr_tab" value="2" />
-            <input type="radio" class="sheet-tab sheet-tab-three" name="attr_tab" value="3" />
-            <input type="radio" class="sheet-tab sheet-tab-four" name="attr_tab" value="4" />
             <div class="tab-content tab-one-contents"> <!--TAB 1 TALENT -->
                 <input type="text" name="attr_talent_one" value="" class="text-input" title="@{talent_one}" spellcheck="false" data-i18n-placeholder="talent-one-name.place" placeholder="Talent One Name"/>
                 <div class="auto-expand">
@@ -569,7 +573,7 @@
         </div>
         <div class="grid-item black-item span-nine packmule">
             <div class="more-curves">
-                <span class="small-teal-label" i18n-data="pack-mule-u">Pack mule</span>
+                <span class="small-teal-label" data-i18n="pack-mule-u">Pack mule</span>
             </div>
             <div>
                 <input type="checkbox" class="numbered-box grey-box" name="attr_packmule" value="2"><span title="+" ></span>
@@ -602,19 +606,25 @@
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="weapons-u">Weapons</span>
             </div>
-				<input class="tab-sheet" type="hidden" name="attr_wpn_one" value="-"/>
-				<input class="tab-sheet" type="hidden" name="attr_wpn_two" value="-"/>
-				<input class="tab-sheet" type="hidden" name="attr_wpn_three" value="-"/>
-				<input class="tab-sheet" type="hidden" name="attr_wpn_four" value="-"/>
-				<input class="tab-sheet" type="hidden" name="attr_wpn_five" value="-"/>
-				<input class="tab-sheet" type="hidden" name="attr_wpn_six" value="-"/>				
+            <input class="tab-sheet" type="hidden" name="attr_wpn_one" value="-"/>
+            <input class="tab-sheet" type="hidden" name="attr_wpn_two" value="-"/>
+            <input class="tab-sheet" type="hidden" name="attr_wpn_three" value="-"/>
+            <input class="tab-sheet" type="hidden" name="attr_wpn_four" value="-"/>
+            <input class="tab-sheet" type="hidden" name="attr_wpn_five" value="-"/>
+            <input class="tab-sheet" type="hidden" name="attr_wpn_six" value="-"/>		
+            <input type="radio" class="sheet-tab sheet-tab-alpha" name="attr_tab_weapon" value="1" checked="checked"/>
+            <input type="radio" class="sheet-tab sheet-tab-beta" name="attr_tab_weapon" value="2" />
+            <input type="radio" class="sheet-tab sheet-tab-gamma" name="attr_tab_weapon" value="3" />
+            <input type="radio" class="sheet-tab sheet-tab-delta" name="attr_tab_weapon" value="4" />
+            <input type="radio" class="sheet-tab sheet-tab-epsilon" name="attr_tab_weapon" value="5" />
+            <input type="radio" class="sheet-tab sheet-tab-zeta" name="attr_tab_weapon" value="6" />		
 			<div class="skinny-div">
-                <button type="action" name="act_tab_alpha" class="action-tab tab-weapon" value="1"><span name="attr_wpn_one"></span></button>
-                <button type="action" name="act_tab_beta" class="action-tab tab-weapon" value="2"><span name="attr_wpn_two"></span></button>
-                <button type="action" name="act_tab_gamma" class="action-tab tab-weapon" value="3"><span name="attr_wpn_three"></span></button>
-                <button type="action" name="act_tab_delta" class="action-tab tab-weapon" value="4"><span name="attr_wpn_four"></span></button>
-                <button type="action" name="act_tab_epsilon" class="action-tab tab-weapon" value="5"><span name="attr_wpn_five"></span></button>
-                <button type="action" name="act_tab_zeta" class="action-tab tab-weapon" value="6"><span name="attr_wpn_six"></span></button>
+                <button type="action" name="act_tab_alpha" class="action-tab tab-weapon tab-alpha-button" value="1"><span name="attr_wpn_one"></span></button>
+                <button type="action" name="act_tab_beta" class="action-tab tab-weapon tab-beta-button" value="2"><span name="attr_wpn_two"></span></button>
+                <button type="action" name="act_tab_gamma" class="action-tab tab-weapon tab-gamma-button" value="3"><span name="attr_wpn_three"></span></button>
+                <button type="action" name="act_tab_delta" class="action-tab tab-weapon tab-delta-button" value="4"><span name="attr_wpn_four"></span></button>
+                <button type="action" name="act_tab_epsilon" class="action-tab tab-weapon tab-epsilon-button" value="5"><span name="attr_wpn_five"></span></button>
+                <button type="action" name="act_tab_zeta" class="action-tab tab-weapon tab-zeta-button" value="6"><span name="attr_wpn_six"></span></button>
 				<!--<button type="action" name="act_tab_alpha" class="action-tab tab-weapon" value="1">I</button>
                 <button type="action" name="act_tab_beta" class="action-tab tab-weapon" value="2">II</button>
                 <button type="action" name="act_tab_gamma" class="action-tab tab-weapon" value="3">III</button>
@@ -622,12 +632,6 @@
                 <button type="action" name="act_tab_epsilon" class="action-tab tab-weapon" value="5">V</button>
                 <button type="action" name="act_tab_zeta" class="action-tab tab-weapon" value="6">VI</button>-->
             </div>
-            <input type="radio" class="sheet-tab sheet-tab-alpha" name="attr_tab_weapon" value="1" checked="checked"/>
-            <input type="radio" class="sheet-tab sheet-tab-beta" name="attr_tab_weapon" value="2" />
-            <input type="radio" class="sheet-tab sheet-tab-gamma" name="attr_tab_weapon" value="3" />
-            <input type="radio" class="sheet-tab sheet-tab-delta" name="attr_tab_weapon" value="4" />
-            <input type="radio" class="sheet-tab sheet-tab-epsilon" name="attr_tab_weapon" value="5" />
-            <input type="radio" class="sheet-tab sheet-tab-zeta" name="attr_tab_weapon" value="6" />
             <div class="tab-content tab-alpha-contents align-left vertical-adjust-one"> <!--TAB 1 1ST WEAPON -->
                 <input type="text" name="attr_weapon_one_name" value="" class="text-input seventy-seven-percent" title="@{weapon_one_name}" spellcheck="false"  data-i18n-placeholder="weapon-one-name-place" placeholder="Weapon One Name"/>
                 <button type="roll" name="weapon_one" class="button-skill smaller-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{weapon_one_name} }} {{base-dice=[[@{weapon_one_skill} + @{weapon_one_bonus} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }} {{current-bonus=@{weapon_one_bonus} }} {{current-damage=@{weapon_one_damage} }} {{current-range=@{weapon_one_range} }} {{current-comment=@{weapon_one_comment} }}" data-i18n="attack-u">Attack</button>
@@ -931,14 +935,14 @@
         <!-- START OF ROW 1-5 --> 
         <div class="grid-item span-one-thru-four span-modules clip-edges no-border">
             <div class="black-floating-header-clipped no-border">
-                <span class="teal-header no-border" -data-i18n="internal-modules-u" >INTERNAL MODULES</span>
-            </div>
-            <div class="skinny-div vertical-adjust-one-more">
-                <button type="action" name="act_tab_modules1" class="action-tab fit-two" value="1">I</button>
-                <button type="action" name="act_tab_modules2" class="action-tab fit-two" value="2"><span name="attr_modules2_tab">II</span></button>
+                <span class="teal-header no-border" data-i18n="internal-modules-u" >INTERNAL MODULES</span>
             </div>
             <input type="radio" class="sheet-tab sheet-tab-modules1" name="attr_tab_modules" value="1" checked="checked"/>
             <input type="radio" class="sheet-tab sheet-tab-modules2" name="attr_tab_modules" value="2" />
+            <div class="skinny-div vertical-adjust-two-more">
+                <button type="action" name="act_tab_modules1" class="action-tab fit-two tab-modules1-button" value="1">I</button>
+                <button type="action" name="act_tab_modules2" class="action-tab fit-two tab-modules2-button" value="2"><span name="attr_modules2_tab">II</span></button>
+            </div>
             <div class="cover-100-flex"><span class="darkest-teal-header cover-75">&nbsp;</span><span class="darkest-teal-header cover-25">Size</span></div>
             <div class="tab-content tab-modules1-contents shift-up-5"> <!--TAB 1 MODULES -->
                 <input type="text" name="attr_module1" value="" class="text-input dotted-underline cover-75" title="@{module1}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-25 centered" name="attr_module1_sz" />
@@ -977,17 +981,17 @@
             </div>
         </div> 
 
-        <div class="span-row1 span-six-thru-nine darkest-teal-header ship-header ship-header-name flex-self-center flex-content-center" i18n-data="ship-name-u">Name</div>
+        <div class="span-row1 span-six-thru-nine darkest-teal-header ship-header ship-header-name flex-self-center flex-content-center" data-i18n="ship-name-u">Name</div>
         <div class="grid-item span-row1 span-five-thru-ten flex-column clip-edges ship-attribute clip-edges ship-attribute-name">            
             <input type="text" name="attr_ship-name" class="text-input centered"/>
         </div>
 
-        <span class="span-row2 span-six-thru-nine darkest-teal-header ship-header ship-header-manufacturer flex-self-center flex-content-center">Manufacturer</span>
+        <span class="span-row2 span-six-thru-nine darkest-teal-header ship-header ship-header-manufacturer flex-self-center flex-content-center" data-i18n="ship-manufacturer-u">Manufacturer</span>
         <div class="grid-item span-row2 span-six-thru-nine flex-column clip-edges ship-attribute clip-edges ship-attribute-manufacturer">
             <input type="text" name="attr_ship-manufacturer" class="text-input centered" />
         </div>
 
-        <span class="span-row3 span-six-thru-nine darkest-teal-header ship-header ship-header-ai flex-self-center flex-content-center">AI</span>
+        <span class="span-row3 span-six-thru-nine darkest-teal-header ship-header ship-header-ai flex-self-center flex-content-center" data-i18n="ship-ai-u">AI</span>
         <div class="grid-item span-row3 span-six-thru-nine flex-column clip-edges ship-attribute clip-edges ship-attribute-ai">
             <input type="text" name="attr_ship-ai" class="text-input centered" />
         </div>
@@ -996,10 +1000,10 @@
             <div class="some-padding">
                 <input type="number" name="attr_ship_crew" value="0" class="no-spin-input" title="@{ship_crew}" />
             </div>
-            <div class="dark-teal-header some-padding pad-left" -data-i18n="ship-crew-u">Crew</div>
+            <div class="dark-teal-header some-padding pad-left" data-i18n="ship-crew-u">Crew</div>
         </div>
         <div class="grid-item span-eight-thru-ten span-row4 flex-row flex-content-end flex-items-center-align w120 clip-edges">
-            <div class="dark-teal-header some-padding pad-right" -data-i18n="ship-passengers-u">Passengers</div>
+            <div class="dark-teal-header some-padding pad-right" data-i18n="ship-passengers-u">Passengers</div>
             <div class="some-padding">
                 <input type="number" name="attr_ship_passengers" value="0" class="no-spin-input" title="@{ship_passengers}" />
             </div>
@@ -1009,10 +1013,10 @@
             <div class="some-padding no-spin-input">
                 <input type="number" name="attr_ship_length" value="0" class="no-spin-input small" title="@{ship_length}" />
             </div>
-            <div class="dark-teal-header some-padding pad-left" -data-i18n="ship-length-u">Length</div>
+            <div class="dark-teal-header some-padding pad-left" data-i18n="ship-length-u">Length</div>
         </div>
         <div class="grid-item span-eight-thru-ten span-row5 flex-row flex-content-end flex-items-align-center w150 clip-edges">
-            <div class="dark-teal-header some-padding pad-right" -data-i18n="ship-ftl-rating-u">FTL Rating</div>
+            <div class="dark-teal-header some-padding pad-right" data-i18n="ship-ftl-rating-u">FTL Rating</div>
             <div class="some-padding">
                 <input type="number" name="attr_ship_ftlrating" value="0" class="no-spin-input" title="@{ship_ftlrating}" />
             </div>
@@ -1022,10 +1026,10 @@
             <div class="some-padding">
                 <input type="number" name="attr_ship_signature" value="0" class="no-spin-input" title="@{ship_signature}" />
             </div>
-            <div class="dark-teal-header some-padding pad-left" -data-i18n="ship-signature-u">Signature</div>
+            <div class="dark-teal-header some-padding pad-left" data-i18n="ship-signature-u">Signature</div>
         </div>
         <div class="grid-item span-eight-thru-ten span-row6 flex-row flex-content-end flex-items-align-center w140 clip-edges">
-            <div  class="dark-teal-header some-padding pad-right" -data-i18n="ship-thrusters-u">Thrusters</div>
+            <div  class="dark-teal-header some-padding pad-right" data-i18n="ship-thrusters-u">Thrusters</div>
             <div class="some-padding">
                 <input type="number" name="attr_ship_thrusters" value="0" class="no-spin-input" title="@{ship_thrusters}" />
             </div>
@@ -1035,10 +1039,10 @@
             <div class="some-padding">
                 <input type="number" name="attr_shipdamage_max" value="0" class="no-spin-input" title="@{ship_hull}" />
             </div>
-            <div class="dark-teal-header some-padding pad-left" -data-i18n="ship-hull-u">Hull</div>
+            <div class="dark-teal-header some-padding pad-left" data-i18n="ship-hull-u">Hull</div>
         </div>
         <div class="grid-item span-eight-thru-ten span-row7 flex-row flex-content-end flex-items-align-center w130 clip-edges">
-            <button type="roll" name="ship_armor" class="button-skill pad-right" value="@{secret_roll} &{template:alien} {{character-name=@{ship-name} }} {{roll-name=Ship Armor }} {{base-dice=[[@{ship_armor} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }} " -data-i18n="ship-armor-u" >Armor</button>
+            <button type="roll" name="ship_armor" class="button-skill pad-right" value="@{secret_roll} &{template:alien} {{character-name=@{ship-name} }} {{roll-name=Ship Armor }} {{base-dice=[[@{ship_armor} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }} " data-i18n="ship-armor-u" >Armor</button>
             <div class="some-padding">
                 <input type="number" name="attr_ship_armor" value="0" class="no-spin-input" title="@{ship_armor}" />
             </div>
@@ -1078,7 +1082,7 @@
                         <input type="radio" name="attr_shipdamage" value="18" class="numbered-box red-radio row2 shipdamage shipdamage18" title="@{shipdamage_18}"/><span class="shipdamage" title="18" ></span>
                         <input type="radio" name="attr_shipdamage" value="19" class="numbered-box red-radio row2 shipdamage shipdamage19" title="@{shipdamage_19}"/><span class="shipdamage" title="19" ></span>
                         <input type="radio" name="attr_shipdamage" value="20" class="numbered-box red-radio row2 shipdamage shipdamage20" title="@{shipdamage_20}"/><span class="shipdamage" title="20" ></span>
-                        <span class="hullpoints-missing">No hull points entered</span>
+                        <span class="hullpoints-missing" data-i18n="hullpoints-missing">No hull points entered</span>
                 </div>
                 <div class="cover-15 flex-column flex-self-right flex-self-align-start flex-content-center flex-wrap">
                     <div class="flex-self-align-center flex-content-center ">
@@ -1094,19 +1098,19 @@
 
         <div class="grid-item span-eleven-thru-fourteen span-log clip-edges no-border">   
             <div class="span-eleven-thru-fourteen span-log black-floating-header-clipped no-border">
-                <span class="teal-header no-border" -data-i18n="ships-log-u" >SHIP'S LOG</span>
+                <span class="teal-header no-border" data-i18n="ships-log-u" >SHIP'S LOG</span>
             </div>         
-            <div class="skinny-div vertical-adjust-one-more">
-                <button type="action" name="act_tab_log1" class="action-tab" value="1">I</button>
-                <button type="action" name="act_tab_log2" class="action-tab" value="2">II</button>
-                <button type="action" name="act_tab_log3" class="action-tab" value="3">III</button>
-                <!-- <button type="action" name="act_tab_log4" class="action-tab" value="4">IV</button> -->
-            </div>
             <input type="radio" class="sheet-tab sheet-tab-log1" name="attr_tab_log" value="1" checked="checked"/>
             <input type="radio" class="sheet-tab sheet-tab-log2" name="attr_tab_log" value="2" />
             <input type="radio" class="sheet-tab sheet-tab-log3" name="attr_tab_log" value="3" />
+            <div class="skinny-div vertical-adjust-two-more">
+                <button type="action" name="act_tab_log1" class="action-tab tab-log1-button" value="1">I</button>
+                <button type="action" name="act_tab_log2" class="action-tab tab-log2-button" value="2"><span name="attr_logs2_tab">II</span></button>
+                <button type="action" name="act_tab_log3" class="action-tab tab-log3-button" value="3"><span name="attr_logs3_tab">III</span></button>
+                <!-- <button type="action" name="act_tab_log4" class="action-tab" value="4">IV</button> -->
+            </div>
            <!--  <input type="radio" class="sheet-tab sheet-tab-log4" name="attr_tab_log" value="4" /> -->
-            <div class="cover-100-flex"><span class="darkest-teal-header cover-40">Date</span><span class="darkest-teal-header cover-60">Location</span></div>
+            <div class="cover-100-flex"><span class="darkest-teal-header cover-40" data-i18n="date">Date</span><span class="darkest-teal-header cover-60" data-i18n="location">Location</span></div>
             <div class="tab-content tab-log1-contents shift-up-5"> <!--TAB 1 STAR LOGS -->                
                 <input type="text" name="attr_log1_date" value="" class="text-input dotted-underline cover-40 centered some-padding" title="@{log1_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60 some-padding" name="attr_log1" />
                 <input type="text" name="attr_log2_date" value="" class="text-input dotted-underline cover-40 centered" title="@{log2_date}" spellcheck="false" /><input type="text" class="text-input dotted-underline cover-60" name="attr_log2" />
@@ -1163,9 +1167,9 @@
         <!-- START OF ROW 6-->
         <div class="grid-item span-one-thru-seven span-cmp-dmg grid-container contains-seven-columns clip-edges no-border">
             <div class="black-floating-header-clipped span-one-thru-four w-fit no-border">
-                <span class="teal-header no-border" -data-i18n="min-comp-dmg-u" >MINOR COMPONENT DAMAGE</span>
+                <span class="teal-header no-border" data-i18n="min-comp-dmg-u" >MINOR COMPONENT DAMAGE</span>
             </div>
-            <span class="darkest-teal-header span-five-thru-seven shift-up-5" -data-i18n="min-comp-dmg-u" >EFFECT</span>
+            <span class="darkest-teal-header span-five-thru-seven shift-up-5" data-i18n="effect-u" >EFFECT</span>
             <div class="grid-item span-one-thru-four what-padding shift-up-5">
                 <div class="">
                     <input type="text" name="attr_mincompdmg1" value="" class="text-input dotted-underline" title="@{mincompdmg1}" spellcheck="false" />
@@ -1184,9 +1188,9 @@
         
         <div class="grid-item span-eight-thru-fourteen span-cmp-dmg grid-container contains-seven-columns clip-edges no-border">
             <div class="black-floating-header-clipped span-one-thru-four w-fit no-border">
-                <span class="teal-header no-border" -data-i18n="maj-comp-dmg-u" >MAJOR COMPONENT DAMAGE</span>
+                <span class="teal-header no-border" data-i18n="maj-comp-dmg-u" >MAJOR COMPONENT DAMAGE</span>
             </div>
-            <span class="darkest-teal-header span-five-thru-seven shift-up-5" -data-i18n="maj-comp-dmg-u" >EFFECT</span>
+            <span class="darkest-teal-header span-five-thru-seven shift-up-5" data-i18n="effect-u" >EFFECT</span>
             <div class="grid-item span-one-thru-four what-padding shift-up-5">
                 <div class="">
                     <input type="text" name="attr_majcompdmg1" value="" class="text-input dotted-underline" title="@{majcompdmg1}" spellcheck="false" />
@@ -1208,9 +1212,9 @@
         <!-- START OF ROW 7-->
         <div class="grid-item span-one-thru-seven span-upg-arm grid-container contains-seven-columns clip-edges no-border">
             <div class="black-floating-header-clipped span-one-thru-four w-fit no-border">
-                <span class="teal-header no-border" -data-i18n="upgrades-u">UPGRADES</span>
+                <span class="teal-header no-border" data-i18n="upgrades-u">UPGRADES</span>
             </div>
-            <span class="darkest-teal-header span-five-thru-seven shift-up-5" -data-i18n="upgrades-u" >EFFECT</span>
+            <span class="darkest-teal-header span-five-thru-seven shift-up-5" data-i18n="effect-u" >EFFECT</span>
             <div class="grid-item span-one-thru-four what-padding shift-up-10">
                 <div class="">
                     <input type="text" name="attr_upgrades1" value="" class="text-input dotted-underline" title="@{upgrades1}" spellcheck="false" />
@@ -1235,66 +1239,66 @@
         
         <div class="grid-item span-eight-thru-fourteen span-upg-arm clip-edges no-border"> 
             <div class="black-floating-header-clipped no-border">
-                <span class="teal-header no-border" -data-i18n="armaments-u">ARMAMENTS</span>
-            </div>
-            <div class="skinny-div vertical-adjust-one-more">
-                <button type="action" name="act_tab_armament1" class="action-tab tab-weapon" value="1"><span name="attr_armament1_tab">I</span></button>
-                <button type="action" name="act_tab_armament2" class="action-tab tab-weapon" value="2"><span name="attr_armament2_tab">II</span></button>
-                <button type="action" name="act_tab_armament3" class="action-tab tab-weapon" value="3"><span name="attr_armament3_tab">III</span></button>
-                <button type="action" name="act_tab_armament4" class="action-tab tab-weapon" value="4"><span name="attr_armament4_tab">IV</span></button>
-                <button type="action" name="act_tab_armament5" class="action-tab tab-weapon" value="5"><span name="attr_armament5_tab">V</span></button>
+                <span class="teal-header no-border" data-i18n="armaments-u">ARMAMENTS</span>
             </div>
             <input type="radio" class="sheet-tab sheet-tab-armament1" name="attr_tab_armament" value="1" checked="checked"/>
             <input type="radio" class="sheet-tab sheet-tab-armament2" name="attr_tab_armament" value="2" />
             <input type="radio" class="sheet-tab sheet-tab-armament3" name="attr_tab_armament" value="3" />
             <input type="radio" class="sheet-tab sheet-tab-armament4" name="attr_tab_armament" value="4" />
             <input type="radio" class="sheet-tab sheet-tab-armament5" name="attr_tab_armament" value="5" />
+            <div class="skinny-div vertical-adjust-two-more">
+                <button type="action" name="act_tab_armament1" class="action-tab tab-weapon tab-armament1-button" value="1"><span name="attr_armament1_tab">I</span></button>
+                <button type="action" name="act_tab_armament2" class="action-tab tab-weapon tab-armament2-button" value="2"><span name="attr_armament2_tab">II</span></button>
+                <button type="action" name="act_tab_armament3" class="action-tab tab-weapon tab-armament3-button" value="3"><span name="attr_armament3_tab">III</span></button>
+                <button type="action" name="act_tab_armament4" class="action-tab tab-weapon tab-armament4-button" value="4"><span name="attr_armament4_tab">IV</span></button>
+                <button type="action" name="act_tab_armament5" class="action-tab tab-weapon tab-armament5-button" value="5"><span name="attr_armament5_tab">V</span></button>
+            </div>
 
             <div class="tab-content tab-armament1-contents align-left vertical-adjust-one"> <!--TAB 1 1ST ARMAMENT-->
-                <input type="text" name="attr_armament1_name" value="" class="text-input seventy-seven-percent" title="@{armament1_name}" spellcheck="false"  data-i18n-placeholder="armament1-name-place" placeholder="Weapon One Name"/>
+                <input type="text" name="attr_armament1_name" value="" class="text-input seventy-seven-percent" title="@{armament1_name}" spellcheck="false"  data-i18n-placeholder="armament1-name-place" placeholder="Armament I Name"/>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
                         <input type="number" name="attr_armament1_bonus" value="0" class="number-input" title="@{armament1_bonus}" />
+                        <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <span class="mini-header" data-i18n="damage-u" >Damage</span>
                         <input type="number" name="attr_armament1_damage" value="0" class="number-input" title="@{armament1_damage}" />
+                        <span class="mini-header" data-i18n="damage-u" >Damage</span>
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Max Range</span>
                         <select name="attr_armament1_maxrange" class="select-input" title="@{armament1_range}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
+                        <span class="mini-header" data-i18n="max-range-u">Max Range</span>
                     </div>
                     <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_armament1_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span -data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
-                        <input type="radio" name="attr_armament1_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span -data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
+                        <input type="radio" name="attr_armament1_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
+                        <input type="radio" name="attr_armament1_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
                     </div>
                 </div>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <span class="mini-header" -data-i18n="gunner-ranged-u" >Gunner Ranged</span>
+                        <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
                         <input type="number" name="attr_armament1_ranged" value="0" class="number-input" title="@{armament1_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <span class="mini-header" -data-i18n="other-mods-u" >Gunner stress</span>
+                        <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
                         <input type="number" name="attr_armament1_stress" value="0" class="number-input" title="@{armament1_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Target Range</span>
+                        <span class="mini-header"data-i18n="target-range-u">Target Range</span>
                         <select name="attr_armament1_targetrange" class="select-input" title="@{armament1_targetrange}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
@@ -1304,12 +1308,12 @@
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
                     <span name="attr_armament1_comment"></span>
-                    <textarea name="attr_armament1_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament1_comment}" spellcheck="false" ></textarea>
+                    <textarea name="attr_armament1_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament1_comment}" spellcheck="false" ></textarea>
                 </div>
             </div>
 
             <div class="tab-content tab-armament2-contents align-left vertical-adjust-one"> <!--TAB 2 2ND ARMAMENT -->
-                <input type="text" name="attr_armament2_name" value="" class="text-input seventy-seven-percent" title="@{armament2_name}" spellcheck="false"  data-i18n-placeholder="armament2-name-place" placeholder="Weapon One Name"/>
+                <input type="text" name="attr_armament2_name" value="" class="text-input seventy-seven-percent" title="@{armament2_name}" spellcheck="false"  data-i18n-placeholder="armament2-name-place" placeholder="Armament II Name"/>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
@@ -1321,38 +1325,38 @@
                         <input type="number" name="attr_armament2_damage" value="0" class="number-input" title="@{armament2_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Max Range</span>
+                        <span class="mini-header" data-i18n="max-range-u">Max Range</span>
                         <select name="attr_armament2_maxrange" class="select-input" title="@{armament2_range}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_armament2_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span -data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
-                        <input type="radio" name="attr_armament2_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span -data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
+                        <input type="radio" name="attr_armament2_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
+                        <input type="radio" name="attr_armament2_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
                     </div>
                 </div>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <span class="mini-header" -data-i18n="gunner-ranged-u" >Gunner Ranged</span>
+                        <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
                         <input type="number" name="attr_armament2_ranged" value="0" class="number-input" title="@{armament2_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <span class="mini-header" -data-i18n="other-mods-u" >Gunner stress</span>
+                        <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
                         <input type="number" name="attr_armament2_stress" value="0" class="number-input" title="@{armament2_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Target Range</span>
+                        <span class="mini-header" data-i18n="target-range-u">Target Range</span>
                         <select name="attr_armament2_targetrange" class="select-input" title="@{armament2_targetrange}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
@@ -1362,12 +1366,12 @@
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
                     <span name="attr_armament2_comment"></span>
-                    <textarea name="attr_armament2_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament2_comment}" spellcheck="false" ></textarea>
+                    <textarea name="attr_armament2_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament2_comment}" spellcheck="false" ></textarea>
                 </div>
             </div>
 
             <div class="tab-content tab-armament3-contents align-left vertical-adjust-one"> <!--TAB 3 3RD ARMAMENT -->
-                <input type="text" name="attr_armament3_name" value="" class="text-input seventy-seven-percent" title="@{armament3_name}" spellcheck="false"  data-i18n-placeholder="armament3-name-place" placeholder="Weapon One Name"/>
+                <input type="text" name="attr_armament3_name" value="" class="text-input seventy-seven-percent" title="@{armament3_name}" spellcheck="false"  data-i18n-placeholder="armament3-name-place" placeholder="Armament III Name"/>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
@@ -1379,38 +1383,38 @@
                         <input type="number" name="attr_armament3_damage" value="0" class="number-input" title="@{armament3_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Max Range</span>
+                        <span class="mini-header" data-i18n="max-range-u">Max Range</span>
                         <select name="attr_armament3_maxrange" class="select-input" title="@{armament3_range}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_armament3_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span -data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
-                        <input type="radio" name="attr_armament3_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span -data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
+                        <input type="radio" name="attr_armament3_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
+                        <input type="radio" name="attr_armament3_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
                     </div>
                 </div>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <span class="mini-header" -data-i18n="gunner-ranged-u" >Gunner Ranged</span>
+                        <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
                         <input type="number" name="attr_armament3_ranged" value="0" class="number-input" title="@{armament3_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <span class="mini-header" -data-i18n="other-mods-u" >Gunner stress</span>
+                        <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
                         <input type="number" name="attr_armament3_stress" value="0" class="number-input" title="@{armament3_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Target Range</span>
+                        <span class="mini-header" data-i18n="target-range-u">Target Range</span>
                         <select name="attr_armament3_targetrange" class="select-input" title="@{armament3_targetrange}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
@@ -1420,12 +1424,12 @@
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
                     <span name="attr_armament3_comment"></span>
-                    <textarea name="attr_armament3_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament3_comment}" spellcheck="false" ></textarea>
+                    <textarea name="attr_armament3_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament3_comment}" spellcheck="false" ></textarea>
                 </div>
             </div>
 
             <div class="tab-content tab-armament4-contents align-left vertical-adjust-one"> <!--TAB 4 4TH ARMAMENT -->
-                <input type="text" name="attr_armament4_name" value="" class="text-input seventy-seven-percent" title="@{armament4_name}" spellcheck="false"  data-i18n-placeholder="armament4-name-place" placeholder="Weapon One Name"/>
+                <input type="text" name="attr_armament4_name" value="" class="text-input seventy-seven-percent" title="@{armament4_name}" spellcheck="false"  data-i18n-placeholder="armament4-name-place" placeholder="Armament IV Name"/>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
@@ -1437,38 +1441,38 @@
                         <input type="number" name="attr_armament4_damage" value="0" class="number-input" title="@{armament4_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Max Range</span>
+                        <span class="mini-header" data-i18n="max-range-u">Max Range</span>
                         <select name="attr_armament4_maxrange" class="select-input" title="@{armament4_range}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_armament4_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span -data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
-                        <input type="radio" name="attr_armament4_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span -data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
+                        <input type="radio" name="attr_armament4_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
+                        <input type="radio" name="attr_armament4_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
                     </div>
                 </div>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <span class="mini-header" -data-i18n="gunner-ranged-u" >Gunner Ranged</span>
+                        <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
                         <input type="number" name="attr_armament4_ranged" value="0" class="number-input" title="@{armament4_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <span class="mini-header" -data-i18n="other-mods-u" >Gunner stress</span>
+                        <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
                         <input type="number" name="attr_armament4_stress" value="0" class="number-input" title="@{armament4_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Target Range</span>
+                        <span class="mini-header" data-i18n="target-range-u">Target Range</span>
                         <select name="attr_armament4_targetrange" class="select-input" title="@{armament4_targetrange}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
@@ -1478,12 +1482,12 @@
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
                     <span name="attr_armament4_comment"></span>
-                    <textarea name="attr_armament4_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament4_comment}" spellcheck="false" ></textarea>
+                    <textarea name="attr_armament4_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament4_comment}" spellcheck="false" ></textarea>
                 </div>
             </div>
 
             <div class="tab-content tab-armament5-contents align-left vertical-adjust-one"> <!--TAB 5 5TH ARMAMENT -->
-                <input type="text" name="attr_armament5_name" value="" class="text-input seventy-seven-percent" title="@{armament5_name}" spellcheck="false"  data-i18n-placeholder="armament5-name-place" placeholder="Weapon One Name"/>
+                <input type="text" name="attr_armament5_name" value="" class="text-input seventy-seven-percent" title="@{armament5_name}" spellcheck="false"  data-i18n-placeholder="armament5-name-place" placeholder="Armament V Name"/>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
@@ -1495,38 +1499,38 @@
                         <input type="number" name="attr_armament5_damage" value="0" class="number-input" title="@{armament5_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range-u">Max Range</span>
+                        <span class="mini-header" data-i18n="max-range-u">Max Range</span>
                         <select name="attr_armament5_maxrange" class="select-input" title="@{armament5_range}">
-                            <option value="Contact" -data-i18n="contact-range-u">Contact</option>
-                            <option value="Short" -data-i18n="short-range-u">Short</option>
-                            <option value="Medium" -data-i18n="medium-range-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="long-range-u">Long</option>
-                            <option value="Extreme" -data-i18n="extreme-range-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_armament5_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span -data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
-                        <input type="radio" name="attr_armament5_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span -data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
+                        <input type="radio" name="attr_armament5_type" value="Ranged" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span data-i18n-title="ranged-combat-abbr-u" title="RC" ></span>
+                        <input type="radio" name="attr_armament5_type" value="Counter" class="letter-box"  data-i18n-title="use-countermeasure-title" title="Use Countermeasure"/><span data-i18n-title="countermeasure-abbr-u" title="CM" ></span>
                     </div>
                 </div>
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <span class="mini-header" -data-i18n="gunner-ranged-u" >Gunner Ranged</span>
+                        <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
                         <input type="number" name="attr_armament5_ranged" value="0" class="number-input" title="@{armament5_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <span class="mini-header" -data-i18n="gunner-stress-u" >Gunner stress</span>
+                        <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
                         <input type="number" name="attr_armament5_stress" value="0" class="number-input" title="@{armament5_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
-                        <span class="mini-header" -data-i18n="max-range">Target Range</span>
+                        <span class="mini-header" data-i18n="target-range-u">Target Range</span>
                         <select name="attr_armament5_targetrange" class="select-input" title="@{armament5_targetrange}">
-                            <option value="Contact" -data-i18n="range-contact-u">Contact</option>
-                            <option value="Short" -data-i18n="range-short-u">Short</option>
-                            <option value="Medium" -data-i18n="range-medium-u" selected="selected">Medium</option>
-                            <option value="Long" -data-i18n="range-long-u">Long</option>
-                            <option value="Extreme" -data-i18n="range-extreme-u">Extreme</option>
+                            <option value="Contact" data-i18n="range-contact-u">Contact</option>
+                            <option value="Short" data-i18n="short-u">Short</option>
+                            <option value="Medium" data-i18n="medium-u" selected="selected">Medium</option>
+                            <option value="Long" data-i18n="long-u">Long</option>
+                            <option value="Extreme" data-i18n="extreme-u">Extreme</option>
                         </select>
                     </div>
                     <div class="grid-item weapon-item type">
@@ -1536,7 +1540,7 @@
                 </div>
                 <div class="auto-expand some-padding shift-down-5">
                     <span name="attr_armament5_comment"></span>
-                    <textarea name="attr_armament5_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament5_comment}" spellcheck="false" ></textarea>
+                    <textarea name="attr_armament5_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament5_comment}" spellcheck="false" ></textarea>
                 </div>
             </div>
 
@@ -2130,21 +2134,21 @@
                 <!-- End Testing New Roll Template Logic-->
 
                 <div class="template-grid-item template-span-half1">
-                    <span -data-i18n="template-success-u" class="template-success">Success: </span>
+                    <span data-i18n="template-success" class="template-success">Success: </span>
                 </div>
 
                 <div class="template-grid-item template-span-half2">
-                    <span -data-i18n="template-stress-u" class="template-stress">Stress: </span>
+                    <span data-i18n="template-stress" class="template-stress">Stress: </span>
                 </div>
                
                 {{#current-bonus}}
                     <div class="template-grid-item template-span-left">
-                        <span  data-i18n="template-bonus-u">Bonus: </span>{{current-bonus}}
+                        <span data-i18n="template-bonus">Bonus: </span>{{current-bonus}}
                     </div>
                 {{/current-bonus}}
                 {{#current-damage}}
                     <div class="template-grid-item template-span-center">
-                        <span data-i18n="template-damage-u">Damage: </span>{{current-damage}}
+                        <span data-i18n="template-damage">Damage: </span>{{current-damage}}
                     </div>
                 {{/current-damage}}
                 {{#current-range}}
@@ -2379,24 +2383,68 @@
      });
 
      // Set Internal modules tab indicator (only for second tab)
-     for (let i = 16; i <= 30; i++) { 
-         const module = "module"+i,
-         button = "modules2_tab";
-         //clog("Modules II listing: "+ module);
-         on(`change:${module} sheet:opened`, (eventInfo) => {
-             getAttrs([module, button], (values) => {
-                 //clog("modules values for button status: "+JSON.stringify(values)); 
-                 var active = "-";
-                 if( values[module] != "" ) {
-                     active = "II";
-                 }
-                 //clog("active : "+active);
-                 setAttrs({
-                     [button]: active
-                 },{silent:true});
-             });
-         });
-     }
+     on(`change:module16 change:module17 change:module18 change:module19 change:module20 change:module21 change:module22 change:module23 change:module24 change:module25 change:module26 change:module27 change:module28 change:module29 change:module30 sheet:opened`, (eventInfo) => {
+        getAttrs(["module16", "module17", "module18", "module19", "module20", "module21", "module22", "module23", "module24", "module25", "module26", "module27", "module28", "module29", "module30"], (values) => {
+            //clog("modules values for button status: "+JSON.stringify(values)); 
+            const button = "modules2_tab";
+            var active = "-";
+    
+            for (let i = 16; i <= 30; i++) {
+                if( values[`module${i}`] != "" ) {
+                    active = "II";
+                }
+                //clog("value: "+ JSON.stringify(values[`module${i}`]) +", active: "+ active);
+            }  
+
+            //clog("active eor : "+active);
+            setAttrs({
+                [button]: active
+            },{silent:true});
+        });
+    });
+
+    // Set Ship logs 2nd tab indicator
+    on(`change:log16 change:log17 change:log18 change:log19 change:log20 change:log21 change:log22 change:log23 change:log24 change:log25 change:log26 change:log27 change:log28 change:log29 change:log30 sheet:opened`, (eventInfo) => {
+       getAttrs(["log16", "log17", "log18", "log19", "log20", "log21", "log22", "log23", "log24", "log25", "log26", "log27", "log28", "log29", "log30"], (values) => {
+           clog("log values for button status: "+JSON.stringify(values)); 
+           const button = "logs2_tab";
+           var active = "-";
+   
+           for (let i = 16; i <= 30; i++) {
+               if( values[`log${i}`] != "" ) {
+                   active = "II";
+               }
+               clog("value: "+ JSON.stringify(values[`log${i}`]) +", active: "+ active);
+           }  
+
+           clog("active eor : "+active);
+           setAttrs({
+               [button]: active
+           },{silent:true});
+       });
+   });
+
+
+   // Set Ship logs 3rd tab indicator
+   on(`change:log31 change:log32 change:log33 change:log34 change:log35 change:log36 change:log37 change:log38 change:log39 change:log40 change:log41 change:log42 change:log43 change:log44 change:log45 sheet:opened`, (eventInfo) => {
+      getAttrs(["log31", "log32", "log33", "log34", "log35", "log36", "log37", "log38", "log39", "log40", "log41", "log42", "log43", "log44", "log45"], (values) => {
+          clog("log values for button status: "+JSON.stringify(values)); 
+          const button = "logs3_tab";
+          var active = "-";
+  
+          for (let i = 31; i <= 45; i++) {
+              if( values[`log${i}`] != "" ) {
+                  active = "III";
+              }
+              clog("value: "+ JSON.stringify(values[`log${i}`]) +", active: "+ active);
+          }  
+
+          clog("active eor : "+active);
+          setAttrs({
+              [button]: active
+          },{silent:true});
+      });
+  });
 
 	// Highlight buttons if talents / weapons are populated
 	
@@ -2481,6 +2529,7 @@
 	});
 		
     // Action Button Tabs
+
     on("clicked:tab_character", function() {
         console.log("tab_character button clicked");
         setAttrs({ 
