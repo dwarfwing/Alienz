@@ -8,10 +8,12 @@
         v2.02 Richard W: Added encumbrance and list tab indicators
 -->
 
-<input class="tab-sheetversion" type="hidden" name="attr_sheetversion" value="2.02">
-<input class="tab-version" type="hidden" name="attr_version" value="0">
+<input type="hidden" name="attr_sheetversion" value="2.02">
+<input type="hidden" name="attr_version" value="0">
+<input type="hidden" name="attr_newsheet" value="1">
 <input class="tab-sheet" type="hidden" name="attr_tab_sheet" value="Character">
 <input class="advencumbrance" type="checkbox" hidden name="attr_config_advencumbrance">
+<input class="squareinput" type="checkbox" hidden name="attr_config_squareinput">
 
 <div class="background-wrap">
     <div class="grid-container contains-fourteen-columns">
@@ -597,8 +599,8 @@
             <span class="dark-teal-header dark-pink-header hidden" data-i18n-title="overencumbered-title" data-i18n="overencumbered-u">Over-encumbered</span>
             <span class="dark-teal-header dark-red-header hidden" data-i18n-title="overloaded-title" data-i18n="overloaded-u">Overloaded</span>
             <div class="float-right">
-                <input type="number" name="attr_encumbrance" value="0" class="no-spin-input encumbrance_manual" title="@{encumbrance}" />
-                <input type="number" name="attr_encumbrance_calc" value="0" class="no-spin-input encumbrance_calc" title="@{encumbrance_calc}" />
+                <input type="number" name="attr_encumbrance" value="0" class="no-spin-input small wide encumbrance_manual" title="@{encumbrance}" />
+                <input type="number" name="attr_encumbrance_calc" value="0" class="no-spin-input small wide encumbrance_calc" title="@{encumbrance_calc}" />
             </div>
         </div> <!-- END OF ROW 12 -->
         
@@ -996,52 +998,52 @@
             <input type="text" name="attr_ship-ai" class="text-input centered" />
         </div>
 
-        <div class="grid-item span-five-thru-seven span-row4 flex-row flex-content-left flex-items-center-align flex-self-right w120 clip-edges">
+        <div class="grid-item span-five-thru-seven span-row4 flex-row flex-content-left flex-items-center-align flex-self-right clip-edges w60pc">
             <div class="some-padding">
                 <input type="number" name="attr_ship_crew" value="0" class="no-spin-input" title="@{ship_crew}" />
             </div>
             <div class="dark-teal-header some-padding pad-left" data-i18n="ship-crew-u">Crew</div>
         </div>
-        <div class="grid-item span-eight-thru-ten span-row4 flex-row flex-content-end flex-items-center-align w120 clip-edges">
+        <div class="grid-item span-eight-thru-ten span-row4 flex-row flex-content-end flex-items-center-align clip-edges w60pc">
             <div class="dark-teal-header some-padding pad-right" data-i18n="ship-passengers-u">Passengers</div>
             <div class="some-padding">
                 <input type="number" name="attr_ship_passengers" value="0" class="no-spin-input" title="@{ship_passengers}" />
             </div>
         </div>
 
-        <div class="grid-item span-five-thru-seven span-row5 flex-row flex-content-left flex-items-center-align flex-self-right w150 clip-edges">
+        <div class="grid-item span-five-thru-seven span-row5 flex-row flex-content-left flex-items-align-center flex-self-right clip-edges w90pc">
             <div class="some-padding no-spin-input">
-                <input type="number" name="attr_ship_length" value="0" class="no-spin-input small" title="@{ship_length}" />
+                <input type="number" name="attr_ship_length" value="0" class="no-spin-input small wide" title="@{ship_length}" />
             </div>
             <div class="dark-teal-header some-padding pad-left" data-i18n="ship-length-u">Length</div>
         </div>
-        <div class="grid-item span-eight-thru-ten span-row5 flex-row flex-content-end flex-items-align-center w150 clip-edges">
+        <div class="grid-item span-eight-thru-ten span-row5 flex-row flex-content-end flex-items-align-center clip-edges w90pc">
             <div class="dark-teal-header some-padding pad-right" data-i18n="ship-ftl-rating-u">FTL Rating</div>
             <div class="some-padding">
                 <input type="number" name="attr_ship_ftlrating" value="0" class="no-spin-input" title="@{ship_ftlrating}" />
             </div>
         </div>
 
-        <div class="grid-item span-five-thru-seven span-row6 flex-row flex-content-left flex-items-align-center flex-self-right w140 clip-edges">
+        <div class="grid-item span-five-thru-seven span-row6 flex-row flex-content-left flex-items-align-center flex-self-right clip-edges w70pc">
             <div class="some-padding">
                 <input type="number" name="attr_ship_signature" value="0" class="no-spin-input" title="@{ship_signature}" />
             </div>
             <div class="dark-teal-header some-padding pad-left" data-i18n="ship-signature-u">Signature</div>
         </div>
-        <div class="grid-item span-eight-thru-ten span-row6 flex-row flex-content-end flex-items-align-center w140 clip-edges">
+        <div class="grid-item span-eight-thru-ten span-row6 flex-row flex-content-end flex-items-align-center clip-edges w70pc">
             <div  class="dark-teal-header some-padding pad-right" data-i18n="ship-thrusters-u">Thrusters</div>
             <div class="some-padding">
                 <input type="number" name="attr_ship_thrusters" value="0" class="no-spin-input" title="@{ship_thrusters}" />
             </div>
         </div>
 
-        <div class="grid-item span-five-thru-seven span-row7 flex-row flex-content-left flex-items-align-center flex-self-right w130 clip-edges"> 
+        <div class="grid-item span-five-thru-seven span-row7 flex-row flex-content-left flex-items-align-center flex-self-right clip-edges w50pc"> 
             <div class="some-padding">
                 <input type="number" name="attr_shipdamage_max" value="0" class="no-spin-input" title="@{ship_hull}" />
             </div>
             <div class="dark-teal-header some-padding pad-left" data-i18n="ship-hull-u">Hull</div>
         </div>
-        <div class="grid-item span-eight-thru-ten span-row7 flex-row flex-content-end flex-items-align-center w130 clip-edges">
+        <div class="grid-item span-eight-thru-ten span-row7 flex-row flex-content-end flex-items-align-center clip-edges w50pc">
             <button type="roll" name="ship_armor" class="button-skill pad-right" value="@{secret_roll} &{template:alien} {{character-name=@{ship-name} }} {{roll-name=Ship Armor }} {{base-dice=[[@{ship_armor} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }} " data-i18n="ship-armor-u" >Armor</button>
             <div class="some-padding">
                 <input type="number" name="attr_ship_armor" value="0" class="no-spin-input" title="@{ship_armor}" />
@@ -1570,6 +1572,14 @@
                 </div>
                 <div class="grid-item clip-edges w120">
                     <input type="checkbox" class="centered" name="attr_config_advencumbrance" />
+                </div>
+            </div>
+            <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
+                <div class="grid-item clip-edges cover-75 marg-right">
+                    <span class="text-input cover-100" data-i18n-title="config-squareinput-desc" title="" data-i18n="config-squareinput">Use squarer input boxes</span>
+                </div>
+                <div class="grid-item clip-edges w120">
+                    <input type="checkbox" class="centered" name="attr_config_squareinput" />
                 </div>
             </div>
             <!-- <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                

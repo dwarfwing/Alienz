@@ -266,8 +266,12 @@
 }
 
 .sheet-w40 { max-width: 40px; min-width: 40px; }
+.sheet-w50pc { max-width: 50%; min-width: 50%; }
 .sheet-w60 { max-width: 60px; min-width: 60px; }
+.sheet-w60pc { max-width: 60%; min-width: 60%; }
+.sheet-w70pc { max-width: 70%; min-width: 70%; }
 .sheet-w80 { max-width: 80px; min-width: 80px; }
+.sheet-w90pc { max-width: 90%; min-width: 90%; }
 .sheet-w120 { max-width: 120px; min-width: 120px; }
 .sheet-w130 { max-width: 130px; min-width: 130px; }
 .sheet-w140 { max-width: 140px; min-width: 140px; }
@@ -811,7 +815,7 @@ input.sheet-gear-input-total {
     content: ")";
   }
 
-input[type="number"].sheet-no-spin-inv {
+/* input[type="number"].sheet-no-spin-inv {
 	float: right;
 	font-family: 'Courier Prime';
     font-size: 1em;
@@ -843,17 +847,16 @@ input[type="number"].sheet-no-spin-inv-tot {
  
     border-radius: 50%;
     box-shadow: 1px 1px 7px rgba(0, 139, 139, 1), -1px -1px 7px rgba(0, 139, 139, 1), 1px 1px 10px white, -1px -1px 10px white;
-}
+} */
 
 
 input[type="number"].sheet-no-spin-input {
     font-family: 'Courier Prime';
-    font-size: 1.5em;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
-    
-    height: 1.5em;
-    width: 1.5em;
+    height: 30px;
+    width: 30px;
     background-color: White;
     border: 1px solid White;
     margin: -1px -2px;
@@ -863,8 +866,9 @@ input[type="number"].sheet-no-spin-input {
 }
 div.sheet-no-spin-input {
     display: flex;
-    height: 1.5em;
-    width: 1.5em;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
     background-color: White;
     border: 1px solid White;
     align-self: center;
@@ -874,6 +878,15 @@ div.sheet-no-spin-input {
     border-radius: 50%;
     box-shadow: 1px 1px 7px rgba(0, 139, 139, 1), -1px -1px 7px rgba(0, 139, 139, 1), 1px 1px 10px white, -1px -1px 10px white;
 }
+
+.sheet-no-spin-input.sheet-wide {
+    width: 42px !important;
+} 
+
+.charsheet input.sheet-squareinput:checked ~ div .sheet-no-spin-input {
+    border-radius: 20%; 
+}
+
 div.sheet-no-spin-input input[type="number"].sheet-no-spin-input {
     background-color: transparent;
     border: unset;
@@ -922,7 +935,7 @@ input[type="number"].sheet-low-visibility-number {
 }
 
 input[type="number"].sheet-small {
-    font-size: 1em;
+    font-size: 13px;
 }
 
 .sheet-skinny-div {
