@@ -9,6 +9,10 @@
     min-width: 1128px;
     -min-width: 830px;
 }
+.sheet-spacebackground:checked ~ .sheet-background-wrap {
+    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/bg.png?raw=true");
+    background-repeat: repeat;
+}
 .sheet-header-image{
     background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Weyland-Yutani.png?raw=true");
     background-position: center;
@@ -182,6 +186,7 @@
 
 .sheet-pad-left { padding-left: 8px !important; }
 .sheet-pad-right { padding-right: 8px !important; }
+.sheet-pad-right-30px { padding-right: 30px !important; }
 .sheet-marg-right {margin-right: 3px;}
 
 .sheet-grid-item {
@@ -333,6 +338,12 @@
 
 .sheet-weapon-item.sheet-type{
     border-right-width: 0px;
+}
+
+.sheet-gearrepeatingonly:checked ~ input,
+.sheet-gearrepeatingonly:checked ~ select,
+.sheet-gearrepeatingonly:checked ~ hr {
+    display: none !important;
 }
 
 
@@ -1144,6 +1155,11 @@ input.sheet-tab {
 
 /* CONFIGURATION */
 
+span.sheet-configitem {
+    display: flex;
+    justify-content: flex-end;
+}
+
 div.sheet-changelog {
     overflow-y: auto;
     overflow-x: hidden;
@@ -1435,7 +1451,7 @@ button[type="roll"].sheet-button-skill:active {
 }
 
 button[type="roll"].sheet-bigger-skill {
-    width: 75%;
+    width: 70%;
 }
 
 /* Attack button in weapon box */

@@ -14,6 +14,7 @@
 <input class="tab-sheet" type="hidden" name="attr_tab_sheet" value="Character">
 <input class="advencumbrance" type="checkbox" hidden name="attr_config_advencumbrance">
 <input class="squareinput" type="checkbox" hidden name="attr_config_squareinput">
+<input class="spacebackground" type="checkbox" hidden name="attr_config_spacebackground">
 
 <div class="background-wrap">
     <div class="grid-container contains-fourteen-columns">
@@ -412,6 +413,7 @@
                 <span class="teal-header-gear-r gear-header showencumbrance">#</span>
             </div>
             <div class="vertical-adjust-one">
+                <input type="checkbox" name="attr_config_gearrepeatingonly" hidden class="gearrepeatingonly" />
                 <input type="text" name="attr_gear_item_one" value="" class="text-inv" title="@{gear_item_one}" spellcheck="false" data-i18n-placeholder="item-1-place" placeholder="Item 1"/>
 				<input type="number" name="attr_total_wt_item_one" value="(@{num_item_one})*(@{wt_item_one})" class="sheet-gear-input-total showencumbrance" disabled/>
                 <!-- <input type="number" name="attr_wt_item_one" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
@@ -592,6 +594,7 @@
             <input type="number" name="attr_encumbrance_repgear" value="0" hidden disabled />
             <input type="number" name="attr_encumbrance_gear" value="0" hidden disabled />
             <input type="number" name="attr_encumbrance_weapons" value="0" hidden disabled />
+            <input type="number" name="attr_encumbrance_consum" value="0" hidden disabled />
             <input type="number" name="attr_carrycap" value="0" hidden disabled />
             <input type="checkbox" class="overencumbered-check" name="attr_overencumbered" value="1" hidden readonly />
             <input type="checkbox" class="overloaded-check" name="attr_overloaded" value="1" hidden readonly />
@@ -600,7 +603,7 @@
             <span class="dark-teal-header dark-red-header hidden" data-i18n-title="overloaded-title" data-i18n="overloaded-u">Overloaded</span>
             <div class="float-right">
                 <input type="number" name="attr_encumbrance" value="0" class="no-spin-input small wide encumbrance_manual" title="@{encumbrance}" />
-                <input type="number" name="attr_encumbrance_calc" value="0" class="no-spin-input small wide encumbrance_calc" title="@{encumbrance_calc}" />
+                <input type="number" name="attr_encumbrance_calc" value="0" class="no-spin-input small wide encumbrance_calc" title="@{encumbrance_calc}" readonly />
             </div>
         </div> <!-- END OF ROW 12 -->
         
@@ -1012,7 +1015,7 @@
         </div>
 
         <div class="grid-item span-five-thru-seven span-row5 flex-row flex-content-left flex-items-align-center flex-self-right clip-edges w90pc">
-            <div class="some-padding no-spin-input">
+            <div class="some-padding">
                 <input type="number" name="attr_ship_length" value="0" class="no-spin-input small wide" title="@{ship_length}" />
             </div>
             <div class="dark-teal-header some-padding pad-left" data-i18n="ship-length-u">Length</div>
@@ -1567,19 +1570,35 @@
                 </div>
             </div> -->
             <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
-                <div class="grid-item clip-edges cover-75 marg-right">
-                    <span class="text-input cover-100" data-i18n-title="config-enable-encumbrance-desc" title="Adds fields Wt (weight), # (amount) and Enc (encumbrance) to the Gear list, as well as a Weight option for weapons. Every 4 items of Food or Water in the Consumables section will count as 1 item." data-i18n="config-enable-encumbrance">Enable weights and calculated encumbrance</span>
+                <div class="grid-item clip-edges cover-75 marg-right pad-right-30px">
+                    <span class="text-input cover-100 configitem" data-i18n-title="config-enable-encumbrance-desc" title="Adds fields Wt (weight), # (amount) and Enc (encumbrance) to the Gear list, as well as a Weight option for weapons. Every 4 items of Food or Water in the Consumables section will count as 1 item." data-i18n="config-enable-encumbrance">Enable weights and calculated encumbrance</span>
                 </div>
                 <div class="grid-item clip-edges w120">
                     <input type="checkbox" class="centered" name="attr_config_advencumbrance" />
                 </div>
             </div>
             <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
-                <div class="grid-item clip-edges cover-75 marg-right">
-                    <span class="text-input cover-100" data-i18n-title="config-squareinput-desc" title="" data-i18n="config-squareinput">Use squarer input boxes</span>
+                <div class="grid-item clip-edges cover-75 marg-right pad-right-30px">
+                    <span class="text-input cover-100 configitem" data-i18n-title="config-gearrepeatingonly-desc" title="" data-i18n="config-gearrepeatingonly">Only use repeating section for Gear</span>
+                </div>
+                <div class="grid-item clip-edges w120">
+                    <input type="checkbox" class="centered" name="attr_config_gearrepeatingonly" />
+                </div>
+            </div>
+            <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
+                <div class="grid-item clip-edges cover-75 marg-right pad-right-30px">
+                    <span class="text-input cover-100 configitem" data-i18n-title="config-squareinput-desc" title="" data-i18n="config-squareinput">Use squarer input boxes</span>
                 </div>
                 <div class="grid-item clip-edges w120">
                     <input type="checkbox" class="centered" name="attr_config_squareinput" />
+                </div>
+            </div>
+            <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
+                <div class="grid-item clip-edges cover-75 marg-right pad-right-30px">
+                    <span class="text-input cover-100 configitem" data-i18n-title="config-spacebackground-desc" title="" data-i18n="config-spacebackground">Use space background</span>
+                </div>
+                <div class="grid-item clip-edges w120">
+                    <input type="checkbox" class="centered" name="attr_config_spacebackground" />
                 </div>
             </div>
             <!-- <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
@@ -1622,7 +1641,7 @@
                 </div>  
                 <div class="cover-75 flex-content-right flex-column">
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right">
-                        <span class="text-input cover-100 align-left" title="">Added configuration tab for sheet level options and customizations.</span>
+                        <span class="text-input cover-100 align-left" title="">Added configuration tab for sheet level options and customizations, like input fields and background image.</span>
                     </div>                
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">Added weights and encumbrance calculation as an option.</span>
@@ -2257,11 +2276,13 @@
     });
 
     // CALCULATE Encumbrance
+    // Calculate encumbrance values for repeating gear section
     on("change:repeating_gear remove:repeating_gear sheet:opened", function () {
         clog("Change Detected: Character Additional Gear Encumbrance");
         repeatingSum("encumbrance_repgear", "gear", ["wt", "num"]);
     });
 
+    // Calculate encumbrance values for static gear list
     on("change:total_wt_item_one change:total_wt_item_two change:total_wt_item_three change:total_wt_item_four change:total_wt_item_five change:total_wt_item_six change:total_wt_item_seven change:total_wt_item_eight sheet:opened", () => {
         clog("Change Detected: Character Gear Encumbrance");
         const weights = ["wt_item_one", "wt_item_two", "wt_item_three", "wt_item_four", "wt_item_five", "wt_item_six", "wt_item_seven", "wt_item_eight"];
@@ -2292,6 +2313,7 @@
         });            
     });
     
+    // Encumbrance for weapons
     on("change:weapon_one_weight change:weapon_two_weight change:weapon_three_weight change:weapon_four_weight change:weapon_five_weight change:weapon_six_weight sheet:opened", () => {
         clog("Change Detected: Character Weapon Encumbrance");
         getAttrs(["encumbrance_weapons", "weapon_one_weight", "weapon_two_weight", "weapon_three_weight", "weapon_four_weight", "weapon_five_weight", "weapon_six_weight"], (values) => {
@@ -2311,36 +2333,55 @@
         });
     });
 
-    on("change:encumbrance_repgear change:encumbrance_gear change:encumbrance_weapons change:food change:water change:strength change:packmule sheet:opened", () => {
-        getAttrs(["strength", "packmule", "encumbrance_repgear", "encumbrance_gear", "encumbrance_weapons", "food", "water", "encumbrance_calc"], (values) => {
+    // Encumbrance for consumables
+    on("change:food change:water sheet:opened", () => {
+        getAttrs(["food", "water", "encumbrance_consum"], (values) => {
+            const food = Math.ceil(int(values.food)/4),
+            water = Math.ceil(int(values.water)/4),
+            encumb = food + water;
+            clog(`Food ${food}, water ${water} and encumberance ${encumb}`);
+            setAttrs({
+                encumbrance_consum: encumb
+            });
+        });
+    });
+
+    // Total Encumbrance
+    on("change:encumbrance change:encumbrance_repgear change:encumbrance_gear change:encumbrance_weapons change:encumbrance_consum change:strength change:packmule change:config_advencumbrance sheet:opened", () => {
+        getAttrs(["strength", "packmule", "encumbrance_repgear", "encumbrance_gear", "encumbrance_weapons", "encumbrance_consum", "config_advencumbrance", "encumbrance", "encumbrance_calc"], (values) => {
             const repgear = float(values.encumbrance_repgear),
             gear = float(values.encumbrance_gear),
             weapons = float(values.encumbrance_weapons),
             strength = int(values.strength),
             packmule = int(values.packmule),
-            food = Math.ceil(int(values.food)/4),
-            water = Math.ceil(int(values.water)/4),
-            consumables = food + water,
-            total = repgear + gear + weapons + consumables,
-            carrycap = (strength*2) + packmule;
-            clog(`Food ${food}, water ${water} and encumberance ${consumables}`);
+            consumables = int(values.encumbrance_consum),
+            encumb_calc = repgear + gear + weapons + consumables,
+            carrycap = (strength*2) + packmule,
+            config = values.config_advencumbrance,
+            encumb = int(values.encumbrance);
             clog(`Carry cap and pack mule: pack mule ${packmule}, strength ${strength} and carry cap ${carrycap}`);
-            clog(`Test total for nonzero value: ${total != 0}`);
+            clog(`Test total ${total} for nonzero value: ${total != 0}`);
+            clog(`advanced encumbrance: ${values.config_advencumbrance}`);
+            var overencumbered = 0, overloaded = 0, total = 0; 
+            ( config == "on" ) ? total = encumb_calc : total = encumb; 
+            ( total > carrycap ) ? overencumbered = 1 : overencumbered = 0;
+            ( total > (carrycap*2) ) ? overloaded = 1 : overloaded = 0;
+            clog(`Manual encumbrance is ${encumb}, calculated encumbrance is ${encumb_calc} and total is ${total}`);
             clog(`Overencumbered: ${total > carrycap}`);
             clog(`overloaded: ${total > (carrycap*2)}`);
-            var overencumbered = 0, overloaded = 0; 
-            if ( total > carrycap ) overencumbered = 1;
-            if ( total > (carrycap*2) ) overloaded = 1;
+            //if ( total > carrycap ) overencumbered = 1;
+            //if ( total > (carrycap*2) ) overloaded = 1;
+            //if ( encumb > carrycap ) overenc_manual = 0;
+            //if ( encumb > (carrycap*2) ) overenc_manual = 0;
+
             // Only update total encumbrance if encumbrance and weights are actually used.
             // Added configuration for chosing calculated encumbrance using new attribute encumbrance_calc
-            if ( total != 0 ) {
-                setAttrs({
-                    encumbrance_calc: total,
-                    carrycap: carrycap,
-                    overencumbered: overencumbered,
-                    overloaded: overloaded
-                });
-            }
+            setAttrs({
+                encumbrance_calc: encumb_calc,
+                carrycap: carrycap,
+                overencumbered: overencumbered,
+                overloaded: overloaded
+            });
         });
     });
 
