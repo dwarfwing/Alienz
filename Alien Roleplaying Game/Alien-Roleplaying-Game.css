@@ -498,6 +498,15 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     font-weight: bold;
 }
 
+.sheet-panicdesc:checked ~ button.sheet-panicdesc,
+.sheet-panicdesc:not(:checked) ~ button.sheet-nopanicdesc {
+    display: none;
+}
+.sheet-panicdesc:not(:checked) ~ button.sheet-panicdesc,
+.sheet-panicdesc:checked ~ button.sheet-nopanicdesc {
+    display: block;
+}
+
 
 .sheet-medium-teal-header {
     color: rgba(113, 142, 135, 1); /* Medium Teal #718e87 */
@@ -1180,6 +1189,15 @@ div.sheet-changelog::-webkit-scrollbar-thumb:hover {
     background: gray;
 }
 
+.sheet-config select {
+    width: 62px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-self: center;
+    align-content: flex-start;
+}
+
 /* CUSTOM CHECKBOXES FOR ALIEN RPG */
 
 input.sheet-numbered-box {
@@ -1652,4 +1670,9 @@ button[type="roll"].sheet-button-skill:focus {
     border: none;
     border-radius: 5px;
     background-position: center;
+}
+
+.sheet-rolltemplate-alien .sheet-panic-effect {
+    font-size: 11px;
+    color: lightgrey;
 }
