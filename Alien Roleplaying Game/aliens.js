@@ -1,3 +1,5 @@
+
+      
     /* number and log handling */
     const int = (score, on_error = 0) => parseInt(score) || on_error;
     const float = (score, on_error = 0) => parseFloat(score) || on_error;
@@ -31,6 +33,43 @@
       });
     };
 
+    // VERSIONING
+    // If need for specific data updates with new version then include as a case comparing sheet version with version in the below Switch statement
+    on("sheet:opened", () => {
+        getAttrs(["sheetversion", "version", "newchar"], (values) => {
+            var sheet = float(values.sheetversion),
+            actual = float(values.version),
+            newchar = int(values.newchar);
+            clog(`Versioning; sheet version: ${sheet}, actual: ${actual}, new char: ${newchar}`);
+
+            // Add additional check below, e.g. case newchar != 1 && actual < 2.02
+            // In the case statements, call on a separate function to handle data upgrades and other necessary changes
+            switch (true) {
+                case newchar == 1 :
+                    // A new character would always be on the sheet version, no need to bother with upgrades but need to reset the newchar attribute
+                    clog(`New character identified. New char: ${newchar}, sheet version: ${sheet}, actual: ${actual}`);
+                    setAttrs({
+                        version: sheet,
+                        newchar: 0,
+                        config_notice: 1
+                    });
+                    break;  
+                case actual < sheet :
+                    // This can be use as example of upgrade handling, use specific versions in the case logic to handle version specific upgrade of attributes, e.g. actual < 2.10 :
+                    // Any upgrade handling needs to be done above this one, and may set the actual variable to be same as sheet to avoid doing the below setAttrs twice.
+                    clog(`New version identified. New char: ${newchar}, sheet version: ${sheet}, actual: ${actual}`);
+                    // Add reference to upgrade function here, if needed, e.g. upgrade_to_2.24() 
+                    setAttrs({
+                        version: sheet,
+                        newchar: 0,
+                        config_notice: 1
+                    });
+                    // In case an upgrade can be followed by further upgrading, then omit the break at this stage to move down the list of cases
+                    break;
+            }
+        });
+    });
+
     // CALCULATE STRESS - HEALTH - RADIATION - VALUE FROM CHECKBOXES OR ATTRIBUTE
     const variableAttributes = ["stress","health","radiation"];
     variableAttributes.forEach(function (variableAttribute) {
@@ -63,12 +102,29 @@
         });
     });
 
+    /* */
+    // CALCULATE Health
+    on("change:strength change:tough sheet:opened", () => {
+        clog("Change detected: Health");
+        getAttrs(["strength", "tough", "health_calc"], (values) => {
+            const strength = int(values.strength),
+            tough = int(values.strength),
+            health = strength + tough;
+            setAttrs({
+                health_calc: health
+            });
+        });        
+    });
+    
+
     // CALCULATE Encumbrance
+    // Calculate encumbrance values for repeating gear section
     on("change:repeating_gear remove:repeating_gear sheet:opened", function () {
         clog("Change Detected: Character Additional Gear Encumbrance");
         repeatingSum("encumbrance_repgear", "gear", ["wt", "num"]);
     });
 
+    // Calculate encumbrance values for static gear list
     on("change:total_wt_item_one change:total_wt_item_two change:total_wt_item_three change:total_wt_item_four change:total_wt_item_five change:total_wt_item_six change:total_wt_item_seven change:total_wt_item_eight sheet:opened", () => {
         clog("Change Detected: Character Gear Encumbrance");
         const weights = ["wt_item_one", "wt_item_two", "wt_item_three", "wt_item_four", "wt_item_five", "wt_item_six", "wt_item_seven", "wt_item_eight"];
@@ -99,6 +155,7 @@
         });            
     });
     
+    // Encumbrance for weapons
     on("change:weapon_one_weight change:weapon_two_weight change:weapon_three_weight change:weapon_four_weight change:weapon_five_weight change:weapon_six_weight sheet:opened", () => {
         clog("Change Detected: Character Weapon Encumbrance");
         getAttrs(["encumbrance_weapons", "weapon_one_weight", "weapon_two_weight", "weapon_three_weight", "weapon_four_weight", "weapon_five_weight", "weapon_six_weight"], (values) => {
@@ -118,35 +175,55 @@
         });
     });
 
-    on("change:encumbrance_repgear change:encumbrance_gear change:encumbrance_weapons change:food change:water change:strength change:packmule sheet:opened", () => {
-        getAttrs(["strength", "packmule", "encumbrance_repgear", "encumbrance_gear", "encumbrance_weapons", "food", "water", "encumbrance"], (values) => {
+    // Encumbrance for consumables
+    on("change:food change:water sheet:opened", () => {
+        getAttrs(["food", "water", "encumbrance_consum"], (values) => {
+            const food = Math.ceil(int(values.food)/4),
+            water = Math.ceil(int(values.water)/4),
+            encumb = food + water;
+            clog(`Food ${food}, water ${water} and encumberance ${encumb}`);
+            setAttrs({
+                encumbrance_consum: encumb
+            });
+        });
+    });
+
+    // Total Encumbrance
+    on("change:encumbrance change:encumbrance_repgear change:encumbrance_gear change:encumbrance_weapons change:encumbrance_consum change:strength change:packmule change:config_advencumbrance sheet:opened", () => {
+        getAttrs(["strength", "packmule", "encumbrance_repgear", "encumbrance_gear", "encumbrance_weapons", "encumbrance_consum", "config_advencumbrance", "encumbrance", "encumbrance_calc"], (values) => {
             const repgear = float(values.encumbrance_repgear),
             gear = float(values.encumbrance_gear),
             weapons = float(values.encumbrance_weapons),
             strength = int(values.strength),
             packmule = int(values.packmule),
-            food = Math.ceil(int(values.food)/4),
-            water = Math.ceil(int(values.water)/4),
-            consumables = food + water,
-            total = repgear + gear + weapons + consumables,
-            carrycap = (strength*2) + packmule;
-            clog(`Food ${food}, water ${water} and encumberance ${consumables}`);
+            consumables = int(values.encumbrance_consum),
+            encumb_calc = repgear + gear + weapons + consumables,
+            carrycap = (strength*2) + packmule,
+            config = values.config_advencumbrance,
+            encumb = int(values.encumbrance);
             clog(`Carry cap and pack mule: pack mule ${packmule}, strength ${strength} and carry cap ${carrycap}`);
-            clog(`Test total for nonzero value: ${total != 0}`);
+            clog(`Test total ${total} for nonzero value: ${total != 0}`);
+            clog(`advanced encumbrance: ${values.config_advencumbrance}`);
+            var overencumbered = 0, overloaded = 0, total = 0; 
+            ( config == "on" ) ? total = encumb_calc : total = encumb; 
+            ( total > carrycap ) ? overencumbered = 1 : overencumbered = 0;
+            ( total > (carrycap*2) ) ? overloaded = 1 : overloaded = 0;
+            clog(`Manual encumbrance is ${encumb}, calculated encumbrance is ${encumb_calc} and total is ${total}`);
             clog(`Overencumbered: ${total > carrycap}`);
             clog(`overloaded: ${total > (carrycap*2)}`);
-            var overencumbered = 0, overloaded = 0; 
-            if ( total > carrycap ) overencumbered = 1;
-            if ( total > (carrycap*2) ) overloaded = 1;
+            //if ( total > carrycap ) overencumbered = 1;
+            //if ( total > (carrycap*2) ) overloaded = 1;
+            //if ( encumb > carrycap ) overenc_manual = 0;
+            //if ( encumb > (carrycap*2) ) overenc_manual = 0;
+
             // Only update total encumbrance if encumbrance and weights are actually used.
-            if ( total != 0 ) {
-                setAttrs({
-                    encumbrance: total,
-                    carrycap: carrycap,
-                    overencumbered: overencumbered,
-                    overloaded: overloaded
-                });
-            }
+            // Added configuration for chosing calculated encumbrance using new attribute encumbrance_calc
+            setAttrs({
+                encumbrance_calc: encumb_calc,
+                carrycap: carrycap,
+                overencumbered: overencumbered,
+                overloaded: overloaded
+            });
         });
     });
 
@@ -199,24 +276,68 @@
      });
 
      // Set Internal modules tab indicator (only for second tab)
-     for (let i = 16; i <= 30; i++) { 
-         const module = "module"+i,
-         button = "modules2_tab";
-         //clog("Modules II listing: "+ module);
-         on(`change:${module} sheet:opened`, (eventInfo) => {
-             getAttrs([module, button], (values) => {
-                 //clog("modules values for button status: "+JSON.stringify(values)); 
-                 var active = "-";
-                 if( values[module] != "" ) {
-                     active = "II";
-                 }
-                 //clog("active : "+active);
-                 setAttrs({
-                     [button]: active
-                 },{silent:true});
-             });
-         });
-     }
+     on(`change:module16 change:module17 change:module18 change:module19 change:module20 change:module21 change:module22 change:module23 change:module24 change:module25 change:module26 change:module27 change:module28 change:module29 change:module30 sheet:opened`, (eventInfo) => {
+        getAttrs(["module16", "module17", "module18", "module19", "module20", "module21", "module22", "module23", "module24", "module25", "module26", "module27", "module28", "module29", "module30"], (values) => {
+            //clog("modules values for button status: "+JSON.stringify(values)); 
+            const button = "modules2_tab";
+            var active = "-";
+    
+            for (let i = 16; i <= 30; i++) {
+                if( values[`module${i}`] != "" ) {
+                    active = "II";
+                }
+                //clog("value: "+ JSON.stringify(values[`module${i}`]) +", active: "+ active);
+            }  
+
+            //clog("active eor : "+active);
+            setAttrs({
+                [button]: active
+            },{silent:true});
+        });
+    });
+
+    // Set Ship logs 2nd tab indicator
+    on(`change:log16 change:log17 change:log18 change:log19 change:log20 change:log21 change:log22 change:log23 change:log24 change:log25 change:log26 change:log27 change:log28 change:log29 change:log30 sheet:opened`, (eventInfo) => {
+       getAttrs(["log16", "log17", "log18", "log19", "log20", "log21", "log22", "log23", "log24", "log25", "log26", "log27", "log28", "log29", "log30"], (values) => {
+           clog("log values for button status: "+JSON.stringify(values)); 
+           const button = "logs2_tab";
+           var active = "-";
+   
+           for (let i = 16; i <= 30; i++) {
+               if( values[`log${i}`] != "" ) {
+                   active = "II";
+               }
+               clog("value: "+ JSON.stringify(values[`log${i}`]) +", active: "+ active);
+           }  
+
+           clog("active eor : "+active);
+           setAttrs({
+               [button]: active
+           },{silent:true});
+       });
+   });
+
+
+   // Set Ship logs 3rd tab indicator
+   on(`change:log31 change:log32 change:log33 change:log34 change:log35 change:log36 change:log37 change:log38 change:log39 change:log40 change:log41 change:log42 change:log43 change:log44 change:log45 sheet:opened`, (eventInfo) => {
+      getAttrs(["log31", "log32", "log33", "log34", "log35", "log36", "log37", "log38", "log39", "log40", "log41", "log42", "log43", "log44", "log45"], (values) => {
+          clog("log values for button status: "+JSON.stringify(values)); 
+          const button = "logs3_tab";
+          var active = "-";
+  
+          for (let i = 31; i <= 45; i++) {
+              if( values[`log${i}`] != "" ) {
+                  active = "III";
+              }
+              clog("value: "+ JSON.stringify(values[`log${i}`]) +", active: "+ active);
+          }  
+
+          clog("active eor : "+active);
+          setAttrs({
+              [button]: active
+          },{silent:true});
+      });
+  });
 
 	// Highlight buttons if talents / weapons are populated
 	
@@ -301,6 +422,7 @@
 	});
 		
     // Action Button Tabs
+
     on("clicked:tab_character", function() {
         console.log("tab_character button clicked");
         setAttrs({ 
@@ -315,6 +437,15 @@
             tab_sheet: "Ship"
         });
         console.log("Sheet tab Set To: Ship");
+    });
+
+    on("clicked:tab_config", function() {
+        console.log("tab_config button clicked");
+        setAttrs({ 
+            tab_sheet: "Config",
+            config_notice: ""
+        });
+        console.log("Sheet tab Set To: Config");
     });
 
     on("clicked:tab_one", function() {

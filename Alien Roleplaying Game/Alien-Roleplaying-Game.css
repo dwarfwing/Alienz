@@ -9,6 +9,10 @@
     min-width: 1128px;
     -min-width: 830px;
 }
+.sheet-spacebackground:checked ~ .sheet-background-wrap {
+    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/bg.png?raw=true");
+    background-repeat: repeat;
+}
 .sheet-header-image{
     background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Weyland-Yutani.png?raw=true");
     background-position: center;
@@ -182,6 +186,7 @@
 
 .sheet-pad-left { padding-left: 8px !important; }
 .sheet-pad-right { padding-right: 8px !important; }
+.sheet-pad-right-30px { padding-right: 30px !important; }
 .sheet-marg-right {margin-right: 3px;}
 
 .sheet-grid-item {
@@ -213,6 +218,7 @@
 .sheet-flex-column { display: flex; flex-direction: column; }
 .sheet-flex-row { display: flex; flex-direction: row; }
 .sheet-flex-wrap { flex-wrap: wrap; }
+.sheet-flex-nowrap { flex-wrap: nowrap; }
 .sheet-flex-break { flex-basis: 100%; height: 0; }
 
 .sheet-flex-center { display: flex; align-self: center; justify-self: center; }
@@ -266,8 +272,12 @@
 }
 
 .sheet-w40 { max-width: 40px; min-width: 40px; }
+.sheet-w50pc { max-width: 50%; min-width: 50%; }
 .sheet-w60 { max-width: 60px; min-width: 60px; }
+.sheet-w60pc { max-width: 60%; min-width: 60%; }
+.sheet-w70pc { max-width: 70%; min-width: 70%; }
 .sheet-w80 { max-width: 80px; min-width: 80px; }
+.sheet-w90pc { max-width: 90%; min-width: 90%; }
 .sheet-w120 { max-width: 120px; min-width: 120px; }
 .sheet-w130 { max-width: 130px; min-width: 130px; }
 .sheet-w140 { max-width: 140px; min-width: 140px; }
@@ -329,6 +339,12 @@
 
 .sheet-weapon-item.sheet-type{
     border-right-width: 0px;
+}
+
+.sheet-gearrepeatingonly:checked ~ input,
+.sheet-gearrepeatingonly:checked ~ select,
+.sheet-gearrepeatingonly:checked ~ hr {
+    display: none !important;
 }
 
 
@@ -481,6 +497,15 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     text-transform: uppercase; 
     font-size: 10px;
     font-weight: bold;
+}
+
+.sheet-panicdesc:checked ~ button.sheet-panicdesc,
+.sheet-panicdesc:not(:checked) ~ button.sheet-nopanicdesc {
+    display: none;
+}
+.sheet-panicdesc:not(:checked) ~ button.sheet-panicdesc,
+.sheet-panicdesc:checked ~ button.sheet-nopanicdesc {
+    display: block;
 }
 
 
@@ -668,11 +693,11 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
 
 
 
-.sheet-packmule {
+.sheet-small-box {
     padding: 0;
 }
-.sheet-packmule div {
-    margin-top: -4px;
+.sheet-small-box div {
+    margin-top: -6px;
 }
 .sheet-dark-pink-header {
     color:rgb(165, 52, 52);
@@ -779,6 +804,9 @@ input.sheet-gear-input-total {
 .sheet-span-gear div.repcontainer div.repitem {
     height: 30px;
 }
+.sheet-span-gear div.repitem.ui-sortable-helper {
+    left: unset !important;
+}
 .sheet-span-gear div.repcontainer div.itemcontrol {
     float: right;
 }
@@ -811,7 +839,7 @@ input.sheet-gear-input-total {
     content: ")";
   }
 
-input[type="number"].sheet-no-spin-inv {
+/* input[type="number"].sheet-no-spin-inv {
 	float: right;
 	font-family: 'Courier Prime';
     font-size: 1em;
@@ -843,17 +871,16 @@ input[type="number"].sheet-no-spin-inv-tot {
  
     border-radius: 50%;
     box-shadow: 1px 1px 7px rgba(0, 139, 139, 1), -1px -1px 7px rgba(0, 139, 139, 1), 1px 1px 10px white, -1px -1px 10px white;
-}
+} */
 
 
 input[type="number"].sheet-no-spin-input {
     font-family: 'Courier Prime';
-    font-size: 1.5em;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
-    
-    height: 1.5em;
-    width: 1.5em;
+    height: 30px;
+    width: 30px;
     background-color: White;
     border: 1px solid White;
     margin: -1px -2px;
@@ -863,8 +890,9 @@ input[type="number"].sheet-no-spin-input {
 }
 div.sheet-no-spin-input {
     display: flex;
-    height: 1.5em;
-    width: 1.5em;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
     background-color: White;
     border: 1px solid White;
     align-self: center;
@@ -874,6 +902,15 @@ div.sheet-no-spin-input {
     border-radius: 50%;
     box-shadow: 1px 1px 7px rgba(0, 139, 139, 1), -1px -1px 7px rgba(0, 139, 139, 1), 1px 1px 10px white, -1px -1px 10px white;
 }
+
+.sheet-no-spin-input.sheet-wide {
+    width: 42px !important;
+} 
+
+.charsheet input.sheet-squareinput:checked ~ div .sheet-no-spin-input {
+    border-radius: 20%; 
+}
+
 div.sheet-no-spin-input input[type="number"].sheet-no-spin-input {
     background-color: transparent;
     border: unset;
@@ -922,7 +959,7 @@ input[type="number"].sheet-low-visibility-number {
 }
 
 input[type="number"].sheet-small {
-    font-size: 1em;
+    font-size: 13px;
 }
 
 .sheet-skinny-div {
@@ -1131,6 +1168,15 @@ input.sheet-tab {
 
 /* CONFIGURATION */
 
+input.sheet-config-notice:checked ~ button[name="act_tab_config"] {
+    background-color:rgba(0, 139, 139, 1);
+}
+
+span.sheet-configitem {
+    display: flex;
+    justify-content: flex-end;
+}
+
 div.sheet-changelog {
     overflow-y: auto;
     overflow-x: hidden;
@@ -1149,6 +1195,15 @@ div.sheet-changelog::-webkit-scrollbar-thumb {
 }
 div.sheet-changelog::-webkit-scrollbar-thumb:hover {
     background: gray;
+}
+
+.sheet-config select {
+    width: 62px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-self: center;
+    align-content: flex-start;
 }
 
 /* CUSTOM CHECKBOXES FOR ALIEN RPG */
@@ -1291,6 +1346,65 @@ input.sheet-letter-box:checked + span::before {
     box-shadow: 0px 0px 10px #008b8b;
 }
 
+/* CHARACTER HEALTH */
+
+.sheet-health input[type="checkbox"].sheet-numbered-box {
+    top: 6px;
+    left: 3px;
+    -margin-left: 4px;
+}
+.sheet-health .sheet-w60 input {
+    -margin-left: 5px;
+}
+.sheet-health-bar.sheet-health-calculated {
+    text-align: left;
+    padding-left: 5px;
+}
+
+input.sheet-config-healthcalculation:checked ~.sheet-health-calculated,
+input.sheet-config-healthcalculation:checked + .sheet-tough,
+input.sheet-config-healthcalculation:not(:checked) ~.sheet-health-manual {
+    display: block;
+}
+input.sheet-config-healthcalculation:not(:checked) ~.sheet-health-calculated,
+input.sheet-config-healthcalculation:not(:checked) + .sheet-tough,
+input.sheet-config-healthcalculation:checked ~ .sheet-health-manual {
+    display: none;
+}
+
+input[name="attr_health_calc"][value="1"] ~ input[name="attr_health_1"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="2"] ~ input[name="attr_health_2"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="3"] ~ input[name="attr_health_3"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="4"] ~ input[name="attr_health_4"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="5"] ~ input[name="attr_health_5"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="6"] ~ input[name="attr_health_6"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="7"] ~ input[name="attr_health_7"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="8"] ~ input[name="attr_health_8"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="9"] ~ input[name="attr_health_9"] ~ input[type="checkbox"].sheet-numbered-box,
+input[name="attr_health_calc"][value="10"] ~ input[name="attr_health_10"] ~ input[type="checkbox"].sheet-numbered-box {
+    display: none;
+}
+input[name="attr_health_calc"][value="1"] ~ input[name="attr_health_1"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="2"] ~ input[name="attr_health_2"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="3"] ~ input[name="attr_health_3"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="4"] ~ input[name="attr_health_4"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="5"] ~ input[name="attr_health_5"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="6"] ~ input[name="attr_health_6"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="7"] ~ input[name="attr_health_7"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="8"] ~ input[name="attr_health_8"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="9"] ~ input[name="attr_health_9"] ~ input[type="checkbox"] + span:before,
+input[name="attr_health_calc"][value="10"] ~ input[name="attr_health_10"] ~ input[type="checkbox"] + span:before {
+    -display: none;
+    -display: inline-block;
+    content: "";
+    width: auto;
+    border: unset;
+    box-shadow: unset;
+    background-color: unset;
+}
+
+
+/* SHIPDAMAGE */
 /* Only show radios up to the max value */
 input[name="attr_shipdamage_max"][value="0"] ~ div .sheet-shipdamage:nth-of-type(1n+3),
 input[name="attr_shipdamage_max"][value="0"] ~ div .sheet-shipdamage:nth-of-type(1n+3) + span,
@@ -1422,7 +1536,7 @@ button[type="roll"].sheet-button-skill:active {
 }
 
 button[type="roll"].sheet-bigger-skill {
-    width: 75%;
+    width: 70%;
 }
 
 /* Attack button in weapon box */
@@ -1623,4 +1737,9 @@ button[type="roll"].sheet-button-skill:focus {
     border: none;
     border-radius: 5px;
     background-position: center;
+}
+
+.sheet-rolltemplate-alien .sheet-panic-effect {
+    font-size: 11px;
+    color: lightgrey;
 }
