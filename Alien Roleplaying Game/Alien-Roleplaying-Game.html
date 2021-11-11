@@ -25,6 +25,7 @@
             <div class="skinny-div flex-row">
                 <button type="action" name="act_tab_character" class="action-tab w150 shift-down-17 sheet-darkest-teal-header sheet-ship-header sheet-ship-header-name sheet-flex-self-center sheet-flex-content-center" value="Character">Character</button>
                 <button type="action" name="act_tab_ship" class="action-tab w150 shift-down-17 sheet-darkest-teal-header sheet-ship-header sheet-ship-header-name sheet-flex-self-center sheet-flex-content-center" value="Ship">Ship</button>
+                <input type="checkbox" name="attr_config_notice" class="config-notice" value="1" hidden />
                 <button type="action" name="act_tab_config" class="action-tab w40 shift-down-17 sheet-darkest-teal-header sheet-ship-header sheet-ship-header-name sheet-flex-self-center sheet-flex-content-center" value="Config">y</button>
             </div>
             <!-- <input type="radio" class="sheet-tab sheet-tab-char ship " name="attr_tab_sheet" value="Character" checked="checked"/>
@@ -197,7 +198,7 @@
         <div class="grid-item black-item">
             &nbsp;
         </div>
-        <div class="grid-item span-ten-thru-thirteen">
+        <div class="grid-item span-ten-thru-thirteen experience">
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="experience-points-u" >Experience Points</span>
             </div>
@@ -215,23 +216,46 @@
             </div>
         </div> <!-- END OF ROW 5 --> 
         
-        <div class="grid-item span-one-thru-four"> <!-- START OF ROW 6 -->
+        <div class="grid-item span-one-thru-four health"> <!-- START OF ROW 6 -->
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="health-u">Health</span>
             </div>
-            <div class="vertical-adjust-one">
-                <input type="checkbox" name="attr_health_1" value="1" class="numbered-box" title="@{health_1}"/><span title="1" ></span>
-                <input type="checkbox" name="attr_health_2" value="1" class="numbered-box" title="@{health_2}"/><span title="2" ></span>
-                <input type="checkbox" name="attr_health_3" value="1" class="numbered-box" title="@{health_3}"/><span title="3" ></span>
-                <input type="checkbox" name="attr_health_4" value="1" class="numbered-box" title="@{health_4}"/><span title="4" ></span>
-                <input type="checkbox" name="attr_health_5" value="1" class="numbered-box" title="@{health_5}"/><span title="5" ></span>
-                <input type="checkbox" name="attr_health_6" value="1" class="numbered-box" title="@{health_6}"/><span title="6" ></span>
-                <input type="checkbox" name="attr_health_7" value="1" class="numbered-box" title="@{health_7}"/><span title="7" ></span>
-                <input type="checkbox" name="attr_health_8" value="1" class="numbered-box" title="@{health_8}"/><span title="8" ></span>
-                <input type="checkbox" name="attr_health_9" value="1" class="numbered-box" title="@{health_9}"/><span title="9" ></span>
-                <input type="checkbox" name="attr_health_10" value="1" class="numbered-box" title="@{health_10}"/><span title="10" ></span>
-                <input type="number" name="attr_health" value="0" class="no-spin-input low-visibility-number" title="@{health}"/>
-                <input type="number" name="attr_health_max" value="10" class="no-spin-input low-visibility-number" title="@{health_max}"/>
+            <div class="vertical-adjust-one cover-100-flex flex-nowrap flex-center flex-content-center">
+                <input type="checkbox" name="attr_config_healthcalculation" class="config-healthcalculation" hidden readonly /> 
+                <input type="number" name="attr_health_max" hidden readonly />
+                <div class="flex-items-left health-bar health-manual">
+                    <input type="checkbox" name="attr_health_1" value="1" class="numbered-box" title="@{health_1}"/><span title="1" ></span>
+                    <input type="checkbox" name="attr_health_2" value="1" class="numbered-box" title="@{health_2}"/><span title="2" ></span>
+                    <input type="checkbox" name="attr_health_3" value="1" class="numbered-box" title="@{health_3}"/><span title="3" ></span>
+                    <input type="checkbox" name="attr_health_4" value="1" class="numbered-box" title="@{health_4}"/><span title="4" ></span>
+                    <input type="checkbox" name="attr_health_5" value="1" class="numbered-box" title="@{health_5}"/><span title="5" ></span>
+                    <input type="checkbox" name="attr_health_6" value="1" class="numbered-box" title="@{health_6}"/><span title="6" ></span>
+                    <input type="checkbox" name="attr_health_7" value="1" class="numbered-box" title="@{health_7}"/><span title="7" ></span>
+                    <input type="checkbox" name="attr_health_8" value="1" class="numbered-box" title="@{health_8}"/><span title="8" ></span>
+                    <input type="checkbox" name="attr_health_9" value="1" class="numbered-box" title="@{health_9}"/><span title="9" ></span>
+                    <input type="checkbox" name="attr_health_10" value="1" class="numbered-box" title="@{health_10}"/><span title="10" ></span>
+                </div>              
+                <div class="flex-items-left health-bar health-calculated flex-nowrap cover-100 flex-items-left">
+                    <input type="hidden" name="attr_health_calc" hidden readonly />
+                    <input type="checkbox" name="attr_health_1" value="1" class="numbered-box" title="@{health_1}"/><span title="1" ></span>
+                    <input type="checkbox" name="attr_health_2" value="1" class="numbered-box" title="@{health_2}"/><span title="2" ></span>
+                    <input type="checkbox" name="attr_health_3" value="1" class="numbered-box" title="@{health_3}"/><span title="3" ></span>
+                    <input type="checkbox" name="attr_health_4" value="1" class="numbered-box" title="@{health_4}"/><span title="4" ></span>
+                    <input type="checkbox" name="attr_health_5" value="1" class="numbered-box" title="@{health_5}"/><span title="5" ></span>
+                    <input type="checkbox" name="attr_health_6" value="1" class="numbered-box" title="@{health_6}"/><span title="6" ></span>
+                    <input type="checkbox" name="attr_health_7" value="1" class="numbered-box" title="@{health_7}"/><span title="7" ></span>
+                    <input type="checkbox" name="attr_health_8" value="1" class="numbered-box" title="@{health_8}"/><span title="8" ></span>
+                    <input type="checkbox" name="attr_health_9" value="1" class="numbered-box" title="@{health_9}"/><span title="9" ></span>
+                    <input type="checkbox" name="attr_health_10" value="1" class="numbered-box" title="@{health_10}"/><span title="10" ></span>
+                </div>              
+                <div class="flex-items-right w60 health-attribute health-manual">
+                    <input type="number" name="attr_health" value="0" class="no-spin-input low-visibility-number" title="@{health}"/>
+                    <input type="number" name="attr_health_max" value="10" class="no-spin-input low-visibility-number" title="@{health_max}"/>
+                </div>            
+                <div class="flex-items-right w60 health-attribute health-calculated">
+                    <input type="number" name="attr_health" value="0" class="no-spin-input low-visibility-number" title="@{health}"/>
+                    <input type="number" name="attr_health_calc" class="no-spin-input low-visibility-number" readonly title="@{health_calc}"/>
+                </div>
             </div>
         </div>
         <div class="grid-item span-five-six">
@@ -268,7 +292,7 @@
             </div>
         </div> <!-- END OF ROW 6 -->
         
-        <div class="grid-item span-one-two span-radiation"> <!-- START OF ROW 7 -->
+        <div class="grid-item span-one-two span-radiation radiation"> <!-- START OF ROW 7 -->
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="radiation-u">Radiation</span>
             </div>
@@ -287,9 +311,14 @@
                 </div>
             </div>
         </div>
-
-        <div class="grid-item black-item"> 
-            &nbsp;
+        <input type="checkbox" name="attr_config_healthcalculation" class="config-healthcalculation" hidden readonly /> 
+        <div class="grid-item black-item small-box tough"> 
+            <div class="more-curves">
+                <span class="small-teal-label" data-i18n="tough-u">Tough</span>
+            </div>
+            <div>
+                <input type="checkbox" class="numbered-box grey-box" name="attr_tough" value="2"><span title="+" ></span>
+            </div>
         </div>
 
         <div class="grid-item span-four-five">
@@ -300,7 +329,7 @@
         </div>
         <div class="grid-item black-item span-six-thru-eight">
             <div class="">
-                <input type="number" name="attr_strength" value="0" class="no-spin-input" title="@{stength}" />
+                <input type="number" name="attr_strength" value="0" class="no-spin-input attribute-input" title="@{strength}" />
             </div>
         </div>
         <div class="grid-item span-nine-ten">
@@ -333,7 +362,7 @@
         <div class="grid-item black-item span-five-six">
             <span class="teal-header bold" data-i18n="agility-u">Agility</span>
             <div class="float-right">
-                <input type="number" name="attr_agility" value="0" class="no-spin-input" title="@{agility}" />
+                <input type="number" name="attr_agility" value="0" class="no-spin-input attribute-input" title="@{agility}" />
             </div>
         </div>
         <div class="grid-item black-item">
@@ -348,7 +377,7 @@
         <div class="grid-item span-ten-eleven">
             <button type="roll" name="survival" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Survival }} {{base-dice=[[@{wits} + @{survival} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="survival-u">Survival</button>
             <div class="float-right">
-                <input type="number" name="attr_survival" value="0" class="no-spin-input" title="@{survival}" />
+                <input type="number" name="attr_survival" value="0" class="no-spin-input attribute-input" title="@{survival}" />
             </div>
         </div> <!-- END OF ROW 8 -->
         
@@ -370,7 +399,7 @@
         </div>
         <div class="grid-item black-item span-six-thru-eight">
             <div class="">
-                <input type="number" name="attr_empathy" value="0" class="no-spin-input" title="@{empathy}" />
+                <input type="number" name="attr_empathy" value="0" class="no-spin-input attribute-input" title="@{empathy}" />
             </div>
         </div>
         <div class="grid-item span-nine-ten">
@@ -577,7 +606,7 @@
                 <input type="number" name="attr_manipulation" value="0" class="no-spin-input" title="@{manipulation}" />
             </div>
         </div>
-        <div class="grid-item black-item span-nine packmule">
+        <div class="grid-item black-item span-nine packmule small-box">
             <div class="more-curves">
                 <span class="small-teal-label" data-i18n="pack-mule-u">Pack mule</span>
             </div>
@@ -1589,6 +1618,14 @@
             </div>
             <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
                 <div class="grid-item clip-edges cover-75 marg-right pad-right-30px">
+                    <span class="text-input cover-100 configitem" data-i18n-title="config-healthcalculation-desc" title="" data-i18n="config-healthcalculation">Use automatically calculated Health</span>
+                </div>
+                <div class="grid-item clip-edges w120">
+                    <input type="checkbox" class="centered" name="attr_config_healthcalculation" />
+                </div>
+            </div>
+            <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
+                <div class="grid-item clip-edges cover-75 marg-right pad-right-30px">
                     <span class="text-input cover-100 configitem" data-i18n-title="config-squareinput-desc" title="" data-i18n="config-squareinput">Use squarer input boxes</span>
                 </div>
                 <div class="grid-item clip-edges w120">
@@ -2381,12 +2418,26 @@
             // In the case statements, call on a separate function to handle data upgrades and other necessary changes
             switch (true) {
                 case newchar == 1 :
+                    // A new character would always be on the sheet version, no need to bother with upgrades but need to reset the newchar attribute
                     clog(`New character identified. New char: ${newchar}, sheet version: ${sheet}, actual: ${actual}`);
                     setAttrs({
                         version: sheet,
-                        newchar: 0
+                        newchar: 0,
+                        config_notice: 1
                     });
-                    break;                
+                    break;  
+                case actual < sheet :
+                    // This can be use as example of upgrade handling, use specific versions in the case logic to handle version specific upgrade of attributes, e.g. actual < 2.10 :
+                    // Any upgrade handling needs to be done above this one, and may set the actual variable to be same as sheet to avoid doing the below setAttrs twice.
+                    clog(`New version identified. New char: ${newchar}, sheet version: ${sheet}, actual: ${actual}`);
+                    // Add reference to upgrade function here, if needed, e.g. upgrade_to_2.24() 
+                    setAttrs({
+                        version: sheet,
+                        newchar: 0,
+                        config_notice: 1
+                    });
+                    // In case an upgrade can be followed by further upgrading, then omit the break at this stage to move down the list of cases
+                    break;
             }
         });
     });
@@ -2422,6 +2473,23 @@
             });
         });
     });
+
+    /* */
+    // CALCULATE Health
+    on("change:strength change:tough sheet:opened", (eventinfo) => {
+        clog("Change detected: Health");
+        clog(`Eventinfo: ${JSON.stringify(eventinfo)}`);
+        getAttrs(["strength", "tough", "health_calc"], (values) => {
+            const strength = int(values.strength),
+            tough = int(values.tough),
+            health = strength + tough;
+            clog(`Health values: strength = ${strength}, tough = ${tough}, calculated health = ${health}`);
+            setAttrs({
+                health_calc: health
+            });
+        });        
+    });
+   
 
     // CALCULATE Encumbrance
     // Calculate encumbrance values for repeating gear section
@@ -2748,7 +2816,8 @@
     on("clicked:tab_config", function() {
         console.log("tab_config button clicked");
         setAttrs({ 
-            tab_sheet: "Config"
+            tab_sheet: "Config",
+            config_notice: ""
         });
         console.log("Sheet tab Set To: Config");
     });

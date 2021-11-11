@@ -171,5 +171,8 @@
     "dice-1d12": "1d12",
     "dice-1d20": "1d20",
     "config-panicdesc": "Include panic effect description in roll",
-    "config-panicdesc-desc": "When enabled, this will include the description of the panic effect of the specific roll."
+    "config-panicdesc-desc": "When enabled, this will include the description of the panic effect of the specific roll.",
+    "tough-u": "Tough",
+    "config-healthcalculation": "Use automatically calculated Health",
+    "config-healthcalculation-desc": "The health is calculated automatically using the Strength attribute and the Tough talent (checkbox on sheet). Only the number of health bar boxes up to the calculated health is shown."
 }

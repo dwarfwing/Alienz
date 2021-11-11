@@ -19,11 +19,20 @@
     {
       "attribute": "config_gearrepeatingonly",
       "type": "checkbox",
-      "value": "on",
+      "value": "off",
       "displayname": "Only use repeating section for Gear",
       "displaytranslationkey": "config-gearrepeatingonly",
       "description": "This will remove the static 1 - 8 rows in the Gear list, and only rely on the addition of dynamic rows. Enabling this will not delete or remove the data in the static rows. NB, the static list rows still count towards the encumbrance calculation!",
-      "descriptiontranslationkey": "config-squareinput-desc"			
+      "descriptiontranslationkey": "config-gearrepeatingonly-desc"			
+    },
+    {
+      "attribute": "config_healthcalculation",
+      "type": "checkbox",
+      "value": "on",
+      "displayname": "Use automatically calculated Health",
+      "displaytranslationkey": "config-healthcalculation",
+      "description":"The health is calculated automatically using the Strength attribute and the Tough talent (checkbox on sheet). Only the number of health bar boxes up to the calculated health is shown.",
+      "descriptiontranslationkey": "config-healthcalculation-desc"			
     },
     {
       "attribute": "config_squareinput",
