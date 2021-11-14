@@ -1561,6 +1561,37 @@ button[type="roll"].sheet-button-skill:focus {
     outline:0;
 }
 
+button[type="roll"].sheet-attribute-button {
+    background-color: transparent;
+    background-image: none;
+    border: 0;
+    box-shadow: unset;
+    color: rgb(204, 217, 207); /* Teal Varient */
+    cursor: pointer;
+    font-family: Graduate, cursive;
+    font-size:16px;
+    font-weight:700;
+    height:auto;
+    letter-spacing:normal;
+    line-height:24px;
+    text-align:center;
+    text-size-adjust:100%;
+    text-transform:uppercase;
+}
+
+button[type="roll"].sheet-attribute-button:before {
+    content: "";
+}
+
+button[type="roll"].sheet-attribute-button:hover,
+button[type="roll"].sheet-attribute-button:focus,
+button[type="roll"].sheet-attribute-button:active {
+    border: rgb(204, 217, 207);
+    background-color:rgba(113, 142, 135, 1);
+    cursor: pointer;
+}
+
+
 /* ROLL TEMPLATE STYLING */
 .sheet-rolltemplate-alien .sheet-template-wrap {
     background-color: hsl(0, 0%, 22%);
