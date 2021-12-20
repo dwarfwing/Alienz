@@ -14,6 +14,34 @@
         console.log(output, textStyle);
         }
     };
+    
+    /* Oosh async attribute functions */
+    const asw = (() => {
+        const setActiveCharacterId = function(charId){
+            let oldAcid=getActiveCharacterId();
+            let ev = new CustomEvent("message");
+            ev.data={"id":"0", "type":"setActiveCharacter", "data":charId};
+            self.dispatchEvent(ev);
+            return oldAcid;
+        };
+        const promisifyWorker = (worker, parameters) => {
+            let acid=getActiveCharacterId(); 
+            let prevAcid=null;               
+            return new Promise((res,rej)=>{
+                prevAcid=setActiveCharacterId(acid);  
+                try {if (worker===0) getAttrs(parameters[0]||[],(v)=>res(v));
+                    else if (worker===1) setAttrs(parameters[0]||{}, parameters[1]||{},(v)=>res(v));
+                    else if (worker===2) getSectionIDs(parameters[0]||'',(v)=>res(v));
+                } catch(err) {rej(console.error(err))}
+            }).finally(()=>setActiveCharacterId(prevAcid));
+        }
+        return {
+            getAttrs(attrArray) {return promisifyWorker(0, [attrArray])},
+            setAttrs(attrObj, options) {return promisifyWorker(1, [attrObj, options])},
+            getSectionIDs(section) {return promisifyWorker(2, [section])},
+            setActiveCharacterId,
+        }
+    })();
 
     /* GiGs 'Super Simple Summarizer' */
     const repeatingSum = (destination, section, fields, multiplier = 1) => {
@@ -70,6 +98,153 @@
         });
     });
 
+    // ROLL PARSING METHODS FOR PUSHING ROLLS
+    const rollEscape = {
+        chars: { '"': '%quot;', ',': '%comma;', ':': '%colon;', '}': '%rcub;', '{': '%lcub;', },
+        escape(str) {
+            str = (typeof(str) === 'object') ? JSON.stringify(str) : (typeof(str) === 'string') ? str : null;
+            return (str) ? `${str}`.replace(new RegExp(`[${Object.keys(this.chars)}]`, 'g'), (r) => this.chars[r]) : null;
+        },
+        unescape(str) {
+            str = `${str}`.replace(new RegExp(`(${Object.values(this.chars).join('|')})`, 'g'), (r) => Object.entries(this.chars).find(e=>e[1]===r)[0]);
+            return JSON.parse(str);
+        }
+    }
+
+    // OOOOSH
+    
+    // Primary Roll, triggered from sheet as usual
+    const rollAttack = async (ev) => {
+        // We'll pretend we've done a getAttrs on the attacker's weapon for all the required values
+        // Row ID's must be provided when using action buttons too, we'll skip all of that here though
+        let attrs = {
+            character_name: 'Alice',
+            weapon_name: 'Sword',
+            attack_bonus: '5',
+        }
+        let rollBase = `&{template:mytemp} {{name=${attrs.character_name} Attack}} {{roll1name=${attrs.weapon_name}}} {{roll1=[[1d20 + (${attrs.attack_bonus})]]}} {{passthroughdata=[[0]]}} {{buttonlabel=Next Roll}} {{buttonlink=reactroll}}`;
+        let attackRoll = await startRoll(rollBase),
+            roll1Value = attackRoll.results.roll1.result;
+        // Storing all the passthrough data required for the next roll in an Object helps for larger rolls
+        let rollData = {
+            attacker: attrs.character_name,
+            attackTotal: roll1Value,
+        }
+        // Finish the roll, passing the escaped rollData object into the template as computed::passthroughdata
+        // Our roll template then inserts that into [butonlabel](~selected|buttonlink||<computed::passthroughdata>)
+        // ~selected allows anyone to click the button with their token selected. Omitting this will cause the button
+        // to default to whichever character is active in the sandbox when the button is created
+        finishRoll(attackRoll.rollId, {
+            passthroughdata: rollEscape.escape(rollData),
+        });
+    };
+
+    // The defend roll triggered from the button sent to chat by rollAttack()
+    const rollReact = async (ev) => {
+        // The data we passed into the button will be stored in the originalRollId key
+        let attackRoll = rollEscape.unescape(ev.originalRollId);
+        console.info(attackRoll);
+        // Another fake getAttrs() return here with the Defender's attributes
+        let attrs = {
+            character_name: 'Bob',
+            weapon_name: 'Celery',
+            attack_bonus: '-10',
+        }
+        let rollBase = `&{template:mytemp} {{name=${attrs.character_name} Defend}} {{roll1name=${attrs.weapon_name}}} {{roll1=[[1d20 + (${attrs.attack_bonus})]]}} {{previousrollname=${attackRoll.attacker}'s Attack}} {{previousroll=${attackRoll.attackTotal}}} {{showoutcome=1}} {{outcome=[[0]]}}`;
+        let defendRoll = await startRoll(rollBase);
+        // Now we can do some further computation to insert into the {{outcome}} field, primed with a [[0]] roll
+        let defendTotal = defendRoll.results.roll1.result;
+        let resultText = (defendTotal >= attackRoll.attackTotal) 
+            ? `${attrs.character_name} defends successfully!`
+            : `${attackRoll.attacker} attacks successfully!`;
+        // Finish the roll, inserting our computed text string into the roll template
+        finishRoll(defendRoll.rollId, {
+            outcome: resultText,
+        });
+    }
+
+    // The reactroll button still needs its event listener, just like a normal button
+    on('clicked:reactroll', async (ev) => {
+        console.log(`Starting react roll`);
+        await rollReact(ev);
+        console.log(`Completed react roll`);
+    });
+    // The reactroll button still needs its event listener, just like a normal button
+    on('clicked:attackroll', async (ev) => {
+        console.log(`Starting attack roll`);
+        await rollAttack(ev);
+        console.log(`Completed attack roll`);
+    });
+
+
+    // TESTING
+    // Primary Roll, triggered from sheet as usual
+    const rollFirst = async (ev) => {
+        // We'll pretend we've done a getAttrs on the attacker's weapon for all the required values
+        // Row ID's must be provided when using action buttons too, we'll skip all of that here though
+        clog(`First event: ${JSON.stringify(ev)}`);
+        clog(`Event name: ${ev.htmlAttributes.name}`);
+        const rollName = (ev.htmlAttributes.name).slice(4); 
+        clog(`Roll name: ${rollName}`);
+
+        const attrs = await asw.getAttrs(["character_name", rollName, "stress"]);
+        const base = int(attrs[rollName]),
+            stress = int(attrs.stress);
+        var baseStr = "", stressStr = "";
+        for(let i = 1; i <= base; i++) { baseStr += "[[1d6]] "; }
+        for(let i = 1; i <= stress; i++) { stressStr += "[[1d6]] "; }
+        // GET MODIFIER HERE
+
+        let rollBase = `@{secret_roll} &{template:aliens} {{character-name=${attrs.character_name} }} {{roll-name=${rollName} }} {{base-dice=${baseStr}+?{Modifiers|0}d6 }} {{stress-dice=${stressStr} }} {{passthroughdata=[[0]]}} {{buttonlabel=Push Roll}} {{buttonlink=pushroll}}`;
+        let firstRoll = await startRoll(rollBase);
+        //    rollValue = firstRoll.results.roll1.result;
+        clog(`First roll data: ${JSON.stringify(firstRoll)}`);
+        clog(`First roll data: ${JSON.stringify(firstRoll.rolls)}`);
+        // Storing all the passthrough data required for the next roll in an Object helps for larger rolls
+
+        let rollData = {
+            roller: attrs.character_name,
+        }
+        // Finish the roll, passing the escaped rollData object into the template as computed::passthroughdata
+        // Our roll template then inserts that into [butonlabel](~selected|buttonlink||<computed::passthroughdata>)
+        // ~selected allows anyone to click the button with their token selected. Omitting this will cause the button
+        // to default to whichever character is active in the sandbox when the button is created
+        finishRoll(firstRoll.rollId, {
+            passthroughdata: rollEscape.escape(rollData),
+        });
+    };
+
+    // The defend roll triggered from the button sent to chat by rollAttack()
+    const rollPush = async (ev) => {
+        let origRoll = rollEscape.unescape(ev.originalRollId);
+        console.info(`Original roll: ${JSON.stringify(origRoll)}`);
+        //let attrs = { character_name: 'Bob', weapon_name: 'Celery', attack_bonus: '-10', }
+        
+        const attrs = await asw.getAttrs(["character_name", "strength", "stress"]);
+        let rollBase = `&{template:aliens} {{name=${attrs.character_name} push}} {{roll-name=Push}} {{base-dice=[[${attrs.strength}d6]]}} {{stress-dice=[[${attrs.stress}d6]] }} {{previousrollname=${attrs.character_name}s Attack}} {{previousroll=${ev.originalRollId}}} {{showoutcome=1}} {{message=[[0]]}} {{passthroughdata=[[0]]}} {{buttonlabel=Push Roll}} {{buttonlink=pushroll}}`;
+        let pushedRoll = await startRoll(rollBase);
+        // Now we can do some further computation to insert into the {{outcome}} field, primed with a [[0]] roll
+        //let pushedTotal = pushedRoll.results.roll1.result;
+        let resultText = `${origRoll.character-name} pushes roll!`;
+        // Finish the roll, inserting our computed text string into the roll template
+        finishRoll(pushedRoll.rollId, {
+            message: resultText,
+        });
+    };
+
+    // The pushroll button still needs its event listener, just like a normal button
+    on('clicked:strength clicked:agility clicked:wits clicked:empathy', async (ev) => {
+        clog(`Starting first roll`);
+        await rollFirst(ev);
+        clog(`Completed first roll`);
+    });
+    // The pushroll button still needs its event listener, just like a normal button
+    on('clicked:pushroll', async (ev) => {
+        clog(`Starting push roll`);
+        await rollPush(ev);
+        clog(`Completed push roll`);
+    });
+
     // CALCULATE STRESS - HEALTH - RADIATION - VALUE FROM CHECKBOXES OR ATTRIBUTE
     const variableAttributes = ["stress","health","radiation"];
     variableAttributes.forEach(function (variableAttribute) {
@@ -104,18 +279,20 @@
 
     /* */
     // CALCULATE Health
-    on("change:strength change:tough sheet:opened", () => {
+    on("change:strength change:tough sheet:opened", (eventinfo) => {
         clog("Change detected: Health");
+        clog(`Eventinfo: ${JSON.stringify(eventinfo)}`);
         getAttrs(["strength", "tough", "health_calc"], (values) => {
             const strength = int(values.strength),
-            tough = int(values.strength),
+            tough = int(values.tough),
             health = strength + tough;
+            clog(`Health values: strength = ${strength}, tough = ${tough}, calculated health = ${health}`);
             setAttrs({
                 health_calc: health
             });
         });        
     });
-    
+   
 
     // CALCULATE Encumbrance
     // Calculate encumbrance values for repeating gear section
@@ -619,3 +796,4 @@
         });
         console.log("tab_armament Set To: 5");
     });
+    

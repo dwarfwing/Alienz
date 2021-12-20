@@ -53,6 +53,7 @@
     "critical-injuries-u": "Critical Injuries",
     "critical-injuries-place": "Critical Injuries",
     "piloting-u": "Piloting",
+    "comtech-u": "Comtech",
     "Comtech-u": "Comtech",
     "signature-item-u": "Signature Item",
     "signature-item-place": "Signature Item",
@@ -174,5 +175,7 @@
     "config-panicdesc-desc": "When enabled, this will include the description of the panic effect of the specific roll.",
     "tough-u": "Tough",
     "config-healthcalculation": "Use automatically calculated Health",
-    "config-healthcalculation-desc": "The health is calculated automatically using the Strength attribute and the Tough talent (checkbox on sheet). Only the number of health bar boxes up to the calculated health is shown."
+    "config-healthcalculation-desc": "The health is calculated automatically using the Strength attribute and the Tough talent (checkbox on sheet). Only the number of health bar boxes up to the calculated health is shown.",
+    "config-enable-apirolls": "Enable API rolls",
+    "config-enable-apirolls-desc": "When enabled, rolls will be using the API script for Alien RPG, allowing for in-chat pushing of rolls. The script needs to be added to the game, obviously. "
 }
