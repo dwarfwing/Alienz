@@ -1348,6 +1348,10 @@ input.sheet-letter-box:checked + span::before {
 
 /* CHARACTER HEALTH */
 
+.sheet-health, .sheet-stress {
+    min-width: 320px;
+}
+
 .sheet-health input[type="checkbox"].sheet-numbered-box {
     top: 6px;
     left: 3px;
@@ -1498,6 +1502,18 @@ input[name="attr_shipdamage_max"][value="0"] ~ .sheet-hullpoints-missing {
 
 
 /* WOOHOO BUTTONS */
+
+.sheet-config-apirolls:checked ~ div .sheet-roll-rolltemplate,
+.sheet-config-apirolls:not(checked) ~ div .sheet-roll-api {
+    display: none;
+}
+.sheet-config-apirolls:not(checked) ~ div .sheet-roll-rolltemplate,
+.sheet-config-apirolls:checked ~ div .sheet-roll-api {
+    display: inline-block;
+}
+
+
+
 button[type="roll"].sheet-button-alpha:before, button[type="roll"].sheet-button-skill:before, button[type="action"].sheet-action-modifier:before {
     content: ""!important;
     display: none;
@@ -1611,14 +1627,32 @@ button[type="roll"].sheet-attribute-button:active {
 .sheet-rolltemplate-alien .sheet-template-success::after {
     content: counter(hit);
 }
-.sheet-rolltemplate-alien .sheet-template-stress::after {
+.sheet-rolltemplate-alien .sheet-template-stress::after  {
     content: counter(stress);
 }
-.sheet-rolltemplate-alien .sheet-hit {
+.sheet-rolltemplate-alien .sheet-hit,
+.sheet-rolltemplate-aliens .sheet-base-dice span.inlinerollresult.fullcrit,
+.sheet-rolltemplate-aliens .sheet-stress-dice span.inlinerollresult.fullcrit {
     counter-increment: hit;
 }
-.sheet-rolltemplate-alien .sheet-stress {
+.sheet-rolltemplate-alien .sheet-stress,
+.sheet-rolltemplate-aliens .sheet-stress-dice span.inlinerollresult.fullfail {
     counter-increment: stress;
+}
+
+.sheet-rolltemplate-aliens .sheet-base-dice,
+.sheet-rolltemplate-aliens .sheet-stress-dice,
+.sheet-rolltemplate-aliens .sheet-supply-dice {
+    text-align: justify !important;
+}
+
+.sheet-rolltemplate-aliens .sheet-base-dice span.inlinerollresult,
+.sheet-rolltemplate-aliens .sheet-stress-dice span.inlinerollresult,
+.sheet-rolltemplate-aliens .sheet-supply-dice span.inlinerollresult {
+    color: transparent;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-left: -2px;
 }
 
 .sheet-rolltemplate-alien .sheet-template-background {
@@ -1638,6 +1672,7 @@ button[type="roll"].sheet-attribute-button:active {
 
 .sheet-rolltemplate-alien .sheet-template-grid-item {
     background-color: rgba(259, 259, 259, 0.05);
+    display: inline-block;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -1645,28 +1680,41 @@ button[type="roll"].sheet-attribute-button:active {
     text-align: center;
 }
 
+.sheet-rolltemplate-alien .sheet-template-die {
+    display: inline-block;
+    border: none;
+    -padding: 1px;
+    text-align: center;
+}
+
 .sheet-rolltemplate-alien .sheet-template-span-six {
   grid-column: 1 / 7;
+  background-color: rgba(259, 259, 259, 0.05);
 }
 
 .sheet-rolltemplate-alien .sheet-template-span-half1 {
   grid-column: 1 / 4;
+  background-color: rgba(259, 259, 259, 0.05);
 }
 
 .sheet-rolltemplate-alien .sheet-template-span-half2 {
   grid-column: 4 / 7;
+  background-color: rgba(259, 259, 259, 0.05);
 }
 
 .sheet-rolltemplate-alien .sheet-template-span-left {
   grid-column: 1 / 3;
+  background-color: rgba(259, 259, 259, 0.05);
 }
 
 .sheet-rolltemplate-alien .sheet-template-span-center {
   grid-column: 3 / 5;
+  background-color: rgba(259, 259, 259, 0.05);
 }
 
 .sheet-rolltemplate-alien .sheet-template-span-right {
   grid-column: 5 / 7;
+  background-color: rgba(259, 259, 259, 0.05);
 }
 
 .sheet-rolltemplate-alien .sheet-template-span-one {
@@ -1701,6 +1749,10 @@ button[type="roll"].sheet-attribute-button:active {
     padding-left: 43%;
 }
 
+.sheet-rolltemplate-alien .sheet-template-transparent-bg {
+    background-color: transparent;
+}
+
 .sheet-rolltemplate-alien .inlinerollresult  {
     color: #000000;
     font-size: 1.9em;
@@ -1725,43 +1777,8 @@ button[type="roll"].sheet-attribute-button:active {
     border: none;
 }
 
-.sheet-rolltemplate-alien .sheet-template-base-between {
-    height: 35px;
-    width: 35px;
-    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Base-Between.png?raw=true");
-    background-size: 100% 100%;
-    
-}
-
-.sheet-rolltemplate-alien .sheet-template-base-success {
-    height: 35px;
-    width: 35px;
-    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Base-Success.png?raw=true");
-    background-size: 100% 100%;
-}
-
-.sheet-rolltemplate-alien .sheet-template-stress-fail {
-    height: 35px;
-    width: 35px;
-    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Stress-Fail.png?raw=true");
-    background-size: 100% 100%;
-}
-
-.sheet-rolltemplate-alien .sheet-template-stress-between {
-    height: 35px;
-    width: 35px;
-    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Stress-Between.png?raw=true");
-    background-size: 100% 100%;
-}
-
-.sheet-rolltemplate-alien .sheet-template-stress-success {
-    height: 35px;
-    width: 35px;
-    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Stress-Success.png?raw=true");
-    background-size: 100% 100%;
-}
-
-.sheet-rolltemplate-alien .sheet-template-yellow {
+.sheet-rolltemplate-alien .sheet-template-yellow,
+.sheet-rolltemplate-aliens .sheet-stress-dice span.inlinerollresult {
     height: 35px;
     width: 35px;
     background-color: #ffe600;
@@ -1770,7 +1787,55 @@ button[type="roll"].sheet-attribute-button:active {
     background-position: center;
 }
 
+.sheet-rolltemplate-alien .sheet-template-base-between,
+.sheet-rolltemplate-aliens .sheet-base-dice span.inlinerollresult {
+    height: 35px;
+    width: 35px;
+    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Base-Between.png?raw=true");
+    background-size: 100% 100%;
+    
+}
+
+.sheet-rolltemplate-alien .sheet-template-base-success,
+.sheet-rolltemplate-aliens .sheet-base-dice span.inlinerollresult.fullcrit {
+    height: 35px;
+    width: 35px;
+    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Base-Success.png?raw=true");
+    background-size: 100% 100%;
+}
+
+.sheet-rolltemplate-alien .sheet-template-stress-between,
+.sheet-rolltemplate-aliens .sheet-stress-dice span.inlinerollresult  {
+    height: 35px;
+    width: 35px;
+    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Stress-Between.png?raw=true");
+    background-size: 100% 100%;
+}
+
+.sheet-rolltemplate-alien .sheet-template-stress-fail,
+.sheet-rolltemplate-aliens .sheet-stress-dice span.inlinerollresult.fullfail,
+.sheet-rolltemplate-aliens .sheet-supply-dice span.inlinerollresult.fullfail {
+    height: 35px;
+    width: 35px;
+    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Stress-Fail.png?raw=true");
+    background-size: 100% 100%;
+}
+
+.sheet-rolltemplate-alien .sheet-template-stress-success,
+.sheet-rolltemplate-aliens .sheet-stress-dice span.inlinerollresult.fullcrit {
+    height: 35px;
+    width: 35px;
+    background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/Stress-Success.png?raw=true");
+    background-size: 100% 100%;
+}
+
 .sheet-rolltemplate-alien .sheet-panic-effect {
     font-size: 11px;
     color: lightgrey;
+}
+
+.sheet-rolltemplate-alien .sheet-rolltemplate-button a {
+    width: 100%;
+    background-color: transparent;
+    border: unset;
 }
