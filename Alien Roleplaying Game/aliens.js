@@ -517,6 +517,20 @@
   });
 
 	// Highlight buttons if talents / weapons are populated
+
+    	// Highlight buttons if talents / weapons are populated
+        talents = {"one": "I", "two": "II", "three": "III", "four": "IV", "five": "V", "six": "VI", "seven": "VII", "eight": "VIII"};
+        _.each(Object.keys(talents), (tal) => {
+            on(`change:talent_${tal} sheet:opened`, function() {
+                clog(`Current talent: ${tal}, current value: ${talents[tal]}`);
+                getAttrs([`talent_${tal}`], function(v){
+                    var talentname = v[`talent_${tal}`];
+                    clog("Talent output: "+ (talentname.length > 0) ? talents[`${tal}`] : "-");
+                    var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
+                    setAttrs({[`tal_${tal}`]: txt});
+                    });
+                });
+        });
 	
 	on("change:talent_one sheet:opened", function(){
     getAttrs(["talent_one"], function(v){
