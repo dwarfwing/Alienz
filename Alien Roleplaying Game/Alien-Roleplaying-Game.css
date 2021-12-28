@@ -6,7 +6,7 @@
     -background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/bg.png?raw=true");
     background-repeat: repeat;
     padding: 5px;
-    min-width: 1128px;
+    min-width: 1140px;
     -min-width: 830px;
 }
 .sheet-spacebackground:checked ~ .sheet-background-wrap {
@@ -1310,6 +1310,10 @@ input.sheet-numbered-box {
     opacity: 0;
 }
 
+input.sheet-numbered-box + span {
+    -margin-left: -16px;
+}
+
 input.sheet-numbered-box + span::before {
     content: attr(title);
     color: #dcdcdc;
@@ -1444,7 +1448,7 @@ input.sheet-letter-box:checked + span::before {
 }
 
 .sheet-health input[type="checkbox"].sheet-numbered-box {
-    top: 6px;
+    top: 0px;
     left: 3px;
     -margin-left: 4px;
 }
