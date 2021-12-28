@@ -163,9 +163,9 @@
     "config-gearrepeatingonly-desc": "This will remove the static 1 - 8 rows in the Gear list, and only rely on the addition of dynamic rows. Enabling this will not delete or remove the data in the static rows. NB, the static list rows still count towards the encumbrance calculation! ",
     "config-squareinput": "Use squarer input boxes",
     "config-squareinput-desc": "Use squares with rounded corners instead of the circular input fields. Changing this has no effect on the data in the fields, it is only decorative.",
-    "config-spacebackground": "Use space background.",
+    "config-spacebackground": "Use space background",
     "config-spacebackground-desc": "If enabled will set the background to space with stars, disabled just black colour.",
-    "config-initiativedice": "Dice to roll for initiative.",
+    "config-initiativedice": "Dice to roll for initiative",
     "config-initiativedice-desc": "When rolling for initiative as an alternative to drawing cards, you can select which size of dice to use.",
     "dice-2d6": "2d6",
     "dice-1d10": "1d10",
@@ -177,5 +177,7 @@
     "config-healthcalculation": "Use automatically calculated Health",
     "config-healthcalculation-desc": "The health is calculated automatically using the Strength attribute and the Tough talent (checkbox on sheet). Only the number of health bar boxes up to the calculated health is shown.",
     "config-enable-apirolls": "Enable API rolls",
-    "config-enable-apirolls-desc": "When enabled, rolls will be using the API script for Alien RPG, allowing for in-chat pushing of rolls. The script needs to be added to the game, obviously. "
+    "config-enable-apirolls-desc": "When enabled, rolls will be using the API script for Alien RPG, allowing for in-chat pushing of rolls. The script needs to be added to the game, obviously. ",
+    "config-optionalspinners": "Use spinners in number fields (up and down arrows)",
+    "config-optionalspinners-desc": "When enabled up and down arrows (spinner) will appear when hovering over number fields, to make small increases or decreases easier (attributes excempted). "
 }

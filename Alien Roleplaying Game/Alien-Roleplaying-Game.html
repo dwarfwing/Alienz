@@ -16,6 +16,7 @@
 <input class="advencumbrance" type="checkbox" hidden name="attr_config_advencumbrance">
 <input class="squareinput" type="checkbox" hidden name="attr_config_squareinput">
 <input class="spacebackground" type="checkbox" hidden name="attr_config_spacebackground">
+<input class="optionalspinners" type="checkbox" hidden name="attr_config_optionalspinners">
 
 <div class="background-wrap">
     <div class="grid-container contains-fourteen-columns">
@@ -231,7 +232,7 @@
         </div>
         <div class="grid-item span-six-thru-eight">
             <div class="float-left">
-                <input type="number" name="attr_close_combat" value="0" class="no-spin-input" title="@{close_combat}" />
+                <input type="number" name="attr_close_combat" value="0" class="no-spin-input optional-spinner-input" title="@{close_combat}" />
             </div>
             <button type="roll" name="close_combat" class="button-skill roll-rolltemplate" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Close Combat }} {{base-dice=[[@{strength} + @{close_combat} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="close-combat-u" >Close Combat</button>
             <button type="roll" name="close_combat" class="button-skill roll-api" data-i18n="close-combat-u" value="@{roll_command} [Close combat] [[(@{strength}+@{close_combat}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="Roll API Dice!">
@@ -303,7 +304,7 @@
         </div>
         <div class="grid-item span-five-six">
             <div class="float-left">
-                <input type="number" name="attr_heavy_machinery" value="0" class="no-spin-input" title="@{heavy_machinery}" />
+                <input type="number" name="attr_heavy_machinery" value="0" class="no-spin-input optional-spinner-input" title="@{heavy_machinery}" />
             </div>
             <button type="roll" name="heavy_machinery" class="button-skill roll-rolltemplate bigger-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Heavy Machinery }} {{base-dice=[[@{strength} + @{heavy_machinery} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}"  data-i18n="heavy-machinery-u">Heavy Machinery</button>
             <button type="roll" name="heavy_machinery" class="button-skill roll-api bigger-skill" data-i18n="heavy-machinery-u" value="@{roll_command} [Heavy machinery] [[(@{strength}+@{heavy_machinery}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="Roll API Dice!">
@@ -326,7 +327,7 @@
                 &nbsp;<span >Stamina</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_stamina" value="0" class="no-spin-input" title="@{stamina}" />
+                <input type="number" name="attr_stamina" value="0" class="no-spin-input optional-spinner-input" title="@{stamina}" />
             </div>
         </div>
         <div class="grid-item black-item span-ten-eleven">
@@ -380,7 +381,7 @@
 
         <div class="grid-item span-four-five">
             <div class="float-left">
-                <input type="number" name="attr_ranged_combat" value="0" class="no-spin-input" title="@{ranged_combat}" />
+                <input type="number" name="attr_ranged_combat" value="0" class="no-spin-input optional-spinner-input" title="@{ranged_combat}" />
             </div>
             <button type="roll" name="ranged_combat" class="button-skill roll-rolltemplate bigger-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Ranged Combat }} {{base-dice=[[@{agility} + @{ranged_combat} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="ranged-combat-u">Ranged Combat</button>
             <button type="roll" name="ranged_combat" class="button-skill roll-api bigger-skill" data-i18n="ranged-combat-u" value="@{roll_command} [Ranged combat] [[(@{agility}+@{ranged_combat}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="Roll API Dice!">
@@ -398,7 +399,7 @@
                 &nbsp;<span >Observation</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_observation" value="0" class="no-spin-input" title="@{observation}" />
+                <input type="number" name="attr_observation" value="0" class="no-spin-input optional-spinner-input" title="@{observation}" />
             </div>
         </div>
         <div class="grid-item black-item"> 
@@ -418,7 +419,7 @@
 
         <div class="grid-item span-three-four"> <!-- START OF ROW 8 -->
             <div class="float-left">
-                <input type="number" name="attr_mobility" value="0" class="no-spin-input" title="@{mobility}" />
+                <input type="number" name="attr_mobility" value="0" class="no-spin-input optional-spinner-input" title="@{mobility}" />
             </div>
             <button type="roll" name="mobility" class="button-skill roll-rolltemplate" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Mobility }} {{base-dice=[[@{agility} + @{mobility} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="mobility-u" >Mobility</button>
             <button type="roll" name="mobility" class="button-skill roll-api" data-i18n="mobility-u" value="@{roll_command} [Mobility] [[(@{agility}+@{mobility}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="Roll API Dice!">
@@ -457,7 +458,7 @@
                 &nbsp;<span >Survival</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_survival" value="0" class="no-spin-input attribute-input" title="@{survival}" />
+                <input type="number" name="attr_survival" value="0" class="no-spin-input optional-spinner-input" title="@{survival}" />
             </div>
         </div> <!-- END OF ROW 8 -->
         
@@ -473,7 +474,7 @@
         </div>
         <div class="grid-item span-four-five">
             <div class="float-left">
-                <input type="number" name="attr_piloting" value="0" class="no-spin-input" title="@{piloting}" />
+                <input type="number" name="attr_piloting" value="0" class="no-spin-input optional-spinner-input" title="@{piloting}" />
             </div>
             <button type="roll" name="piloting" class="button-skill roll-rolltemplate" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Piloting }} {{base-dice=[[@{agility} + @{piloting} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="piloting-u">Piloting</button>
             <button type="roll" name="piloting" class="button-skill roll-api" data-i18n="piloting-u" value="@{roll_command} [Piloting] [[(@{agility}+@{piloting}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="Roll API Dice!">
@@ -491,7 +492,7 @@
                 &nbsp;<span >Commtect</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_comtech" value="0" class="no-spin-input" title="@{comtech}" />
+                <input type="number" name="attr_comtech" value="0" class="no-spin-input optional-spinner-input" title="@{comtech}" />
             </div>
         </div>
         <div class="grid-item span-eleven-thru-thirteen">
@@ -509,7 +510,7 @@
         </div>
         <div class="grid-item span-five-six"> 
             <div class="float-left">
-                <input type="number" name="attr_command" value="0" class="no-spin-input" title="@{command}" />
+                <input type="number" name="attr_command" value="0" class="no-spin-input optional-spinner-input" title="@{command}" />
             </div>
             <button type="roll" name="command" class="button-skill roll-rolltemplate" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Command }} {{base-dice=[[@{empathy} + @{command} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="command-u">Command</button>
             <button type="roll" name="command" class="button-skill roll-api" data-i18n="command-u" value="@{roll_command} [Command] [[(@{empathy}+@{command}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="Roll API Dice!">
@@ -531,7 +532,7 @@
                 &nbsp;<span >Medical Aid</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_medical_aid" value="0" class="no-spin-input" title="@{medical_aid}" />
+                <input type="number" name="attr_medical_aid" value="0" class="no-spin-input optional-spinner-input" title="@{medical_aid}" />
             </div>
         </div>
         <div class="grid-item span-ten-thru-thirteen span-gear">
@@ -544,9 +545,9 @@
             <div class="vertical-adjust-one">
                 <input type="checkbox" name="attr_config_gearrepeatingonly" hidden class="gearrepeatingonly" />
                 <input type="text" name="attr_gear_item_one" value="" class="text-inv" title="@{gear_item_one}" spellcheck="false" data-i18n-placeholder="item-1-place" placeholder="Item 1"/>
-				<input type="number" name="attr_total_wt_item_one" value="(@{num_item_one})*(@{wt_item_one})" class="sheet-gear-input-total showencumbrance" disabled/>
-                <!-- <input type="number" name="attr_wt_item_one" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
-                <select name="attr_wt_item_one" class="select-input gear-input weight showencumbrance" title="@{wt_item_one}">
+				<input type="number" name="attr_total_wt_item_one" value="(@{num_item_one})*(@{wt_item_one})" class="sheet-spinner-input-total showencumbrance" disabled/>
+                <!-- <input type="number" name="attr_wt_item_one" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
+                <select name="attr_wt_item_one" class="select-input spinner-input weight showencumbrance" title="@{wt_item_one}">
                     <option value="0" selected="selected">0</option>
                     <option value="0.25">0.25</option>
                     <option value="0.5">0.5</option>
@@ -555,12 +556,12 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-				<input type="number" name="attr_num_item_one" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+				<input type="number" name="attr_num_item_one" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                 <hr class="dotted-line">
                 <input type="text" name="attr_gear_item_two" value="" class="text-inv" title="@{gear_item_two}" spellcheck="false" data-i18n-placeholder="item-2-place" placeholder="Item 2"/>
-				<input type="number" name="attr_total_wt_item_two" value="(@{num_item_two})*(@{wt_item_two})" class="sheet-gear-input-total showencumbrance" disabled/>
-				<!-- <input type="number" name="attr_wt_item_two" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
-                <select name="attr_wt_item_two" class="select-input gear-input weight showencumbrance" title="@{wt_item_two}">
+				<input type="number" name="attr_total_wt_item_two" value="(@{num_item_two})*(@{wt_item_two})" class="sheet-spinner-input-total showencumbrance" disabled/>
+				<!-- <input type="number" name="attr_wt_item_two" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
+                <select name="attr_wt_item_two" class="select-input spinner-input weight showencumbrance" title="@{wt_item_two}">
                     <option value="0" selected="selected">0</option>
                     <option value="0.25">0.25</option>
                     <option value="0.5">0.5</option>
@@ -569,12 +570,12 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-				<input type="number" name="attr_num_item_two" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+				<input type="number" name="attr_num_item_two" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                 <hr class="dotted-line">
                 <input type="text" name="attr_gear_item_three" value="" class="text-inv" title="@{gear_item_three}" spellcheck="false" data-i18n-placeholder="item-3-place" placeholder="Item 3"/>
-				<input type="number" name="attr_total_wt_item_three" value="(@{num_item_three})*(@{wt_item_three})" class="sheet-gear-input-total showencumbrance" disabled/>
-				<!-- <input type="number" name="attr_wt_item_three" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
-                <select name="attr_wt_item_three" class="select-input gear-input weight showencumbrance" title="@{wt_item_three}">
+				<input type="number" name="attr_total_wt_item_three" value="(@{num_item_three})*(@{wt_item_three})" class="sheet-spinner-input-total showencumbrance" disabled/>
+				<!-- <input type="number" name="attr_wt_item_three" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
+                <select name="attr_wt_item_three" class="select-input spinner-input weight showencumbrance" title="@{wt_item_three}">
                     <option value="0" selected="selected">0</option>
                     <option value="0.25">0.25</option>
                     <option value="0.5">0.5</option>
@@ -583,12 +584,12 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-				<input type="number" name="attr_num_item_three" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+				<input type="number" name="attr_num_item_three" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                 <hr class="dotted-line">
                 <input type="text" name="attr_gear_item_four" value="" class="text-inv" title="@{gear_item_four}" spellcheck="false" data-i18n-placeholder="item-4-place" placeholder="Item 4"/>
-				<input type="number" name="attr_total_wt_item_four" value="(@{num_item_four})*(@{wt_item_four})" class="sheet-gear-input-total showencumbrance" disabled/>
-				<!-- <input type="number" name="attr_wt_item_four" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
-                <select name="attr_wt_item_four" class="select-input gear-input weight showencumbrance" title="@{wt_item_four}">
+				<input type="number" name="attr_total_wt_item_four" value="(@{num_item_four})*(@{wt_item_four})" class="sheet-spinner-input-total showencumbrance" disabled/>
+				<!-- <input type="number" name="attr_wt_item_four" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
+                <select name="attr_wt_item_four" class="select-input spinner-input weight showencumbrance" title="@{wt_item_four}">
                     <option value="0" selected="selected">0</option>
                     <option value="0.25">0.25</option>
                     <option value="0.5">0.5</option>
@@ -597,12 +598,12 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-				<input type="number" name="attr_num_item_four" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+				<input type="number" name="attr_num_item_four" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                 <hr class="dotted-line">
                 <input type="text" name="attr_gear_item_five" value="" class="text-inv" title="@{gear_item_five}" spellcheck="false" data-i18n-placeholder="item-5-place" placeholder="Item 5"/>
-				<input type="number" name="attr_total_wt_item_five" value="(@{num_item_five})*(@{wt_item_five})" class="sheet-gear-input-total showencumbrance" disabled/>
-				<!-- <input type="number" name="attr_wt_item_five" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
-                <select name="attr_wt_item_five" class="select-input gear-input weight showencumbrance" title="@{wt_item_five}">
+				<input type="number" name="attr_total_wt_item_five" value="(@{num_item_five})*(@{wt_item_five})" class="sheet-spinner-input-total showencumbrance" disabled/>
+				<!-- <input type="number" name="attr_wt_item_five" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
+                <select name="attr_wt_item_five" class="select-input spinner-input weight showencumbrance" title="@{wt_item_five}">
                     <option value="0" selected="selected">0</option>
                     <option value="0.25">0.25</option>
                     <option value="0.5">0.5</option>
@@ -611,12 +612,12 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-				<input type="number" name="attr_num_item_five" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+				<input type="number" name="attr_num_item_five" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                 <hr class="dotted-line">
                 <input type="text" name="attr_gear_item_six" value="" class="text-inv" title="@{gear_item_six}" spellcheck="false" data-i18n-placeholder="item-6-place" placeholder="Item 6"/>
-				<input type="number" name="attr_total_wt_item_six" value="(@{num_item_six})*(@{wt_item_six})" class="sheet-gear-input-total showencumbrance" disabled/>
-				<!-- <input type="number" name="attr_wt_item_six" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
-                <select name="attr_wt_item_six" class="select-input gear-input weight showencumbrance" title="@{wt_item_six}">
+				<input type="number" name="attr_total_wt_item_six" value="(@{num_item_six})*(@{wt_item_six})" class="sheet-spinner-input-total showencumbrance" disabled/>
+				<!-- <input type="number" name="attr_wt_item_six" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
+                <select name="attr_wt_item_six" class="select-input spinner-input weight showencumbrance" title="@{wt_item_six}">
                     <option value="0" selected="selected">0</option>
                     <option value="0.25">0.25</option>
                     <option value="0.5">0.5</option>
@@ -625,12 +626,12 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-				<input type="number" name="attr_num_item_six" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+				<input type="number" name="attr_num_item_six" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                 <hr class="dotted-line">
                 <input type="text" name="attr_gear_item_seven" value="" class="text-inv" title="@{gear_item_seven}" spellcheck="false" data-i18n-placeholder="item-7-place" placeholder="Item 7"/>
-				<input type="number" name="attr_total_wt_item_seven" value="[[(@{num_item_seven})*(@{wt_item_seven})]]" class="sheet-gear-input-total showencumbrance" disabled/>
-				<!-- <input type="number" name="attr_wt_item_seven" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
-                <select name="attr_wt_item_seven" class="select-input gear-input weight showencumbrance" title="@{wt_item_seven}">
+				<input type="number" name="attr_total_wt_item_seven" value="[[(@{num_item_seven})*(@{wt_item_seven})]]" class="sheet-spinner-input-total showencumbrance" disabled/>
+				<!-- <input type="number" name="attr_wt_item_seven" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
+                <select name="attr_wt_item_seven" class="select-input spinner-input weight showencumbrance" title="@{wt_item_seven}">
                     <option value="0" selected="selected">0</option>
                     <option value="0.25">0.25</option>
                     <option value="0.5">0.5</option>
@@ -639,12 +640,12 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-				<input type="number" name="attr_num_item_seven" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+				<input type="number" name="attr_num_item_seven" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                 <hr class="dotted-line">
                 <input type="text" name="attr_gear_item_eight" value="" class="text-inv" title="@{gear_item_eight}" spellcheck="false" data-i18n-placeholder="item-8-place" placeholder="Item 8"/>
-				<input type="number" name="attr_total_wt_item_eight" value="(@{num_item_eight})*(@{wt_item_eight})" class="sheet-gear-input-total showencumbrance" disabled/>
-				<!-- <input type="number" name="attr_wt_item_eight" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
-                <select name="attr_wt_item_eight" class="select-input gear-input weight showencumbrance" title="@{wt_item_eight}">
+				<input type="number" name="attr_total_wt_item_eight" value="(@{num_item_eight})*(@{wt_item_eight})" class="sheet-spinner-input-total showencumbrance" disabled/>
+				<!-- <input type="number" name="attr_wt_item_eight" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
+                <select name="attr_wt_item_eight" class="select-input spinner-input weight showencumbrance" title="@{wt_item_eight}">
                     <option value="0" selected="selected">0</option>
                     <option value="0.25">0.25</option>
                     <option value="0.5">0.5</option>
@@ -653,13 +654,13 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-                <input type="number" name="attr_num_item_eight" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+                <input type="number" name="attr_num_item_eight" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                 <hr class="dotted-line">  
                 <fieldset class="repeating_gear">
                     <div class="span-gear span-gear-repeating">
                         <input type="text" name="attr_item" value="" class="text-inv" title="@{gear_item}" spellcheck="false" data-i18n-placeholder="item-place" placeholder="Item"/>
-                        <input type="number" name="attr_total" value="(@{num})*(@{wt})" class="sheet-gear-input-total showencumbrance" value="0" disabled/>
-                        <!-- <input type="number" name="attr_wt" value="0" class="sheet-gear-input sheet-gear-input-wt"/> -->
+                        <input type="number" name="attr_total" value="(@{num})*(@{wt})" class="sheet-spinner-input-total showencumbrance" value="0" disabled/>
+                        <!-- <input type="number" name="attr_wt" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
                         <select name="attr_wt" class="select-input weight showencumbrance" title="@{repeating_gear_X_wt}">
                             <option value="0" selected="selected">0</option>
                             <option value="0.25">0.25</option>
@@ -669,7 +670,7 @@
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                        <input type="number" name="attr_num" value="0" class="sheet-gear-input sheet-gear-input-num showencumbrance"/>
+                        <input type="number" name="attr_num" value="0" class="sheet-spinner-input sheet-spinner-input-num showencumbrance"/>
                         <hr class="dotted-line">  
                     </div>                    
                 </fieldset>              
@@ -704,7 +705,7 @@
                 &nbsp;<span >Manipulation</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_manipulation" value="0" class="no-spin-input" title="@{manipulation}" />
+                <input type="number" name="attr_manipulation" value="0" class="no-spin-input optional-spinner-input" title="@{manipulation}" />
             </div>
         </div>
         <div class="grid-item black-item span-nine packmule small-box">
@@ -722,7 +723,7 @@
                 &nbsp;<span >Armor</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_armor" value="0" class="no-spin-input" title="@{armor}" />
+                <input type="number" name="attr_armor" value="0" class="no-spin-input optional-spinner-input" title="@{armor}" />
             </div>
         </div>
         <div class="grid-item span-seven-thru-nine">
@@ -737,7 +738,7 @@
             <span class="dark-teal-header dark-pink-header hidden" data-i18n-title="overencumbered-title" data-i18n="overencumbered-u">Over-encumbered</span>
             <span class="dark-teal-header dark-red-header hidden" data-i18n-title="overloaded-title" data-i18n="overloaded-u">Overloaded</span>
             <div class="float-right">
-                <input type="number" name="attr_encumbrance" value="0" class="no-spin-input small wide encumbrance_manual" title="@{encumbrance}" />
+                <input type="number" name="attr_encumbrance" value="0" class="no-spin-input optional-spinner-input small wide encumbrance_manual" title="@{encumbrance}" />
                 <input type="number" name="attr_encumbrance_calc" value="0" class="no-spin-input small wide encumbrance_calc" title="@{encumbrance_calc}" readonly />
             </div>
         </div> <!-- END OF ROW 12 -->
@@ -781,11 +782,11 @@
                 <hr class="dotted-line"/>
                 <div class="grid-container weapon-item-details">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_weapon_one_bonus" value="0" class="number-input" title="@{weapon_one_bonus}" />
+                        <input type="number" name="attr_weapon_one_bonus" value="0" class="number-input optional-spinner-input" title="@{weapon_one_bonus}" />
                         <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_weapon_one_damage" value="0" class="number-input" title="@{weapon_one_damage}" />
+                        <input type="number" name="attr_weapon_one_damage" value="0" class="number-input optional-spinner-input" title="@{weapon_one_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
                     </div>
                     <div class="grid-item weapon-item range">
@@ -798,8 +799,8 @@
                         </select>
                         <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
-                    <div class="grid-item weapon-item weight showencumbrance-flex">
-                        <select name="attr_weapon_one_weight" class="select-input" title="@{weapon_one_weight}">
+                    <div class="grid-item weapon-item weight showencumbrance-flex flex-column center">
+                        <select name="attr_weapon_one_weight" class="select-input weight" title="@{weapon_one_weight}">
                             <option value="0" selected="selected">0</option>
                             <option value="0.25">0.25</option>
                             <option value="0.5">0.5</option>
@@ -808,12 +809,18 @@
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                        <span class="mini-header" data-i18n="weight-u" >Weight</span>
+                        <span class="mini-header weight" data-i18n="weight-u" >Weight</span>
                     </div>
-                    <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_weapon_one_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
-                        <input type="radio" name="attr_weapon_one_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
-                         </div>
+                    <div class="grid-item weapon-item type flex-column center">
+                        <div>
+                            <input type="radio" name="attr_weapon_one_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                            <span data-i18n-title="cc-title" title="CC" ></span>
+                        </div>
+                        <div>
+                            <input type="radio" name="attr_weapon_one_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
+                            <span data-i18n-title="rc-title" title="RC" ></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="auto-expand">
                     <!-- <span name="attr_weapon_one_comment"></span> -->
@@ -829,11 +836,11 @@
                 <hr class="dotted-line"/>
                 <div class="grid-container weapon-item-details">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_weapon_two_bonus" value="0" class="number-input" title="@{weapon_two_bonus}" />
+                        <input type="number" name="attr_weapon_two_bonus" value="0" class="number-input optional-spinner-input" title="@{weapon_two_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_weapon_two_damage" value="0" class="number-input" title="@{weapon_two_damage}" />
+                        <input type="number" name="attr_weapon_two_damage" value="0" class="number-input optional-spinner-input" title="@{weapon_two_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
                     </div>
                     <div class="grid-item weapon-item range">
@@ -876,11 +883,11 @@
                 <hr class="dotted-line">
                 <div class="grid-container weapon-item-details">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_weapon_three_bonus" value="0" class="number-input" title="@{weapon_three_bonus}" />
+                        <input type="number" name="attr_weapon_three_bonus" value="0" class="number-input optional-spinner-input" title="@{weapon_three_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_weapon_three_damage" value="0" class="number-input" title="@{weapon_three_damage}" />
+                        <input type="number" name="attr_weapon_three_damage" value="0" class="number-input optional-spinner-input" title="@{weapon_three_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
                     </div>
                     <div class="grid-item weapon-item range">
@@ -923,11 +930,11 @@
                 <hr class="dotted-line">
                 <div class="grid-container weapon-item-details">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_weapon_four_bonus" value="0" class="number-input" title="@{weapon_four_bonus}" />
+                        <input type="number" name="attr_weapon_four_bonus" value="0" class="number-input optional-spinner-input" title="@{weapon_four_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_weapon_four_damage" value="0" class="number-input" title="@{weapon_four_damage}" />
+                        <input type="number" name="attr_weapon_four_damage" value="0" class="number-input optional-spinner-input" title="@{weapon_four_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
                     </div>
                     <div class="grid-item weapon-item range">
@@ -970,11 +977,11 @@
                 <hr class="dotted-line">
                 <div class="grid-container weapon-item-details">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_weapon_five_bonus" value="0" class="number-input" title="@{weapon_five_bonus}" />
+                        <input type="number" name="attr_weapon_five_bonus" value="0" class="number-input optional-spinner-input" title="@{weapon_five_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_weapon_five_damage" value="0" class="number-input" title="@{weapon_five_damage}" />
+                        <input type="number" name="attr_weapon_five_damage" value="0" class="number-input optional-spinner-input" title="@{weapon_five_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
                     </div>
                     <div class="grid-item weapon-item range">
@@ -1017,11 +1024,11 @@
                 <hr class="dotted-line">
                 <div class="grid-container weapon-item-details">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_weapon_six_bonus" value="0" class="number-input" title="@{weapon_six_bonus}" />
+                        <input type="number" name="attr_weapon_six_bonus" value="0" class="number-input optional-spinner-input" title="@{weapon_six_bonus}" />
                         <span class="mini-header"  data-i18n="bonus-u" >Bonus</span>
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_weapon_six_damage" value="0" class="number-input" title="@{weapon_six_damage}" />
+                        <input type="number" name="attr_weapon_six_damage" value="0" class="number-input optional-spinner-input" title="@{weapon_six_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
                     </div>
                     <div class="grid-item weapon-item range">
@@ -1063,26 +1070,26 @@
             </div>
             <button type="roll" name="air" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Air Supply Roll }} {{supply-dice=[[ @{air} ]] }} {{supply-roll-one=[[1d6]] }} {{supply-roll-two=[[1d6]] }} {{supply-roll-three=[[1d6]] }} {{supply-roll-four=[[1d6]] }} {{supply-roll-five=[[1d6]] }} {{supply-roll-six=[[1d6]] }}" data-i18n="air-u">Air</button>
             <div class="float-right">
-                <input type="number" name="attr_air" value="0" class="no-spin-input" title="@{air}" />
+                <input type="number" name="attr_air" value="0" class="no-spin-input optional-spinner-input" title="@{air}" />
             </div>
         </div>
         <div class="grid-item span-three-four">
             <button type="roll" name="food" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Food Supply Roll }} {{supply-dice=[[ @{food} ]] }} {{supply-roll-one=[[1d6]] }} {{supply-roll-two=[[1d6]] }} {{supply-roll-three=[[1d6]] }} {{supply-roll-four=[[1d6]] }} {{supply-roll-five=[[1d6]] }} {{supply-roll-six=[[1d6]] }}" data-i18n="food-u" >Food</button>
             <div class="float-right">
-                <input type="number" name="attr_food" value="0" class="no-spin-input" title="@{food}" />
+                <input type="number" name="attr_food" value="0" class="no-spin-input optional-spinner-input" title="@{food}" />
             </div>
         </div> <!-- END OF ROW 14 -->
         
         <div class="grid-item span-one-two"> <!-- START OF ROW 15 -->
             <button type="roll" name="power" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Power Supply Roll }} {{supply-dice=[[ @{power} ]] }} {{supply-roll-one=[[1d6]] }} {{supply-roll-two=[[1d6]] }} {{supply-roll-three=[[1d6]] }} {{supply-roll-four=[[1d6]] }} {{supply-roll-five=[[1d6]] }} {{supply-roll-six=[[1d6]] }}" data-i18n="power-u" >Power</button>
             <div class="float-right">
-                <input type="number" name="attr_power" value="0" class="no-spin-input" title="@{power}" />
+                <input type="number" name="attr_power" value="0" class="no-spin-input optional-spinner-input" title="@{power}" />
             </div>
         </div>
         <div class="grid-item span-three-four">
             <button type="roll" name="water" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Water Supply Roll }} {{supply-dice=[[ @{water} ]] }} {{supply-roll-one=[[1d6]] }} {{supply-roll-two=[[1d6]] }} {{supply-roll-three=[[1d6]] }} {{supply-roll-four=[[1d6]] }} {{supply-roll-five=[[1d6]] }} {{supply-roll-six=[[1d6]] }}"data-i18n="water-u" >Water</button>
             <div class="float-right">
-                <input type="number" name="attr_water" value="0" class="no-spin-input" title="@{water}" />
+                <input type="number" name="attr_water" value="0" class="no-spin-input optional-spinner-input" title="@{water}" />
             </div>
         </div> <!-- END OF ROW 15 -->
     </div>
@@ -1156,14 +1163,14 @@
 
         <div class="grid-item span-five-thru-seven span-row4 flex-row flex-content-left flex-items-center-align flex-self-right clip-edges w60pc">
             <div class="some-padding">
-                <input type="number" name="attr_ship_crew" value="0" class="no-spin-input" title="@{ship_crew}" />
+                <input type="number" name="attr_ship_crew" value="0" class="no-spin-input optional-spinner-input" title="@{ship_crew}" />
             </div>
             <div class="dark-teal-header some-padding pad-left" data-i18n="ship-crew-u">Crew</div>
         </div>
         <div class="grid-item span-eight-thru-ten span-row4 flex-row flex-content-end flex-items-center-align clip-edges w60pc">
             <div class="dark-teal-header some-padding pad-right" data-i18n="ship-passengers-u">Passengers</div>
             <div class="some-padding">
-                <input type="number" name="attr_ship_passengers" value="0" class="no-spin-input" title="@{ship_passengers}" />
+                <input type="number" name="attr_ship_passengers" value="0" class="no-spin-input optional-spinner-input" title="@{ship_passengers}" />
             </div>
         </div>
 
@@ -1176,26 +1183,26 @@
         <div class="grid-item span-eight-thru-ten span-row5 flex-row flex-content-end flex-items-align-center clip-edges w90pc">
             <div class="dark-teal-header some-padding pad-right" data-i18n="ship-ftl-rating-u">FTL Rating</div>
             <div class="some-padding">
-                <input type="number" name="attr_ship_ftlrating" value="0" class="no-spin-input" title="@{ship_ftlrating}" />
+                <input type="number" name="attr_ship_ftlrating" value="0" class="no-spin-input optional-spinner-input" title="@{ship_ftlrating}" />
             </div>
         </div>
 
         <div class="grid-item span-five-thru-seven span-row6 flex-row flex-content-left flex-items-align-center flex-self-right clip-edges w70pc">
             <div class="some-padding">
-                <input type="number" name="attr_ship_signature" value="0" class="no-spin-input" title="@{ship_signature}" />
+                <input type="number" name="attr_ship_signature" value="0" class="no-spin-input optional-spinner-input" title="@{ship_signature}" />
             </div>
             <div class="dark-teal-header some-padding pad-left" data-i18n="ship-signature-u">Signature</div>
         </div>
         <div class="grid-item span-eight-thru-ten span-row6 flex-row flex-content-end flex-items-align-center clip-edges w70pc">
             <div  class="dark-teal-header some-padding pad-right" data-i18n="ship-thrusters-u">Thrusters</div>
             <div class="some-padding">
-                <input type="number" name="attr_ship_thrusters" value="0" class="no-spin-input" title="@{ship_thrusters}" />
+                <input type="number" name="attr_ship_thrusters" value="0" class="no-spin-input optional-spinner-input" title="@{ship_thrusters}" />
             </div>
         </div>
 
         <div class="grid-item span-five-thru-seven span-row7 flex-row flex-content-left flex-items-align-center flex-self-right clip-edges w50pc"> 
             <div class="some-padding">
-                <input type="number" name="attr_shipdamage_max" value="0" class="no-spin-input" title="@{ship_hull}" />
+                <input type="number" name="attr_shipdamage_max" value="0" class="no-spin-input optional-spinner-input" title="@{ship_hull}" />
             </div>
             <div class="dark-teal-header some-padding pad-left" data-i18n="ship-hull-u">Hull</div>
         </div>
@@ -1205,7 +1212,7 @@
                 &nbsp;<span >Armor</span>&nbsp;
             </button>
             <div class="some-padding">
-                <input type="number" name="attr_ship_armor" value="0" class="no-spin-input" title="@{ship_armor}" />
+                <input type="number" name="attr_ship_armor" value="0" class="no-spin-input optional-spinner-input" title="@{ship_armor}" />
             </div>
         </div>
 
@@ -1420,11 +1427,11 @@
                 <hr class="dotted-line"/>
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
-                        <input type="number" name="attr_armament1_bonus" value="0" class="number-input" title="@{armament1_bonus}" />
+                        <input type="number" name="attr_armament1_bonus" value="0" class="number-input optional-spinner-input" title="@{armament1_bonus}" />
                         <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
                     </div>
                     <div class="grid-item weapon-item damage">
-                        <input type="number" name="attr_armament1_damage" value="0" class="number-input" title="@{armament1_damage}" />
+                        <input type="number" name="attr_armament1_damage" value="0" class="number-input optional-spinner-input" title="@{armament1_damage}" />
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
                     </div>
                     <div class="grid-item weapon-item range">
@@ -1446,11 +1453,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
-                        <input type="number" name="attr_armament1_ranged" value="0" class="number-input" title="@{armament1_ranged}" />
+                        <input type="number" name="attr_armament1_ranged" value="0" class="number-input optional-spinner-input" title="@{armament1_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
-                        <input type="number" name="attr_armament1_stress" value="0" class="number-input" title="@{armament1_stress}" />
+                        <input type="number" name="attr_armament1_stress" value="0" class="number-input optional-spinner-input" title="@{armament1_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header"data-i18n="target-range-u">Target Range</span>
@@ -1482,11 +1489,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
-                        <input type="number" name="attr_armament2_bonus" value="0" class="number-input" title="@{armament2_bonus}" />
+                        <input type="number" name="attr_armament2_bonus" value="0" class="number-input optional-spinner-input" title="@{armament2_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
-                        <input type="number" name="attr_armament2_damage" value="0" class="number-input" title="@{armament2_damage}" />
+                        <input type="number" name="attr_armament2_damage" value="0" class="number-input optional-spinner-input" title="@{armament2_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header" data-i18n="max-range-u">Max Range</span>
@@ -1507,11 +1514,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
-                        <input type="number" name="attr_armament2_ranged" value="0" class="number-input" title="@{armament2_ranged}" />
+                        <input type="number" name="attr_armament2_ranged" value="0" class="number-input optional-spinner-input" title="@{armament2_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
-                        <input type="number" name="attr_armament2_stress" value="0" class="number-input" title="@{armament2_stress}" />
+                        <input type="number" name="attr_armament2_stress" value="0" class="number-input optional-spinner-input" title="@{armament2_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header" data-i18n="target-range-u">Target Range</span>
@@ -1543,11 +1550,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
-                        <input type="number" name="attr_armament3_bonus" value="0" class="number-input" title="@{armament3_bonus}" />
+                        <input type="number" name="attr_armament3_bonus" value="0" class="number-input optional-spinner-input" title="@{armament3_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
-                        <input type="number" name="attr_armament3_damage" value="0" class="number-input" title="@{armament3_damage}" />
+                        <input type="number" name="attr_armament3_damage" value="0" class="number-input optional-spinner-input" title="@{armament3_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header" data-i18n="max-range-u">Max Range</span>
@@ -1568,11 +1575,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
-                        <input type="number" name="attr_armament3_ranged" value="0" class="number-input" title="@{armament3_ranged}" />
+                        <input type="number" name="attr_armament3_ranged" value="0" class="number-input optional-spinner-input" title="@{armament3_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
-                        <input type="number" name="attr_armament3_stress" value="0" class="number-input" title="@{armament3_stress}" />
+                        <input type="number" name="attr_armament3_stress" value="0" class="number-input optional-spinner-input" title="@{armament3_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header" data-i18n="target-range-u">Target Range</span>
@@ -1604,11 +1611,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
-                        <input type="number" name="attr_armament4_bonus" value="0" class="number-input" title="@{armament4_bonus}" />
+                        <input type="number" name="attr_armament4_bonus" value="0" class="number-input optional-spinner-input" title="@{armament4_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
-                        <input type="number" name="attr_armament4_damage" value="0" class="number-input" title="@{armament4_damage}" />
+                        <input type="number" name="attr_armament4_damage" value="0" class="number-input optional-spinner-input" title="@{armament4_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header" data-i18n="max-range-u">Max Range</span>
@@ -1629,11 +1636,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
-                        <input type="number" name="attr_armament4_ranged" value="0" class="number-input" title="@{armament4_ranged}" />
+                        <input type="number" name="attr_armament4_ranged" value="0" class="number-input optional-spinner-input" title="@{armament4_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
-                        <input type="number" name="attr_armament4_stress" value="0" class="number-input" title="@{armament4_stress}" />
+                        <input type="number" name="attr_armament4_stress" value="0" class="number-input optional-spinner-input" title="@{armament4_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header" data-i18n="target-range-u">Target Range</span>
@@ -1665,11 +1672,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="bonus-u" >Bonus</span>
-                        <input type="number" name="attr_armament5_bonus" value="0" class="number-input" title="@{armament5_bonus}" />
+                        <input type="number" name="attr_armament5_bonus" value="0" class="number-input optional-spinner-input" title="@{armament5_bonus}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="damage-u" >Damage</span>
-                        <input type="number" name="attr_armament5_damage" value="0" class="number-input" title="@{armament5_damage}" />
+                        <input type="number" name="attr_armament5_damage" value="0" class="number-input optional-spinner-input" title="@{armament5_damage}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header" data-i18n="max-range-u">Max Range</span>
@@ -1690,11 +1697,11 @@
                 <div class="grid-container contains-four-columns">
                     <div class="grid-item weapon-item bonus">
                         <span class="mini-header" data-i18n="gunner-ranged-u" >Gunner Ranged</span>
-                        <input type="number" name="attr_armament5_ranged" value="0" class="number-input" title="@{armament5_ranged}" />
+                        <input type="number" name="attr_armament5_ranged" value="0" class="number-input optional-spinner-input" title="@{armament5_ranged}" />
                     </div>
                     <div class="grid-item weapon-item damage">
                         <span class="mini-header" data-i18n="gunner-stress-u" >Gunner stress</span>
-                        <input type="number" name="attr_armament5_stress" value="0" class="number-input" title="@{armament5_stress}" />
+                        <input type="number" name="attr_armament5_stress" value="0" class="number-input optional-spinner-input" title="@{armament5_stress}" />
                     </div>
                     <div class="grid-item weapon-item range">
                         <span class="mini-header" data-i18n="target-range-u">Target Range</span>
@@ -1778,6 +1785,14 @@
                 </div>
                 <div class="grid-item clip-edges w120">
                     <input type="checkbox" class="centered" name="attr_config_squareinput" />
+                </div>
+            </div>
+            <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                
+                <div class="grid-item clip-edges cover-75 marg-right pad-right-30px">
+                    <span class="text-input cover-100 configitem" data-i18n-title="config-optionalspinners-desc" title="" data-i18n="config-optionalspinners">Use spinners in number input fields (up and down arrows on hover)</span>
+                </div>
+                <div class="grid-item clip-edges w120">
+                    <input type="checkbox" class="centered" name="attr_config_optionalspinners" />
                 </div>
             </div>
             <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">                

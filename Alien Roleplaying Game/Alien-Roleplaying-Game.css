@@ -326,7 +326,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: flex-start;
+    -align-content: flex-start;
+}
+.sheet-weapon-item.sheet-weight select {
+    align-self: center;
 }
 .sheet-span-gear .sheet-weight:hover,
 .sheet-span-gear .sheet-weight:active,
@@ -751,11 +754,15 @@ input[type="number"].sheet-no-spin-inv::-webkit-inner-spin-button,
 input[type="number"].sheet-no-spin-inv-tot::-webkit-outer-spin-button,
 input[type="number"].sheet-number-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     margin: 0;
 }
 
-input[type="number"].sheet-no-spin-input, input[type="number"].sheet-no-spin-inv, input[type="number"].sheet-no-spin-inv-tot, input[type="number"].sheet-number-input {
+input[type="number"].sheet-no-spin-input, 
+input[type="number"].sheet-no-spin-inv, 
+input[type="number"].sheet-no-spin-inv-tot, 
+input[type="number"].sheet-number-input {
     -moz-appearance: textfield;
 }
 
@@ -804,7 +811,9 @@ span.sheet-gear-header {
     min-width: 40px;
     text-align: center;
 }
-input.sheet-gear-input, input.sheet-gear-input-total, select.sheet-gear-input-wt {
+.sheet-span-gear input.sheet-spinner-input, 
+.sheet-span-gear input.sheet-spinner-input-total, 
+.sheet-span-gear select.sheet-spinner-input-wt {
     font-family: 'Courier Prime';
     font-family: 'Roboto';
     background: transparent;   
@@ -815,16 +824,30 @@ input.sheet-gear-input, input.sheet-gear-input-total, select.sheet-gear-input-wt
     width: 32px !important;
     height: 2em !important;
 }
-input[type="number"].sheet-gear-input::-webkit-outer-spin-button,
-input[type="number"].sheet-gear-input::-webkit-inner-spin-button,
-input[type="number"].sheet-gear-input-total::-webkit-outer-spin-button,
-input[type="number"].sheet-gear-input-total::-webkit-inner-spin-button {
+input.sheet-optionalspinners:not(:checked) ~ div input[type="number"].sheet-optional-spinner-input,
+input[type="number"].sheet-spinner-input,
+input[type="number"].sheet-spinner-input-total {
+    -moz-appearance: textfield;
+}
+input.sheet-optionalspinners:checked ~ div input[type="number"].sheet-optional-spinner-input:hover,
+input[type="number"].sheet-spinner-input:hover {
+    -moz-appearance: auto;
+}
+input.sheet-optionalspinners:checked ~ div input[type="number"].sheet-optional-spinner-input::-webkit-outer-spin-button,
+input.sheet-optionalspinners:checked ~ div input[type="number"].sheet-optional-spinner-input::-webkit-inner-spin-button,
+input[type="number"].sheet-spinner-input::-webkit-outer-spin-button,
+input[type="number"].sheet-spinner-input::-webkit-inner-spin-button,
+input[type="number"].sheet-spinner-input-total::-webkit-outer-spin-button,
+input[type="number"].sheet-spinner-input-total::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-input[type="number"].sheet-gear-input:hover::-webkit-outer-spin-button, input[type="number"].sheet-gear-input:active::-webkit-outer-spin-button, input[type="number"].sheet-gear-input:focus::-webkit-outer-spin-button,
-input[type="number"].sheet-gear-input:hover::-webkit-inner-spin-button, input[type="number"].sheet-gear-input:active::-webkit-inner-spin-button, input[type="number"].sheet-gear-input:focus::-webkit-inner-spin-button {
+input.sheet-optionalspinners:checked ~ div input[type="number"].sheet-optional-spinner-input:hover::-webkit-outer-spin-button, 
+input.sheet-optionalspinners:checked ~ div input[type="number"].sheet-optional-spinner-input:hover::-webkit-inner-spin-button,
+input[type="number"].sheet-spinner-input:hover::-webkit-outer-spin-button, 
+input[type="number"].sheet-spinner-input:hover::-webkit-inner-spin-button {
     -webkit-appearance: auto;
+    -moz-appearance: auto;
     max-width: 3px;
     width: 3px;
     margin: 0;
@@ -832,10 +855,10 @@ input[type="number"].sheet-gear-input:hover::-webkit-inner-spin-button, input[ty
     top: 0;
     right: 0;
     bottom: 0;
-    opacity: 0.5;
+    opacity: 0.7;
     margin: 10;
 }
-input.sheet-gear-input-total {
+.sheet-span-gear input.sheet-spinner-input-total {
     background-color: Grey;
 }
 
@@ -981,13 +1004,13 @@ input[type="number"].sheet-pool-number {
 }
 
 input[type="number"].sheet-low-visibility-number {
-    color: #bfbfbf;
+    color: #afafaf;
     font-size: 1.25em;
     font-weight: bold;
-    height: 1.5em;
-    width: 1.5em;
+    height: 1.3em;
+    width: 1.3em;
     background-color: transparent;
-    border: 1px solid #bfbfbf;
+    border: 1px solid #afafaf;
     border-radius: 5px;
     text-align: center;
     margin-top: 1px;
@@ -1095,7 +1118,8 @@ input.sheet-advencumbrance:checked ~ div .sheet-showencumbrance {
 input.sheet-advencumbrance:checked ~ div .sheet-showencumbrance-flex {
     display: flex;
 }
-input.sheet-advencumbrance:not(:checked) ~ div .sheet-showencumbrance {
+input.sheet-advencumbrance:not(:checked) ~ div .sheet-showencumbrance,
+input.sheet-advencumbrance:not(:checked) ~ div .sheet-showencumbrance-flex  {
     display: none;
 }
 
@@ -1415,7 +1439,8 @@ input.sheet-letter-box:checked + span::before {
 /* CHARACTER HEALTH */
 
 .sheet-health, .sheet-stress {
-    min-width: 320px;
+    min-width: 300px;
+    padding-left: 2px;
 }
 
 .sheet-health input[type="checkbox"].sheet-numbered-box {
