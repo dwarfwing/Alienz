@@ -853,7 +853,7 @@
                         </select>
                         <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
-                    <div class="grid-item weapon-item weight showencumbrance-flex">
+                    <div class="grid-item weapon-item weight showencumbrance-flex flex-column center">
                         <select name="attr_weapon_two_weight" class="select-input" title="@{weapon_two_weight}">
                             <option value="0" selected="selected">0</option>
                             <option value="0.5" >0.5</option>
@@ -864,9 +864,15 @@
                         </select>
                         <span class="mini-header" data-i18n="weight-u" >Weight</span>
                     </div>
-                    <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_weapon_two_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span data-i18n-title="cc-title" title="CC" ></span>
-                        <input type="radio" name="attr_weapon_two_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked" /><span  data-i18n-title="rc-title" title="RC" ></span>
+                    <div class="grid-item weapon-item type flex-column center">
+                        <div>
+                            <input type="radio" name="attr_weapon_two_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                            <span data-i18n-title="cc-title" title="CC" ></span>
+                            </div>
+                        <div>
+                            <input type="radio" name="attr_weapon_two_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked" />
+                            <span  data-i18n-title="rc-title" title="RC" ></span>
+                        </div>
                     </div>
                 </div>
                 <div class="auto-expand">
@@ -900,7 +906,7 @@
                         </select>
                         <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
-                    <div class="grid-item weapon-item weight showencumbrance-flex">
+                    <div class="grid-item weapon-item weight showencumbrance-flex flex-column center">
                         <select name="attr_weapon_three_weight" class="select-input" title="@{weapon_three_weight}">
                             <option value="0" selected="selected">0</option>
                             <option value="0.5">0.5</option>
@@ -911,9 +917,15 @@
                         </select>
                         <span class="mini-header" data-i18n="weight-u" >Weight</span>
                     </div>
-                    <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_weapon_three_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
-                        <input type="radio" name="attr_weapon_three_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
+                    <div class="grid-item weapon-item type flex-column center">
+                        <div>
+                            <input type="radio" name="attr_weapon_three_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                            <span   data-i18n-title="cc-title" title="CC" ></span>
+                        </div>
+                        <div>
+                            <input type="radio" name="attr_weapon_three_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
+                            <span   data-i18n-title="rc-title" title="RC" ></span>
+                        </div>
                     </div>
                 </div>
                 <div class="auto-expand">
@@ -947,7 +959,7 @@
                         </select>
                         <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
-                    <div class="grid-item weapon-item weight showencumbrance-flex">
+                    <div class="grid-item weapon-item weight showencumbrance-flex flex-column center">
                         <select name="attr_weapon_four_weight" class="select-input" title="@{weapon_four_weight}">
                             <option value="0" selected="selected">0</option>
                             <option value="0.5" >0.5</option>
@@ -958,9 +970,13 @@
                         </select>
                         <span class="mini-header" data-i18n="weight-u" >Weight</span>
                     </div>
-                    <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_weapon_four_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
-                        <input type="radio" name="attr_weapon_four_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
+                    <div class="grid-item weapon-item type flex-column center">
+                        <div>
+                            <input type="radio" name="attr_weapon_four_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
+                        </div>
+                        <div>
+                            <input type="radio" name="attr_weapon_four_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
+                        </div>
                     </div>
                 </div>
                 <div class="auto-expand">
@@ -994,7 +1010,7 @@
                         </select>
                         <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
-                    <div class="grid-item weapon-item weight showencumbrance-flex">
+                    <div class="grid-item weapon-item weight showencumbrance-flex flex-column center">
                         <select name="attr_weapon_five_weight" class="select-input" title="@{weapon_five_weight}">
                             <option value="0" selected="selected">0</option>
                             <option value="0.5">0.5</option>
@@ -1005,9 +1021,15 @@
                         </select>
                         <span class="mini-header" data-i18n="weight-u" >Weight</span>
                     </div>
-                    <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_weapon_five_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
-                        <input type="radio" name="attr_weapon_five_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
+                    <div class="grid-item weapon-item type flex-column center">
+                        <div>
+                        <input type="radio" name="attr_weapon_five_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                        <span data-i18n-title="cc-title" title="CC" ></span>
+                    </div>
+                    <div>
+                        <input type="radio" name="attr_weapon_five_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
+                        <span data-i18n-title="rc-title" title="RC" ></span>
+                    </div>
                     </div>
                 </div>
                 <div class="auto-expand">
@@ -1041,7 +1063,7 @@
                         </select>
                         <span class="mini-header" data-i18n="range-u" >Range</span>
                     </div>
-                    <div class="grid-item weapon-item weight showencumbrance-flex">
+                    <div class="grid-item weapon-item weight showencumbrance-flex flex-column center">
                         <select name="attr_weapon_six_weight" class="select-input" title="@{weapon_six_weight}">
                             <option value="0" selected="selected" >0</option>
                             <option value="0.5">0.5</option>
@@ -1052,9 +1074,15 @@
                         </select>
                         <span class="mini-header" data-i18n="weight-u" >Weight</span>
                     </div>
-                    <div class="grid-item weapon-item type">
-                        <input type="radio" name="attr_weapon_six_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
-                        <input type="radio" name="attr_weapon_six_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
+                    <div class="grid-item weapon-item type flex-column center">
+                        <div>
+                            <input type="radio" name="attr_weapon_six_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                            <span   data-i18n-title="cc-title" title="CC" ></span>
+                        </div>
+                        <div>
+                            <input type="radio" name="attr_weapon_six_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
+                            <span   data-i18n-title="rc-title" title="RC" ></span>
+                        </div>
                     </div>
                 </div>
                 <div class="auto-expand">

@@ -1326,7 +1326,7 @@ input.sheet-numbered-box + span::before {
     height: 16px;
     font-size: 10px;
     font-weight: bold;
-    margin-left: -14px;
+    margin-left: -15px;
     margin-right: 2px;
     padding: 0px 0px 0px 0px;
     line-height: 16px;
@@ -1443,7 +1443,7 @@ input.sheet-letter-box:checked + span::before {
 /* CHARACTER HEALTH */
 
 .sheet-health, .sheet-stress {
-    min-width: 300px;
+    min-width: 315px;
     padding-left: 2px;
 }
 
