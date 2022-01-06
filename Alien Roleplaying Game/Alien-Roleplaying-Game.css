@@ -440,6 +440,39 @@
     margin: 8px;
 }
 
+.sheet-appearance-none {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+div.sheet-changelog button.sheet-button-link,
+div.sheet-changelog button.sheet-button-link:hover,
+div.sheet-changelog button.sheet-button-link:active,
+div.sheet-changelog button.sheet-button-link:focus {
+    text-decoration: underline;
+    background-color: transparent;
+    border: 0;
+    font-family: 'Roboto';
+    color: #000;
+    font-size: 13px;
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    text-shadow: inherit;
+    box-shadow: inherit;
+}
+div.sheet-changelog button.sheet-button-link::before,
+div.sheet-changelog button.sheet-button-link:hover::before,
+div.sheet-changelog button.sheet-button-link:active::before,
+div.sheet-changelog button.sheet-button-link:focus::before {
+    content: "";
+}
+
 /* --- HEADERS ---- */
 
 .sheet-teal-header {
@@ -610,9 +643,13 @@ button[type="roll"].sheet-button-skill, .sheet-medium-teal-header, .sheet-dark-t
     line-height: 1em;
     margin: -20px 0 0 0;
     -text-align: left;
-    padding: 0px 0px 7px 0px;
-    
+    padding: 0px 0px 0px 0px; 
 }
+/* Firefox specific modification */
+@supports (-moz-appearance:none) {
+    .sheet-floating-header { padding: 0px 0px 1px 0px; }
+    }
+
 
 .sheet-more-curves {
     border-radius: 20px 20px 20px 0px;
@@ -1040,6 +1077,10 @@ button[type="action"].sheet-action-tab {
 	color: #008b8b;
     padding: 0px 0px 2px 0px;    
 }
+/* Firefox specific modification */
+@supports (-moz-appearance:none) {
+    button[type="action"].sheet-action-tab { padding: 0px 0px 0px 0px; }
+    }
 .sheet-header-tabs button[type=action].sheet-action-tab {
     width: 65px;
     color: rgb(204, 204, 204);
@@ -1048,7 +1089,7 @@ button[type="action"].sheet-action-tab {
     border: 0;
     border-radius: 0;
     margin-right: 0;
-    border-bottom: 2px solid #d3d3d3;
+    -border-bottom: 2px solid #d3d3d3;
 }
 button[type="action"].sheet-action-tab.sheet-fit-five {
     width: 15%;
@@ -1532,7 +1573,7 @@ input[name="attr_shipdamage_max"][value="11"] ~ div .sheet-shipdamage:nth-of-typ
 input[name="attr_shipdamage_max"][value="12"] ~ div .sheet-shipdamage:nth-of-type(1n+15), 
 input[name="attr_shipdamage_max"][value="12"] ~ div .sheet-shipdamage:nth-of-type(1n+15) + span, 
 input[name="attr_shipdamage_max"][value="13"] ~ div .sheet-shipdamage:nth-of-type(1n+16),
-input[name="attr_shipdamage_max"][value="13"] ~ div .sheet-shipdamage:nth-of-type(1n+6) + span,
+input[name="attr_shipdamage_max"][value="13"] ~ div .sheet-shipdamage:nth-of-type(1n+16) + span,
 input[name="attr_shipdamage_max"][value="14"] ~ div .sheet-shipdamage:nth-of-type(1n+17), 
 input[name="attr_shipdamage_max"][value="14"] ~ div .sheet-shipdamage:nth-of-type(1n+17) + span, 
 input[name="attr_shipdamage_max"][value="15"] ~ div .sheet-shipdamage:nth-of-type(1n+18), 
