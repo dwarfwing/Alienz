@@ -14,7 +14,7 @@
         console.log(output, textStyle);
         }
     };
-
+    
     /* Oosh async attribute functions */
     const asw = (() => {
         const setActiveCharacterId = function(charId){
@@ -42,29 +42,6 @@
             setActiveCharacterId,
         }
     })();
-
-    // METHODS FOR PARSED ROLLS
-    const rollEscape = {
-        chars: { '"': '%quot;', ',': '%comma;', ':': '%colon;', '}': '%rcub;', '{': '%lcub;', },
-        escape(str) {
-            str = (typeof(str) === 'object') ? JSON.stringify(str) : (typeof(str) === 'string') ? str : null;
-            return (str) ? `${str}`.replace(new RegExp(`[${Object.keys(this.chars)}]`, 'g'), (r) => this.chars[r]) : null;
-        },
-        unescape(str) {
-            str = `${str}`.replace(new RegExp(`(${Object.values(this.chars).join('|')})`, 'g'), (r) => Object.entries(this.chars).find(e=>e[1]===r)[0]);
-            return JSON.parse(str);
-        }
-    }
-    
-	// Helper function to grab player input
-	const getQuery = async (queryText) => {
-		const rxGrab = /^0\[(.*)\]\s*$/;
-		let rollBase = `! {{query1=[[ 0[${queryText}] ]]}}`, // just a [[0]] roll with an inline tag
-			queryRoll = await startRoll(rollBase),
-			queryResponse = (queryRoll.results.query1.expression.match(rxGrab) || [])[1]; 
-		finishRoll(queryRoll.rollId); // you can just let this time out if you want - we're done with it
-		return queryResponse;
-	};
 
     /* GiGs 'Super Simple Summarizer' */
     const repeatingSum = (destination, section, fields, multiplier = 1) => {
@@ -121,9 +98,87 @@
         });
     });
 
+    // ROLL PARSING METHODS FOR PUSHING ROLLS
+    const rollEscape = {
+        chars: { '"': '%quot;', ',': '%comma;', ':': '%colon;', '}': '%rcub;', '{': '%lcub;', },
+        escape(str) {
+            str = (typeof(str) === 'object') ? JSON.stringify(str) : (typeof(str) === 'string') ? str : null;
+            return (str) ? `${str}`.replace(new RegExp(`[${Object.keys(this.chars)}]`, 'g'), (r) => this.chars[r]) : null;
+        },
+        unescape(str) {
+            str = `${str}`.replace(new RegExp(`(${Object.values(this.chars).join('|')})`, 'g'), (r) => Object.entries(this.chars).find(e=>e[1]===r)[0]);
+            return JSON.parse(str);
+        }
+    }
 
+    // OOOOSH
     
-    // Parsed Roll, triggered from sheet. Need to add logic and attributes for pushing rolls, keeping this for future additions. 
+    // Primary Roll, triggered from sheet as usual
+    const rollAttack = async (ev) => {
+        // We'll pretend we've done a getAttrs on the attacker's weapon for all the required values
+        // Row ID's must be provided when using action buttons too, we'll skip all of that here though
+        let attrs = {
+            character_name: 'Alice',
+            weapon_name: 'Sword',
+            attack_bonus: '5',
+        }
+        let rollBase = `&{template:mytemp} {{name=${attrs.character_name} Attack}} {{roll1name=${attrs.weapon_name}}} {{roll1=[[1d20 + (${attrs.attack_bonus})]]}} {{passthroughdata=[[0]]}} {{buttonlabel=Next Roll}} {{buttonlink=reactroll}}`;
+        let attackRoll = await startRoll(rollBase),
+            roll1Value = attackRoll.results.roll1.result;
+        // Storing all the passthrough data required for the next roll in an Object helps for larger rolls
+        let rollData = {
+            attacker: attrs.character_name,
+            attackTotal: roll1Value,
+        }
+        // Finish the roll, passing the escaped rollData object into the template as computed::passthroughdata
+        // Our roll template then inserts that into [butonlabel](~selected|buttonlink||<computed::passthroughdata>)
+        // ~selected allows anyone to click the button with their token selected. Omitting this will cause the button
+        // to default to whichever character is active in the sandbox when the button is created
+        finishRoll(attackRoll.rollId, {
+            passthroughdata: rollEscape.escape(rollData),
+        });
+    };
+
+    // The defend roll triggered from the button sent to chat by rollAttack()
+    const rollReact = async (ev) => {
+        // The data we passed into the button will be stored in the originalRollId key
+        let attackRoll = rollEscape.unescape(ev.originalRollId);
+        console.info(attackRoll);
+        // Another fake getAttrs() return here with the Defender's attributes
+        let attrs = {
+            character_name: 'Bob',
+            weapon_name: 'Celery',
+            attack_bonus: '-10',
+        }
+        let rollBase = `&{template:mytemp} {{name=${attrs.character_name} Defend}} {{roll1name=${attrs.weapon_name}}} {{roll1=[[1d20 + (${attrs.attack_bonus})]]}} {{previousrollname=${attackRoll.attacker}'s Attack}} {{previousroll=${attackRoll.attackTotal}}} {{showoutcome=1}} {{outcome=[[0]]}}`;
+        let defendRoll = await startRoll(rollBase);
+        // Now we can do some further computation to insert into the {{outcome}} field, primed with a [[0]] roll
+        let defendTotal = defendRoll.results.roll1.result;
+        let resultText = (defendTotal >= attackRoll.attackTotal) 
+            ? `${attrs.character_name} defends successfully!`
+            : `${attackRoll.attacker} attacks successfully!`;
+        // Finish the roll, inserting our computed text string into the roll template
+        finishRoll(defendRoll.rollId, {
+            outcome: resultText,
+        });
+    }
+
+    // The reactroll button still needs its event listener, just like a normal button
+    on('clicked:reactroll', async (ev) => {
+        console.log(`Starting react roll`);
+        await rollReact(ev);
+        console.log(`Completed react roll`);
+    });
+    // The reactroll button still needs its event listener, just like a normal button
+    on('clicked:attackroll', async (ev) => {
+        console.log(`Starting attack roll`);
+        await rollAttack(ev);
+        console.log(`Completed attack roll`);
+    });
+
+
+    // TESTING
+    // Primary Roll, triggered from sheet as usual
     const rollFirst = async (ev) => {
         // We'll pretend we've done a getAttrs on the attacker's weapon for all the required values
         // Row ID's must be provided when using action buttons too, we'll skip all of that here though
@@ -132,17 +187,15 @@
         const rollName = (ev.htmlAttributes.name).slice(4); 
         clog(`Roll name: ${rollName}`);
 
-        let modifiers = await getQuery(`?{Modifiers?|0}`);
         const attrs = await asw.getAttrs(["character_name", rollName, "stress"]);
         const base = int(attrs[rollName]),
             stress = int(attrs.stress);
         var baseStr = "", stressStr = "";
-        let total = base + int(modifiers); 
-        clog(`Total = ${base} + ${modifiers} = ${total}`);
-        for(let i = 1; i <= total; i++) { baseStr += "[[1d6]] "; }
+        for(let i = 1; i <= base; i++) { baseStr += "[[1d6]] "; }
         for(let i = 1; i <= stress; i++) { stressStr += "[[1d6]] "; }
-        
-        let rollBase = `@{secret_roll} &{template:aliens} {{character-name=${attrs.character_name} }} {{roll-name=${rollName} }} {{base-dice=${baseStr} }} {{stress-dice=${stressStr} }} {{passthroughdata=[[0]]}} {{buttonlabel=Push Roll}} {{buttonlink=pushroll}}`;
+        // GET MODIFIER HERE
+
+        let rollBase = `@{secret_roll} &{template:aliens} {{character-name=${attrs.character_name} }} {{roll-name=${rollName} }} {{base-dice=${baseStr}+?{Modifiers|0}d6 }} {{stress-dice=${stressStr} }} {{passthroughdata=[[0]]}} {{buttonlabel=Push Roll}} {{buttonlink=pushroll}}`;
         let firstRoll = await startRoll(rollBase);
         //    rollValue = firstRoll.results.roll1.result;
         clog(`First roll data: ${JSON.stringify(firstRoll)}`);
@@ -160,7 +213,7 @@
             passthroughdata: rollEscape.escape(rollData),
         });
     };
-    /*
+
     // The defend roll triggered from the button sent to chat by rollAttack()
     const rollPush = async (ev) => {
         let origRoll = rollEscape.unescape(ev.originalRollId);
@@ -178,7 +231,6 @@
             message: resultText,
         });
     };
-    */
 
     // The pushroll button still needs its event listener, just like a normal button
     on('clicked:strength clicked:agility clicked:wits clicked:empathy', async (ev) => {
@@ -186,33 +238,17 @@
         await rollFirst(ev);
         clog(`Completed first roll`);
     });
-    /* 
     // The pushroll button still needs its event listener, just like a normal button
     on('clicked:pushroll', async (ev) => {
         clog(`Starting push roll`);
         await rollPush(ev);
         clog(`Completed push roll`);
     });
-    */
-
-    on('change:secret_roll_api sheet:opened', (ev) => {
-        getAttrs(['secret_roll_api', 'roll_command'], (values) => {
-            var s = values.secret_roll_api; 
-            if ( s == "0" || !s ) {
-                s = "!alienr";
-            } else {
-                s = "!alienrw"
-            }
-            setAttrs({
-                roll_command: s
-            });
-        });
-    });
 
     // CALCULATE STRESS - HEALTH - RADIATION - VALUE FROM CHECKBOXES OR ATTRIBUTE
     const variableAttributes = ["stress","health","radiation"];
     variableAttributes.forEach(function (variableAttribute) {
-        // create an array of the checkbox names. the array(10) sets how many checkboxes there are - change to match.
+        // create an array of the checkbox names. the array(12) sets how many checkboxes there are - change to match.
         const variableAttributeChecks = Array(10).fill().map((_, index) => `${variableAttribute}_${index +1}`);
         on(`change:${variableAttribute} change:${variableAttributeChecks.join(' change:')}`, function (eventinfo) {
             getAttrs(variableAttributeChecks.concat([variableAttribute, variableAttribute + "_max"]), function (values) {
@@ -244,8 +280,8 @@
     /* */
     // CALCULATE Health
     on("change:strength change:tough sheet:opened", (eventinfo) => {
-        //clog("Change detected: Health");
-        //clog(`Eventinfo: ${JSON.stringify(eventinfo)}`);
+        clog("Change detected: Health");
+        clog(`Eventinfo: ${JSON.stringify(eventinfo)}`);
         getAttrs(["strength", "tough", "health_calc"], (values) => {
             const strength = int(values.strength),
             tough = int(values.tough),
@@ -322,7 +358,7 @@
             const food = Math.ceil(int(values.food)/4),
             water = Math.ceil(int(values.water)/4),
             encumb = food + water;
-            //clog(`Food ${food}, water ${water} and encumberance ${encumb}`);
+            clog(`Food ${food}, water ${water} and encumberance ${encumb}`);
             setAttrs({
                 encumbrance_consum: encumb
             });
@@ -342,16 +378,16 @@
             carrycap = (strength*2) + packmule,
             config = values.config_advencumbrance,
             encumb = int(values.encumbrance);
-            //clog(`Carry cap and pack mule: pack mule ${packmule}, strength ${strength} and carry cap ${carrycap}`);
-            //clog(`Test total ${total} for nonzero value: ${total != 0}`);
-            //clog(`advanced encumbrance: ${values.config_advencumbrance}`);
+            clog(`Carry cap and pack mule: pack mule ${packmule}, strength ${strength} and carry cap ${carrycap}`);
+            clog(`Test total ${total} for nonzero value: ${total != 0}`);
+            clog(`advanced encumbrance: ${values.config_advencumbrance}`);
             var overencumbered = 0, overloaded = 0, total = 0; 
             ( config == "on" ) ? total = encumb_calc : total = encumb; 
             ( total > carrycap ) ? overencumbered = 1 : overencumbered = 0;
             ( total > (carrycap*2) ) ? overloaded = 1 : overloaded = 0;
-            //clog(`Manual encumbrance is ${encumb}, calculated encumbrance is ${encumb_calc} and total is ${total}`);
-            //clog(`Overencumbered: ${total > carrycap}`);
-            //clog(`overloaded: ${total > (carrycap*2)}`);
+            clog(`Manual encumbrance is ${encumb}, calculated encumbrance is ${encumb_calc} and total is ${total}`);
+            clog(`Overencumbered: ${total > carrycap}`);
+            clog(`overloaded: ${total > (carrycap*2)}`);
             //if ( total > carrycap ) overencumbered = 1;
             //if ( total > (carrycap*2) ) overloaded = 1;
             //if ( encumb > carrycap ) overenc_manual = 0;
@@ -374,7 +410,7 @@
         const target = arma+"_targetrange";
         const rangemod = arma+"_rangemod";
         //clog("Armament: "+arma+" Target: "+target+" Range mod: "+rangemod);
-         on(`change:${target} sheet:opened`, (eventInfo) => {           
+         on(`change:${target}`, (eventInfo) => {           
              getAttrs([target, rangemod], (values) => {
                  //clog("Armament changed: "+target+" value: "+values[target]+" current range mod: "+values[rangemod]);
                  var actual = 0;
@@ -440,7 +476,7 @@
     // Set Ship logs 2nd tab indicator
     on(`change:log16 change:log17 change:log18 change:log19 change:log20 change:log21 change:log22 change:log23 change:log24 change:log25 change:log26 change:log27 change:log28 change:log29 change:log30 sheet:opened`, (eventInfo) => {
        getAttrs(["log16", "log17", "log18", "log19", "log20", "log21", "log22", "log23", "log24", "log25", "log26", "log27", "log28", "log29", "log30"], (values) => {
-           //clog("log values for button status: "+JSON.stringify(values)); 
+           clog("log values for button status: "+JSON.stringify(values)); 
            const button = "logs2_tab";
            var active = "-";
    
@@ -448,10 +484,10 @@
                if( values[`log${i}`] != "" ) {
                    active = "II";
                }
-               //clog("value: "+ JSON.stringify(values[`log${i}`]) +", active: "+ active);
+               clog("value: "+ JSON.stringify(values[`log${i}`]) +", active: "+ active);
            }  
 
-           //clog("active eor : "+active);
+           clog("active eor : "+active);
            setAttrs({
                [button]: active
            },{silent:true});
@@ -462,7 +498,7 @@
    // Set Ship logs 3rd tab indicator
    on(`change:log31 change:log32 change:log33 change:log34 change:log35 change:log36 change:log37 change:log38 change:log39 change:log40 change:log41 change:log42 change:log43 change:log44 change:log45 sheet:opened`, (eventInfo) => {
       getAttrs(["log31", "log32", "log33", "log34", "log35", "log36", "log37", "log38", "log39", "log40", "log41", "log42", "log43", "log44", "log45"], (values) => {
-          //clog("log values for button status: "+JSON.stringify(values)); 
+          clog("log values for button status: "+JSON.stringify(values)); 
           const button = "logs3_tab";
           var active = "-";
   
@@ -470,10 +506,10 @@
               if( values[`log${i}`] != "" ) {
                   active = "III";
               }
-              //clog("value: "+ JSON.stringify(values[`log${i}`]) +", active: "+ active);
+              clog("value: "+ JSON.stringify(values[`log${i}`]) +", active: "+ active);
           }  
 
-          //clog("active eor : "+active);
+          clog("active eor : "+active);
           setAttrs({
               [button]: active
           },{silent:true});
@@ -481,19 +517,21 @@
   });
 
 	// Highlight buttons if talents / weapons are populated
-    talents = {"one": "I", "two": "II", "three": "III", "four": "IV", "five": "V", "six": "VI", "seven": "VII", "eight": "VIII"};
-    _.each(Object.keys(talents), (tal) => {
-        on(`change:talent_${tal} sheet:opened`, function() {
-            //clog(`Current talent: ${tal}, current value: ${talents[tal]}`);
-            getAttrs([`talent_${tal}`], function(v){
-                var talentname = v[`talent_${tal}`];
-                //clog("Talent output: "+ (talentname.length > 0) ? talents[`${tal}`] : "-");
-                var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
-                setAttrs({[`tal_${tal}`]: txt});
+
+    	// Highlight buttons if talents / weapons are populated
+        talents = {"one": "I", "two": "II", "three": "III", "four": "IV", "five": "V", "six": "VI", "seven": "VII", "eight": "VIII"};
+        _.each(Object.keys(talents), (tal) => {
+            on(`change:talent_${tal} sheet:opened`, function() {
+                clog(`Current talent: ${tal}, current value: ${talents[tal]}`);
+                getAttrs([`talent_${tal}`], function(v){
+                    var talentname = v[`talent_${tal}`];
+                    clog("Talent output: "+ (talentname.length > 0) ? talents[`${tal}`] : "-");
+                    var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
+                    setAttrs({[`tal_${tal}`]: txt});
+                    });
                 });
-            });
-    });
-	/*
+        });
+	
 	on("change:talent_one sheet:opened", function(){
     getAttrs(["talent_one"], function(v){
         var tal = v.talent_one;
@@ -525,7 +563,6 @@
 		setAttrs({tal_four: txt});
 		});
 	});
-    */
 
 	on("change:weapon_one_name sheet:opened", function(){
     getAttrs(["weapon_one_name"], function(v){
@@ -632,38 +669,6 @@
             tab: 4
         });
         console.log("tab Set To: 4");
-    });
-    
-    on("clicked:tab_five", function() {
-        console.log("tab_five button clicked");
-        setAttrs({ 
-            tab: 5
-        });
-        console.log("tab Set To: 5");
-    });
-    
-    on("clicked:tab_six", function() {
-        console.log("tab_six button clicked");
-        setAttrs({ 
-            tab: 6
-        });
-        console.log("tab Set To: 6");
-    });
-    
-    on("clicked:tab_seven", function() {
-        console.log("tab_seven button clicked");
-        setAttrs({ 
-            tab: 7
-        });
-        console.log("tab Set To: 7");
-    });
-    
-    on("clicked:tab_eight", function() {
-        console.log("tab_eight button clicked");
-        setAttrs({ 
-            tab: 8
-        });
-        console.log("tab Set To: 8");
     });
     
     on("clicked:tab_alpha", function() {
@@ -805,3 +810,4 @@
         });
         console.log("tab_armament Set To: 5");
     });
+    
