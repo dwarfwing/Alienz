@@ -1799,7 +1799,7 @@
             <div class="vertical-adjust-two-more flexlist">
                 <span class="dark-teal-header condition-title" data-i18n="stealth">Stealth</span>
                 <input type="number" name="attr_speed_stealth" value="1" class="no-spin-input optional-spinner-input" title="@{speed_stealth}" min="0"/>
-                <hr class="dotted-line">
+                <hr class="dotted-line vertical-adjust-one">
                 <span class="dark-teal-header condition-title" data-i18n="combat">Combat</span>
                 <input type="number" name="attr_speed_combat" value="1" class="no-spin-input optional-spinner-input" title="@{speed_combat}" min="0"/>
                 <hr class="dotted-line">
@@ -1834,7 +1834,7 @@
 
         <div class="span-row4-5 span-three-four grid-item clip-edges no-border">
             <div class="black-floating-header-clipped no-border header-doublerow">
-                <span class="teal-header no-border" data-i18n="cont-and-term" >CONTAINMENT & TERMINATION</span>
+                <span class="teal-header no-border" data-i18n="cont-and-term" >CONTAINMENT&nbsp;& TERMINATION</span>
             </div>
             <div class="xeno-textfield auto-expand"> <!-- -->
                 <textarea name="attr_xeno_contterm" value="" data-i18n-placeholder="xeno-contterm.place" placeholder="Xenomorph containment and termination" title="@{xeno_contterm}" spellcheck="false" ></textarea>
@@ -1968,7 +1968,7 @@
                 <button type="action" name="act_expandattacks" class="dark-teal-header attack-control-label text-underline" title="Expand all" data-i18n-title="expand-all">Exp.</button>
                 &nbsp;<span class="dark-teal-header">/</span>&nbsp;
                 <button type="action" name="act_collapseattacks" class="dark-teal-header attack-control-label text-underline" title="Collapse all" data-i18n-title="collapse-all">Col.</button>             
-                <button type="roll" class="button-skill button-gamma span-four signatureattack" value="/w gm &{template:xeno} {{character-name=@{character_name} }} {{result=[[1d6]] }} {{result1name=@{xenoattack1_name} }} {{result1desc=@{xenoattack1_desc} }} {{result2name=@{xenoattack2_name} }} {{result2desc=@{xenoattack2_desc} }} {{result3name=@{xenoattack3_name} }} {{result3desc=@{xenoattack3_desc} }} {{result4name=@{xenoattack4_name} }} {{result4desc=@{xenoattack4_desc} }} {{result5name=@{xenoattack5_name} }} {{result5desc=@{xenoattack5_desc} }} {{result6name=@{xenoattack6_name} }} {{result6desc=@{xenoattack6_desc} }} " name="xenoattackroll" data-i18n="attack-u">Attack</button>
+                <button type="roll" class="button-skill button-gamma span-four signatureattack" value="/w gm &{template:xeno} {{character-name=@{character_name} }} {{result=[[1d6]] }} {{result1name=@{xenoattack1_name} }} {{result1desc=@{xenoattack1_desc} }} {{result2name=@{xenoattack2_name} }} {{result2desc=@{xenoattack2_desc} }} {{result3name=@{xenoattack3_name} }} {{result3desc=@{xenoattack3_desc} }} {{result4name=@{xenoattack4_name} }} {{result4desc=@{xenoattack4_desc} }} {{result5name=@{xenoattack5_name} }} {{result5desc=@{xenoattack5_desc} }} {{result6name=@{xenoattack6_name} }} {{result6desc=@{xenoattack6_desc} }} " name="xenoattackroll" data-i18n="attack-u" data-i18n-title="signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Attack</button>
             </div>
             <div class="align-right vertical-adjust-two-more flexlist xeno-attack xeno-textfield">
                 <span class="dark-teal-header condition-title xeno-attack-number">1</span>
@@ -2148,7 +2148,7 @@
              -->
              <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">
                 <div class="grid-item clip-edges w120 h-fit marg-right">
-                    <span class="centered bold">v4.00 <br/>(2022-03-06)</span>
+                    <span class="centered bold">v4.00 <br/>(2022-03-09)</span>
                 </div>  
                 <div class="cover-75 flex-content-right flex-column">               
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right">
@@ -2290,14 +2290,16 @@
         </div> 
 
     </div> 
-    
-    </div>
 
     <div class="footer-image"><span class="footer-text" data-i18n="building-betterworlds-u">"Building Better Worlds"</span></div>
-    <div class="box-under-the-bed"> <!-- HIDDEN DIV -->
-        <input type="number" name="attr_radiation" value="0" class="" title="@{radiation}"/>
+        <div class="box-under-the-bed"> <!-- HIDDEN DIV -->
+            <input type="number" name="attr_radiation" value="0" class="" title="@{radiation}"/>
+        </div>
     </div>
+    
 </div>
+
+
 
     
 
@@ -3105,10 +3107,10 @@
                         </div>
                     {{/rollTotal() result 1}}
                     {{#rollTotal() result 2}}
-                        <div iclass="template-grid-item template-span-six attack-name">
+                        <div class="template-grid-item template-span-six attack-name">
                             {{result2name}}
                         </div>
-                        <div iclass="template-grid-item template-span-six attack-desc">
+                        <div class="template-grid-item template-span-six attack-desc">
                             {{result2desc}}
                         </div>
                     {{/rollTotal() result 2}}

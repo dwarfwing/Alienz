@@ -6,6 +6,7 @@
     -background-image: url("https://github.com/Roll20/roll20-character-sheets/blob/master/Alien%20Roleplaying%20Game/Images/bg.png?raw=true");
     background-repeat: repeat;
     padding: 5px;
+    margin: -10px !important;
     min-width: 1140px;
     -min-width: 830px;
 }
@@ -74,23 +75,22 @@ input.sheet-tab-sheet[value="Xeno"] ~ .sheet-background-wrap {
     text-align: left;
     border-color: transparent;
 }
+.sheet-contains-seven-columns {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 2px;
+}
+
 .sheet-contains-eight-columns {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 8px;
     padding: 10px;
     text-align: left;
-    border-color: transparent;
 }
-
 .sheet-contains-fourteen-columns {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     z-index: 5;
 }
 
-.sheet-contains-seven-columns {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 2px;
-}
 
 .sheet-roll-buttons{
     display: grid;
@@ -654,6 +654,7 @@ div.sheet-changelog button.sheet-button-link:focus::before {
     height: 2.2em;
     line-height: 1.2em;
     padding-top: 5px;
+    width: min-content;
 }
 .sheet-black-floating-header.sheet-header-doublerow ~ .sheet-xeno-textfield,
 .sheet-black-floating-header-clipped.sheet-header-doublerow ~ .sheet-xeno-textfield {
@@ -2285,8 +2286,8 @@ button[type="roll"].sheet-attribute-button:active {
     background-color: transparent;
 }
 
-.sheet-template-xeno .inlinerollresult,
-.sheet-rolltemplate-alien .inlinerollresult  {
+.sheet-template-xeno .sheet-template-grid .inlinerollresult,
+.sheet-rolltemplate-alien .sheet-template-grid .inlinerollresult  {
     color: #000000;
     font-size: 1.9em;
     line-height: 35px;
