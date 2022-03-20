@@ -1811,12 +1811,12 @@
                 <span class="teal-header" data-i18n="skills">SKILLS</span>
             </div>
             <div class="vertical-adjust-one flexlist">                    
-                <button type="roll" name="observation" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Observation }} {{base-dice=[[@{observation} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="observation-u">Observation</button>
+                <button type="roll" name="observation" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Observation }} {{base-dice=[[@{wits} + @{observation} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="observation-u" data-i18n-title="skill-xeno-desc">Observation</button>
 
                 <!-- <span class="dark-teal-header condition-title" data-i18n="observation-u">Observation</span> -->
                 <input type="number" name="attr_observation" value="1" class="no-spin-input optional-spinner-input" title="@{observation}" min="0"/>
                 <hr class="dotted-line">
-                <button type="roll" name="mobility" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Mobility }} {{base-dice=[[@{mobility} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="mobility-u" >Mobility</button>
+                <button type="roll" name="mobility" class="button-skill" value="@{secret_roll} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Mobility }} {{base-dice=[[@{agility} + @{mobility} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="mobility-u" data-i18n-title="skill-xeno-desc">Mobility</button>
            <!-- <span class="dark-teal-header condition-title" data-i18n="mobility-u">Mobility</span> -->
                 <input type="number" name="attr_mobility" value="1" class="no-spin-input optional-spinner-input" title="@{mobility}" min="0"/>
                 <hr class="dotted-line">
@@ -2148,14 +2148,36 @@
              -->
              <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">
                 <div class="grid-item clip-edges w120 h-fit marg-right">
-                    <span class="centered bold">v4.00 <br/>(2022-03-09)</span>
+                    <span class="centered bold">v4.01 <br/>(2022-03-20)</span>
                 </div>  
                 <div class="cover-75 flex-content-right flex-column">               
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right">
-                        <span class="text-input cover-100 align-left" title="">Added the Hostile tab to use for Xenos and other nasty things that lurk in the darkness of space. </span>
+                        <span class="text-input cover-100 align-left" title="">Mobility and Observability macros now work the same for Character and Hostile tab, same macro should be usable for either. Technically, they both use the attribute and the skill, but for the Hostile the attribute would be kept at the default 0 level. </span>
+                    </div>                
+                    <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
+                        <span class="text-input cover-100 align-left" title="">The Roll template Success and Panic calculations are now fixed from the previous version, it kept showing 0 no matter how many successes or facehuggers one rolled.  </span>
+                    </div>                 
+                    <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
+                        <span class="text-input cover-100 align-left" title="">The Roll template chat output now states Panic for the facehugger results, to make similar to the API Script output.  </span>
+                    </div>               
+                    <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
+                        <span class="text-input cover-100 align-left" title="">Selecting secret rolls when using the API Script now honors the setting for rolls using the Roll template.  </span>
                     </div>   
                 </div> 
             </div>
+            <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">
+               <div class="grid-item clip-edges w120 h-fit marg-right">
+                   <span class="centered bold">v4.00 <br/>(2022-03-09)</span>
+               </div>  
+               <div class="cover-75 flex-content-right flex-column">               
+                   <div class="grid-item clip-edges align-left marg-right pad-left pad-right">
+                       <span class="text-input cover-100 align-left" title="">Added the Hostile tab to use for Xenos and other nasty things that lurk in the darkness of space. </span>
+                   </div>              
+                   <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
+                       <span class="text-input cover-100 align-left" title="">Adjusted the size of the sheet frame to remove white border in dark mode. Space is a very dark place. </span>
+                   </div>   
+               </div> 
+           </div>
             <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">
                <div class="grid-item clip-edges w120 h-fit marg-right">
                    <span class="centered bold">v3.03 <br/>(2022-02-04)</span>
@@ -2800,7 +2822,7 @@
                         <span data-i18n="template-success" class="template-success">Success: </span>
                     </div>                    
                     <div class="template-grid-item template-span-half2">
-                        <span data-i18n="template-stress" class="template-stress">Stress: </span>
+                        <span data-i18n="template-stress" class="template-stress">Panic: </span>
                     </div>
                     {{/stress-dice}}
                     {{^stress-dice}}
@@ -2839,7 +2861,7 @@
                         <span data-i18n="template-success" class="template-success">Success: </span>
                     </div>                    
                     <div class="template-grid-item template-span-half2">
-                        <span data-i18n="template-stress" class="template-stress">Stress: </span>
+                        <span data-i18n="template-stress" class="template-stress">Panic: </span>
                     </div>   
                     {{/stress-dice}}
                 {{/base-dice}}
@@ -3361,13 +3383,16 @@
     on('change:secret_roll_api sheet:opened', (ev) => {
         getAttrs(['secret_roll_api', 'roll_command'], (values) => {
             var s = values.secret_roll_api; 
+            var r = "";
             if ( s == "0" || !s ) {
                 s = "!alienr";
             } else {
                 s = "!alienrw"
+                r = "/w gm"; 
             }
             setAttrs({
-                roll_command: s
+                roll_command: s,
+                secret_roll: r
             });
         });
     });
