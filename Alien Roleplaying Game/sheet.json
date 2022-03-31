@@ -10,7 +10,8 @@
     {
       "attribute": "config_apirolls",
       "type": "checkbox",
-      "value": "on",
+      "value": "1",
+      "checked": "checked",
       "displayname": "Enable API rolls",
       "displaytranslationkey": "config-enable-apirolls",
       "description": "When enabled, rolls will be using the API script for Alien RPG, allowing for in-chat pushing of rolls. The script needs to be added to the game, obviously.",
@@ -19,7 +20,7 @@
     {
       "attribute": "config_advencumbrance",
       "type": "checkbox",
-      "value": "on",
+      "value": "1",
       "checked": "checked",
       "displayname": "Enable weights and calculated encumbrance",
       "displaytranslationkey": "config-enable-encumbrance"		,
@@ -29,7 +30,8 @@
     {
       "attribute": "config_gearrepeatingonly",
       "type": "checkbox",
-      "value": "off",
+      "value": "1",
+      "checked": "unchecked",
       "displayname": "Only use repeating section for Gear",
       "displaytranslationkey": "config-gearrepeatingonly",
       "description": "This will remove the static 1 - 8 rows in the Gear list, and only rely on the addition of dynamic rows. Enabling this will not delete or remove the data in the static rows. NB, the static list rows still count towards the encumbrance calculation!",
@@ -38,7 +40,7 @@
     {
       "attribute": "config_healthcalculation",
       "type": "checkbox",
-      "value": "on",
+      "value": "1",
       "checked": "checked",
       "displayname": "Use automatically calculated Health",
       "displaytranslationkey": "config-healthcalculation",
@@ -48,7 +50,7 @@
     {
       "attribute": "config_squareinput",
       "type": "checkbox",
-      "value": "on",
+      "value": "1",
       "checked": "checked",
       "displayname": "Use squarer input boxes",
       "displaytranslationkey": "config-squareinput",
@@ -58,7 +60,7 @@
     {
       "attribute": "config_optionalspinners",
       "type": "checkbox",
-      "value": "on",
+      "value": "1",
       "checked": "checked",
       "displayname": "Use spinners in number input fields",
       "displaytranslationkey": "config-optionalspinners",
@@ -68,7 +70,7 @@
     {
       "attribute": "config_spacebackground",
       "type": "checkbox",
-      "value": "on",
+      "value": "1",
       "checked": "checked",
       "displayname": "Use space background",
       "displaytranslationkey": "config-spacebackground",
@@ -99,7 +101,7 @@
     {
       "attribute": "config_panicdesc",
       "type": "checkbox",
-      "value": "on",
+      "value": "1",
       "checked": "checked",
       "displayname": "Include panic descriptions in rolls",
       "displaytranslationkey": "config-panicdesc",

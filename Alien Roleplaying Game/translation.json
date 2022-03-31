@@ -213,5 +213,9 @@
     "expand-all": "Expand all",
     "collapse-all": "Collapse all",
     "base-damage-desc": "Base damage",
-    "extra-damage-desc": "Additional damage based on stunts (optional)" 
+    "extra-damage-desc": "Additional damage based on stunts (optional)",
+    "signature-attack-shared-desc": "Configuration: Signature attacks are whispered to the GM or shown to all Players based on the Secret rolls option.",
+    "signature-attack-secret-desc": "Configuration: Signature attacks are always whispered to the GM, to be played out in combat.",
+    "config-xenosecretrolls": "Use Secret Rolls option also for Signature attacks",
+    "config-xenosecretrolls-desc": "If this option is unchecked, then all rolls for Hostile's Signature Attacks are done whispered to the GM. If however it is checked, whispering or not is dependent on the Secret Rolls option. "
 }

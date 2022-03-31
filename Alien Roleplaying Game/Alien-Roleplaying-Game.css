@@ -696,11 +696,11 @@ button[type="roll"].sheet-button-skill, input[type="checkbox"].sheet-button-skil
 
 .sheet-panicdesc:checked ~ button.sheet-panicdesc,
 .sheet-panicdesc:not(:checked) ~ button.sheet-nopanicdesc {
-    display: none;
+    display: block;
 }
 .sheet-panicdesc:not(:checked) ~ button.sheet-panicdesc,
 .sheet-panicdesc:checked ~ button.sheet-nopanicdesc {
-    display: block;
+    display: none;
 }
 
 
@@ -1656,12 +1656,12 @@ input.sheet-letter-box:checked + span::before {
     padding-left: 5px;
 }
 
-input.sheet-config-healthcalculation:checked ~.sheet-health-calculated,
+input.sheet-config-healthcalculation:checked ~ .sheet-health-calculated,
 input.sheet-config-healthcalculation:checked + .sheet-tough,
-input.sheet-config-healthcalculation:not(:checked) ~.sheet-health-manual {
+input.sheet-config-healthcalculation:not(:checked) ~ .sheet-health-manual {
     display: block;
 }
-input.sheet-config-healthcalculation:not(:checked) ~.sheet-health-calculated,
+input.sheet-config-healthcalculation:not(:checked) ~ .sheet-health-calculated,
 input.sheet-config-healthcalculation:not(:checked) + .sheet-tough,
 input.sheet-config-healthcalculation:checked ~ .sheet-health-manual {
     display: none;
@@ -1792,6 +1792,15 @@ input[name="attr_shipdamage_max"][value="0"] ~ .sheet-hullpoints-missing {
 }
 
 /* XENO DAMAGE */
+
+.sheet-config-xenosecretrolls:checked ~ .sheet-showxenoattacks,
+.sheet-config-xenosecretrolls:not(:checked) ~ .sheet-noshowxenoattacks {
+    display: block; 
+}
+.sheet-config-xenosecretrolls:not(:checked) ~ .sheet-showxenoattacks,
+.sheet-config-xenosecretrolls:checked ~ .sheet-noshowxenoattacks {
+    display: none; 
+}
 
 .sheet-xenohealth label.sheet-dark-teal-header {
     padding-right: 0;
