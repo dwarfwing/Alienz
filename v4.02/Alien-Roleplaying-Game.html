@@ -3331,19 +3331,16 @@
                 s = values.secret_roll,
                 api = values.config_apirolls; 
             var val = "";            
+            clog(`upgrading secret rolls. secret api: ${sa}, secret rolls : ${s}, api enabled : ${api}`);
             clog(`upgrading secret rolls. secret api: ${!!sa}, secret rolls : ${!!s}, api enabled : ${!!api}`);
-            if ( api == "on" || api == 1 || !api || !sa ) {
-                val = ( s == "1" || s == "/w gm") ? 1 : 0; 
+            if ( (api == "on" || api == 1) && typeof sa !== "undefined" ) {
+                val = ( sa == "1" || sa == "!alienrw" || sa == "w" ) ? 1 : 0; 
             } else {
-                val = ( sa != "1" || sa != "!alienrw" || sa != "w" ) ? 0 : 1;
+                val = ( s == "1" || s == "/w gm" ) ? 1 : 0;
             }
             clog(`secret roll new : ${val}`);   
-            var r = "", 
-                a = "!alienr";
-            if ( val == 1 || val == "1" ) {
-                r = "/w gm";
-                a = "!alienrw";
-            } 
+            const r = ( val == 1 || val == "1" ) ? "/w gm" : "", 
+                a = ( val == 1 || val == "1" ) ?"!alienrw" : "!alienr";
             clog(`Secret roll ${r}, secret api ${a}`);
             setAttrs({
                 secret_roll: val,
