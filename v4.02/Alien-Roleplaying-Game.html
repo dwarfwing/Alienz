@@ -323,7 +323,7 @@
                 Strength
             </button>
             <!-- <button class="roll-rolltemplate" type="action" name="act_strength">Strength</button> -->
-            <button type="roll" name="strength_api" class="teal-header bold attribute-button roll-api" value="@{roll_command} [Strength] [[ (@{strength}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[strength]">
+            <button type="roll" name="strength_api" class="teal-header bold attribute-button roll-api" value="@{roll_command_api} [Strength] [[ (@{strength}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[strength]">
                 &nbsp;<span >Strength</span>&nbsp;
             </button>
                 <!--span class="teal-header bold" data-i18n="strength-u">Strength</span-->
@@ -452,7 +452,7 @@
             </div>
             <button type="roll" name="wits" class="teal-header bold attribute-button roll-rolltemplate" data-i18n="wits-u" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Wits }} {{base-dice=[[@{wits} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}">
                 Wits</button>
-            <button type="roll" name="wits_api" class="teal-header bold attribute-button roll-api" value="@{roll_command} [Wits] [[ (@{wits}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[wits_api]">
+            <button type="roll" name="wits_api" class="teal-header bold attribute-button roll-api" value="@{roll_command_api} [Wits] [[ (@{wits}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[wits_api]">
                 &nbsp;<span >Wits</span>&nbsp;
             </button>
             
@@ -726,7 +726,7 @@
         
         <div class="grid-item span-five-six"> <!-- START OF ROW 12 -->
             <button type="roll" name="armor" class="button-skill roll-rolltemplate roll-api" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Armor Roll }} {{base-dice=[[@{armor} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" data-i18n="armor-u">Armor</button>
-            <!-- <button type="roll" name="armor_api" class="button-skill roll-api" data-i18n="armor-u" value="@{roll_command} [Armor] [[(@{armor}+?{Modifiers|0})d6]] [[0d6]] --runas|@{character_name}" title="[armor_api]">
+            <!-- <button type="roll" name="armor_api" class="button-skill roll-api" data-i18n="armor-u" value="@{roll_command_api} [Armor] [[(@{armor}+?{Modifiers|0})d6]] [[0d6]] --runas|@{character_name}" title="[armor_api]">
                 &nbsp;<span >Armor</span>&nbsp;
             </button> -->
             <div class="float-right">
@@ -1243,7 +1243,7 @@
         </div>
         <div class="grid-item span-eight-thru-ten span-row7 flex-row flex-content-end flex-items-align-center clip-edges w50pc">
             <button type="roll" name="ship_armor" class="button-skill pad-right roll-rolltemplate roll-api" value="@{roll_command} &{template:alien} {{character-name=@{ship-name} }} {{roll-name=Ship Armor }} {{base-dice=[[@{ship_armor} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }} " data-i18n="ship-armor-u" >Armor</button>
-            <!-- <button type="roll" name="ship_armor_api" class="button-skill pad-right roll-api" data-i18n="ship-armor-u" value="@{roll_command} [Ship Armor] [[(@{ship_armor}+?{Modifiers|0})d6]] [[0d6]] --runas|@{character_name}" title="[ship_armor_api]">
+            <!-- <button type="roll" name="ship_armor_api" class="button-skill pad-right roll-api" data-i18n="ship-armor-u" value="@{roll_command_api} [Ship Armor] [[(@{ship_armor}+?{Modifiers|0})d6]] [[0d6]] --runas|@{character_name}" title="[ship_armor_api]">
                 &nbsp;<span >Armor</span>&nbsp;
             </button> -->
             <div class="some-padding">
@@ -3332,14 +3332,23 @@
                 api = values.config_apirolls; 
             var val = "";            
             clog(`upgrading secret rolls. secret api: ${!!sa}, secret rolls : ${!!s}, api enabled : ${!!api}`);
-            if ( api != "on" || api != 1 || !api ) {
+            if ( api == "on" || api == 1 || !api || !sa ) {
                 val = ( s == "1" || s == "/w gm") ? 1 : 0; 
             } else {
-                val = ( sa == "1" || sa == "!alienrw" || sa == "w" ) ? 1 : 0;
+                val = ( sa != "1" || sa != "!alienrw" || sa != "w" ) ? 0 : 1;
             }
-            //clog(`secret roll new : ${val}`);
+            clog(`secret roll new : ${val}`);   
+            var r = "", 
+                a = "!alienr";
+            if ( val == 1 || val == "1" ) {
+                r = "/w gm";
+                a = "!alienrw";
+            } 
+            clog(`Secret roll ${r}, secret api ${a}`);
             setAttrs({
-                secret_roll: val
+                secret_roll: val,
+                roll_command: r,
+                roll_command_api: a
             });
         });  
     }
