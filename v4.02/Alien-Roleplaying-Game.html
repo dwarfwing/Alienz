@@ -199,7 +199,6 @@
                 </div>
                 <div class="roll-buttons beta-buttons">
                     <input class="panicdesc" type="checkbox" hidden name="attr_config_panicdesc">
-                    <input type="checkbox" hidden name="attr_config_panicdesc_t">
                     <button type="roll" class="button-skill button-beta panicdesc" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Panic Roll }} {{roll-dice=[[ 1d6 + @{stress} [ Stress ] ]] }}" name="panic" data-i18n-title="panic-desc" /><span data-i18n="panic-u">Panic</span></button>
                     <button type="roll" class="button-skill button-beta nopanicdesc" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Panic Roll }} {{panic-roll=[[ 1d6 + @{stress} [ Stress ] ]] }}" name="panic" data-i18n-title="panic-desc" /><span data-i18n="panic-u">Panic</span></button>
                     <button type="roll" class="button-skill button-beta" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Initiative: *Card Value* }} {{roll-dice=[[ ?{Card Number|0} &{tracker} ]] }}" name="initiative_card" data-i18n-title="initiative-card-desc" /><span data-i18n="initiative-card-u">Initiative: Card</span></button>
@@ -272,7 +271,6 @@
             </div>
             <div class="vertical-adjust-one cover-100-flex flex-nowrap flex-center flex-content-center">
                 <input type="checkbox" name="attr_config_healthcalculation" class="config-healthcalculation" hidden readonly /> 
-                <input type="checkbox" name="attr_config_healthcalculation_t" hidden readonly /> 
                 <input type="number" name="attr_health_max" hidden readonly />
                 <div class="flex-items-left health-bar health-manual">
                     <input type="checkbox" name="attr_health_1" value="1" class="numbered-box" title="@{health_1}"/><span title="1" ></span>
@@ -550,7 +548,6 @@
             </div>
             <div class="vertical-adjust-one">
                 <input type="checkbox" name="attr_config_gearrepeatingonly" hidden readonly class="gearrepeatingonly" />
-                <input type="checkbox" name="attr_config_gearrepeatingonly_t" hidden />
                 <input type="text" name="attr_gear_item_one" value="" class="text-inv" title="@{gear_item_one}" spellcheck="false" data-i18n-placeholder="item-1-place" placeholder="Item 1"/>
 				<input type="number" name="attr_total_wt_item_one" value="(@{num_item_one})*(@{wt_item_one})" class="sheet-spinner-input-total showencumbrance" disabled/>
                 <!-- <input type="number" name="attr_wt_item_one" value="0" class="sheet-spinner-input sheet-spinner-input-wt"/> -->
@@ -3044,7 +3041,7 @@
                             <span data-i18n="template-success" class="template-success">Success: </span>
                         </div>                    
                         <div class="template-grid-item template-span-half2">
-                            <span data-i18n="template-stress" class="template-stress">Stress: </span>
+                            <span data-i18n="template-stress" class="template-stress">Panic: </span>
                         </div>
                         {{/stress-dice}}
                         {{^stress-dice}}
@@ -3439,24 +3436,6 @@
             });
         });
     });
-
-    /*
-    const configs = ["config_advencumbrance", "config_apirolls", "config_initiativedice", "config_healthcalculation", "config_gearrepeatingonly", "config_squareinput", "config_optionalspinners", "config_spacebackground", "config_panicdesc"];
-    configs.forEach( (config) => {
-        const conf = config,
-            conf_t = config+"_t";
-        on(`change:${config} sheet:opened`, (eventInfo) => {
-            clog(`starting config backup for ${config}`);
-            getAttrs([conf], (values) => {
-                const c = values[config];
-                clog(`Setting temp attribute ${conf_t} to ${c}`);
-                setAttrs({
-                    [conf_t]: c
-                });
-            });
-        });
-    });
-    */
 
     // CALCULATE STRESS - HEALTH - RADIATION - VALUE FROM CHECKBOXES OR ATTRIBUTE
     const variableAttributes = ["stress","health","radiation"];
