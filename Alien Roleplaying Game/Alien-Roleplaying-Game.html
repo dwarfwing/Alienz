@@ -1980,57 +1980,64 @@
                 
                 <input class="expand" name="attr_xenoattack1_expand" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
                 <span></span>
-                <span></span>
-                <textarea name="attr_xenoattack1_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
-                <span></span>
 
                 <span></span>
                 <div class="sheet-expandable">
                     <!-- <button type="action" class="button-skill button-gamma button-copy" data-i18n="copy" data-i18n-title="Copy the fields from the entry above.">Copy</button> -->
                     <!-- <input type="checkbox" name="attr_xenoattack1_check" class="sheet-left"> -->
-                    <span class="sheet-left" data-i18n="dice">Dice</span>:
-                    <select name="attr_xenoattack1_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w60 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1d6">1d6</option>
-                        <option value="2d6">2d6</option>
-                        <option value="3d6">3d6</option>
-                        <option value="4d6">4d6</option>
-                        <option value="5d6">5d6</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="base">Base</span>:
-                    <select name="attr_xenoattack1_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="damage-u">Damage</span>:
-                    <select name="attr_xenoattack1_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="dice" title="Dice. This will make a separate roll with D6 that will be summed up." data-i18n-title="xeno-signature-dice">Dice</span>
+                        <select name="attr_xenoattack1_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w50 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1d6">1d6</option>
+                            <option value="2d6">2d6</option>
+                            <option value="3d6">3d6</option>
+                            <option value="4d6">4d6</option>
+                            <option value="5d6">5d6</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="base" data-i18n-title="xeno-signature-base" title="Base dice. This will make a roll using base dice, and count the successes (6s or Crosshair icons)." >Base</span>
+                        <select name="attr_xenoattack1_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="damage-u" data-i18n-title="xeno-signature-dmg" title="Base damage. This is the base damage of the attack. It may be increased by achieving stunts in the Base dice roll.">Damage</span>
+                        <select name="attr_xenoattack1_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>                    
                 </div>
                 <span></span>
+                <span></span>
+
+                <span></span>
+                <textarea name="attr_xenoattack1_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
                 <span></span>
 
                 
@@ -2045,57 +2052,64 @@
                 
                 <input class="expand" name="attr_xenoattack2_expand" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
                 <span></span>
-                <span></span>
-                <textarea name="attr_xenoattack2_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
-                <span></span>
 
                 <span></span>
                 <div class="sheet-expandable">
-                    <button type="action" name="act_attackcopy1" class="button-skill button-gamma button-copy" data-i18n="copy" data-i18n-title="Copy the fields from the entry above.">Copy</button>
+                    <button type="action" name="act_attackcopy1" class="button-skill button-gamma button-copy" data-i18n-title="Copy the fields from the entry above.">|</button>
                     <!-- <input type="checkbox" name="attr_xenoattack1_check" class="sheet-left"> -->
-                    <span class="sheet-left" data-i18n="dice">Dice</span>:
-                    <select name="attr_xenoattack2_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w60 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1d6">1d6</option>
-                        <option value="2d6">2d6</option>
-                        <option value="3d6">3d6</option>
-                        <option value="4d6">4d6</option>
-                        <option value="5d6">5d6</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="base">Base</span>:
-                    <select name="attr_xenoattack2_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="damage-u">Damage</span>:
-                    <select name="attr_xenoattack2_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="dice" title="Dice. This will make a separate roll with D6 that will be summed up." data-i18n-title="xeno-signature-dice">Dice</span>
+                        <select name="attr_xenoattack2_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w50 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1d6">1d6</option>
+                            <option value="2d6">2d6</option>
+                            <option value="3d6">3d6</option>
+                            <option value="4d6">4d6</option>
+                            <option value="5d6">5d6</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="base" data-i18n-title="xeno-signature-base" title="Base dice. This will make a roll using base dice, and count the successes (6s or Crosshair icons)." >Base</span>
+                        <select name="attr_xenoattack2_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="damage-u" data-i18n-title="xeno-signature-dmg" title="Base damage. This is the base damage of the attack. It may be increased by achieving stunts in the Base dice roll.">Damage</span>
+                        <select name="attr_xenoattack2_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>  
                 </div>
                 <span></span>
+                <span></span>
+
+                <span></span>
+                <textarea name="attr_xenoattack2_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
                 <span></span>
                 
                 <hr class="dotted-line span-one-thru-four">
@@ -2110,57 +2124,64 @@
                 
                 <input class="expand" name="attr_xenoattack3_expand" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
                 <span></span>
-                <span></span>
-                <textarea name="attr_xenoattack3_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
-                <span></span>
 
                 <span></span>
                 <div class="sheet-expandable">
-                    <button type="action" name="act_attackcopy2" class="button-skill button-gamma button-copy" data-i18n="copy" data-i18n-title="Copy the fields from the entry above.">Copy</button>
+                    <button type="action" name="act_attackcopy2" class="button-skill button-gamma button-copy" data-i18n-title="Copy the fields from the entry above.">|</button>
                     <!-- <input type="checkbox" name="attr_xenoattack1_check" class="sheet-left"> -->
-                    <span class="sheet-left" data-i18n="dice">Dice</span>:
-                    <select name="attr_xenoattack3_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w60 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1d6">1d6</option>
-                        <option value="2d6">2d6</option>
-                        <option value="3d6">3d6</option>
-                        <option value="4d6">4d6</option>
-                        <option value="5d6">5d6</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="base">Base</span>:
-                    <select name="attr_xenoattack3_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="damage-u">Damage</span>:
-                    <select name="attr_xenoattack3_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="dice" title="Dice. This will make a separate roll with D6 that will be summed up." data-i18n-title="xeno-signature-dice">Dice</span>
+                        <select name="attr_xenoattack3_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w50 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1d6">1d6</option>
+                            <option value="2d6">2d6</option>
+                            <option value="3d6">3d6</option>
+                            <option value="4d6">4d6</option>
+                            <option value="5d6">5d6</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="base" data-i18n-title="xeno-signature-base" title="Base dice. This will make a roll using base dice, and count the successes (6s or Crosshair icons)." >Base</span>
+                        <select name="attr_xenoattack3_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="damage-u" data-i18n-title="xeno-signature-dmg" title="Base damage. This is the base damage of the attack. It may be increased by achieving stunts in the Base dice roll.">Damage</span>
+                        <select name="attr_xenoattack3_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>  
                 </div>
                 <span></span>
+                <span></span>
+                
+                <span></span>
+                <textarea name="attr_xenoattack3_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
                 <span></span>
                 
                 <hr class="dotted-line span-one-thru-four">
@@ -2175,57 +2196,64 @@
                 
                 <input class="expand" name="attr_xenoattack4_expand" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
                 <span></span>
-                <span></span>
-                <textarea name="attr_xenoattack4_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
-                <span></span>
 
                 <span></span>
                 <div class="sheet-expandable">
-                    <button type="action" name="act_attackcopy3" class="button-skill button-gamma button-copy" data-i18n="copy" data-i18n-title="Copy the fields from the entry above.">Copy</button>
+                    <button type="action" name="act_attackcopy3" class="button-skill button-gamma button-copy" data-i18n-title="Copy the fields from the entry above.">|</button>
                     <!-- <input type="checkbox" name="attr_xenoattack1_check" class="sheet-left"> -->
-                    <span class="sheet-left" data-i18n="dice">Dice</span>:
-                    <select name="attr_xenoattack4_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w60 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1d6">1d6</option>
-                        <option value="2d6">2d6</option>
-                        <option value="3d6">3d6</option>
-                        <option value="4d6">4d6</option>
-                        <option value="5d6">5d6</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="base">Base</span>:
-                    <select name="attr_xenoattack4_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="damage-u">Damage</span>:
-                    <select name="attr_xenoattack4_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="dice" title="Dice. This will make a separate roll with D6 that will be summed up." data-i18n-title="xeno-signature-dice">Dice</span>
+                        <select name="attr_xenoattack4_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w50 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1d6">1d6</option>
+                            <option value="2d6">2d6</option>
+                            <option value="3d6">3d6</option>
+                            <option value="4d6">4d6</option>
+                            <option value="5d6">5d6</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="base" data-i18n-title="xeno-signature-base" title="Base dice. This will make a roll using base dice, and count the successes (6s or Crosshair icons)." >Base</span>
+                        <select name="attr_xenoattack4_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="damage-u" data-i18n-title="xeno-signature-dmg" title="Base damage. This is the base damage of the attack. It may be increased by achieving stunts in the Base dice roll.">Damage</span>
+                        <select name="attr_xenoattack4_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>  
                 </div>
                 <span></span>
+                <span></span>
+
+                <span></span>
+                <textarea name="attr_xenoattack4_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
                 <span></span>
                 
                 <hr class="dotted-line span-one-thru-four">
@@ -2240,57 +2268,64 @@
                 
                 <input class="expand" name="attr_xenoattack5_expand" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
                 <span></span>
-                <span></span>
-                <textarea name="attr_xenoattack5_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
-                <span></span>
 
                 <span></span>
                 <div class="sheet-expandable">
-                    <button type="action" name="act_attackcopy4" class="button-skill button-gamma button-copy" data-i18n="copy" data-i18n-title="Copy the fields from the entry above.">Copy</button>
+                    <button type="action" name="act_attackcopy4" class="button-skill button-gamma button-copy" data-i18n-title="Copy the fields from the entry above.">|</button>
                     <!-- <input type="checkbox" name="attr_xenoattack1_check" class="sheet-left"> -->
-                    <span class="sheet-left" data-i18n="dice">Dice</span>:
-                    <select name="attr_xenoattack5_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w60 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1d6">1d6</option>
-                        <option value="2d6">2d6</option>
-                        <option value="3d6">3d6</option>
-                        <option value="4d6">4d6</option>
-                        <option value="5d6">5d6</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="base">Base</span>:
-                    <select name="attr_xenoattack5_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="damage-u">Damage</span>:
-                    <select name="attr_xenoattack5_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="dice" title="Dice. This will make a separate roll with D6 that will be summed up." data-i18n-title="xeno-signature-dice">Dice</span>
+                        <select name="attr_xenoattack5_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w50 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1d6">1d6</option>
+                            <option value="2d6">2d6</option>
+                            <option value="3d6">3d6</option>
+                            <option value="4d6">4d6</option>
+                            <option value="5d6">5d6</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="base" data-i18n-title="xeno-signature-base" title="Base dice. This will make a roll using base dice, and count the successes (6s or Crosshair icons)." >Base</span>
+                        <select name="attr_xenoattack5_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="damage-u" data-i18n-title="xeno-signature-dmg" title="Base damage. This is the base damage of the attack. It may be increased by achieving stunts in the Base dice roll.">Damage</span>
+                        <select name="attr_xenoattack5_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>  
                 </div>
                 <span></span>
+                <span></span>
+                
+                <span></span>
+                <textarea name="attr_xenoattack5_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
                 <span></span>
                 
                 <hr class="dotted-line span-one-thru-four">
@@ -2305,57 +2340,64 @@
                 
                 <input class="expand" name="attr_xenoattack6_expand" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
                 <span></span>
-                <span></span>
-                <textarea name="attr_xenoattack6_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
-                <span></span>
 
                 <span></span>
                 <div class="sheet-expandable">
-                    <button type="action" name="act_attackcopy5" class="button-skill button-gamma button-copy" data-i18n="copy" data-i18n-title="Copy the fields from the entry above.">Copy</button>
+                    <button type="action" name="act_attackcopy5" class="button-skill button-gamma button-copy" data-i18n-title="Copy the fields from the entry above.">|</button>
                     <!-- <input type="checkbox" name="attr_xenoattack1_check" class="sheet-left"> -->
-                    <span class="sheet-left" data-i18n="dice">Dice</span>:
-                    <select name="attr_xenoattack6_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w60 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1d6">1d6</option>
-                        <option value="2d6">2d6</option>
-                        <option value="3d6">3d6</option>
-                        <option value="4d6">4d6</option>
-                        <option value="5d6">5d6</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="base">Base</span>:
-                    <select name="attr_xenoattack6_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                    </select>
-                    <span class="sheet-left" data-i18n="damage-u">Damage</span>:
-                    <select name="attr_xenoattack6_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
-                        <option value="0" selected default>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="dice" title="Dice. This will make a separate roll with D6 that will be summed up." data-i18n-title="xeno-signature-dice">Dice</span>
+                        <select name="attr_xenoattack6_dice" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w50 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1d6">1d6</option>
+                            <option value="2d6">2d6</option>
+                            <option value="3d6">3d6</option>
+                            <option value="4d6">4d6</option>
+                            <option value="5d6">5d6</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="base" data-i18n-title="xeno-signature-base" title="Base dice. This will make a roll using base dice, and count the successes (6s or Crosshair icons)." >Base</span>
+                        <select name="attr_xenoattack6_base" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box">
+                        <span class="sheet-left" data-i18n="damage-u" data-i18n-title="xeno-signature-dmg" title="Base damage. This is the base damage of the attack. It may be increased by achieving stunts in the Base dice roll.">Damage</span>
+                        <select name="attr_xenoattack6_dmg" class="sheet-select-input sheet-spinner-input sheet-weight sheet-showencumbrance sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>  
                 </div>
                 <span></span>
+                <span></span>
+                
+                <span></span>
+                <textarea name="attr_xenoattack6_desc" class="xeno-attack-input xeno-attack-desc span-two-three xeno-textfield sheet-expandable"></textarea>
                 <span></span>
                 
                 <hr class="dotted-line span-one-thru-four">
@@ -2780,13 +2822,13 @@
                 {{/rollGreater() panic-roll 14}}
 
                 <!-- ROLL INFO -->
-                {{^roll-dice}}
+
                 <div class="template-flex template-span-six ">
                     {{#current-bonus}}
                         <!-- {{#rollGreater() current-bonus 0}} -->
                         <div class="template-flex-item">
                         {{#current-damage}}{{#current-range}}<div class="flex-column">{{/current-range}}{{/current-damage}}
-                            <span data-i18n="template-bonus">Bonus:&nbsp; </span><span data-i18n-title="bonus-desc" title="Bonus dice"> {{current-bonus}} </span>
+                            <span data-i18n="template-bonus">Bonus:&nbsp; </span> <span data-i18n-title="bonus-desc" title="Bonus dice"> {{current-bonus}} </span>
                         {{#current-damage}}{{#current-range}}</div>{{/current-range}}{{/current-damage}}
                         </div>
                         <!-- {{/rollGreater() current-bonus 0}} -->
@@ -2795,7 +2837,7 @@
                         <!-- {{#rollGreater() current-dice 0}} -->
                         <div class="template-flex-item">
                             {{#current-damage}}{{#current-range}}<div class="flex-column">{{/current-range}}{{/current-damage}}
-                            <span data-i18n="template-dice">Dice:&nbsp;  </span><span data-i18n-title="bonus-desc" title="Bonus dice"> {{current-dice}} </span>
+                            <span data-i18n="template-dice">Dice:&nbsp;  </span> <span data-i18n-title="bonus-desc" title="Bonus dice"> {{current-dice}} </span>
                             {{#current-damage}}{{#current-range}}</div>{{/current-range}}{{/current-damage}}
                         </div>
                         <!-- {{/rollGreater() current-dice 0}} -->
@@ -2805,7 +2847,7 @@
                         <div class="template-flex-item">
                             {{#current-bonus}}{{#current-range}}<div class="flex-column">{{/current-range}}{{/current-bonus}}
                             {{#current-dice}}{{#current-range}}<div class="flex-column">{{/current-range}}{{/current-dice}}
-                            <span data-i18n="template-damage">Damage:&nbsp; </span><span data-i18n-title="base-damage-desc" title="Base damage"> {{current-damage}} </span>
+                            <span data-i18n="template-damage">Damage:&nbsp; </span> <span data-i18n-title="base-damage-desc" title="Base damage"> {{current-damage}} </span>
                             {{#current-bonus}}{{#current-range}}</div>{{/current-range}}{{/current-bonus}}
                             {{#current-dice}}{{#current-range}}</div>{{/current-range}}{{/current-dice}}
                         </div>
@@ -2815,46 +2857,7 @@
                         <div class="template-flex-item">{{current-range}} {{#current-bonus}}{{#current-damage}}<br />{{/current-damage}}{{/current-bonus}} range</div>
                     {{/current-range}}
                 </div>
-                {{/roll-dice}} 
-                <!-- Roll info for Xeno attacks, to cover for when roll-dice exists but is 0 -->
-                {{#roll-dice}}
-                {{#^rollGreater() roll-dice 0}}
-                <div class="template-flex template-span-six ">
-                    {{#current-bonus}}
-                        <!-- {{#rollGreater() current-bonus 0}} -->
-                        <div class="template-flex-item">
-                        {{#current-damage}}{{#current-range}}<div class="flex-column">{{/current-range}}{{/current-damage}}
-                            <span data-i18n="template-bonus">Bonus:&nbsp; </span><span data-i18n-title="bonus-desc" title="Bonus dice"> {{current-bonus}} </span>
-                        {{#current-damage}}{{#current-range}}</div>{{/current-range}}{{/current-damage}}
-                        </div>
-                        <!-- {{/rollGreater() current-bonus 0}} -->
-                    {{/current-bonus}}
-                    {{#current-dice}}
-                        <!-- {{#rollGreater() current-dice 0}} -->
-                        <div class="template-flex-item">
-                            {{#current-damage}}{{#current-range}}<div class="flex-column">{{/current-range}}{{/current-damage}}
-                            <span data-i18n="template-dice">Dice:&nbsp;  </span><span data-i18n-title="bonus-desc" title="Bonus dice"> {{current-dice}} </span>
-                            {{#current-damage}}{{#current-range}}</div>{{/current-range}}{{/current-damage}}
-                        </div>
-                        <!-- {{/rollGreater() current-dice 0}} -->
-                    {{/current-dice}}
-                    {{#current-damage}}
-                        <!-- {{#rollGreater() current-damage 0}} -->
-                        <div class="template-flex-item">
-                            {{#current-bonus}}{{#current-range}}<div class="flex-column">{{/current-range}}{{/current-bonus}}
-                            {{#current-dice}}{{#current-range}}<div class="flex-column">{{/current-range}}{{/current-dice}}
-                            <span data-i18n="template-damage">Damage:&nbsp; </span><span data-i18n-title="base-damage-desc" title="Base damage"> {{current-damage}} </span>
-                            {{#current-bonus}}{{#current-range}}</div>{{/current-range}}{{/current-bonus}}
-                            {{#current-dice}}{{#current-range}}</div>{{/current-range}}{{/current-dice}}
-                        </div>
-                        <!-- {{/rollGreater() current-damage 0}} -->
-                    {{/current-damage}}
-                    {{#current-range}}
-                        <div class="template-flex-item">{{current-range}} {{#current-bonus}}{{#current-damage}}<br />{{/current-damage}}{{/current-bonus}} range</div>
-                    {{/current-range}}
-                </div>
-                {{/^rollGreater() roll-dice 0}}
-                {{/roll-dice}}              
+            
                 
                 <!-- Begin Testing New Roll Template Logic-->
                 <div  class="template-grid-item template-grid template-span-six temaplate-transparent-bg">
@@ -3320,7 +3323,7 @@
                         <span data-i18n="template-success" class="template-success">Success: </span>
                     </div>                    
                     <div class="template-grid-item template-span-half2">
-                        <span data-i18n="template-stress" class="template-stress">Panic: </span>
+                        <span data-i18n="template-panic" class="template-stress">Panic: </span>
                     </div>
                     {{/rollGreater() stress-dice 0}}
                     {{^stress-dice}}
@@ -3336,7 +3339,7 @@
                         <span data-i18n="template-success" class="template-success">Success: </span>
                     </div>                    
                     <div class="template-grid-item template-span-half2">
-                        <span data-i18n="template-stress" class="template-stress">Panic: </span>
+                        <span data-i18n="template-panic" class="template-stress">Panic: </span>
                     </div>   
                     {{/stress-dice}}
                 {{/base-dice}}            
@@ -3498,7 +3501,7 @@
                             <span data-i18n="template-success" class="template-success">Success: </span>
                         </div>                    
                         <div class="template-grid-item template-span-half2">
-                            <span data-i18n="template-stress" class="template-stress">Panic: </span>
+                            <span data-i18n="template-panic" class="template-stress">Panic: </span>
                         </div>
                         {{/stress-dice}}
                         {{^stress-dice}}
@@ -3805,11 +3808,13 @@
     }
 
     // SIGNATURE ATTACKS
+    // Randomize attack button
     on('clicked:randomizeattack', async (ev) => {
         clog(`Starting randomized signature attack parsed roll`);
         await signatureAttack(ev);
         clog(`Completed randomized signature attack parsed roll`);
     });
+    // Randimze signature attacks
     const signatureAttack = async (ev) => {
         
         clog(`First event: ${JSON.stringify(ev)}`);
@@ -3826,10 +3831,9 @@
         clog(`First roll data: ${JSON.stringify(firstRoll)}`);
         clog(`First roll data: ${JSON.stringify(firstRoll.rolls)}`);
 
-        finishRoll(firstRoll.rollId, {
-            passthroughdata: rollEscape.escape(rollData),
-        });
+        finishRoll(firstRoll.rollId);
     }
+    // Copy the signature attack above, with a popup warning
     const copybuttons = ["attackcopy1","attackcopy2","attackcopy3","attackcopy4","attackcopy5",];
     copybuttons.forEach( async (button) => {
         on(`clicked:${button}`, async (eventInfo) => {
@@ -3931,6 +3935,7 @@
         clog(`Completed push roll`);
     });
     */
+    // END EXPERIMENTAL SPACE
 
     on('change:secret_roll', (ev) => {
         getAttrs(['secret_roll', 'roll_command', 'roll_command_api', ], (values) => {

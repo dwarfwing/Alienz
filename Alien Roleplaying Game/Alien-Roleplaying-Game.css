@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Graduate|Courier+Prime|Roboto|Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Graduate|Courier+Prime|Roboto|Share+Tech+Mono|Material+Icons&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap'); */
 /* ORIGINAL */
 
 .sheet-background-wrap{
@@ -436,14 +437,22 @@ input.sheet-tab-sheet[value="Xeno"] ~ .sheet-background-wrap {
 .charsheet div:hover + input.sheet-expand + span::before {
     opacity: 0.85;
 } */
-.charsheet input.sheet-expand + span + span + textarea.sheet-expandable,
-.charsheet input.sheet-expand + span + span + textarea + span + span + div.sheet-expandable {
+.charsheet input.sheet-expand + span + span + div.sheet-expandable,
+.charsheet input.sheet-expand + span + span + div + span + span + span + textarea.sheet-expandable {
     display: none;
 }
-.charsheet input.sheet-expand:checked + span + span + textarea.sheet-expandable,
-.charsheet input.sheet-expand:checked + span + span + textarea + span + span + div.sheet-expandable {
-    display: inline-block;
+.charsheet input.sheet-expand:checked + span + span + div.sheet-expandable,
+.charsheet input.sheet-expand:checked + span + span + div + span + span + span + textarea.sheet-expandable {
+    display: flex;
+    justify-content: flex-end;
 }
+div.sheet-expandable button[type="action"] {
+    font-family: 'Pictos';
+    border: 0;
+    font-size: 120%;
+    padding: 5px 10px 5px 10px;
+}
+
 
 /* - - - - - - - - - - AUTO EXPAND TEXTAREAS - - - - - - - - - - */
 .sheet-auto-expand {
@@ -522,6 +531,15 @@ input.sheet-tab-sheet[value="Xeno"] ~ .sheet-background-wrap {
     max-width: 100%;
     min-width: 100%;
     resize: vertical;
+}
+.sheet-xeno .sheet-xeno-attack div,
+.sheet-xeno .sheet-xeno-attack span,
+.sheet-xeno .sheet-xeno-attack button,
+.sheet-xeno .sheet-xeno-attack input {
+    align-self: baseline;
+}
+.sheet-xeno .sheet-xeno-attack .sheet-expandable button {
+    margin-top: 5px;
 }
 .sheet-xeno .sheet-xeno-attack textarea {
     min-height: 60px;
@@ -1637,6 +1655,32 @@ input.sheet-letter-box:checked + span::before {
     border: solid 1px #808080;
     box-shadow: 0px 0px 10px #008b8b;
 }
+.sheet-darker-rounded-box {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    background-color: rgb(185, 218, 193);
+    background-color: #008b8b; 
+    color: rgb(204, 217, 207);
+    border-radius: 6px;
+    border: 0;
+    margin: 2px 3px 2px 3px;
+}
+.sheet-darker-rounded-box span,
+.sheet-darker-rounded-box select,
+.sheet-darker-rounded-box select option {
+    color: rgb(204, 217, 207);
+    background-color: #008b8b; 
+    border: 0;
+    border-radius: 6px;
+}
+.sheet-darker-rounded-box span {
+    margin: 1px 0px 0px 5px;
+}
+.sheet-darker-rounded-box elect {
+    margin: 1px 5px 0px 0px;
+}
+
 
 /* CHARACTER HEALTH */
 
@@ -2235,7 +2279,7 @@ button[type="roll"].sheet-attribute-button:active {
 
 .sheet-template-xeno .sheet-template-flex-item,
 .sheet-rolltemplate-alien .sheet-template-flex-item {
-    display: flex;
+    -display: flex;
     width: 100%;
     background-color: rgba(259, 259, 259, 0.05);
     color: #ffffff;
@@ -2252,7 +2296,6 @@ button[type="roll"].sheet-attribute-button:active {
     display: flex; 
     flex-direction: column; 
 }
-
 
 .sheet-template-xeno .sheet-template-die,
 .sheet-rolltemplate-alien .sheet-template-die {
