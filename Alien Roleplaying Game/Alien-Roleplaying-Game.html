@@ -3996,8 +3996,8 @@
                 console.log("%c|*** Character Sheet Calculating Attribute Value Change ***|", "color:Black; background-color: LawnGreen");
                 console.log(eventinfo.sourceAttribute + " was activated by " + eventinfo.sourceType);
                 console.log("Previous Value: " + eventinfo.previousValue + " changed to a New Value of: " + eventinfo.newValue);
-                console.log(JSON.stringify(eventinfo));
-                console.log('checkbox names: ' + variableAttributeChecks.join(', '));
+                //console.log(JSON.stringify(eventinfo));
+                //console.log('checkbox names: ' + variableAttributeChecks.join(', '));
                 if (eventinfo.sourceAttribute == variableAttribute) {
                     // stress or health token bar change
                     const newValue = values[variableAttribute]*1||0;
