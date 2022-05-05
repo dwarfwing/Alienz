@@ -21,6 +21,9 @@
 <input class="squareinput" type="checkbox" hidden name="attr_config_squareinput">
 <input class="spacebackground" type="checkbox" hidden name="attr_config_spacebackground">
 <input class="optionalspinners" type="checkbox" hidden name="attr_config_optionalspinners">
+<input class="" type="hidden" hidden name="attr_roll_command" value="">
+<input class="" type="hidden" hidden name="attr_roll_command_api" value="!alienr">
+
 
 <div class="background-wrap">
     <div class="grid-container contains-fourteen-columns">
@@ -1126,7 +1129,11 @@
         </div> <!-- END OF ROW 15 -->
     </div>
 
+
+
     <!-------------------------------------------------------------------------------- SHIP TAB ----------------------------------------------------------------------------------------------------->
+
+
 
     <div class="grid-container ship contains-fourteen-columns">
         <!-- START OF ROW 1-5 --> 
@@ -1763,7 +1770,11 @@
 
     </div>
 
+
+
     <!----------------------------------------------------------------------------- XENO TAB --------------------------------------------------------------------------------------------------->
+
+
 
     <div class="grid-container xeno contains-eight-columns">
         <div class="span-row1 span-three-thru-six darkest-teal-header xeno-header xeno-header-name flex-self-center flex-content-center" -data-i18n="species-name">SPECIES</div>
@@ -1909,9 +1920,9 @@
 
         <div class="span-row3 span-five-thru-eight grid-item clip-edges no-border">
             <div class="black-floating-header-clipped no-border">
-                <span class="teal-header no-border" data-i18n="dice" >DICE</span>
+                <span class="teal-header no-border" data-i18n="roll-buttons-u" >ROLL BUTTONS</span>
             </div>
-            <div class="vertical-adjust-one">
+            <div>
                 <div class="roll-buttons">
                 <!-- <div class="cover-15 flex-column flex-self-right flex-self-align-start flex-content-center flex-wrap"> -->
                     <input type="checkbox" id="xenowhisper" class="button-skill button-beta xenowhisper" value="1" name="attr_secret_roll" hidden>
@@ -3937,7 +3948,8 @@
     */
     // END EXPERIMENTAL SPACE
 
-    on('change:secret_roll', (ev) => {
+    // SET SECRET ROLL 
+    on('change:secret_roll sheet:opened', (ev) => {
         getAttrs(['secret_roll', 'roll_command', 'roll_command_api', ], (values) => {
             clog(`Secret roll update: ${JSON.stringify(ev)}`);
             const s = values.secret_roll;

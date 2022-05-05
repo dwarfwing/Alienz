@@ -568,7 +568,7 @@ div.sheet-expandable button[type="action"] {
     line-height: inherit;
     border-right: 1px dashed rgba(0, 139, 139, 1); /* Dark Cyan #008b8b */
     padding: 0;
-    margin: 0 5px 0 0;
+    margin: 0 -1px 0 -5px;
 }
 
 .sheet-dotted-underline {
@@ -741,7 +741,9 @@ button[type="roll"].sheet-button-skill, button[type="action"].sheet-button-skill
 .sheet-vertical-adjust-two-more {
      margin-top: 12px;
 }
-
+.sheet-vertical-shift-one {
+    margin-top: -5px;
+}
 .sheet-vertical-balance {
      margin-top: 12px;
 }
