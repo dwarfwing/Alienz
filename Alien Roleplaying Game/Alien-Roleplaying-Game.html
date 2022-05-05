@@ -3873,7 +3873,7 @@
             clog(`Button id: ${id}, new id: ${newId}`);
             const confirm = await getQuery(`?{Are you sure you want to replace the attack ${id} with the data from ${id-1}? This action cannot be undone. |Yes,1|No,0}`);
             clog(`Copy confirmed? ${confirm}`);
-            if ( confirm ) {
+            if ( confirm == 1 ) {
                 const attrs = await asw.getAttrs([`xenoattack${id}_name`, `xenoattack${id}_desc`, `xenoattack${id}_dice`, `xenoattack${id}_base`, `xenoattack${id}_dmg`, `xenoattack${newId}_name`, `xenoattack${newId}_desc`, `xenoattack${newId}_dice`, `xenoattack${newId}_base`, `xenoattack${newId}_dmg`]);
                 //clog(JSON.stringify(attrs));
                 clog("Data before copy - name: "+attrs[`xenoattack${newId}_name`]+", dice: "+attrs[`xenoattack${newId}_dice`]+", base: "+attrs[`xenoattack${newId}_base`]+", damage: "+attrs[`xenoattack${newId}_dmg`]+", description: "+attrs[`xenoattack${newId}_desc`]);
