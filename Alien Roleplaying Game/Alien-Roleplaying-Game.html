@@ -1978,7 +1978,7 @@
                 <button type="action" name="act_expandattacks" class="dark-teal-header attack-control-label text-underline" title="Expand all" data-i18n-title="expand-all">Exp.</button>
                 &nbsp;<span class="dark-teal-header">/</span>&nbsp;
                 <button type="action" name="act_collapseattacks" class="dark-teal-header attack-control-label text-underline" title="Collapse all" data-i18n-title="collapse-all">Col.</button>             
-                <button type="action" class="button-skill button-gamma span-four signatureattack" name="act_randomizehostileattack" data-i18n="random-attack-u" data-i18n-title="random-signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Random Attack</button>
+                <button type="action" class="button-skill button-gamma span-four signatureattack" name="act_randomizeattack" data-i18n="random-attack-u" data-i18n-title="random-signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Random Attack</button>
             </div>
             <div class="align-right vertical-adjust-two-more flexlist xeno-attack xeno-textfield">
 
@@ -3847,8 +3847,8 @@
     // Randimze signature attacks
     const signatureAttack = async (ev) => {
         
-        clog(`First event: ${JSON.stringify(ev)}`);
-        clog(`Event name: ${ev.htmlAttributes.name}`);
+        //clog(`First event: ${JSON.stringify(ev)}`);
+        //clog(`Event name: ${ev.htmlAttributes.name}`);
 
         const attackId = Math.ceil(Math.random()*6); 
 
@@ -3858,29 +3858,29 @@
         const rollBase = `@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack${attackId}_name} }} {{roll-type=${attackId}}} {{current-comment=@{xenoattack${attackId}_desc} }} {{current-damage=@{xenoattack${attackId}_dmg} }} {{roll-dice-cmd=@{xenoattack${attackId}_dice} }} {{roll-dice=[[@{xenoattack${attackId}_dice}]] }} {{current-dice=@{xenoattack${attackId}_base} }} {{base-dice=[[@{xenoattack${attackId}_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}`;
         // Removed range from the command since it isnt sure it is needed: {{current-range=@{xenoattack${attackId}_range} }}
         const firstRoll = await startRoll(rollBase);
-        clog(`First roll data: ${JSON.stringify(firstRoll)}`);
-        clog(`First roll data: ${JSON.stringify(firstRoll.rolls)}`);
+        //clog(`First roll data: ${JSON.stringify(firstRoll)}`);
+        //clog(`First roll data: ${JSON.stringify(firstRoll.rolls)}`);
 
         finishRoll(firstRoll.rollId);
     }
-    // Copy the signature attack above, with a popup warning
+    // Copy a signature attack, with a popup alert to ensure data is not overwritten by mistake.
     const copybuttons = ["attackcopy1","attackcopy2","attackcopy3","attackcopy4","attackcopy5",];
     copybuttons.forEach( async (button) => {
         on(`clicked:${button}`, async (eventInfo) => {
-            clog(`Button eventinfo: ${JSON.stringify(eventInfo)}`);
+            //clog(`Button eventinfo: ${JSON.stringify(eventInfo)}`);
             let id = eventInfo.triggerName.slice(-1);
             let newId = int(id)+1; 
             clog(`Button id: ${id}, new id: ${newId}`);
-            const confirm = await getQuery(`?{Are you sure you want to replace the attack ${id} with the data from ${id-1}?|Yes,1|No,0}`);
-            clog(`Confirmed: ${confirm}`);
+            const confirm = await getQuery(`?{Are you sure you want to replace the attack ${id} with the data from ${id-1}? This action cannot be undone. |Yes,1|No,0}`);
+            clog(`Copy confirmed? ${confirm}`);
             if ( confirm ) {
-                const attrs = await asw.getAttrs([`xenoattack${id}_name`, `xenoattack${id}_desc`, `xenoattack${id}_dice`, `xenoattack${id}_base`, `xenoattack${id}_dmg`]);
-                clog(JSON.stringify(attrs));
-                clog(JSON.stringify(attrs[`xenoattack${id}_name`]));
-                clog(JSON.stringify(attrs[`xenoattack${id}_desc`]));
-                clog(JSON.stringify(attrs[`xenoattack${id}_dice`]));
-                clog(JSON.stringify(attrs[`xenoattack${id}_base`]));
-                clog(JSON.stringify(attrs[`xenoattack${id}_dmg`]));
+                const attrs = await asw.getAttrs([`xenoattack${id}_name`, `xenoattack${id}_desc`, `xenoattack${id}_dice`, `xenoattack${id}_base`, `xenoattack${id}_dmg`, `xenoattack${newId}_name`, `xenoattack${newId}_desc`, `xenoattack${newId}_dice`, `xenoattack${newId}_base`, `xenoattack${newId}_dmg`]);
+                //clog(JSON.stringify(attrs));
+                clog("Data before copy - name: "+attrs[`xenoattack${newId}_name`]+", dice: "+attrs[`xenoattack${newId}_dice`]+", base: "+attrs[`xenoattack${newId}_base`]+", damage: "+attrs[`xenoattack${newId}_dmg`]+", description: "+attrs[`xenoattack${newId}_desc`]);
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_desc`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_dice`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_base`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_dmg`]));
                 /* Set attributes for new attack */
                 await asw.setAttrs({
                     [`xenoattack${newId}_name`]: attrs[`xenoattack${id}_name`],
@@ -4003,7 +4003,7 @@
                     const newValue = values[variableAttribute]*1||0;
                     const setAttributeValuesAttrs = variableAttributeChecks.reduce((final,item,index) => {
                         final[item] = (index < newValue ? 1: 0);  // index will be 0 to 9, so we use < instead of <=
-                        console.log(`Setting Attribute Values: ${item} = ${index < newValue ? 1: 0}`);
+                        //console.log(`Setting Attribute Values: ${item} = ${index < newValue ? 1: 0}`);
                         return final;
                     },{});
                     setAttrs(setAttributeValuesAttrs, {silent: true});
@@ -4011,7 +4011,7 @@
                     const attributeTotal = variableAttributeChecks.reduce((total,item) => total + values[item] *1||0, 0);
                     const setAttributeFinalAttrs = {};
                     setAttributeFinalAttrs[variableAttribute] = attributeTotal;
-                    console.log("Setting Attribute Values: " + attributeTotal);
+                    //console.log("Setting Attribute Values: " + attributeTotal);
                     setAttrs(setAttributeFinalAttrs, {silent: true});
                 }
             });
