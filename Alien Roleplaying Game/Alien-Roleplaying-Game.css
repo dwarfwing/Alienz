@@ -1966,7 +1966,7 @@ input.sheet-xenohealth20:checked + label.sheet-xenohealth ~ .sheet-xenohealth {
     height: 14px;
     line-height: 14px;
     width: fit-content;
-    margin: 0px 1px;
+    margin: 4px -1px 0 0;
     padding: 2px 3px;
     background-color: transparent;
     border: 1px solid #008b8b;
@@ -1974,7 +1974,6 @@ input.sheet-xenohealth20:checked + label.sheet-xenohealth ~ .sheet-xenohealth {
     background-image: none;
     display: inline;
     text-shadow: none;
-    margin-top: 0;
     cursor: pointer;
 }
 .sheet-xeno .sheet-roll-buttons input[type="checkbox"].sheet-xenowhisper:checked + label.sheet-xenowhisper {
@@ -1984,6 +1983,7 @@ input.sheet-xenohealth20:checked + label.sheet-xenohealth ~ .sheet-xenohealth {
 .charsheet div.sheet-xeno div.sheet-roll-buttons button[type="roll"].sheet-button-alpha,
 .charsheet div.sheet-xeno div.sheet-roll-buttons button[type="roll"].sheet-button-beta {
     width: fit-content;
+    margin: 4px -1px;
 }
 .sheet-xeno .sheet-armor {
     display: grid;
