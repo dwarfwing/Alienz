@@ -92,13 +92,14 @@ input.sheet-tab-sheet[value="Xeno"] ~ .sheet-background-wrap {
     z-index: 5;
 }
 
-
 .sheet-roll-buttons{
     display: grid;
     text-align: center;
     grid-gap: 5px;
 }
-
+div.sheet-roll-buttons + hr.sheet-dotted-line {
+    margin: 3px;
+}
 .sheet-alpha-buttons{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
@@ -108,7 +109,61 @@ input.sheet-tab-sheet[value="Xeno"] ~ .sheet-background-wrap {
     
 }
 .sheet-gamma-buttons{
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50px 2fr 1.5fr 1.5fr 1fr;
+    margin-top: 5px;
+}
+.sheet-gamma-buttons input.sheet-text-input {
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 12px;
+    height: 21px;
+    color: #008b8b;
+    text-align: center;
+    border: 1.5px solid #008b8b;
+    border-radius: 5px;
+}
+.sheet-gamma-buttons button[type="action"] {
+    border: 1.5px solid #008b8b;
+}
+.sheet-gamma-buttons span.sheet-roll-option-frame,
+.sheet-radiation span.sheet-roll-option-frame {
+    display: inline-block; 
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 12px;
+    height: 18px;
+    border: 1.5px solid #008b8b;
+    border-radius: 5px;
+    color: #008b8b;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;
+}
+.sheet-gamma-buttons span.sheet-roll-option-frame select,
+.sheet-gamma-buttons span.sheet-roll-option-frame select option,
+.sheet-radiation span.sheet-roll-option-frame select,
+.sheet-radiation span.sheet-roll-option-frame select option {
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 12px;
+    height: 18px;
+    border: 0;
+    background-color: rgba(204, 217, 207, 1);
+    color: #008b8b;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;
+}
+.sheet-gamma-buttons span.sheet-roll-option-frame select:focus-visible,
+.sheet-radiation span.sheet-roll-option-frame select:focus-visible {
+    border: 0; 
+    outline: 0;
+}
+.sheet-gamma-buttons button[type="action"].sheet-button-gamma {
+    padding: 2px 3px;
+    margin: 0px 3px 0px 3px;
 }
 
 .sheet-span-one-two { grid-column: 1 / 3;}
@@ -169,6 +224,7 @@ input.sheet-tab-sheet[value="Xeno"] ~ .sheet-background-wrap {
 .sheet-span-modules {    grid-row: 1 / 9;}
 .sheet-span-log {    grid-row: 1 / 9;}
 .sheet-span-relationships {    grid-row: 3 / 5;}
+.sheet-span-rollbuttons {    grid-row: 3 / 5;}
 .sheet-span-radiation {    grid-row: 7 / 9;}
 .sheet-span-critical-injuries {    grid-row: 9 / 11;}
 .sheet-span-gear {    grid-row: 10 / 16;}
@@ -483,7 +539,7 @@ div.sheet-expandable button[type="action"] {
 	left: 0;
 	margin: 0;
 	overflow: hidden;
-	resize: none;
+	resize: unset;
 	height: 100%;
 	width: 100%;
 	display: block;
@@ -498,7 +554,7 @@ div.sheet-expandable button[type="action"] {
 	padding: inherit;
 	text-align: inherit;
 	text-transform: inherit;
-    
+    max-height: 100px;
 }
 .sheet-span-tinyitems .sheet-auto-expand textarea,
 .sheet-tab-content .sheet-auto-expand textarea {
@@ -506,13 +562,13 @@ div.sheet-expandable button[type="action"] {
     top: unset;
     left: unset;
     margin: unset; 
-    resize: unset; 
+    resize: vertical; 
     max-width: 100%;
     min-width: 100%;
     overflow-y: auto;
 }
 .sheet-tab-content .sheet-auto-expand textarea {
-    min-height: 100px;
+    min-height: 75px;
 }
 .sheet-span-armaments .sheet-auto-expand textarea,
 .sheet-span-weapons .sheet-auto-expand textarea {
@@ -560,6 +616,9 @@ div.sheet-expandable button[type="action"] {
 
 .sheet-dotted-line {
     height: 0px;
+    border-top: 0; 
+    border-right: 0; 
+    border-left: 0;
     border-bottom: 1px dashed rgba(0, 139, 139, 1); /* Dark Cyan #008b8b */
     padding: 0px;
     margin: 3px;
@@ -743,6 +802,9 @@ button[type="roll"].sheet-button-skill, button[type="action"].sheet-button-skill
 }
 .sheet-vertical-shift-one {
     margin-top: -5px;
+}
+.sheet-vertical-shift-one-more {
+    margin-top: -10px;
 }
 .sheet-vertical-balance {
      margin-top: 12px;
@@ -1228,10 +1290,77 @@ input[type="number"].sheet-small {
     height: 18px;
 }
 
+.sheet-popout-container {
+    position: relative; 
+    z-index: 49; 
+    right: 15px;
+    width: 0px;
+}
+/* .charsheet div.sheet-popout-container div.sheet-skill-modifier, */
+.charsheet div.sheet-popout-container div.sheet-skill-modifier {
+    display: flex; 
+    position: absolute; 
+    top: 0px;
+    left: 0;
+    z-index: 50;
+    width: 56px;
+    justify-content: center;
+}
+div.sheet-popout-container div.sheet-skill-modifier button {
+    display: none; 
+    width: 15px;
+    height: 15px;
+    line-height: 7px;
+    font-size: 8px;
+    padding: 0;
+}
+div.sheet-popout-container div.sheet-skill-modifier span.sheet-no-spin-input {
+    display: none; 
+    width: 15px;
+    height: 15px;
+    line-height: 17px;
+    font-size: 8px; 
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    align-content: center;
+    background-color: White;
+    border: 1px solid White;
+    -margin: -1px -2px;
+    -padding: 3px 0px 0px 0px;
+    -border-radius: 50%;
+    box-shadow: 1px 1px 2px rgb(0 139 139), -1px -1px 2px rgb(0 139 139), 1px 1px 3px white, -1px -1px 3px white;
+}
+/* div.sheet-skill div.sheet-float-left ~ div.sheet-popout-container div.sheet-skill-modifier,
+div.sheet-popout-container div.sheet-skill-modifier, */
+/* div.sheet-skill div.sheet-float-left:hover ~ div.sheet-popout-container div.sheet-skill-modifier, */
+div.sheet-skill div.sheet-float-left:hover div.sheet-popout-container div.sheet-skill-modifier span.sheet-no-spin-input,
+div.sheet-skill div.sheet-float-left:hover div.sheet-popout-container div.sheet-skill-modifier button.sheet-no-spin-input,
+div.sheet-skill div.sheet-float-right:hover div.sheet-popout-container div.sheet-skill-modifier span.sheet-no-spin-input,
+div.sheet-skill div.sheet-float-right:hover div.sheet-popout-container div.sheet-skill-modifier button.sheet-no-spin-input,
+div.sheet-popout-container div.sheet-skill-modifier:hover span.sheet-no-spin-input,
+div.sheet-popout-container div.sheet-skill-modifier:hover button.sheet-no-spin-input {
+    display: inline-block;
+}
+/*
+ input[type="checkbox"].sheet-skill-modifier-plus + span::before, 
+ input[type="checkbox"].sheet-skill-modifier-plus + span::before {
+    content: " ";
+}*/
+input[type="checkbox"].sheet-skill-modifier-plus:checked + span::before {
+   content: "+";
+}
+input[type="checkbox"].sheet-skill-modifier-viz:checked ~ span.sheet-no-spin-input,
+input[type="checkbox"].sheet-skill-modifier-viz:checked ~ span.sheet-no-spin-input span {
+    display: flex !important;
+    left: 15px;
+}
+
 /* ACTION BUTTONS FOR TABULAR SHEET */
 button[type="action"].sheet-action-tab {
-    width: 20%;
-    height: 10px;
+    /* width: 20%; */
+    height: 9px;
     background-color: transparent;
     border: 1px solid rgba(105, 105, 105, 0.33);
     border-radius: 5px;
@@ -1239,7 +1368,11 @@ button[type="action"].sheet-action-tab {
     line-height: 12px;
     /*color: rgba(105, 105, 105, 0.33);*/
 	color: #008b8b;
-    padding: 0px 0px 2px 0px;    
+    /* padding: 0px 0px 2px 0px;  */
+    /* overflow: hidden;  */ 
+    width: fit-content;
+    /* max-width: 24%; */
+    padding: 0 10px 3px 10px; 
 }
 /* Firefox specific modification */
 @supports (-moz-appearance:none) {
@@ -1303,8 +1436,12 @@ div.sheet-tab-content {
     height: fit-content;
 }
 .sheet-span-talents div.sheet-tab-content {
-    margin-top: 30px;
+    -margin-top: 30px;
 }
+.sheet-span-talents div.sheet-talent-tabs {
+    line-height: 20px;
+}
+
 div.sheet-tab-content textarea {
     min-height: 50px;
     max-height: 100px;
@@ -1313,6 +1450,118 @@ div.sheet-tab-content textarea {
 div.sheet-box-under-the-bed { 
     display: none;
 }
+.sheet-span-talents .sheet-tab-content .sheet-talent-roll {
+    display: flex;
+    justify-content: flex-start;
+}
+.sheet-span-talents .sheet-tab-content .sheet-talent-roll .sheet-darker-rounded-box {
+    height: auto;
+    padding: 2px 3px 0px 2px;
+}
+.sheet-span-talents .sheet-tab-content .sheet-talent-roll select {
+    padding: 0 3px;
+    clip-path: polygon(4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px), 0 4px);
+    border-radius: unset;
+    height: fit-content;
+}
+.sheet-span-talents .sheet-talent-roll-box {
+    accent-color: #008b8b;
+    align-self: center;
+}
+.sheet-span-talents div.sheet-talent-roll label {
+    padding: 0 3px;
+    line-height: 16px; 
+    height: 16px;
+}
+.charsheet div.sheet-talent-roll label.sheet-talent-stress-excl {
+/*     background: transparent;
+    border: 1.5px solid #008b8b; */
+    text-decoration: line-through;
+/*     color: #008b8b;
+    box-sizing: border-box; */
+}
+.sheet-span-talents div.sheet-talent-roll :is(span,label,button,select,option) {
+    font-size: 10px;
+}
+.sheet-span-talents .sheet-tab-content div.sheet-talent-roll div.sheet-darker-rounded-box,
+.sheet-span-talents .sheet-tab-content div.sheet-talent-roll label.sheet-darker-rounded-box {
+    line-height: 16px; 
+    height: 16px;
+}
+.sheet-span-talents div.sheet-talent-roll label span.sheet-icon {
+    font-family: Pictos;
+    padding: 0; 
+    margin: 0; 
+}
+.sheet-darker-rounded-box span.sheet-icon + span {
+    margin: 1px 3px 0px 2px;
+    height: 1.4em;
+}
+input.sheet-talent-type:checked ~ div.sheet-talent-roll label.sheet-talent-type-skill,
+input.sheet-talent-type:not(:checked) ~ div.sheet-talent-roll label.sheet-talent-type-supply {
+    display: block;
+}
+input.sheet-talent-type:not(:checked) ~ div.sheet-talent-roll label.sheet-talent-type-skill,
+input.sheet-talent-type:checked ~ div.sheet-talent-roll label.sheet-talent-type-supply {
+    display: none;
+}
+div.sheet-talent-roll input.sheet-talent-stress-box:checked ~ label.sheet-talent-stress-incl,
+div.sheet-talent-roll input.sheet-talent-stress-box:not(:checked) ~ label.sheet-talent-stress-excl {
+    display: block;
+}
+div.sheet-talent-roll input.sheet-talent-stress-box:not(:checked) ~ label.sheet-talent-stress-incl,
+div.sheet-talent-roll input.sheet-talent-stress-box:checked ~ label.sheet-talent-stress-excl {
+    display: none;
+}
+input.sheet-talent-type:checked ~ div.sheet-talent-roll .sheet-talent-attribute,
+input.sheet-talent-type:checked ~ div.sheet-talent-roll .sheet-talent-skill,
+input.sheet-talent-type:checked ~ div.sheet-talent-roll .sheet-talent-stress,
+input.sheet-talent-type:not(:checked) ~ div.sheet-talent-roll .sheet-talent-supply {
+    display: flex;
+}
+input.sheet-talent-type:not(:checked) ~ div.sheet-talent-roll .sheet-talent-attribute,
+input.sheet-talent-type:not(:checked) ~ div.sheet-talent-roll .sheet-talent-skill,
+input.sheet-talent-type:not(:checked) ~ div.sheet-talent-roll .sheet-talent-stress,
+input.sheet-talent-type:checked ~ div.sheet-talent-roll .sheet-talent-supply {
+    display: none;
+}
+input.sheet-talent-roll-box:not(:checked) ~ div select,
+input.sheet-talent-roll-box:not(:checked) ~ label,
+input.sheet-talent-roll-box:not(:checked) ~ label span,
+input.sheet-talent-roll-box:not(:checked) ~ input,
+input.sheet-talent-roll-box:not(:checked) ~ div {
+    /* display: none;  */
+    pointer-events: none;
+    background-color: #b6b6b6;
+}
+div.sheet-span-talents span.sheet-talent-roll-btn button.sheet-button-skill {
+    width: fit-content; 
+    margin: 0 2px;
+}
+div.sheet-span-talents div.sheet-tab-content input[type="text"].sheet-text-input {
+    text-align: center; 
+}
+input.sheet-talent-roll-active:checked ~ input[type="text"] {
+    width: calc(100% - 60px);
+}
+div.sheet-span-talents div.sheet-tab-content input.sheet-talent-roll-active:not(:checked) ~ .sheet-talent-roll-btn,
+div.sheet-span-talents div.sheet-tab-content input.sheet-talent-roll-active:checked + 
+    input.sheet-talent-type:checked ~ span.sheet-talent-roll-btn .sheet-talent-roll-supply,
+div.sheet-span-talents div.sheet-tab-content input.sheet-talent-roll-active:checked + 
+    input.sheet-talent-type:not(:checked) ~ span.sheet-talent-roll-btn .sheet-talent-roll-skill {
+    display: none;
+}
+div.sheet-span-talents div.sheet-tab-content input.sheet-talent-roll-active:checked + 
+    input.sheet-talent-type:checked ~ 
+    span .sheet-talent-roll-skill {
+    display: inline-block; 
+}
+div.sheet-span-talents div.sheet-tab-content input.sheet-talent-roll-active:checked + 
+    input.sheet-talent-type:not(:checked) ~ 
+    span .sheet-talent-roll-supply {
+    display: inline-block; 
+} 
+
 
 input.sheet-advencumbrance:checked ~ div .sheet-encumbrance_calc, 
 input.sheet-advencumbrance:not(:checked) ~ div .sheet-encumbrance_manual {
@@ -1661,26 +1910,46 @@ input.sheet-letter-box:checked + span::before {
     display: flex;
     flex-direction: row;
     width: fit-content;
-    background-color: rgb(185, 218, 193);
+    /* background-color: rgb(185, 218, 193); */
     background-color: #008b8b; 
     color: rgb(204, 217, 207);
     border-radius: 6px;
     border: 0;
-    margin: 2px 3px 2px 3px;
+    margin: 2px 0px 2px 3px;
+    align-items: baseline;
 }
 .sheet-darker-rounded-box span,
 .sheet-darker-rounded-box select,
-.sheet-darker-rounded-box select option {
+.sheet-darker-rounded-box select option,
+label.sheet-darker-rounded-box {
     color: rgb(204, 217, 207);
     background-color: #008b8b; 
     border: 0;
     border-radius: 6px;
+    -padding-bottom: 2px;
+    margin-bottom: 2px; 
+    font-weight: normal;
+    font-family: 'Roboto';
+    font-size: 12px;  
+    height: 20px;
 }
+.sheet-talent-roll label.sheet-talent-type-skill, 
+.sheet-talent-roll label.sheet-talent-type-supply {
+    display: block; 
+    text-align: center; 
+    padding: 0 3px;
+    width: 42px;
+    cursor: pointer; 
+}
+.sheet-darker-rounded-box select:focus,
+.sheet-darker-rounded-box select option:focus,
+.sheet-darker-rounded-box select:active,
+.sheet-darker-rounded-box select option:active {
+    outline: none;
+    box-shadow: 0px 0px 10px #008b8b;
+} 
 .sheet-darker-rounded-box span {
     margin: 1px 0px 0px 5px;
-}
-.sheet-darker-rounded-box elect {
-    margin: 1px 5px 0px 0px;
 }
 
 
@@ -2087,6 +2356,7 @@ button[type="roll"].sheet-button-alpha:before, button[type="roll"].sheet-button-
 
 label.sheet-button-skill,
 button.sheet-button-skill,
+button[type="action"].sheet-button-skill,
 button[type="roll"].sheet-button-skill {
     height: 14px;
     line-height: 14px;
@@ -2102,6 +2372,7 @@ button[type="roll"].sheet-button-skill {
 
 label.sheet-button-skill:hover,
 button.sheet-button-skill:hover,
+button[type="action"].sheet-button-skill:hover,
 button[type="roll"].sheet-button-skill:hover {
     color: rgb(204, 217, 207); /* Teal Varient */
     background-color: rgba(0, 139, 139, 1); /* Dark Cyan #008b8b */
@@ -2110,6 +2381,7 @@ button[type="roll"].sheet-button-skill:hover {
 }
 label.sheet-button-skill:active,
 button.sheet-button-skill:active,
+button[type="raction"].sheet-button-skill:active,
 button[type="roll"].sheet-button-skill:active {
     color: rgb(204, 217, 207); /* Teal Varient */
     background-color: #008b8b; /* Dark Cyan #008b8b */

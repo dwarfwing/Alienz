@@ -89,7 +89,7 @@
             <input type="radio" class="sheet-tab sheet-tab-six" name="attr_tab" value="6" />
             <input type="radio" class="sheet-tab sheet-tab-seven" name="attr_tab" value="7" />
             <input type="radio" class="sheet-tab sheet-tab-eight" name="attr_tab" value="8" />
-            <div class="skinny-div">
+            <div class="talent-tabs">
                 <button type="action" name="act_tab_one" class="action-tab action-tab-one" value="1"><span name="attr_tal_one"></span></button>
                 <button type="action" name="act_tab_two" class="action-tab action-tab-two" value="2"><span name="attr_tal_two"></span></button>
                 <button type="action" name="act_tab_three" class="action-tab action-tab-three" value="3"><span name="attr_tal_three"></span></button>
@@ -111,7 +111,100 @@
                 </div>
             </div>
             <div class="tab-content tab-two-contents"> <!--TAB 2 TALENT -->
+                <input type="checkbox" name="attr_talent_two_roll" class="talent-roll-active" hidden />
+                <input type="checkbox" id="talent2type" name="attr_talent_two_type" class="talent-type" checked hidden />
                 <input type="text" name="attr_talent_two" value="" class="text-input" title="@{talent_two}" spellcheck="false" data-i18n-placeholder="talent-two-name.place" placeholder="Talent Two Name"/>
+                <span class="talent-roll-btn roll-rolltemplate">
+                    <button type="roll" name="" class="talent-roll-skill button-skill button-gamma roll-rolltemplate" value="/r [[(@{talent_two_attr} + @{talent_two_skill} + @{talent_two_mod})d6]] [[@{talent_two_stress}d6]]">Skill</button>
+                    <button type="roll" name="" class="talent-roll-supply button-skill button-gamma roll-rolltemplate" value="/r [[1d6 + (@{talent_two_supply}+@{talent_two_mod}-1)d6]]">Supply</button>
+                </span>
+                <span class="talent-roll-btn roll-api">
+                    <button type="roll" name="" class="talent-roll-skill button-skill button-gamma" value="">Skill</button>
+                    <button type="roll" name="" class="talent-roll-supply button-skill button-gamma" value="">Supply</button>
+                </span>                
+                <div class="sheet-talent-roll">
+                    <!-- <button type="action" class="button-skill button-gamma button-copy" data-i18n="copy" data-i18n-title="Copy the fields from the entry above.">Copy</button> -->
+                    <!-- <div class="darker-rounded-box"> -->
+                        <!-- <span class="sheet-left" data-i18n="attribute-abbr" title="" data-i18n-title="">Attr</span> -->
+<!--                         <select name="attr_talent_two_type" class="sheet-select-input sheet-w50 sheet-left">
+                            <option value="0" selected default>None</option>
+                            <option value="1">Skill</option>
+                            <option value="2">Supply</option>
+                        </select> -->
+                    <input type="checkbox" name="attr_talent_two_roll" class="talent-roll-box" />
+                    <label for="talent2type" class="darker-rounded-box talent-type-btn talent-type-skill"><span class="icon">0</span><span>Skill</span></label>
+                    <label for="talent2type" class="darker-rounded-box talent-type-btn talent-type-supply"><span class="icon">0</span><span>Supply</span></label>
+                    <!-- </div> -->
+                    <!-- <input type="checkbox" name="attr_talent_two_type" class="talent-type" hidden /> -->
+                    <!-- <button type="action" class="button-skill button-gamma button-copy" data-i18n="copy" data-i18n-title="Copy the fields from the entry above.">Copy</button> -->
+                    <div class="darker-rounded-box talent-attribute">
+                        <!-- <span class="sheet-left" data-i18n="attribute-abbr" title="" data-i18n-title="">Attr</span> -->
+                        <select name="attr_talent_two_attr" class="sheet-select-input sheet-w50 sheet-left">
+                            <option value="0" selected default hidden>Attr</option>
+                            <option value="0">---</option>
+                            <option value="@{strength}">STR</option>
+                            <option value="@{agility}">AGI</option>
+                            <option value="@{wits}">WIT</option>
+                            <option value="@{empathy}">EMP</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box talent-skill">
+                        <!-- <span class="sheet-left" data-i18n="skill-abbr" data-i18n-title="" title="" >Skill</span> -->
+                        <select name="attr_talent_two_skill" class="sheet-select-input sheet-w100 sheet-left">
+                            <option value="0" selected default hidden>Skill</option>
+                            <option value="0">---</option>
+                            <option value="@{close_combat}">Close Combat</option>
+                            <option value="@{stamina}">Stamina</option>
+                            <option value="@{heavy_machinery}">Heavy Machinery</option>
+                            <option value="@{ranged_combat}">Ranged Combat</option>
+                            <option value="@{mobility}">Mobility</option>
+                            <option value="@{piloting}">Piloting</option>
+                            <option value="@{observation}">Observation</option>
+                            <option value="@{survival}">Survival</option>
+                            <option value="@{comtech}">Comtech</option>
+                            <option value="@{manipulation}">Manipulation</option>
+                            <option value="@{command}">Command</option>
+                            <option value="@{medical_aid}">Medical Aid</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box talent-supply">
+                        <!-- <span class="sheet-left" data-i18n="skill-abbr" data-i18n-title="" title="" >Skill</span> -->
+                        <select name="attr_talent_two_supply" class="sheet-select-input sheet-w120 sheet-left">
+                            <option value="0" selected default hidden>Supply</option>
+                            <option value="0">---</option>
+                            <option value="@{air}">Air supply</option>
+                            <option value="@{food}">Food supply</option>
+                            <option value="@{water}">Water supply</option>
+                            <option value="@{power}">Power supply</option>
+                        </select>
+                    </div>
+                    <div class="darker-rounded-box talent-mod">
+                        <!-- <span class="sheet-left" data-i18n="modifier-abbr" data-i18n-title="" title="">Mod</span> -->
+                        <select name="attr_talent_two_mod" class="sheet-select-input sheet-w50 sheet-left">
+                            <option value="-4">-4</option>
+                            <option value="-3">-3</option>
+                            <option value="-2">-2</option>
+                            <option value="-1">-1</option>
+                            <option value="0" selected default hidden>Mod</option>
+                            <option value="0">0</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                            <option value="3">+3</option>
+                            <option value="4">+4</option>
+                            <option value="5">+5</option>
+                            <option value="6">+6</option>
+                        </select>
+                    </div>
+                    <input type="checkbox" id="talent2stress" name="attr_talent_two_stress" class="talent-stress-box" value="@{stress}" hidden checked />
+                    <label for="talent2stress" class="darker-rounded-box talent-type-btn talent-stress-incl">Stress</label>
+                    <label for="talent2stress" class="darker-rounded-box talent-type-btn talent-stress-excl">Stress</label>
+                     
+                    <!-- <div class="darker-rounded-box talent-stress" data-i18n-title="stress">
+                        <input type="checkbox" name="attr_talent_two_stress" value="@{stress}" checked class="talent-roll-box" data-i18n-title="stress-included" title="Includes Stress dice. By ticking this box the roll for the talent will also include the current Stress dice, which is normal for most rolls." />
+                    </div> -->     
+                </div>
+
+                
                 <div class="auto-expand">
                     <!-- <span name="attr_talent_two_description"></span> -->
                     <textarea name="attr_talent_two_description" value="" data-i18n-placeholder="talent-two-description.place" placeholder="Talent Two Description..." title="@{talent_two_description}" spellcheck="false" ></textarea>
@@ -188,7 +281,7 @@
                 <input type="text" name="attr_rival" value="" class="relationship-input text-input"  spellcheck="false"  data-i18n-placeholder="none-place" placeholder="None" title="@{rival}" />
             </div>
         </div>
-        <div class="grid-item span-five-thru-nine span-relationships">
+        <div class="grid-item span-five-thru-nine span-rollbuttons">
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="roll-buttons-u" >Roll Buttons</span>
             </div>
@@ -207,9 +300,54 @@
                     <button type="roll" class="button-skill button-beta" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Initiative: *Card Value* }} {{roll-dice=[[ ?{Card Number|0} &{tracker} ]] }}" name="initiative_card" data-i18n-title="initiative-card-desc" /><span data-i18n="initiative-card-u">Initiative: Card</span></button>
                     <button type="roll" class="button-skill button-beta" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Initiative: *Dice Roll* }} {{roll-dice=[[ @{config_initiativedice} &{tracker} ]] }}" name="initiative_dice" data-i18n-title="initiative-card-desc" /><span data-i18n="initiative-dice-u">Initiative: Dice</span></button>
                 </div>
+                <hr class="dotted-line">
                 <div class="roll-buttons gamma-buttons">
-                    <button type="roll" class="button-skill button-gamma" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Base Dice }} {{base-dice=[[ ?{How Many Base Dice|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" name="base_dice" /><span data-i18n="base-dice-u">Base Dice</span></button>
-                    <button type="roll" class="button-skill button-gamma" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Stress Dice }} {{stress-dice=[[ ?{How Many Stress Dice|0} ]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" name="stress_dice" /><span data-i18n="stress-dice-u">Stress Dice</span></button>
+                    <button type="action" name="act_customrollreset" class="button-skill button-gamma" value="" ><span data-i18n="reset">Reset</span></button>
+                    <input type="text" name="attr_customroll_name" value="Custom roll" class="sheet-left text-input" data-i18n-placeholder="custom-roll" data-i18n-title="custom-roll-desc" placeholder="Custom roll." />
+                    <span class="roll-option-frame">
+                        <span class="sheet-left" data-i18n="base" data-i18n-title="base-dice-desc" title="Base dice. This will make a roll using base dice, and count the successes (6s or Crosshair icons)." >Base</span>
+                        <select name="attr_customroll_base" class="sheet-select-input sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                    </span>
+                    <span class="roll-option-frame">
+                        <span class="sheet-left" data-i18n="stress" data-i18n-title="stress-dice-desc" title="Stress dice. This will make a roll using stress dice, and count the failures (1s or Facehugger icons)." >Stress</span>
+                        <select name="attr_customroll_stress" class="sheet-select-input sheet-w40 sheet-left">
+                            <option value="0" selected default>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </span>
+                    <!-- <button type="roll" class="button-skill button-gamma" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Base Dice }} {{base-dice=[[ ?{How Many Base Dice|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" name="base_dice" /><span data-i18n="base-dice-u">Base Dice</span></button>--> 
+<!--                     <button type="roll" class="button-skill button-gamma" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Stress Dice}} {{stress-dice=[[ ?{How Many Stress Dice|0} ]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" name="stress_dice" /><span data-i18n="stress-dice-u">Stress Dice</span></button> -->                    
+                    <button type="roll"  name="customroll" class="button-skill button-gamma roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{customroll_name} }} {{base-dice=[[@{customroll_base}]] }} {{stress-dice=[[@{customroll_stress}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" /><span data-i18n="roll">Roll</span></button>
+                    <button type="roll" name="customroll_api" class="button-skill button-gamma roll-api" data-i18n="roll" value="@{roll_command_api} [@{customroll_name}] [[(@{customroll_base}d6]] [[@{customroll_stress}d6]] --runas|@{character_name}" title="@{customroll_api}">
                 </div>
             </div>
         </div> <!-- END OF ROW 3 --> 
@@ -238,11 +376,23 @@
         <div class="grid-item black-item">
             &nbsp;
         </div>
-        <div class="grid-item span-six-thru-eight">
+        <div class="grid-item span-six-thru-eight skill">
             <div class="float-left">
                 <input type="number" name="attr_close_combat" value="0" class="no-spin-input optional-spinner-input" title="@{close_combat}" />
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_close_combat_mod" value="0" class="skill-modifier" title="@{close_combat_mod}" hidden />
+                        <input type="checkbox" name="attr_close_combat_modviz" value="1" unchecked class="skill-modifier-viz" title="@{close_combat_modviz}" hidden />             
+                        <button type="action" name="act_closecombatmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_close_combat_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_close_combat_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_closecombatmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
-            <button type="roll" name="close_combat" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Close Combat }} {{base-dice=[[@{strength} + @{close_combat} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="close-combat-u" >Close Combat</button>
+            <button type="roll" name="close_combat" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Close Combat }} {{base-dice=[[@{strength} + @{close_combat}+@{close_combat_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="close-combat-u" >Close Combat</button>
             <button type="roll" name="close_combat_api" class="button-skill roll-api" data-i18n="close-combat-u" value="@{roll_command_api} [Close combat] [[(@{strength}+@{close_combat}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[close_combat_api]">
                 &nbsp;<span >Close Combat</span>&nbsp;
             </button>
@@ -310,11 +460,23 @@
                 </div>
             </div>
         </div>
-        <div class="grid-item span-five-six">
+        <div class="grid-item span-five-six skill">
             <div class="float-left">
-                <input type="number" name="attr_heavy_machinery" value="0" class="no-spin-input optional-spinner-input" title="@{heavy_machinery}" />
+                <input type="number" name="attr_heavy_machinery" value="0" class="no-spin-input optional-spinner-input" title="@{heavy_machinery}" />         
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_heavy_machinery_mod" value="0" class="skill-modifier" title="@{heavy_machinery_mod}" hidden />
+                        <input type="checkbox" name="attr_heavy_machinery_modviz" value="1" unchecked class="skill-modifier-viz" title="@{heavy_machinery_modviz}" hidden />             
+                        <button type="action" name="act_heavymachinerymodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_heavy_machinery_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_heavy_machinery_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_heavymachinerymodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
-            <button type="roll" name="heavy_machinery" class="button-skill roll-rolltemplate bigger-skill" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Heavy Machinery }} {{base-dice=[[@{strength} + @{heavy_machinery} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}"  data-i18n="heavy-machinery-u">Heavy Machinery</button>
+            <button type="roll" name="heavy_machinery" class="button-skill roll-rolltemplate bigger-skill" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Heavy Machinery }} {{base-dice=[[@{strength} + @{heavy_machinery}+@{heavy_machinery_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}"  data-i18n="heavy-machinery-u">Heavy Machinery</button>
             <button type="roll" name="heavy_machinery_api" class="button-skill roll-api bigger-skill" data-i18n="heavy-machinery-u" value="@{roll_command_api} [Heavy machinery] [[(@{strength}+@{heavy_machinery}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[heavy_machinery]">
                 &nbsp;<span >Heavy Machinery</span>&nbsp;
             </button>
@@ -329,13 +491,25 @@
             </button>
                 <!--span class="teal-header bold" data-i18n="strength-u">Strength</span-->
         </div>
-        <div class="grid-item span-eight-nine">
-            <button type="roll" name="stamina" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Stamina }} {{base-dice=[[@{strength} + @{stamina} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="stamina-u">Stamina</button>
-            <button type="roll" name="stamina_api" class="button-skill roll-api" data-i18n="stamina-u" value="@{roll_command_api} [Stamina] [[(@{strength}+@{stamina}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[stamina_api]">
+        <div class="grid-item span-eight-nine skill">
+            <button type="roll" name="stamina" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Stamina }} {{base-dice=[[@{strength} + @{stamina}+@{stamina_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="stamina-u">Stamina</button>
+            <button type="roll" name="stamina_api" class="button-skill roll-api" data-i18n="stamina-u" value="@{roll_command_api} [Stamina] [[(@{strength}+@{stamina}+@{stamina_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[stamina_api]">
                 &nbsp;<span >Stamina</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_stamina" value="0" class="no-spin-input optional-spinner-input" title="@{stamina}" />
+                <input type="number" name="attr_stamina" value="0" class="no-spin-input optional-spinner-input" title="@{stamina}" />         
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_stamina_mod" value="0" class="skill-modifier" title="@{stamina_mod}" hidden />
+                        <input type="checkbox" name="attr_stamina_modviz" value="1" unchecked class="skill-modifier-viz" title="@{stamina_modviz}" hidden />             
+                        <button type="action" name="act_staminamodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_stamina_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_stamina_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_staminamodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="grid-item black-item span-ten-eleven small-box">
@@ -361,8 +535,8 @@
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="radiation-u">Radiation</span>
             </div>
-            <div class="vertical-adjust-one">
-                <div class="vertical-balance">
+            <div class="">
+                <div class="vertical-adjust-one">
                     <input type="checkbox" name="attr_radiation_1" value="1" class="numbered-box green-box" title="@{radiation_1}"/><span title="1" ></span>
                     <input type="checkbox" name="attr_radiation_2" value="1" class="numbered-box green-box" title="@{radiation_2}"/><span title="2" ></span>
                     <input type="checkbox" name="attr_radiation_3" value="1" class="numbered-box green-box" title="@{radiation_3}"/><span title="3" ></span>
@@ -374,6 +548,28 @@
                     <input type="checkbox" name="attr_radiation_9" value="1" class="numbered-box green-box" title="@{radiation_9}"/><span title="9" ></span>
                     <input type="checkbox" name="attr_radiation_10" value="1" class="numbered-box green-box" title="@{radiation_10}"/><span title="10" ></span>
                 </div>
+            </div>            
+            <div class="vertical-adjust-one">
+                <!-- <span class="sheet-left" data-i18n="perm-rads" data-i18n-title="perm-rads-desc" title="Permanent rads." >Permanent</span> --> 
+                <span class="roll-option-frame"> 
+                    <span class="sheet-left" >Perm:</span> 
+                    <select name="attr_radiation_perm" class="sheet-select-input sheet-w40 sheet-left">
+                        <option value="0" selected default>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>                
+                </span>
+                <button type="roll"  name="customroll" class="button-skill button-gamma roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Radiation }} {{base-dice=[[@{radiation}]] }} {{radiation-dmg=[[1]]}} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }}" /><span data-i18n="roll">Roll</span></button>
+                <button type="roll" name="customroll_api" class="button-skill button-gamma roll-api" data-i18n="roll" value="@{roll_command_api} [Radiation] [[(@{radiation}d6]] [[0d6]] --runas|@{character_name}" title="@{customroll_api}">
+            
             </div>
         </div>
         <input type="checkbox" name="attr_config_healthcalculation" class="config-healthcalculation" hidden readonly /> 
@@ -386,11 +582,24 @@
             </div>
         </div>
 
-        <div class="grid-item span-four-five">
+        <div class="grid-item span-four-five skill">
             <div class="float-left">
-                <input type="number" name="attr_ranged_combat" value="0" class="no-spin-input optional-spinner-input" title="@{ranged_combat}" />
+                <input type="number" name="attr_ranged_combat" value="0" class="no-spin-input optional-spinner-input" title="@{ranged_combat}" />                               
+                <div class="popout-container container-left">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_ranged_combat_mod" value="0" class="skill-modifier" title="@{ranged_combat_mod}" hidden />
+                        <input type="checkbox" name="attr_ranged_combat_modviz" value="1" unchecked class="skill-modifier-viz" title="@{ranged_combat_modviz}" hidden />             
+                        <button type="action" name="act_rangedcombatmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <!-- <input type="number" name="attr_ranged_combat_mod" value="0" class="no-spin-input shorter-number small" title="@{ranged_combat_mod}" /> --> 
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_ranged_combat_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_ranged_combat_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_rangedcombatmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
-            <button type="roll" name="ranged_combat" class="button-skill roll-rolltemplate bigger-skill" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Ranged Combat }} {{base-dice=[[@{agility} + @{ranged_combat} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="ranged-combat-u">Ranged Combat</button>
+            <button type="roll" name="ranged_combat" class="button-skill roll-rolltemplate bigger-skill" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Ranged Combat }} {{base-dice=[[@{agility} + @{ranged_combat}+@{ranged_combat_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="ranged-combat-u">Ranged Combat</button>
             <button type="roll" name="ranged_combat_api" class="button-skill roll-api bigger-skill" data-i18n="ranged-combat-u" value="@{roll_command_api} [Ranged combat] [[(@{agility}+@{ranged_combat}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[ranged_combat_api]">
                 &nbsp;<span >Ranged Combat</span>&nbsp;
             </button>
@@ -400,14 +609,26 @@
                 <input type="number" name="attr_strength" value="0" class="no-spin-input attribute-input" title="@{strength}" />
             </div>
         </div>
-        <div class="grid-item span-nine-ten">
-            <button type="roll" name="observation" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Observation }} {{base-dice=[[@{wits} + @{observation} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="observation-u">Observation</button>
-            <button type="roll" name="observation_api" class="button-skill roll-api" data-i18n="observation-u" value="@{roll_command_api} [Observation] [[(@{wits}+@{observation}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[observation_api]">
+        <div class="grid-item span-nine-ten skill">
+            <button type="roll" name="observation" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Observation }} {{base-dice=[[@{wits} + @{observation}+@{observation_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="observation-u">Observation</button>
+            <button type="roll" name="observation_api" class="button-skill roll-api" data-i18n="observation-u" value="@{roll_command_api} [Observation] [[(@{wits}+@{observation}+@{observation_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[observation_api]">
                 &nbsp;<span >Observation</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_observation" value="0" class="no-spin-input optional-spinner-input" title="@{observation}" />
-            </div>
+                <input type="number" name="attr_observation" value="0" class="no-spin-input optional-spinner-input" title="@{observation}" />           
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_observation_mod" value="0" class="skill-modifier" title="@{observation_mod}" hidden />
+                        <input type="checkbox" name="attr_observation_modviz" value="1" unchecked class="skill-modifier-viz" title="@{observation_modviz}" hidden />             
+                        <button type="action" name="act_observationmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_observation_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_observation_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_observationmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
+            </div> 
         </div>
         <div class="grid-item black-item"> 
             &nbsp;
@@ -424,12 +645,24 @@
             </div>
         </div> <!-- END OF ROW 7 -->
 
-        <div class="grid-item span-three-four"> <!-- START OF ROW 8 -->
+        <div class="grid-item span-three-four skill"> <!-- START OF ROW 8 -->
             <div class="float-left">
-                <input type="number" name="attr_mobility" value="0" class="no-spin-input optional-spinner-input" title="@{mobility}" />
+                <input type="number" name="attr_mobility" value="0" class="no-spin-input optional-spinner-input" title="@{mobility}" />       
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_mobility_mod" value="0" class="skill-modifier" title="@{mobility_mod}" hidden />
+                        <input type="checkbox" name="attr_mobility_modviz" value="1" unchecked class="skill-modifier-viz" title="@{mobility_modviz}" hidden />             
+                        <button type="action" name="act_mobilitymodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_mobility_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_mobility_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_mobilitymodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
-            <button type="roll" name="mobility" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Mobility }} {{base-dice=[[@{agility} + @{mobility} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="mobility-u" >Mobility</button>
-            <button type="roll" name="mobility_api" class="button-skill roll-api" data-i18n="mobility-u" value="@{roll_command_api} [Mobility] [[(@{agility}+@{mobility}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[mobility_api]">
+            <button type="roll" name="mobility" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Mobility }} {{base-dice=[[@{agility} + @{mobility}+@{mobility_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="mobility-u" >Mobility</button>
+            <button type="roll" name="mobility_api" class="button-skill roll-api" data-i18n="mobility-u" value="@{roll_command_api} [Mobility] [[(@{agility}+@{mobility}+@{mobility_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[mobility_api]">
                 &nbsp;<span >Mobility</span>&nbsp;
             </button>
         </div>
@@ -459,13 +692,25 @@
             
             <!--span class="teal-header bold" data-i18n="wits-u">Wits</span-->
         </div>
-        <div class="grid-item span-ten-eleven">
-            <button type="roll" name="survival" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Survival }} {{base-dice=[[@{wits} + @{survival} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="survival-u">Survival</button>
-            <button type="roll" name="survival_api" class="button-skill roll-api" data-i18n="survival-u" value="@{roll_command_api} [Survival] [[(@{wits}+@{survival}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="{survival_api]">
+        <div class="grid-item span-ten-eleven skill">
+            <button type="roll" name="survival" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Survival }} {{base-dice=[[@{wits} + @{survival}+@{survival_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="survival-u">Survival</button>
+            <button type="roll" name="survival_api" class="button-skill roll-api" data-i18n="survival-u" value="@{roll_command_api} [Survival] [[(@{wits}+@{survival}+@{survival_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="{survival_api]">
                 &nbsp;<span >Survival</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_survival" value="0" class="no-spin-input optional-spinner-input" title="@{survival}" />
+                <input type="number" name="attr_survival" value="0" class="no-spin-input optional-spinner-input" title="@{survival}" />      
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_survival_mod" value="0" class="skill-modifier" title="@{survival_mod}" hidden />
+                        <input type="checkbox" name="attr_survival_modviz" value="1" unchecked class="skill-modifier-viz" title="@{survival_modviz}" hidden />             
+                        <button type="action" name="act_survivalmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_survival_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_survival_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_survivalmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
         </div> <!-- END OF ROW 8 -->
         
@@ -479,12 +724,24 @@
                 <input type="text" name="attr_critical_injury_two" value="" class="text-input" title="@{critical_injury_two}" spellcheck="false" data-i18n-placeholder="critical-injuries-place" placeholder="Critical Injury"/>
             </div>
         </div>
-        <div class="grid-item span-four-five">
+        <div class="grid-item span-four-five skill">
             <div class="float-left">
-                <input type="number" name="attr_piloting" value="0" class="no-spin-input optional-spinner-input" title="@{piloting}" />
+                <input type="number" name="attr_piloting" value="0" class="no-spin-input optional-spinner-input" title="@{piloting}" />   
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_piloting_mod" value="0" class="skill-modifier" title="@{piloting_mod}" hidden />
+                        <input type="checkbox" name="attr_piloting_modviz" value="1" unchecked class="skill-modifier-viz" title="@{piloting_modviz}" hidden />             
+                        <button type="action" name="act_pilotingmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_piloting_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_piloting_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_pilotingmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
-            <button type="roll" name="piloting" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Piloting }} {{base-dice=[[@{agility} + @{piloting} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="piloting-u">Piloting</button>
-            <button type="roll" name="piloting_api" class="button-skill roll-api" data-i18n="piloting-u" value="@{roll_command_api} [Piloting] [[(@{agility}+@{piloting}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[piloting_api]">
+            <button type="roll" name="piloting" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Piloting }} {{base-dice=[[@{agility} + @{piloting}+@{piloting_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="piloting-u">Piloting</button>
+            <button type="roll" name="piloting_api" class="button-skill roll-api" data-i18n="piloting-u" value="@{roll_command_api} [Piloting] [[(@{agility}+@{piloting}+@{piloting_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[piloting_api]">
                 &nbsp;<span >Piloting</span>&nbsp;
             </button>
         </div>
@@ -493,13 +750,25 @@
                 <input type="number" name="attr_empathy" value="0" class="no-spin-input attribute-input" title="@{empathy}" />
             </div>
         </div>
-        <div class="grid-item span-nine-ten">
-            <button type="roll" name="comtech" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Comtech }} {{base-dice=[[@{wits} + @{comtech} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="comtech-u">Comtech</button>
-            <button type="roll" name="comtech_api" class="button-skill roll-api" data-i18n="comtech-u" value="@{roll_command_api} [Comtech] [[(@{wits}+@{comtech}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[comtech_api]">
-                &nbsp;<span >Commtect</span>&nbsp;
+        <div class="grid-item span-nine-ten skill">
+            <button type="roll" name="comtech" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Comtech }} {{base-dice=[[@{wits} + @{comtech}+@{comtech_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="comtech-u">Comtech</button>
+            <button type="roll" name="comtech_api" class="button-skill roll-api" data-i18n="comtech-u" value="@{roll_command_api} [Comtech] [[(@{wits}+@{comtech}+@{comtech_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[comtech_api]">
+                &nbsp;<span >Comtech</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_comtech" value="0" class="no-spin-input optional-spinner-input" title="@{comtech}" />
+                <input type="number" name="attr_comtech" value="0" class="no-spin-input optional-spinner-input" title="@{comtech}" /> 
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_comtech_mod" value="0" class="skill-modifier" title="@{comtech_mod}" hidden />
+                        <input type="checkbox" name="attr_comtech_modviz" value="1" unchecked class="skill-modifier-viz" title="@{comtech_modviz}" hidden />             
+                        <button type="action" name="act_comtechmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_comtech_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_comtech_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_comtechmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="grid-item span-eleven-thru-thirteen">
@@ -515,12 +784,24 @@
         <div class="grid-item black-item"> 
             &nbsp;
         </div>
-        <div class="grid-item span-five-six"> 
+        <div class="grid-item span-five-six skill"> 
             <div class="float-left">
                 <input type="number" name="attr_command" value="0" class="no-spin-input optional-spinner-input" title="@{command}" />
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_command_mod" value="0" class="skill-modifier" title="@{command_mod}" hidden />
+                        <input type="checkbox" name="attr_command_modviz" value="1" unchecked class="skill-modifier-viz" title="@{command_modviz}" hidden />             
+                        <button type="action" name="act_commandmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_command_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_command_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_commandmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
-            <button type="roll" name="command" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Command }} {{base-dice=[[@{empathy} + @{command} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="command-u">Command</button>
-            <button type="roll" name="command_api" class="button-skill roll-api" data-i18n="command-u" value="@{roll_command_api} [Command] [[(@{empathy}+@{command}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[command_api]">
+            <button type="roll" name="command" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Command }} {{base-dice=[[@{empathy} + @{command}+@{command_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="command-u">Command</button>
+            <button type="roll" name="command_api" class="button-skill roll-api" data-i18n="command-u" value="@{roll_command_api} [Command] [[(@{empathy}+@{command}+@{command_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[command_api]">
                 &nbsp;<span >Command</span>&nbsp;
             </button>
         </div>
@@ -533,13 +814,25 @@
             
             <!--span class="teal-header bold" data-i18n="empathy-u">Empathy</span-->
         </div>
-        <div class="grid-item span-eight-nine">
-            <button type="roll" name="medical_aid" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Medical Aid }} {{base-dice=[[@{empathy} + @{medical_aid} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="medical-aid-u" >Medical Aid</button>            
-            <button type="roll" name="medical-aid_api" class="button-skill roll-api" data-i18n="medical-aid-u" value="@{roll_command_api} [Medical Aid] [[(@{empathy}+@{medical_aid}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[medical-aid_api]">
+        <div class="grid-item span-eight-nine skill">
+            <button type="roll" name="medical_aid" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Medical Aid }} {{base-dice=[[@{empathy} + @{medical_aid}+@{medical_aid_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="medical-aid-u" >Medical Aid</button>            
+            <button type="roll" name="medical-aid_api" class="button-skill roll-api" data-i18n="medical-aid-u" value="@{roll_command_api} [Medical Aid] [[(@{empathy}+@{medical_aid}+@{medical_aid_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[medical-aid_api]">
                 &nbsp;<span >Medical Aid</span>&nbsp;
             </button>
             <div class="float-right">
                 <input type="number" name="attr_medical_aid" value="0" class="no-spin-input optional-spinner-input" title="@{medical_aid}" />
+                <div class="popout-container container-right">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_medical_aid_mod" value="0" class="skill-modifier" title="@{medical_aid_mod}" hidden />
+                        <input type="checkbox" name="attr_medical_aid_modviz" value="1" unchecked class="skill-modifier-viz" title="@{medical_aid_modviz}" hidden />             
+                        <button type="action" name="act_medicalaidmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_medical_aid_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_medical_aid_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_medicalaidmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="grid-item span-ten-thru-thirteen span-gear">
@@ -706,13 +999,25 @@
         <div class="grid-item black-item">
             &nbsp;
         </div>
-        <div class="grid-item span-six-thru-eight">
-            <button type="roll" name="manipulation" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Manipulation }} {{base-dice=[[@{empathy} + @{manipulation} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="manipulation-u">Manipulation</button>
-            <button type="roll" name="manipulation_api" class="button-skill roll-api" data-i18n="manipulation-u" value="@{roll_command_api} [Manipulation] [[(@{empathy}+@{manipulation}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[manipulation_api]">
+        <div class="grid-item span-six-thru-eight skill">
+            <button type="roll" name="manipulation" class="button-skill roll-rolltemplate" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Manipulation }} {{base-dice=[[@{empathy} + @{manipulation}+@{manipulation_mod} + ?{Modifiers|0} ]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}  {{stress-dice=[[@{stress}]] }} {{stress-roll-one=[[1d6]] }} {{stress-roll-two=[[1d6]] }} {{stress-roll-three=[[1d6]] }} {{stress-roll-four=[[1d6]] }} {{stress-roll-five=[[1d6]] }} {{stress-roll-six=[[1d6]] }} {{stress-roll-seven=[[1d6]] }} {{stress-roll-eight=[[1d6]] }} {{stress-roll-nine=[[1d6]] }} {{stress-roll-ten=[[1d6]] }}" data-i18n="manipulation-u">Manipulation</button>
+            <button type="roll" name="manipulation_api" class="button-skill roll-api" data-i18n="manipulation-u" value="@{roll_command_api} [Manipulation] [[(@{empathy}+@{manipulation}+@{manipulation_mod}+?{Modifiers|0})d6]] [[@{stress}d6]] --runas|@{character_name}" title="[manipulation_api]">
                 &nbsp;<span >Manipulation</span>&nbsp;
             </button>
             <div class="float-right">
-                <input type="number" name="attr_manipulation" value="0" class="no-spin-input optional-spinner-input" title="@{manipulation}" />
+                <input type="number" name="attr_manipulation" value="0" class="no-spin-input optional-spinner-input" title="@{manipulation}" />                             
+                <div class="popout-container container-left">
+                    <div class="skill-modifier">      
+                        <input type="number" name="attr_manipulation_mod" value="0" class="skill-modifier" title="@{manipulation_mod}" hidden />
+                        <input type="checkbox" name="attr_manipulation_modviz" value="1" unchecked class="skill-modifier-viz" title="@{manipulation_modviz}" hidden />             
+                        <button type="action" name="act_manipulationmodsub" class="no-spin-input grey-box small "  data-i18n-title="permanent-modifier-sub-desc" title="Subtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}">-</button>
+                        <span class="no-spin-input container" title="Permanent modifier. This modifier is always added to the skill rolls. ">
+                            <input type="checkbox" name="attr_manipulation_modplus" value="1" unchecked class="skill-modifier-plus" hidden />              
+                            <span name="attr_manipulation_mod" class="small" data-i18n-title="permanent-modifier-desc" title="Permanent modifier. This modifier is applied to all rolls for the skill, and represents bonuses from gear or talents. @{[skill_name]_mod}"></span>
+                        </span>
+                        <button type="action" name="act_manipulationmodadd" class="no-spin-input grey-box small" data-i18n-title="permanent-modifier-add-desc" title="Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}">+</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="grid-item black-item span-nine packmule small-box">
@@ -3351,9 +3656,16 @@
                     </div>
                     {{/rollGreater() stress-dice 0}}
                     {{^stress-dice}}
-                    <div class="template-grid-item template-span-six">
-                        <span data-i18n="template-success" class="template-success">Success: </span>
-                    </div> 
+                        {{^radiation-dmg}}
+                            <div class="template-grid-item template-span-six">
+                                <span data-i18n="template-success" class="template-success">Success: </span>
+                            </div> 
+                        {{/radiation-dmg}}
+                        {{#radiation-dmg}}
+                            <div class="template-grid-item template-span-six">
+                                <span data-i18n="radiation-dmg" class="template-success">Damage: </span>
+                            </div>                 
+                        {{/radiation-dmg}} 
                     {{/stress-dice}}
                 {{/rollGreater() base-dice 0}} 
 
@@ -3366,7 +3678,8 @@
                         <span data-i18n="template-panic" class="template-stress">Panic: </span>
                     </div>   
                     {{/stress-dice}}
-                {{/base-dice}}            
+                {{/base-dice}}  
+           
                 
 <!--
                 {{#base-dice}}
@@ -3399,11 +3712,11 @@
                     </div>
                 {{/current-comment}}
         
-               {{#allprops() buttonlabel buttonlink passthroughdata character-name roll-name roll-type roll-dice roll-dice-cmd base-dice result base-roll-one base-roll-two base-roll-three base-roll-four base-roll-five base-roll-six base-roll-seven base-roll-eight base-roll-nine base-roll-ten base-roll-eleven base-roll-twelve base-roll-thirteen base-roll-fourteen base-roll-fifteen base-roll-sixteen base-roll-seventeen base-roll-eighteen stress-dice stress-roll-one stress-roll-two stress-roll-three stress-roll-four stress-roll-five stress-roll-six stress-roll-seven stress-roll-eight stress-roll-nine stress-roll-ten supply-dice supply-roll-one supply-roll-two supply-roll-three supply-roll-four supply-roll-five supply-roll-six show-weapon current-bonus current-dice current-damage current-range current-comment panic-roll }}
+               {{#allprops() buttonlabel buttonlink passthroughdata character-name roll-name roll-type roll-dice roll-dice-cmd base-dice result radiation-dmg base-roll-one base-roll-two base-roll-three base-roll-four base-roll-five base-roll-six base-roll-seven base-roll-eight base-roll-nine base-roll-ten base-roll-eleven base-roll-twelve base-roll-thirteen base-roll-fourteen base-roll-fifteen base-roll-sixteen base-roll-seventeen base-roll-eighteen stress-dice stress-roll-one stress-roll-two stress-roll-three stress-roll-four stress-roll-five stress-roll-six stress-roll-seven stress-roll-eight stress-roll-nine stress-roll-ten supply-dice supply-roll-one supply-roll-two supply-roll-three supply-roll-four supply-roll-five supply-roll-six show-weapon current-bonus current-dice current-damage current-range current-comment panic-roll }}
                     <div class="template-grid-item template-span-six">
                         {{key}} {{value}}
                     </div>
-                {{/allprops() buttonlabel buttonlink passthroughdata character-name roll-name roll-type roll-dice roll-dice-cmd base-dice result base-roll-one base-roll-two base-roll-three base-roll-four base-roll-five base-roll-six base-roll-seven base-roll-eight base-roll-nine base-roll-ten base-roll-eleven base-roll-twelve base-roll-thirteen base-roll-fourteen base-roll-fifteen base-roll-sixteen base-roll-seventeen base-roll-eighteen stress-dice stress-roll-one stress-roll-two stress-roll-three stress-roll-four stress-roll-five stress-roll-six stress-roll-seven stress-roll-eight stress-roll-nine stress-roll-ten supply-dice supply-roll-one supply-roll-two supply-roll-three supply-roll-four supply-roll-five supply-roll-six show-weapon current-bonus current-dice current-damage current-range current-comment panic-roll }}
+                {{/allprops() buttonlabel buttonlink passthroughdata character-name roll-name roll-type roll-dice roll-dice-cmd base-dice result radiation-dmg base-roll-one base-roll-two base-roll-three base-roll-four base-roll-five base-roll-six base-roll-seven base-roll-eight base-roll-nine base-roll-ten base-roll-eleven base-roll-twelve base-roll-thirteen base-roll-fourteen base-roll-fifteen base-roll-sixteen base-roll-seventeen base-roll-eighteen stress-dice stress-roll-one stress-roll-two stress-roll-three stress-roll-four stress-roll-five stress-roll-six stress-roll-seven stress-roll-eight stress-roll-nine stress-roll-ten supply-dice supply-roll-one supply-roll-two supply-roll-three supply-roll-four supply-roll-five supply-roll-six show-weapon current-bonus current-dice current-damage current-range current-comment panic-roll }}
         </div>
     </div>
 </rolltemplate>    
@@ -3838,7 +4151,7 @@
         await signatureAttack(ev);
         clog(`Completed randomized signature attack parsed roll`);
     });
-    // Randimze signature attacks
+    // Randomize signature attacks
     const signatureAttack = async (ev) => {
         
         //clog(`First event: ${JSON.stringify(ev)}`);
@@ -3959,6 +4272,42 @@
     */
     // END EXPERIMENTAL SPACE
 
+
+    // PERMANENT Modifiers
+    modskills = ['heavy_machinery', 'stamina', 'close_combat', 'mobility', 'piloting', 'ranged_combat', 'observation', 'comtech', 'survival', 'manipulation', 'medical_aid', 'command'];
+    modskills.forEach( (modskill) => {
+        const skillmod = modskill.replaceAll('_',''); 
+        on(`clicked:${skillmod}modadd clicked:${skillmod}modsub`, async (ev) => {
+            clog(`Mod skill is ${modskill} and skill mod is ${skillmod}`);
+            const attrs = await asw.getAttrs([`${modskill}_mod`]);
+            clog(`Values = ${JSON.stringify(attrs)}`);
+            const previous = attrs[`${modskill}_mod`]; 
+            clog(`Previous permanent modifier for ${modskill} is ${previous}.`);
+            let addsub = ev.triggerName.slice(-3);
+            clog(`Sub or add: ${addsub} and add? is ${addsub == 'add'}`);
+            const current = addsub == "add" ? int(previous) + 1 : int(previous) - 1;
+            clog(`Current permanent modifier for ${modskill} is ${current}.`);
+            const modplus = current > 0 ? 1 : 0; 
+            const modviz = current == 0 ? 0 : 1; 
+            await asw.setAttrs({
+                [`${modskill}_mod`]: current,
+                [`${modskill}_modplus`]: modplus,
+                [`${modskill}_modviz`]: modviz,
+            });
+        });
+    });
+
+    // RESET Dice pool 
+    on('clicked:customrollreset', (ev) => {
+        clog("Resetting custom roll!");
+        setAttrs({
+            customroll_name: 'Custom roll',
+            customroll_base: 0,
+            customroll_stress: 0
+        }); 
+    });
+
+
     // SET SECRET ROLL 
     on('change:secret_roll sheet:opened', (ev) => {
         getAttrs(['secret_roll', 'roll_command', 'roll_command_api', ], (values) => {
@@ -4011,7 +4360,7 @@
     });
 
     /* */
-    // CALCULATE Health
+    // CALCULATE Health from Attribute
     on("change:strength change:tough sheet:opened", (eventinfo) => {
         //clog("Change detected: Health");
         //clog(`Eventinfo: ${JSON.stringify(eventinfo)}`);
@@ -4257,7 +4606,8 @@
             getAttrs([`talent_${tal}`], function(v){
                 var talentname = v[`talent_${tal}`];
                 //clog("Talent output: "+ (talentname.length > 0) ? talents[`${tal}`] : "-");
-                var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
+                //var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
+                var txt = (talentname.length > 0) ? talentname : "-";
                 setAttrs({[`tal_${tal}`]: txt});
                 });
             });
