@@ -1,5 +1,4 @@
-
-      
+     
     /* number and log handling */
     const int = (score, on_error = 0) => parseInt(score) || on_error;
     const float = (score, on_error = 0) => parseFloat(score) || on_error;
@@ -124,29 +123,87 @@
         });
     });
     const upg_4_02 = () => {
-        clog("==== Upgrading to version 4.02 ====");
+        //clog("==== Upgrading to version 4.02 ====");
         getAttrs(['config_apirolls', 'secret_roll_api','secret_roll', 'config_apirolls', 'config_advencumbrance'], (values) => {
             // // // Secret Rolls // // // 
             const sa = values.secret_roll_api, 
                 s = values.secret_roll,
                 api = values.config_apirolls; 
             var val = "";            
-            clog(`secret roll api : ${sa}, secret roll : ${s}, api rolls : ${api}`);
-            if ( api != "on" || api != 1 || !api ) {
-                val = ( s == "1" || s == "/w gm") ? 1 : 0; 
+            clog(`upgrading secret rolls. secret api: ${sa}, secret rolls : ${s}, api enabled : ${api}`);
+            clog(`upgrading secret rolls. secret api: ${!!sa}, secret rolls : ${!!s}, api enabled : ${!!api}`);
+            if ( (api == "on" || api == 1) && typeof sa !== "undefined" ) {
+                val = ( sa == "1" || sa == "!alienrw" || sa == "w" ) ? 1 : 0; 
             } else {
-                val = ( sa == "1" || sa == "!alienrw" || sa == "w" ) ? 1 : 0;
+                val = ( s == "1" || s == "/w gm" ) ? 1 : 0;
             }
-            clog(`secret roll new : ${val}`);
+            clog(`secret roll new : ${val}`);   
+            const r = ( val == 1 || val == "1" ) ? "/w gm" : "", 
+                a = ( val == 1 || val == "1" ) ?"!alienrw" : "!alienr";
+            clog(`Secret roll ${r}, secret api ${a}`);
             setAttrs({
-                secret_roll: val
+                secret_roll: val,
+                roll_command: r,
+                roll_command_api: a
             });
-            // // // Config options // // //
-            clog(`Api rolls: ${values.config_apirolls}, Encumbrance: ${values.config_advencumbrance}`);
-
         });  
     }
+
+    // SIGNATURE ATTACKS
+    // Randomize attack button
+    on('clicked:randomizeattack', async (ev) => {
+        clog(`Starting randomized signature attack parsed roll`);
+        await signatureAttack(ev);
+        clog(`Completed randomized signature attack parsed roll`);
+    });
+    // Randomize signature attacks
+    const signatureAttack = async (ev) => {
+        
+        //clog(`First event: ${JSON.stringify(ev)}`);
+        //clog(`Event name: ${ev.htmlAttributes.name}`);
+
+        const attackId = Math.ceil(Math.random()*6); 
+
+        const attrs = await asw.getAttrs(["character_name"]);
+        const rollBase = `@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack${attackId}_name} }} {{roll-type=${attackId}}} {{current-comment=@{xenoattack${attackId}_desc} }} {{current-damage=@{xenoattack${attackId}_dmg} }} {{roll-dice-cmd=@{xenoattack${attackId}_dice} }} {{roll-dice=[[@{xenoattack${attackId}_dice}]] }} {{current-dice=@{xenoattack${attackId}_base} }} {{base-dice=[[@{xenoattack${attackId}_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}`;
+        // Removed range from the command since it isnt sure it is needed: {{current-range=@{xenoattack${attackId}_range} }}
+        const firstRoll = await startRoll(rollBase);
+        //clog(`First roll data: ${JSON.stringify(firstRoll)}`);
+        //clog(`First roll data: ${JSON.stringify(firstRoll.rolls)}`);
+
+        finishRoll(firstRoll.rollId);
+    }
+    // Copy a signature attack, with a popup alert to ensure data is not overwritten by mistake.
+    const copybuttons = ["attackcopy1","attackcopy2","attackcopy3","attackcopy4","attackcopy5",];
+    copybuttons.forEach( async (button) => {
+        on(`clicked:${button}`, async (eventInfo) => {
+            //clog(`Button eventinfo: ${JSON.stringify(eventInfo)}`);
+            let id = eventInfo.triggerName.slice(-1);
+            let newId = int(id)+1; 
+            clog(`Button id: ${id}, new id: ${newId}`);
+            const confirm = await getQuery(`?{Are you sure you want to replace the attack ${id} with the data from ${id-1}? This action cannot be undone. |Yes,1|No,0}`);
+            clog(`Copy confirmed? ${confirm}`);
+            if ( confirm == 1 ) {
+                const attrs = await asw.getAttrs([`xenoattack${id}_name`, `xenoattack${id}_desc`, `xenoattack${id}_dice`, `xenoattack${id}_base`, `xenoattack${id}_dmg`, `xenoattack${newId}_name`, `xenoattack${newId}_desc`, `xenoattack${newId}_dice`, `xenoattack${newId}_base`, `xenoattack${newId}_dmg`]);
+                //clog(JSON.stringify(attrs));
+                clog("Data before copy - name: "+attrs[`xenoattack${newId}_name`]+", dice: "+attrs[`xenoattack${newId}_dice`]+", base: "+attrs[`xenoattack${newId}_base`]+", damage: "+attrs[`xenoattack${newId}_dmg`]+", description: "+attrs[`xenoattack${newId}_desc`]);
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_desc`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_dice`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_base`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_dmg`]));
+                /* Set attributes for new attack */
+                await asw.setAttrs({
+                    [`xenoattack${newId}_name`]: attrs[`xenoattack${id}_name`],
+                    [`xenoattack${newId}_desc`]: attrs[`xenoattack${id}_desc`],
+                    [`xenoattack${newId}_dice`]: attrs[`xenoattack${id}_dice`],
+                    [`xenoattack${newId}_base`]: attrs[`xenoattack${id}_base`],
+                    [`xenoattack${newId}_dmg`]: attrs[`xenoattack${id}_dmg`],
+                });                
+            }
+        }); 
+    });
     
+    // EXPERIMENTAL SPACE
     // Parsed Roll, triggered from sheet. Need to add logic and attributes for pushing rolls, keeping this for future additions. 
     const rollFirst = async (ev) => {
         // We'll pretend we've done a getAttrs on the attacker's weapon for all the required values
@@ -166,7 +223,7 @@
         for(let i = 1; i <= total; i++) { baseStr += "[[1d6]] "; }
         for(let i = 1; i <= stress; i++) { stressStr += "[[1d6]] "; }
         
-        let rollBase = `@{secret_roll} &{template:aliens} {{character-name=${attrs.character_name} }} {{roll-name=${rollName} }} {{base-dice=${baseStr} }} {{stress-dice=${stressStr} }} {{passthroughdata=[[0]]}} {{buttonlabel=Push Roll}} {{buttonlink=pushroll}}`;
+        let rollBase = `@{roll_command} &{template:aliens} {{character-name=${attrs.character_name} }} {{roll-name=${rollName} }} {{base-dice=${baseStr} }} {{stress-dice=${stressStr} }} {{passthroughdata=[[0]]}} {{buttonlabel=Push Roll}} {{buttonlink=pushroll}}`;
         let firstRoll = await startRoll(rollBase);
         //    rollValue = firstRoll.results.roll1.result;
         clog(`First roll data: ${JSON.stringify(firstRoll)}`);
@@ -218,8 +275,46 @@
         clog(`Completed push roll`);
     });
     */
+    // END EXPERIMENTAL SPACE
 
-    on('change:secret_roll', (ev) => {
+
+    // PERMANENT Modifiers
+    modskills = ['heavy_machinery', 'stamina', 'close_combat', 'mobility', 'piloting', 'ranged_combat', 'observation', 'comtech', 'survival', 'manipulation', 'medical_aid', 'command'];
+    modskills.forEach( (modskill) => {
+        const skillmod = modskill.replaceAll('_',''); 
+        on(`clicked:${skillmod}modadd clicked:${skillmod}modsub`, async (ev) => {
+            clog(`Mod skill is ${modskill} and skill mod is ${skillmod}`);
+            const attrs = await asw.getAttrs([`${modskill}_mod`]);
+            clog(`Values = ${JSON.stringify(attrs)}`);
+            const previous = attrs[`${modskill}_mod`]; 
+            clog(`Previous permanent modifier for ${modskill} is ${previous}.`);
+            let addsub = ev.triggerName.slice(-3);
+            clog(`Sub or add: ${addsub} and add? is ${addsub == 'add'}`);
+            const current = addsub == "add" ? int(previous) + 1 : int(previous) - 1;
+            clog(`Current permanent modifier for ${modskill} is ${current}.`);
+            const modplus = current > 0 ? 1 : 0; 
+            const modviz = current == 0 ? 0 : 1; 
+            await asw.setAttrs({
+                [`${modskill}_mod`]: current,
+                [`${modskill}_modplus`]: modplus,
+                [`${modskill}_modviz`]: modviz,
+            });
+        });
+    });
+
+    // RESET Dice pool 
+    on('clicked:customrollreset', (ev) => {
+        clog("Resetting custom roll!");
+        setAttrs({
+            customroll_name: 'Custom roll',
+            customroll_base: 0,
+            customroll_stress: 0
+        }); 
+    });
+
+
+    // SET SECRET ROLL 
+    on('change:secret_roll sheet:opened', (ev) => {
         getAttrs(['secret_roll', 'roll_command', 'roll_command_api', ], (values) => {
             clog(`Secret roll update: ${JSON.stringify(ev)}`);
             const s = values.secret_roll;
@@ -237,22 +332,6 @@
         });
     });
 
-    const configs = ["config_advencumbrance", "config_apirolls", "config_initiativedice", "config_healthcalculation", "config_gearrepeatingonly", "config_squareinput", "config_optionalspinners", "config_spacebackground", "config_panicdesc"];
-    configs.forEach( (config) => {
-        const conf = config,
-            conf_t = config+"_t";
-        on(`change:${config} sheet:opened`, (eventInfo) => {
-            clog(`starting config backup for ${config}`);
-            getAttrs([conf], (values) => {
-                const c = values[config];
-                clog(`Setting temp attribute ${conf_t} to ${c}`);
-                setAttrs({
-                    [conf_t]: c
-                });
-            });
-        });
-    });
-
     // CALCULATE STRESS - HEALTH - RADIATION - VALUE FROM CHECKBOXES OR ATTRIBUTE
     const variableAttributes = ["stress","health","radiation"];
     variableAttributes.forEach(function (variableAttribute) {
@@ -263,14 +342,14 @@
                 console.log("%c|*** Character Sheet Calculating Attribute Value Change ***|", "color:Black; background-color: LawnGreen");
                 console.log(eventinfo.sourceAttribute + " was activated by " + eventinfo.sourceType);
                 console.log("Previous Value: " + eventinfo.previousValue + " changed to a New Value of: " + eventinfo.newValue);
-                console.log(JSON.stringify(eventinfo));
-                console.log('checkbox names: ' + variableAttributeChecks.join(', '));
+                //console.log(JSON.stringify(eventinfo));
+                //console.log('checkbox names: ' + variableAttributeChecks.join(', '));
                 if (eventinfo.sourceAttribute == variableAttribute) {
                     // stress or health token bar change
                     const newValue = values[variableAttribute]*1||0;
                     const setAttributeValuesAttrs = variableAttributeChecks.reduce((final,item,index) => {
                         final[item] = (index < newValue ? 1: 0);  // index will be 0 to 9, so we use < instead of <=
-                        console.log(`Setting Attribute Values: ${item} = ${index < newValue ? 1: 0}`);
+                        //console.log(`Setting Attribute Values: ${item} = ${index < newValue ? 1: 0}`);
                         return final;
                     },{});
                     setAttrs(setAttributeValuesAttrs, {silent: true});
@@ -278,15 +357,48 @@
                     const attributeTotal = variableAttributeChecks.reduce((total,item) => total + values[item] *1||0, 0);
                     const setAttributeFinalAttrs = {};
                     setAttributeFinalAttrs[variableAttribute] = attributeTotal;
-                    console.log("Setting Attribute Values: " + attributeTotal);
+                    //console.log("Setting Attribute Values: " + attributeTotal);
                     setAttrs(setAttributeFinalAttrs, {silent: true});
                 }
             });
         });
     });
 
+    // PERMANENT RADIATION
+    on('change:radiation_perm', (eventInfo) => {
+        clog('Starting permanent radiation method');
+        getAttrs(['radiation_perm', 'radiation_1', 'radiation_2', 'radiation_3', 'radiation_4', 'radiation_5', 'radiation_6', 'radiation_7', 'radiation_8', 'radiation_9', 'radiation_10'], (values) => {
+            clog(`radiation values pre-permanent modification: ${JSON.stringify(values)}`);
+            const perm = int(values.radiation_perm),
+                max = 10; 
+            //let rads = new Array(10);
+            let attributeObj = {};
+            let rads = [0, int(values.radiation_1), int(values.radiation_2), int(values.radiation_3), int(values.radiation_4), int(values.radiation_5), int(values.radiation_6), int(values.radiation_7), int(values.radiation_8), int(values.radiation_9), int(values.radiation_10) ];
+            clog(`radiation values pre-modification: ${JSON.stringify(rads)}`);
+            let remove = 0; 
+            for( let i = 1; i <= max; i++ ) {
+                clog(`Testing if less than permanent value: ${!!(i <= perm)}`);
+                if ( i <= perm ) {
+                    if ( int(rads[i]) !== 1 ) {
+                        remove++; 
+                    } 
+                    rads[i] = 1; 
+                } else {
+                    clog(`Testing if value 1 and remove active: ${!!(int(values[i]) == 1 && remove > 0)}`);
+                    if ( int(rads[i]) == 1 && remove > 0 ) {
+                        rads[i] = 0;
+                        remove--;
+                    }
+                }
+                attributeObj[`radiation_${i}`] = rads[i];
+                clog(`radiation values during modification: ${JSON.stringify(rads)}`);
+            }
+            clog(`attribute object after modification: ${JSON.stringify(attributeObj)}`);
+        });
+    });
+
     /* */
-    // CALCULATE Health
+    // CALCULATE Health from Attribute
     on("change:strength change:tough sheet:opened", (eventinfo) => {
         //clog("Change detected: Health");
         //clog(`Eventinfo: ${JSON.stringify(eventinfo)}`);
@@ -532,7 +644,8 @@
             getAttrs([`talent_${tal}`], function(v){
                 var talentname = v[`talent_${tal}`];
                 //clog("Talent output: "+ (talentname.length > 0) ? talents[`${tal}`] : "-");
-                var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
+                //var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
+                var txt = (talentname.length > 0) ? talentname : "-";
                 setAttrs({[`tal_${tal}`]: txt});
                 });
             });
@@ -870,3 +983,4 @@
         });
         console.log("tab_armament Set To: 5");
     });
+    

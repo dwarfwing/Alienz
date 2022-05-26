@@ -243,5 +243,7 @@
     "permanent-modifier-add-desc": "Adds to the permanent modifier for this skill. @{[skill_name]_mod_add}",
     "permanent-modifier-sub-desc": "SUbtracts from the permanent modifier for this skill. @{[skill_name]_mod_sub}",
     "reset": "Reset",
-    "stress-included": "Includes Stress dice. By ticking this box the roll for the talent will also include the current Stress dice, which is normal for most rolls."
+    "stress-included": "Includes Stress dice. By ticking this box the roll for the talent will also include the current Stress dice, which is normal for most rolls.",
+    "permanent": "Permanent",
+    "steel-nerves": "Nerves of steel"
 }

@@ -50,10 +50,10 @@
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="personal-agenda-u" >Personal Agenda</span>
             </div>
-            <div class="auto-expand textarea-margin-correct">
-                <span name="attr_personal_agenda"></span>
-                <textarea name="attr_personal_agenda"  data-i18n-placeholder="personal-agenda-place" placeholder="This is my personal agenda..." title="@{personal_agenda}" spellcheck="false" ></textarea>
-            </div>
+            <!-- <div class="auto-expand textarea-margin-correct"> -->
+                <!-- <span name="attr_personal_agenda"></span> -->
+                <textarea name="attr_personal_agenda" class="auto-expand" data-i18n-placeholder="personal-agenda-place" placeholder="This is my personal agenda..." title="@{personal_agenda}" spellcheck="false" ></textarea>
+            <!-- </div> -->
         </div>
         <div class="grid-item black-item">
             &nbsp;
@@ -153,18 +153,18 @@
                         <select name="attr_talent_two_skill" class="sheet-select-input sheet-w100 sheet-left">
                             <option value="0" selected default hidden>Skill</option>
                             <option value="0">---</option>
-                            <option value="@{close_combat}">Close Combat</option>
-                            <option value="@{stamina}">Stamina</option>
-                            <option value="@{heavy_machinery}">Heavy Machinery</option>
-                            <option value="@{ranged_combat}">Ranged Combat</option>
-                            <option value="@{mobility}">Mobility</option>
-                            <option value="@{piloting}">Piloting</option>
-                            <option value="@{observation}">Observation</option>
-                            <option value="@{survival}">Survival</option>
-                            <option value="@{comtech}">Comtech</option>
-                            <option value="@{manipulation}">Manipulation</option>
-                            <option value="@{command}">Command</option>
-                            <option value="@{medical_aid}">Medical Aid</option>
+                            <option value="@{close_combat}+@{close_combat_mod}">Close Combat</option>
+                            <option value="@{stamina}+@{stamina_mod}">Stamina</option>
+                            <option value="@{heavy_machinery}+@{heavy_machinery_mod}">Heavy Machinery</option>
+                            <option value="@{ranged_combat}+@{ranged_combat_mod}">Ranged Combat</option>
+                            <option value="@{mobility}+@{mobility_mod}">Mobility</option>
+                            <option value="@{piloting}+@{piloting_mod}">Piloting</option>
+                            <option value="@{observation}+@{observation_mod}">Observation</option>
+                            <option value="@{survival}+@{survival_mod}">Survival</option>
+                            <option value="@{comtech}+@{comtech_mod}">Comtech</option>
+                            <option value="@{manipulation}+@{manipulation_mod}">Manipulation</option>
+                            <option value="@{command}+@{command_mod}">Command</option>
+                            <option value="@{medical_aid}+@{medical_aid_mod}">Medical Aid</option>
                         </select>
                     </div>
                     <div class="darker-rounded-box talent-supply">
@@ -195,20 +195,20 @@
                             <option value="6">+6</option>
                         </select>
                     </div>
-                    <input type="checkbox" id="talent2stress" name="attr_talent_two_stress" class="talent-stress-box" value="@{stress}" hidden checked />
-                    <label for="talent2stress" class="darker-rounded-box talent-type-btn talent-stress-incl">Stress</label>
-                    <label for="talent2stress" class="darker-rounded-box talent-type-btn talent-stress-excl">Stress</label>
-                     
+                    <div class="talent-stress">
+                        <input type="checkbox" id="talent2stress" name="attr_talent_two_stress" class="talent-stress-box" value="@{stress}" hidden checked />
+                        <label for="talent2stress" class="darker-rounded-box talent-type-btn talent-stress-incl">Stress</label>
+                        <label for="talent2stress" class="darker-rounded-box talent-type-btn talent-stress-excl">Stress</label>
+                    </div>
                     <!-- <div class="darker-rounded-box talent-stress" data-i18n-title="stress">
                         <input type="checkbox" name="attr_talent_two_stress" value="@{stress}" checked class="talent-roll-box" data-i18n-title="stress-included" title="Includes Stress dice. By ticking this box the roll for the talent will also include the current Stress dice, which is normal for most rolls." />
                     </div> -->     
                 </div>
 
-                
-                <div class="auto-expand">
-                    <!-- <span name="attr_talent_two_description"></span> -->
-                    <textarea name="attr_talent_two_description" value="" data-i18n-placeholder="talent-two-description.place" placeholder="Talent Two Description..." title="@{talent_two_description}" spellcheck="false" ></textarea>
-                </div>
+                <textarea name="attr_talent_two_description" class="auto-expand" value="" data-i18n-placeholder="talent-two-description.place" placeholder="Talent Two Description..." title="@{talent_two_description}" spellcheck="false" ></textarea>
+                <!-- <div class="auto-expand">
+                    <textarea name="attr_talent_two_description" class="auto-expand" value="" data-i18n-placeholder="talent-two-description.place" placeholder="Talent Two Description..." title="@{talent_two_description}" spellcheck="false" ></textarea>
+                </div> -->
             </div>
             <div class="tab-content tab-three-contents"> <!--TAB 3 TALENT -->
                 <input type="text" name="attr_talent_three" value="" class="text-input" title="@{talent_three}" spellcheck="false" data-i18n-placeholder="talent-three-name.place" placeholder="Talent Three Name"/>
@@ -295,8 +295,8 @@
                 </div>
                 <div class="roll-buttons beta-buttons">
                     <input class="panicdesc" type="checkbox" hidden name="attr_config_panicdesc">
-                    <button type="roll" class="button-skill button-beta panicdesc" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Panic Roll }} {{roll-dice=[[ 1d6 + @{stress} [ Stress ] ]] }}" name="panic" data-i18n-title="panic-desc" /><span data-i18n="panic-u">Panic</span></button>
-                    <button type="roll" class="button-skill button-beta nopanicdesc" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Panic Roll }} {{panic-roll=[[ 1d6 + @{stress} [ Stress ] ]] }}" name="panic" data-i18n-title="panic-desc" /><span data-i18n="panic-u">Panic</span></button>
+                    <button type="roll" class="button-skill button-beta panicdesc" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Panic Roll }} {{roll-dice=[[ 1d6 + @{stress} + @{steelnerves} [ Stress ] ]] }}" name="panic" data-i18n-title="panic-desc" /><span data-i18n="panic-u">Panic</span></button>
+                    <button type="roll" class="button-skill button-beta nopanicdesc" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Panic Roll }} {{panic-roll=[[ 1d6 + @{stress} + @{steelnerves} [ Stress ] ]] }}" name="panic" data-i18n-title="panic-desc" /><span data-i18n="panic-u">Panic</span></button>
                     <button type="roll" class="button-skill button-beta" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Initiative: *Card Value* }} {{roll-dice=[[ ?{Card Number|0} &{tracker} ]] }}" name="initiative_card" data-i18n-title="initiative-card-desc" /><span data-i18n="initiative-card-u">Initiative: Card</span></button>
                     <button type="roll" class="button-skill button-beta" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Initiative: *Dice Roll* }} {{roll-dice=[[ @{config_initiativedice} &{tracker} ]] }}" name="initiative_dice" data-i18n-title="initiative-card-desc" /><span data-i18n="initiative-dice-u">Initiative: Dice</span></button>
                 </div>
@@ -373,9 +373,17 @@
                 <input type="number" name="attr_stress_max" value="10" class="no-spin-input low-visibility-number" title="@{stress_max}"/>
             </div>
         </div>
-        <div class="grid-item black-item">
-            &nbsp;
+        <div class="grid-item black-item small-box steel-nerves"> 
+            <div class="more-curves">
+                <span class="small-teal-label" data-i18n="steel-nerves">Nerves of Steel</span>
+            </div>
+            <div>
+                <input type="checkbox" class="numbered-box grey-box" name="attr_steelnerves" value="-2"><span title="+" ></span>
+            </div>
         </div>
+        <!-- <div class="grid-item black-item">
+            &nbsp;
+        </div> -->
         <div class="grid-item span-six-thru-eight skill">
             <div class="float-left">
                 <input type="number" name="attr_close_combat" value="0" class="no-spin-input optional-spinner-input" title="@{close_combat}" />
@@ -536,17 +544,28 @@
                 <span class="teal-header" data-i18n="radiation-u">Radiation</span>
             </div>
             <div class="">
-                <div class="vertical-adjust-one">
-                    <input type="checkbox" name="attr_radiation_1" value="1" class="numbered-box green-box" title="@{radiation_1}"/><span title="1" ></span>
-                    <input type="checkbox" name="attr_radiation_2" value="1" class="numbered-box green-box" title="@{radiation_2}"/><span title="2" ></span>
-                    <input type="checkbox" name="attr_radiation_3" value="1" class="numbered-box green-box" title="@{radiation_3}"/><span title="3" ></span>
-                    <input type="checkbox" name="attr_radiation_4" value="1" class="numbered-box green-box" title="@{radiation_4}"/><span title="4" ></span>
-                    <input type="checkbox" name="attr_radiation_5" value="1" class="numbered-box green-box" title="@{radiation_5}"/><span title="5" ></span> <br>
-                    <input type="checkbox" name="attr_radiation_6" value="1" class="numbered-box green-box" title="@{radiation_6}"/><span title="6" ></span>
-                    <input type="checkbox" name="attr_radiation_7" value="1" class="numbered-box green-box" title="@{radiation_7}"/><span title="7" ></span>
-                    <input type="checkbox" name="attr_radiation_8" value="1" class="numbered-box green-box" title="@{radiation_8}"/><span title="8" ></span>
-                    <input type="checkbox" name="attr_radiation_9" value="1" class="numbered-box green-box" title="@{radiation_9}"/><span title="9" ></span>
-                    <input type="checkbox" name="attr_radiation_10" value="1" class="numbered-box green-box" title="@{radiation_10}"/><span title="10" ></span>
+                <div class="vertical-adjust-one rad-buttons">
+                    <input type="hidden" hidden name="attr_radiation_perm" class="permanent-radiation-attr" />
+                    <!-- <input type="checkbox" name="attr_radiation_p1" value="0" class="numbered-box gold-box rad-button permanent p1" title="@{radiation_p1}"/> --><span class="permanent p1" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_1" value="1" class="numbered-box green-box rad-button transient r1" title="@{radiation_1}"/><span class="transient r1" title="1" ></span>
+                    <!-- <input type="checkbox" name="attr_radiation_p2" value="0" class="numbered-box gold-box rad-button permanent p2" title="@{radiation_p2}"/> --><span class="permanent p2" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_2" value="1" class="numbered-box green-box rad-button transient r2" title="@{radiation_2}"/><span class="transient r2" title="2" ></span>
+                    <!-- <input type="checkbox" name="attr_radiation_p3" value="0" class="numbered-box gold-box rad-button permanent p3" title="@{radiation_p3}"/> --><span class="permanent p3" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_3" value="1" class="numbered-box green-box rad-button transient r3" title="@{radiation_3}"/><span class="transient r3" title="3" ></span>
+                    <!-- <input type="checkbox" name="attr_radiation_p4" value="0" class="numbered-box gold-box rad-button permanent p4" title="@{radiation_p4}"/> --><span class="permanent p4" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_4" value="1" class="numbered-box green-box rad-button transient r4" title="@{radiation_4}"/><span class="transient r4" title="4" ></span>
+                    <!-- <input type="checkbox" name="attr_radiation_p5" value="0" class="numbered-box gold-box rad-button permanent p5" title="@{radiation_p5}"/> --><span class="permanent p5" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_5" value="1" class="numbered-box green-box rad-button transient r5" title="@{radiation_5}"/><span class="transient r5" title="5" ></span> <br>
+                    <!-- <input type="checkbox" name="attr_radiation_p6" value="0" class="numbered-box gold-box rad-button permanent p6" title="@{radiation_p6}"/> --><span class="permanent p6" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_6" value="1" class="numbered-box green-box rad-button transient r6" title="@{radiation_6}"/><span class="transient r6" title="6" ></span>
+                    <!-- <input type="checkbox" name="attr_radiation_p7" value="0" class="numbered-box gold-box rad-button permanent p7" title="@{radiation_p7}"/> --><span class="permanent p7" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_7" value="1" class="numbered-box green-box rad-button transient r7" title="@{radiation_7}"/><span class="transient r7" title="7" ></span>
+                    <!-- <input type="checkbox" name="attr_radiation_p8" value="0" class="numbered-box gold-box rad-button permanent p8" title="@{radiation_p8}"/> --><span class="permanent p8" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_8" value="1" class="numbered-box green-box rad-button transient r8" title="@{radiation_8}"/><span class="transient r8" title="8" ></span>
+                    <!-- <input type="checkbox" name="attr_radiation_p9" value="0" class="numbered-box gold-box rad-button permanent p9" title="@{radiation_p9}"/> --><span class="permanent p9" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_9" value="1" class="numbered-box green-box rad-button transient r9" title="@{radiation_9}"/><span class="transient r9" title="9" ></span>
+                    <!-- <input type="checkbox" name="attr_radiation_p10" value="0" class="numbered-box gold-box rad-button permanent p10" title="@{radiation_p10}"/> --><span class="permanent p10" title="Permanent" data-i18n-title="permanent" >l</span>
+                    <input type="checkbox" name="attr_radiation_10" value="1" class="numbered-box green-box rad-button transient r10" title="@{radiation_10}"/><span class="transient r10" title="10" ></span>
                 </div>
             </div>            
             <div class="vertical-adjust-one">
@@ -637,12 +656,12 @@
             <div class="black-floating-header">
                 <span class="teal-header" data-i18n="tiny-items-u" >Tiny Items</span>
             </div>
-            <div class="vertical-adjust-one">
-                <div class="auto-expand textarea-margin-correct">
+            <!-- <div class="vertical-adjust-one"> -->
+                <!-- <div class="auto-expand textarea-margin-correct"> -->
                     <!-- <span name="attr_tiny_items"></span> -->
-                    <textarea name="attr_tiny_items" data-i18n-placeholder="odds-and-ends-place" placeholder="Odds and ends..." title="@{tiny_items}" spellcheck="false" ></textarea>
-                </div>
-            </div>
+                    <textarea name="attr_tiny_items" class="auto-expand" data-i18n-placeholder="odds-and-ends-place" placeholder="Odds and ends..." title="@{tiny_items}" spellcheck="false" ></textarea>
+                <!-- </div> -->
+            <!-- </div> -->
         </div> <!-- END OF ROW 7 -->
 
         <div class="grid-item span-three-four skill"> <!-- START OF ROW 8 -->
@@ -1125,19 +1144,19 @@
                     </div>
                     <div class="grid-item weapon-item type flex-column center">
                         <div>
-                            <input type="radio" name="attr_weapon_one_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                            <input type="radio" name="attr_weapon_one_skill" value="@{strength} + @{close_combat}+@{close_combat_mod}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
                             <span data-i18n-title="cc-title" title="CC" ></span>
                         </div>
                         <div>
-                            <input type="radio" name="attr_weapon_one_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
+                            <input type="radio" name="attr_weapon_one_skill" value="@{agility} + @{ranged_combat}+@{ranged_combat_mod}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
                             <span data-i18n-title="rc-title" title="RC" ></span>
                         </div>
                     </div>
                 </div>
-                <div class="auto-expand">
+                <!-- <div class="auto-expand"> -->
                     <!-- <span name="attr_weapon_one_comment"></span> -->
-                    <textarea name="attr_weapon_one_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_one_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_weapon_one_comment" class="auto-expand" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_one_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
             <div class="tab-content tab-beta-contents align-left vertical-adjust-one"> <!--TAB 2 2ND WEAPON -->
                 <input type="text" name="attr_weapon_two_name" value="" class="text-input seventy-seven-percent" title="@{weapon_two_name}" spellcheck="false" data-i18n-placeholder="weapon-two-name-place" placeholder="Weapon Two Name"/>
@@ -1178,19 +1197,19 @@
                     </div>
                     <div class="grid-item weapon-item type flex-column center">
                         <div>
-                            <input type="radio" name="attr_weapon_two_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                            <input type="radio" name="attr_weapon_two_skill" value="@{strength} + @{close_combat}+@{close_combat_mod}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
                             <span data-i18n-title="cc-title" title="CC" ></span>
                             </div>
                         <div>
-                            <input type="radio" name="attr_weapon_two_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked" />
+                            <input type="radio" name="attr_weapon_two_skill" value="@{agility} + @{ranged_combat}+@{ranged_combat_mod}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked" />
                             <span  data-i18n-title="rc-title" title="RC" ></span>
                         </div>
                     </div>
                 </div>
-                <div class="auto-expand">
+               <!--  <div class="auto-expand"> -->
                     <!-- <span name="attr_weapon_two_comment"></span> -->
-                    <textarea name="attr_weapon_two_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_two_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_weapon_two_comment" class="auto-expand" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_two_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
             <div class="tab-content tab-gamma-contents align-left vertical-adjust-one"> <!--TAB 3 3RD WEAPON -->
                 <input type="text" name="attr_weapon_three_name" value="" class="text-input seventy-seven-percent" title="@{weapon_three_name}" spellcheck="false" data-i18n-placeholder="weapon-three-name-place" placeholder="Weapon Three Name"/>
@@ -1231,19 +1250,19 @@
                     </div>
                     <div class="grid-item weapon-item type flex-column center">
                         <div>
-                            <input type="radio" name="attr_weapon_three_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                            <input type="radio" name="attr_weapon_three_skill" value="@{strength} + @{close_combat}+@{close_combat_mod}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
                             <span   data-i18n-title="cc-title" title="CC" ></span>
                         </div>
                         <div>
-                            <input type="radio" name="attr_weapon_three_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
+                            <input type="radio" name="attr_weapon_three_skill" value="@{agility} + @{ranged_combat}+@{ranged_combat_mod}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
                             <span   data-i18n-title="rc-title" title="RC" ></span>
                         </div>
                     </div>
                 </div>
-                <div class="auto-expand">
+                <!-- <div class="auto-expand"> -->
                     <!-- <span name="attr_weapon_three_comment"></span> -->
-                    <textarea name="attr_weapon_three_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_three_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_weapon_three_comment" class="auto-expand" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_three_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
             <div class="tab-content tab-delta-contents align-left vertical-adjust-one"> <!--TAB 4 4TH WEAPON -->
                 <input type="text" name="attr_weapon_four_name" value="" class="text-input seventy-seven-percent" title="@{weapon_four_name}" spellcheck="false" data-i18n-placeholder="weapon-four-name-place" placeholder="Weapon Four Name"/>
@@ -1284,17 +1303,17 @@
                     </div>
                     <div class="grid-item weapon-item type flex-column center">
                         <div>
-                            <input type="radio" name="attr_weapon_four_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
+                            <input type="radio" name="attr_weapon_four_skill" value="@{strength} + @{close_combat}+@{close_combat_mod}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/><span   data-i18n-title="cc-title" title="CC" ></span>
                         </div>
                         <div>
-                            <input type="radio" name="attr_weapon_four_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
+                            <input type="radio" name="attr_weapon_four_skill" value="@{agility} + @{ranged_combat}+@{ranged_combat_mod}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/><span   data-i18n-title="rc-title" title="RC" ></span>
                         </div>
                     </div>
                 </div>
-                <div class="auto-expand">
+                <!-- <div class="auto-expand"> -->
                     <!-- <span name="attr_weapon_four_comment"></span> -->
-                    <textarea name="attr_weapon_four_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_four_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_weapon_four_comment" class="auto-expand" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_four_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
             <div class="tab-content tab-epsilon-contents align-left vertical-adjust-one"> <!--TAB 5 5TH WEAPON -->
                 <input type="text" name="attr_weapon_five_name" value="" class="text-input seventy-seven-percent" title="@{weapon_five_name}" spellcheck="false" data-i18n-placeholder="weapon-five-name-place" placeholder="Weapon Five Name"/>
@@ -1335,19 +1354,19 @@
                     </div>
                     <div class="grid-item weapon-item type flex-column center">
                         <div>
-                        <input type="radio" name="attr_weapon_five_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                        <input type="radio" name="attr_weapon_five_skill" value="@{strength} + @{close_combat}+@{close_combat_mod}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
                         <span data-i18n-title="cc-title" title="CC" ></span>
                     </div>
                     <div>
-                        <input type="radio" name="attr_weapon_five_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
+                        <input type="radio" name="attr_weapon_five_skill" value="@{agility} + @{ranged_combat}+@{ranged_combat_mod}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
                         <span data-i18n-title="rc-title" title="RC" ></span>
                     </div>
                     </div>
                 </div>
-                <div class="auto-expand">
+                <!-- <div class="auto-expand"> -->
                     <!-- <span name="attr_weapon_five_comment"></span> -->
-                    <textarea name="attr_weapon_five_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_five_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_weapon_five_comment" class="auto-expand" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_five_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
             <div class="tab-content tab-zeta-contents align-left vertical-adjust-one"> <!--TAB 6 6TH WEAPON -->
                 <input type="text" name="attr_weapon_six_name" value="" class="text-input seventy-seven-percent" title="@{weapon_six_name}" spellcheck="false" data-i18n-placeholder="weapon-six-name-place" placeholder="Weapon Six Name"/>
@@ -1388,19 +1407,19 @@
                     </div>
                     <div class="grid-item weapon-item type flex-column center">
                         <div>
-                            <input type="radio" name="attr_weapon_six_skill" value="@{strength} + @{close_combat}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
+                            <input type="radio" name="attr_weapon_six_skill" value="@{strength} + @{close_combat}+@{close_combat_mod}" class="letter-box"  data-i18n-title="use-close-combat-title" title="Use Close Combat"/>
                             <span   data-i18n-title="cc-title" title="CC" ></span>
                         </div>
                         <div>
-                            <input type="radio" name="attr_weapon_six_skill" value="@{agility} + @{ranged_combat}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
+                            <input type="radio" name="attr_weapon_six_skill" value="@{agility} + @{ranged_combat}+@{ranged_combat_mod}" class="letter-box"  data-i18n-title="use-ranged-combat-title" title="Use Close Combat" checked="checked"/>
                             <span   data-i18n-title="rc-title" title="RC" ></span>
                         </div>
                     </div>
                 </div>
-                <div class="auto-expand">
+                <!-- <div class="auto-expand"> -->
                     <!-- <span name="attr_weapon_six_comment"></span> -->
-                    <textarea name="attr_weapon_six_comment" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_six_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_weapon_six_comment" class="auto-expand" data-i18n-placeholder="comment-desc-notes-place"  placeholder="Comment / Description / Notes..." title="@{weapon_six_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
         </div> <!-- END OF ROW 13 -->
         
@@ -1821,10 +1840,10 @@
                         </button>
                     </div>
                 </div>
-                <div class="auto-expand some-padding shift-down-5">
+                <!-- <div class="auto-expand some-padding shift-down-5"> -->
                     <!-- <span name="attr_armament1_comment"></span> -->
-                    <textarea name="attr_armament1_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament1_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_armament1_comment" class="auto-expand" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament1_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
 
             <div class="tab-content tab-armament2-contents align-left vertical-adjust-one"> <!--TAB 2 2ND ARMAMENT -->
@@ -1882,10 +1901,10 @@
                         </button>
                    </div>
                 </div>
-                <div class="auto-expand some-padding shift-down-5">
+                <!-- <div class="auto-expand some-padding shift-down-5"> -->
                     <!-- <span name="attr_armament2_comment"></span> -->
-                    <textarea name="attr_armament2_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament2_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_armament2_comment" class="auto-expand" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament2_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
 
             <div class="tab-content tab-armament3-contents align-left vertical-adjust-one"> <!--TAB 3 3RD ARMAMENT -->
@@ -1943,10 +1962,10 @@
                         </button>
                    </div>
                 </div>
-                <div class="auto-expand some-padding shift-down-5">
+                <!-- <div class="auto-expand some-padding shift-down-5"> -->
                     <!-- <span name="attr_armament3_comment"></span> -->
-                    <textarea name="attr_armament3_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament3_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_armament3_comment" class="auto-expand" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament3_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
 
             <div class="tab-content tab-armament4-contents align-left vertical-adjust-one"> <!--TAB 4 4TH ARMAMENT -->
@@ -2004,10 +2023,10 @@
                         </button>
                    </div>
                 </div>
-                <div class="auto-expand some-padding shift-down-5">
+                <!-- <div class="auto-expand some-padding shift-down-5"> -->
                     <!-- <span name="attr_armament4_comment"></span> -->
-                    <textarea name="attr_armament4_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament4_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_armament4_comment" class="auto-expand" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament4_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
 
             <div class="tab-content tab-armament5-contents align-left vertical-adjust-one"> <!--TAB 5 5TH ARMAMENT -->
@@ -2065,10 +2084,10 @@
                         </button>
                    </div>
                 </div>
-                <div class="auto-expand some-padding shift-down-5">
+                <!-- <div class="auto-expand some-padding shift-down-5"> -->
                     <!-- <span name="attr_armament5_comment"></span> -->
-                    <textarea name="attr_armament5_comment" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament5_comment}" spellcheck="false" ></textarea>
-                </div>
+                    <textarea name="attr_armament5_comment" class="auto-expand" data-i18n-placeholder="gunner-comment-desc-notes-place"  placeholder="Gunner name / Comment / Description / Notes..." title="@{armament5_comment}" spellcheck="false" ></textarea>
+                <!-- </div> -->
             </div>
 
         </div> <!-- END OF ROW 7 -->
@@ -2138,31 +2157,31 @@
             </div>
         </div>
 
-        <div class="span-row4-5 span-one-two grid-item clip-edges no-border"> <!-- START OF ROW 11 -->
+        <div class="span-row4-5 span-one-two grid-item clip-edges no-border xeno-spec-abil"> <!-- START OF ROW 11 -->
             <div class="black-floating-header-clipped no-border">
                 <span class="teal-header" data-i18n="special-abilities">SPECIAL ABILITIES</span>
             </div>
-            <div class="xeno-textfield auto-expand"> <!-- -->
-                <textarea name="attr_xeno_abilities" value="" data-i18n-placeholder="xeno-abilities.place" placeholder="Xenomorph special abilities description" title="@{xeno_abilities}" spellcheck="false" ></textarea>
-            </div>
+            <!-- <div class="xeno-textfield auto-expand"> -->
+                <textarea name="attr_xeno_abilities" class="xeno-textfield auto-expand" value="" data-i18n-placeholder="xeno-abilities.place" placeholder="Xenomorph special abilities description" title="@{xeno_abilities}" spellcheck="false" ></textarea>
+            <!-- </div> -->
         </div>        
 
-        <div class="span-row4-5 span-three-four grid-item clip-edges no-border">
+        <div class="span-row4-5 span-three-four grid-item clip-edges no-border xeno-cont-term">
             <div class="black-floating-header-clipped no-border header-doublerow">
                 <span class="teal-header no-border" data-i18n="cont-and-term" >CONTAINMENT&nbsp;& TERMINATION</span>
             </div>
-            <div class="xeno-textfield auto-expand"> <!-- -->
-                <textarea name="attr_xeno_contterm" value="" data-i18n-placeholder="xeno-contterm.place" placeholder="Xenomorph containment and termination" title="@{xeno_contterm}" spellcheck="false" ></textarea>
-            </div>
+            <!--<div class="xeno-textfield auto-expand">  -->
+                <textarea name="attr_xeno_contterm" class="xeno-textfield auto-expand" value="" data-i18n-placeholder="xeno-contterm.place" placeholder="Xenomorph containment and termination" title="@{xeno_contterm}" spellcheck="false" ></textarea>
+            <!-- </div> -->
         </div>   
 
-        <div class="span-row6 span-one-thru-four grid-item clip-edges no-border xeno-notes">
+        <div class="span-row6-8 span-one-thru-four grid-item clip-edges no-border xeno-notes">
             <div class="black-floating-header-clipped no-border">
                 <span class="teal-header no-border" data-i18n="notes" >NOTES</span>
             </div>
-            <div class="xeno-textfield auto-expand"> <!-- -->
-                <textarea name="attr_xeno_notes" value="" data-i18n-placeholder="xeno-notes.place" placeholder="Notes..." title="@{xeno_notes}" spellcheck="false" ></textarea>
-            </div>
+            <!-- <div class="xeno-textfield auto-expand"> --> <!-- -->
+                <textarea name="attr_xeno_notes" class="xeno-textfield auto-expand" value="" data-i18n-placeholder="xeno-notes.place" placeholder="Notes..." title="@{xeno_notes}" spellcheck="false" ></textarea>
+            <!-- </div> -->
         </div>  
 
 
@@ -4356,6 +4375,42 @@
                     setAttrs(setAttributeFinalAttrs, {silent: true});
                 }
             });
+        });
+    });
+
+    // PERMANENT RADIATION
+    on('change:radiation_perm', (eventInfo) => {
+        clog('Starting permanent radiation method');
+        getAttrs(['radiation_perm', 'radiation_1', 'radiation_2', 'radiation_3', 'radiation_4', 'radiation_5', 'radiation_6', 'radiation_7', 'radiation_8', 'radiation_9', 'radiation_10'], (values) => {
+            //clog(`radiation values pre-permanent modification: ${JSON.stringify(values)}`);
+            const perm = int(values.radiation_perm),
+                max = 10; 
+            //let rads = new Array(10);
+            let attributeObj = {};
+            let rads = [null, int(values.radiation_1), int(values.radiation_2), int(values.radiation_3), int(values.radiation_4), int(values.radiation_5), int(values.radiation_6), int(values.radiation_7), int(values.radiation_8), int(values.radiation_9), int(values.radiation_10) ];
+            //clog(`radiation values pre-modification: ${JSON.stringify(rads)}`);
+            let remove = 0; 
+            for( let i = 1; i <= max; i++ ) {
+                //clog(`Testing if less than permanent value: ${(i <= perm)}`);
+                if ( i <= perm ) {
+                    //clog(`Testing if rad value is not 1: ${(rads[i] != 1)}`);
+                    if ( rads[i] != 1 ) {
+                        remove++;
+                    } 
+                    rads[i] = 1; 
+                } else {
+                    //clog(`Testing if value 1 and remove active: ${(rads[i] == 1 && remove > 0)}`);
+                    if ( rads[i] == 1 && remove > 0 ) {
+                        rads[i] = 0;
+                        --remove;
+                    }
+                }
+                attributeObj[`radiation_${i}`] = rads[i].toString();
+                //clog(`radiation values during modification: ${JSON.stringify(rads)}`);
+            }
+            //clog(`attribute object after modification: ${JSON.stringify(attributeObj)}`);
+            setAttrs(attributeObj);
+            clog(`Permanent radiation changed. Shifting rads indicator to permanent state.`); 
         });
     });
 

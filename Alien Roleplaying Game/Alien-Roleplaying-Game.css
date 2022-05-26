@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Graduate|Courier+Prime|Roboto|Share+Tech+Mono|Material+Icons&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Graduate|Courier+Prime|Roboto|Share+Tech+Mono|Material+Icons|Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap');
 /* @import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap'); */
 /* ORIGINAL */
 
@@ -242,8 +242,11 @@ div.sheet-roll-buttons + hr.sheet-dotted-line {
 .sheet-span-row4-5 { grid-row: 4/6;}
 .sheet-span-row4-6 { grid-row: 4/7;}
 .sheet-span-row5 { grid-row: 5;}
+.sheet-span-row5-6 { grid-row: 5/7;}
 .sheet-span-row5-8 { grid-row: 5/9;}
 .sheet-span-row6 { grid-row: 6;}
+.sheet-span-row6-7 { grid-row: 6/8;}
+.sheet-span-row6-8 { grid-row: 6/9;}
 .sheet-span-row7 { grid-row: 7;}
 .sheet-span-row8 { grid-row: 8;}
 .sheet-span-row9 { grid-row: 9;}
@@ -532,32 +535,43 @@ div.sheet-expandable button[type="action"] {
     -font-family: Serif;
 }
 
-.sheet-auto-expand textarea {
-	position: absolute;
+.sheet-auto-expand textarea,
+textarea.sheet-auto-expand {
+    font-family: 'Roboto';
+    text-align: left;
+    font-size: 0.9em;
+    line-height: 1em;
+    padding: 2px;
+    border: 1px Dashed #bfbfbf;
+	position: unset;
 	z-index: 1;
 	top: 0;
 	left: 0;
-	margin: 0;
+	margin: 2px;
 	overflow: hidden;
-	resize: unset;
+	-resize: unset;
 	height: 100%;
 	width: 100%;
+    max-width: 100%;
+    min-width: 100%;
 	display: block;
 	box-sizing: border-box;
 	background: transparent;
-	border: none;
-	border-radius: 0;
+	border-radius: 1px;
 	box-shadow: none;
-	color: inherit;
-	font: inherit;
-	letter-spacing: inherit;
-	padding: inherit;
-	text-align: inherit;
-	text-transform: inherit;
-    max-height: 100px;
 }
-.sheet-span-tinyitems .sheet-auto-expand textarea,
-.sheet-tab-content .sheet-auto-expand textarea {
+.sheet-span-personal-agenda div.sheet-auto-expand {
+    height: fit-content;
+    min-height: 75px;
+}
+.sheet-span-personal-agenda textarea.sheet-auto-expand  {
+    overflow-y: auto; 
+    resize: none;
+    -max-height: 80px;
+}
+/* .sheet-span-tinyitems .sheet-auto-expand textarea,
+.sheet-tab-content .sheet-auto-expand textarea,
+.sheet-tab-content textarea.sheet-auto-expand {
     position: unset;
     top: unset;
     left: unset;
@@ -566,27 +580,36 @@ div.sheet-expandable button[type="action"] {
     max-width: 100%;
     min-width: 100%;
     overflow-y: auto;
-}
-.sheet-tab-content .sheet-auto-expand textarea {
+} */
+/* .sheet-tab-content .sheet-auto-expand textarea, */
+.sheet-tab-content textarea.sheet-auto-expand {
     min-height: 75px;
 }
-.sheet-span-armaments .sheet-auto-expand textarea,
-.sheet-span-weapons .sheet-auto-expand textarea {
+.sheet-span-armaments textarea.sheet-auto-expand,
+.sheet-span-weapons textarea.sheet-auto-expand  {
     max-height: 40px;
     min-height: 20px;
     height: 20px;
 }
-.sheet-xeno-textfield {
+/* .sheet-xeno-textfield {
     min-height: 135px;
     margin-top: 10px;
-}
-.sheet-xeno-textfield textarea {
+} */
+textarea.sheet-xeno-textfield  {
+    margin-top: 10px;
+    margin-bottom: 4px;
     min-height: 120px;
+    height: calc(100% - 15px);
     overflow-y: auto; 
     overflow-x: hidden;
     max-width: 100%;
     min-width: 100%;
-    resize: vertical;
+    resize: none;
+}
+
+.sheet-xeno-cont-term textarea.sheet-xeno-textfield {
+    height: calc(100% - 30px);
+    resize: none;
 }
 .sheet-xeno .sheet-xeno-attack div,
 .sheet-xeno .sheet-xeno-attack span,
@@ -600,6 +623,7 @@ div.sheet-expandable button[type="action"] {
 .sheet-xeno .sheet-xeno-attack textarea {
     min-height: 60px;
     font-size: 12px;
+    height: unset;
 }
 .sheet-xeno .sheet-xeno-attack input {
     font-size: 12px;
@@ -1025,68 +1049,6 @@ input[type="number"].sheet-number-input {
     -moz-appearance: textfield;
 }
 
-.sheet-span-gear .sheet-vertical-adjust-one {
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height: 280px;
-}
-
-/* TEXT FIELDS */
-.sheet-span-tinyitems textarea {
-    max-width: 100%;
-    min-width: 100%;
-    overflow-y: auto; 
-    resize:none;
-    max-height: 65px;
-    min-height: 65px;
-}
-.sheet-xeno-textfield textarea::-webkit-scrollbar, 
-.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar,
-.sheet-tab-content textarea::-webkit-scrollbar,
-.sheet-span-tinyitems textarea::-webkit-scrollbar {
-    width: 6px;
-    margin-left: 4px;
-    cursor: auto;
-}
-.sheet-xeno-textfield textarea::-webkit-scrollbar-track, 
-.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-track,
-.sheet-tab-content textarea::-webkit-scrollbar-track,
-.sheet-span-tinyitems textarea::-webkit-scrollbar-track {
-    border-radius: 3px;
-    background: darkgrey;
-}
-.sheet-xeno-textfield textarea::-webkit-scrollbar-thumb,
-.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-thumb,
-.sheet-tab-content textarea::-webkit-scrollbar-thumb,
-.sheet-span-tinyitems textarea::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background: gray;
-}
-.sheet-xeno-textfield textarea::-webkit-scrollbar-thumb:hover,
-.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-thumb:hover,
-.sheet-tab-content textarea::-webkit-scrollbar-thumb:hover,
-.sheet-span-tinyitems textarea::-webkit-scrollbar-thumb:hover {
-    background: black;
-}
-span.sheet-gear-header {
-	float: right;
-    width: 40px !important;
-    min-width: 40px;
-    text-align: center;
-}
-.sheet-span-gear input.sheet-spinner-input, 
-.sheet-span-gear input.sheet-spinner-input-total, 
-.sheet-span-gear select.sheet-spinner-input-wt {
-    font-family: 'Courier Prime';
-    font-family: 'Roboto';
-    background: transparent;   
-    display: block;
-    margin-right: 0;
-    text-align: center;
-	float: right;
-    width: 32px !important;
-    height: 2em !important;
-}
 input.sheet-optionalspinners:not(:checked) ~ div input[type="number"].sheet-optional-spinner-input,
 input[type="number"].sheet-spinner-input,
 input[type="number"].sheet-spinner-input-total {
@@ -1124,6 +1086,74 @@ input[type="number"].sheet-spinner-input:hover::-webkit-inner-spin-button {
 .sheet-span-gear input.sheet-spinner-input-total {
     background-color: Grey;
 }
+
+.sheet-span-gear .sheet-vertical-adjust-one {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 280px;
+}
+
+/* TEXT FIELDS */
+.sheet-span-tinyitems textarea {
+    max-width: 100%;
+    min-width: 100%;
+    overflow-y: auto; 
+    resize:none;
+    -max-height: 65px;
+    -min-height: 65px;
+}
+textarea.sheet-xeno-textfield::-webkit-scrollbar, 
+.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar,
+.sheet-tab-content textarea::-webkit-scrollbar,
+.sheet-span-tinyitems textarea::-webkit-scrollbar,
+.sheet-span-personal-agenda textarea::-webkit-scrollbar {
+    width: 6px;
+    margin-left: 4px;
+    cursor: auto;
+}
+textarea.sheet-xeno-textfield::-webkit-scrollbar-track, 
+.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-track,
+.sheet-tab-content textarea::-webkit-scrollbar-track,
+.sheet-span-tinyitems textarea::-webkit-scrollbar-track,
+.sheet-span-personal-agenda textarea::-webkit-scrollbar-track  {
+    border-radius: 3px;
+    background: darkgrey;
+}
+textarea.sheet-xeno-textfield::-webkit-scrollbar-thumb,
+.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-thumb,
+.sheet-tab-content textarea::-webkit-scrollbar-thumb,
+.sheet-span-tinyitems textarea::-webkit-scrollbar-thumb,
+.sheet-span-personal-agenda textarea::-webkit-scrollbar-thumb  {
+    border-radius: 3px;
+    background: gray;
+}
+textarea.sheet-xeno-textfield::-webkit-scrollbar-thumb:hover,
+.sheet-span-gear .sheet-vertical-adjust-one::-webkit-scrollbar-thumb:hover,
+.sheet-tab-content textarea::-webkit-scrollbar-thumb:hover,
+.sheet-span-tinyitems textarea::-webkit-scrollbar-thumb:hover,
+.sheet-span-personal-agenda textarea::-webkit-scrollbar-thumb:hover  {
+    background: black;
+}
+span.sheet-gear-header {
+	float: right;
+    width: 40px !important;
+    min-width: 40px;
+    text-align: center;
+}
+.sheet-span-gear input.sheet-spinner-input, 
+.sheet-span-gear input.sheet-spinner-input-total, 
+.sheet-span-gear select.sheet-spinner-input-wt {
+    font-family: 'Courier Prime';
+    font-family: 'Roboto';
+    background: transparent;   
+    display: block;
+    margin-right: 0;
+    text-align: center;
+	float: right;
+    width: 32px !important;
+    height: 2em !important;
+}
+
 
 .sheet-span-gear div.repcontainer div.repitem {
     height: 30px;
@@ -1420,7 +1450,7 @@ button[type="action"].sheet-action-tab:focus {
 }
 
 button[type="action"].sheet-tab-weapon {
-    width: 12% !important;
+    width: 10% !important;
 }
 .sheet-span-weapons .sheet-skinny-div {
 
@@ -1433,11 +1463,9 @@ button[type="action"].sheet-tab-log {
 /*  TABS  */
 div.sheet-tab-content { 
     display: none;
-    height: fit-content;
+    height: 100%;
 }
-.sheet-span-talents div.sheet-tab-content {
-    -margin-top: 30px;
-}
+
 .sheet-span-talents div.sheet-talent-tabs {
     line-height: 20px;
 }
@@ -1445,7 +1473,8 @@ div.sheet-tab-content {
 div.sheet-tab-content textarea {
     min-height: 50px;
     max-height: 100px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    resize: none;
 }
 div.sheet-box-under-the-bed { 
     display: none;
@@ -1482,6 +1511,14 @@ div.sheet-box-under-the-bed {
 }
 .sheet-span-talents div.sheet-talent-roll :is(span,label,button,select,option) {
     font-size: 10px;
+}
+.sheet-talent-roll label.sheet-talent-type-skill, 
+.sheet-talent-roll label.sheet-talent-type-supply {
+    display: block; 
+    text-align: center; 
+    padding: 0 3px;
+    width: 42px;
+    cursor: pointer; 
 }
 .sheet-span-talents .sheet-tab-content div.sheet-talent-roll div.sheet-darker-rounded-box,
 .sheet-span-talents .sheet-tab-content div.sheet-talent-roll label.sheet-darker-rounded-box {
@@ -1795,7 +1832,7 @@ input.sheet-numbered-box + span::before {
     font-weight: bold;
     margin-left: -15px;
     margin-right: 2px;
-    padding: 0px 0px 0px 0px;
+    padding: 1px 0px 0px 0px;
     line-height: 16px;
     box-shadow: 0px 0px 5px #008b8b;
 }
@@ -1933,14 +1970,6 @@ label.sheet-darker-rounded-box {
     font-size: 12px;  
     height: 20px;
 }
-.sheet-talent-roll label.sheet-talent-type-skill, 
-.sheet-talent-roll label.sheet-talent-type-supply {
-    display: block; 
-    text-align: center; 
-    padding: 0 3px;
-    width: 42px;
-    cursor: pointer; 
-}
 .sheet-darker-rounded-box select:focus,
 .sheet-darker-rounded-box select option:focus,
 .sheet-darker-rounded-box select:active,
@@ -2014,6 +2043,66 @@ input[name="attr_health_calc"][value="10"] ~ input[name="attr_health_10"] ~ inpu
     box-shadow: unset;
     background-color: unset;
 }
+
+/* CHARACTER STRESS */
+
+div.sheet-steel-nerves div.sheet-more-curves {
+    line-height: 10px;
+    margin-bottom: 5px;
+}
+
+/* CHARACTER RADIATION */ 
+
+div.sheet-span-radiation span.sheet-permanent {
+    font-size: 13px;
+    font-weight: normal;
+    font-family: 'Pictos three';
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 2px 0 1px;
+    padding: 0 0 1px 0;
+    z-index: 5;
+    line-height: normal;
+    box-sizing: content-box;
+    vertical-align: middle;
+    border-radius: 0;
+    color: #000000;
+    background: #7cfc00;
+    border: solid 1px #7cfc00;
+    box-shadow: 0px 0px 10px #008000;
+}
+div.sheet-radiation .sheet-permanent {
+    display: inline-block; 
+}
+div.sheet-radiation .sheet-transient {
+    display: none; 
+}
+input[name="attr_radiation_perm"][value="0"] ~ .sheet-permanent {display: none; }
+input[name="attr_radiation_perm"][value="1"] ~ span.sheet-p1 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="2"] ~ span.sheet-p2 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="3"] ~ span.sheet-p3 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="4"] ~ span.sheet-p4 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="5"] ~ span.sheet-p5 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="6"] ~ span.sheet-p6 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="7"] ~ span.sheet-p7 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="8"] ~ span.sheet-p8 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="9"] ~ span.sheet-p9 ~ .sheet-permanent { display: none; }
+input[name="attr_radiation_perm"][value="10"] ~ .sheet-permanent { display: inline-block; }
+
+input[name="attr_radiation_perm"][value="0"] ~ .sheet-transient {display: inline-block; }
+input[name="attr_radiation_perm"][value="1"] ~ span.sheet-r1 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="2"] ~ span.sheet-r2 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="3"] ~ span.sheet-r3 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="4"] ~ span.sheet-r4 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="5"] ~ span.sheet-r5 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="6"] ~ span.sheet-r6 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="7"] ~ span.sheet-r7 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="8"] ~ span.sheet-r8 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="9"] ~ span.sheet-r9 ~ .sheet-transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="10"] ~ .sheet-transient { display: none; }
 
 
 /* SHIPDAMAGE */
