@@ -5,7 +5,7 @@
   "preview": "Alien-Roleplaying-Game.png",
   "roll20userid": "405463,8097845",
   "instructions": "Character sheet for use with Alien the Roleplaying Game from Free League Publishing.",
-  "legacy": true,
+  "legacy": false,
   "useroptions": [
     {
       "attribute": "config_apirolls",
