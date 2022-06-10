@@ -1,4 +1,3 @@
-     
     /* number and log handling */
     const int = (score, on_error = 0) => parseInt(score) || on_error;
     const float = (score, on_error = 0) => parseFloat(score) || on_error;
@@ -281,15 +280,16 @@
     // PERMANENT Modifiers
     modskills = ['heavy_machinery', 'stamina', 'close_combat', 'mobility', 'piloting', 'ranged_combat', 'observation', 'comtech', 'survival', 'manipulation', 'medical_aid', 'command'];
     modskills.forEach( (modskill) => {
-        const skillmod = modskill.replaceAll('_',''); 
+        const skillmod = modskill.replace(/_/g,''); // (/foo/g, 'moo');
+        //clog(`Creating sheet worker for ${skillmod}`);
         on(`clicked:${skillmod}modadd clicked:${skillmod}modsub`, async (ev) => {
-            clog(`Mod skill is ${modskill} and skill mod is ${skillmod}`);
+            //clog(`Mod skill is ${modskill} and skill mod is ${skillmod}`);
             const attrs = await asw.getAttrs([`${modskill}_mod`]);
-            clog(`Values = ${JSON.stringify(attrs)}`);
+            //clog(`Values = ${JSON.stringify(attrs)}`);
             const previous = attrs[`${modskill}_mod`]; 
-            clog(`Previous permanent modifier for ${modskill} is ${previous}.`);
+            //clog(`Previous permanent modifier for ${modskill} is ${previous}.`);
             let addsub = ev.triggerName.slice(-3);
-            clog(`Sub or add: ${addsub} and add? is ${addsub == 'add'}`);
+            //clog(`Sub or add: ${addsub} and add? is ${addsub == 'add'}`);
             const current = addsub == "add" ? int(previous) + 1 : int(previous) - 1;
             clog(`Current permanent modifier for ${modskill} is ${current}.`);
             const modplus = current > 0 ? 1 : 0; 
@@ -368,32 +368,35 @@
     on('change:radiation_perm', (eventInfo) => {
         clog('Starting permanent radiation method');
         getAttrs(['radiation_perm', 'radiation_1', 'radiation_2', 'radiation_3', 'radiation_4', 'radiation_5', 'radiation_6', 'radiation_7', 'radiation_8', 'radiation_9', 'radiation_10'], (values) => {
-            clog(`radiation values pre-permanent modification: ${JSON.stringify(values)}`);
+            //clog(`radiation values pre-permanent modification: ${JSON.stringify(values)}`);
             const perm = int(values.radiation_perm),
                 max = 10; 
             //let rads = new Array(10);
             let attributeObj = {};
-            let rads = [0, int(values.radiation_1), int(values.radiation_2), int(values.radiation_3), int(values.radiation_4), int(values.radiation_5), int(values.radiation_6), int(values.radiation_7), int(values.radiation_8), int(values.radiation_9), int(values.radiation_10) ];
-            clog(`radiation values pre-modification: ${JSON.stringify(rads)}`);
+            let rads = [null, int(values.radiation_1), int(values.radiation_2), int(values.radiation_3), int(values.radiation_4), int(values.radiation_5), int(values.radiation_6), int(values.radiation_7), int(values.radiation_8), int(values.radiation_9), int(values.radiation_10) ];
+            //clog(`radiation values pre-modification: ${JSON.stringify(rads)}`);
             let remove = 0; 
             for( let i = 1; i <= max; i++ ) {
-                clog(`Testing if less than permanent value: ${!!(i <= perm)}`);
+                //clog(`Testing if less than permanent value: ${(i <= perm)}`);
                 if ( i <= perm ) {
-                    if ( int(rads[i]) !== 1 ) {
-                        remove++; 
+                    //clog(`Testing if rad value is not 1: ${(rads[i] != 1)}`);
+                    if ( rads[i] != 1 ) {
+                        remove++;
                     } 
                     rads[i] = 1; 
                 } else {
-                    clog(`Testing if value 1 and remove active: ${!!(int(values[i]) == 1 && remove > 0)}`);
-                    if ( int(rads[i]) == 1 && remove > 0 ) {
+                    //clog(`Testing if value 1 and remove active: ${(rads[i] == 1 && remove > 0)}`);
+                    if ( rads[i] == 1 && remove > 0 ) {
                         rads[i] = 0;
-                        remove--;
+                        --remove;
                     }
                 }
-                attributeObj[`radiation_${i}`] = rads[i];
-                clog(`radiation values during modification: ${JSON.stringify(rads)}`);
+                attributeObj[`radiation_${i}`] = rads[i].toString();
+                //clog(`radiation values during modification: ${JSON.stringify(rads)}`);
             }
-            clog(`attribute object after modification: ${JSON.stringify(attributeObj)}`);
+            //clog(`attribute object after modification: ${JSON.stringify(attributeObj)}`);
+            setAttrs(attributeObj);
+            clog(`Permanent radiation changed. Shifting rads indicator to permanent state.`); 
         });
     });
 
@@ -525,55 +528,55 @@
     });
 
     // Set Armament range modifier
-    const armas = ["armament1","armament2","armament3","armament4","armament5"];
+    const armas = ["armament1","armament2","armament3","armament4","armament5","armament6","armament7","armament8","armament9","armament10"];
     armas.forEach( (arma) => { 
         const target = arma+"_targetrange";
         const rangemod = arma+"_rangemod";
-        //clog("Armament: "+arma+" Target: "+target+" Range mod: "+rangemod);
-         on(`change:${target} sheet:opened`, (eventInfo) => {           
-             getAttrs([target, rangemod], (values) => {
-                 //clog("Armament changed: "+target+" value: "+values[target]+" current range mod: "+values[rangemod]);
-                 var actual = 0;
-                 switch(values[target]) {
-                     case "Contact": actual = 2; break;
-                     case "Short": actual = 1; break;
-                     case "Medium": actual = 0; break;
-                     case "Long": actual = -1; break;
-                     case "Extreme": actual = -2; break;
-                 }
-                 setAttrs({[rangemod]: actual},{silent: true});
-                 //clog("Armament range modification changed: "+target+", range mod "+rangemod+", range mod value: "+actual);
-             })
-         })
-     });
+        clog("Armament: "+arma+" Target: "+target+" Range mod: "+rangemod);
+        on(`change:${target} sheet:opened`, (eventInfo) => {           
+            getAttrs([target, rangemod], (values) => {
+                clog("Armament changed: "+target+" value: "+values[target]+" current range mod: "+values[rangemod]);
+                var actual = 0;
+                switch(values[target]) {
+                    case "Contact": actual = 2; break;
+                    case "Short": actual = 1; break;
+                    case "Medium": actual = 0; break;
+                    case "Long": actual = -1; break;
+                    case "Extreme": actual = -2; break;
+                }
+                setAttrs({[rangemod]: actual},{silent: true});
+                clog("Armament range modification changed: "+target+", range mod "+rangemod+", range mod value: "+actual);
+            })
+        })
+    });
+    // Set Armament tab indicator
+    const arma_buttons = {"armament1":"I","armament2":"II","armament3":"III","armament4":"IV","armament5":"V","armament6":"VI","armament7":"VII","armament8":"VIII","armament9":"IX","armament10":"X"};
+    clog("Arma buttons: "+ JSON.stringify(arma_buttons));
+    //clog("Arma button1 : "+ JSON.stringify(arma_buttons["armament1"]));
+    armas.forEach( (arma) => { 
+        const armament = arma,
+        name = arma+"_name",
+        bonus = arma+"_bonus",
+        damage = arma+"_damage",
+        button = arma+"_tab";
+        clog(`Armament name attribute: ${name}, bonus: ${bonus}, damage: ${damage}`);
+        on(`change:${name} change:${bonus} change:${damage} sheet:opened`, (eventInfo) => {
+            getAttrs([name, bonus, damage, button], (values) => {
+                clog("armament values for button status: "+JSON.stringify(values)); 
+                var active = "-";
+                if( values[name] != "" || values[bonus] != "0" || values[damage] != "0" ) {
+                    active = arma_buttons[arma];
+                }
+                clog("active : "+active);
+                setAttrs({
+                    [button]: active
+                },{silent:true});
+            });
+        });
+    });
 
-     // Set Armament tab indicator
-     const arma_buttons = {"armament1":"I","armament2":"II","armament3":"III","armament4":"IV","armament5":"V"};
-     //clog("Arma buttons: "+ JSON.stringify(arma_buttons));
-     //clog("Arma button1 : "+ JSON.stringify(arma_buttons["armament1"]));
-     armas.forEach( (arma) => { 
-         const armament = arma,
-         name = arma+"_name",
-         bonus = arma+"_bonus",
-         damage = arma+"_damage",
-         button = arma+"_tab";
-         on(`change:${name} change:${bonus} change:${damage} sheet:opened`, (eventInfo) => {
-             getAttrs([name, bonus, damage, button], (values) => {
-                 //clog("armament values for button status: "+JSON.stringify(values)); 
-                 var active = "-";
-                 if( values[name] != "" || values[bonus] != "0" || values[damage] != "0" ) {
-                     active = arma_buttons[arma];
-                 }
-                 //clog("active : "+active);
-                 setAttrs({
-                     [button]: active
-                 },{silent:true});
-             });
-         });
-     });
-
-     // Set Internal modules tab indicator (only for second tab)
-     on(`change:module16 change:module17 change:module18 change:module19 change:module20 change:module21 change:module22 change:module23 change:module24 change:module25 change:module26 change:module27 change:module28 change:module29 change:module30 sheet:opened`, (eventInfo) => {
+    // Set Internal modules tab indicator (only for second tab)
+    on(`change:module16 change:module17 change:module18 change:module19 change:module20 change:module21 change:module22 change:module23 change:module24 change:module25 change:module26 change:module27 change:module28 change:module29 change:module30 sheet:opened`, (eventInfo) => {
         getAttrs(["module16", "module17", "module18", "module19", "module20", "module21", "module22", "module23", "module24", "module25", "module26", "module27", "module28", "module29", "module30"], (values) => {
             //clog("modules values for button status: "+JSON.stringify(values)); 
             const button = "modules2_tab";
@@ -637,7 +640,7 @@
   });
 
 	// Highlight buttons if talents / weapons are populated
-    talents = {"one": "I", "two": "II", "three": "III", "four": "IV", "five": "V", "six": "VI", "seven": "VII", "eight": "VIII"};
+    talents = {"one": "I", "two": "II", "three": "III", "four": "IV", "five": "V", "six": "VI", "seven": "VII", "eight": "VIII", "nine": "IX", "ten": "X"};
     _.each(Object.keys(talents), (tal) => {
         on(`change:talent_${tal} sheet:opened`, function() {
             //clog(`Current talent: ${tal}, current value: ${talents[tal]}`);
@@ -650,39 +653,6 @@
                 });
             });
     });
-	/*
-	on("change:talent_one sheet:opened", function(){
-    getAttrs(["talent_one"], function(v){
-        var tal = v.talent_one;
-        var txt = (tal.length > 0) ? "I" : "-";
-		setAttrs({tal_one: txt});
-		});
-	});
-
-	on("change:talent_two sheet:opened", function(){
-    getAttrs(["talent_two"], function(v){
-        var tal = v.talent_two;
-        var txt = (tal.length > 0) ? "II" : "-";
-		setAttrs({tal_two: txt});
-		});
-	});
-	
-	on("change:talent_three sheet:opened", function(){
-    getAttrs(["talent_three"], function(v){
-        var tal = v.talent_three;
-        var txt = (tal.length > 0) ? "III" : "-";
-		setAttrs({tal_three: txt});
-		});
-	});
-	
-	on("change:talent_four sheet:opened", function(){
-    getAttrs(["talent_four"], function(v){
-        var tal = v.talent_four;		
-        var txt = (tal.length > 0) ? "IV" : "-";	
-		setAttrs({tal_four: txt});
-		});
-	});
-    */
 
 	on("change:weapon_one_name sheet:opened", function(){
     getAttrs(["weapon_one_name"], function(v){
@@ -943,7 +913,36 @@
         });
         console.log("tab_log Set To: 4");
     });
-    
+
+    /* Armament tabs names*/
+    const tabs = {"1": "I", "2": "II", "3": "III", "4": "IV", "5": "V", "6": "VI", "7": "VII", "8": "VIII", "9": "IX", "10": "X"};
+	// Highlight buttons if armament is populated
+    _.each(Object.keys(tabs), (tab) => {
+        on(`change:armament${tab}_name sheet:opened`, function() {
+            //clog(`Current tab: ${tab}, current value: ${tabs[tab]}`);
+            getAttrs([`armament${tab}_name`], function(v) {
+                var tabname = v[`armament${tab}_name`]||"";
+                clog("Tab name: "+ tabname);
+                clog("Tab output: "+ (tabname.length > 0) ? tabs[`${tab}`] : "-");
+                //var txt = (tabname.length > 0) ? tabs[`${tab}`] : "-";
+                //var txt = (tabname.length > 0) ? tabname.substring(0, 18) : "-"];
+                var txt = (tabname.length > 0) ? tabname.substring(0, 18) : tabs[`${tab}`];
+                setAttrs({[`armament${tab}_tab`]: txt});
+            });
+        });
+    });
+    /* Armament tab display */
+    _.each(Object.keys(tabs), (tab) => {
+        on(`clicked:tab_armament${tab}`,() => {
+            console.log(`tab_armament${tab} button clicked`);
+            setAttrs({ 
+                tab_armament: `${tab}`
+            });
+            console.log(`tab_armament Set To: ${tab}`);
+        });
+    }); 
+   
+    /*
     on("clicked:tab_armament1", function() {
         console.log("tab_armament1 button clicked");
         setAttrs({ 
@@ -983,4 +982,4 @@
         });
         console.log("tab_armament Set To: 5");
     });
-    
+    */

@@ -138,11 +138,11 @@ div.roll-buttons + hr.dotted-line {
     height: 21px;
     color: #008b8b;
     text-align: center;
-    border: 1.5px solid #008b8b;
+    border: 1px solid #008b8b;
     border-radius: 5px;
 }
 .gamma-buttons button[type="action"] {
-    border: 1.5px solid #008b8b;
+    border: 1px solid #008b8b;
 }
 .gamma-buttons span.roll-option-frame,
 .radiation span.roll-option-frame {
@@ -151,7 +151,7 @@ div.roll-buttons + hr.dotted-line {
     font-size: 12px;
     line-height: 12px;
     height: 18px;
-    border: 1.5px solid #008b8b;
+    border: 1px solid #008b8b;
     border-radius: 5px;
     color: #008b8b;
     font-family: 'Montserrat';
@@ -200,6 +200,7 @@ div.roll-buttons + hr.dotted-line {
 .span-four { grid-column: 4;}
 .span-four-five { grid-column: 4 / 6;}
 .span-four-thru-six { grid-column: 4 / 7;}
+.span-five { grid-column: 5;}
 .span-five-six { grid-column: 5 / 7;}
 .span-five-thru-seven { grid-column: 5 / 8;}
 .span-five-thru-eight { grid-column: 5 / 9;}
@@ -408,6 +409,14 @@ div.roll-buttons + hr.dotted-line {
 
 .text-underline { text-decoration: underline; }
 
+div.span-weapons .tab-weapons {
+    line-height: 16px;
+    margin-top: 3px;
+    gap: 3px;
+    row-gap: 3px;
+    height: fit-content;
+    justify-content: center;
+}
 .weapon-item {
     padding: 0px;
     text-align: center;
@@ -593,6 +602,10 @@ textarea.auto-expand {
 
 .tab-container textarea.auto-expand {
     min-height: 75px;
+}
+div.armament-btns {
+    -margin-left: 95px; 
+    line-height: 15px;
 }
 .span-armaments textarea.auto-expand,
 .span-weapons textarea.auto-expand  {
@@ -952,10 +965,6 @@ button[type="roll"].button-skill, button[type="action"].button-skill, input[type
     float: left;
     margin-left: 5px;
 }
-.relationship-title {
-    float: left;
-    margin-left: 5px;
-}
 
 .text-input, .text-inv, .select-input, .ui-dialog .charsheet input[type="number"].number-input{
     font-family: 'Courier Prime';
@@ -984,10 +993,6 @@ button[type="roll"].button-skill, button[type="action"].button-skill, input[type
     height: 1.95em;
     padding: 3px;
     margin-bottom: 0px;
-}
-
-.relationship-input{
-    width: 85%;
 }
 
 .seventy-seven-percent {
@@ -1096,7 +1101,7 @@ input[type="number"].spinner-input:hover::-webkit-inner-spin-button {
 .span-gear .vertical-adjust-one {
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 280px;
+    max-height: 310px;
 }
 
 /* TEXT FIELDS */
@@ -1404,7 +1409,7 @@ button[type="action"].action-tab {
     font-size: 10px;
 }
 button[type="action"].action-tab.fit-five {
-    width: 15%;
+    width: 14%;
 } 
 
 button[type="action"].action-tab.fit-two {
@@ -1428,9 +1433,15 @@ button[type="action"].action-tab:focus {
     background-color: #696969;
     -border: 1px solid #696969;
 }
+button[type="action"].action-tab span {
+    overflow: hidden;
+}
 
 button[type="action"].tab-weapon {
-    width: 10% !important;
+    -width: 10%;
+}
+button[type="action"].tab-armament {
+    -width: 13%;
 }
 
 button[type="action"].tab-log {
@@ -1440,11 +1451,11 @@ button[type="action"].tab-log {
 /*  TABS  */
 div.tab-container { 
     display: none;
-    height: 150px;
+    -height: 150px;
 }
 
 .span-talents div.talent-tabs {
-    line-height: 20px;
+    line-height: 16px;
 }
 
 div.tab-container textarea {
@@ -1743,14 +1754,24 @@ input.tab-armament1:checked ~ div.tab-armament1-contents,
 input.tab-armament2:checked ~ div.tab-armament2-contents,
 input.tab-armament3:checked ~ div.tab-armament3-contents,
 input.tab-armament4:checked ~ div.tab-armament4-contents,
-input.tab-armament5:checked ~ div.tab-armament5-contents {
+input.tab-armament5:checked ~ div.tab-armament5-contents, 
+input.tab-armament6:checked ~ div.tab-armament6-contents,
+input.tab-armament7:checked ~ div.tab-armament7-contents,
+input.tab-armament8:checked ~ div.tab-armament8-contents,
+input.tab-armament9:checked ~ div.tab-armament9-contents,
+input.tab-armament10:checked ~ div.tab-armament10-contents {
 	display: block;
 }
-input.tab-armament1:checked ~ div .tab-armament1-button,
-input.tab-armament2:checked ~ div .tab-armament2-button,
-input.tab-armament3:checked ~ div .tab-armament3-button,
-input.tab-armament4:checked ~ div .tab-armament4-button,
-input.tab-armament5:checked ~ div .tab-armament5-button {
+input.tab-armament1:checked ~ div.armament-btns .tab-armament1-button,
+input.tab-armament2:checked ~ div.armament-btns .tab-armament2-button,
+input.tab-armament3:checked ~ div.armament-btns .tab-armament3-button,
+input.tab-armament4:checked ~ div.armament-btns .tab-armament4-button,
+input.tab-armament5:checked ~ div.armament-btns .tab-armament5-button,
+input.tab-armament6:checked ~ div.armament-btns .tab-armament6-button,
+input.tab-armament7:checked ~ div.armament-btns .tab-armament7-button,
+input.tab-armament8:checked ~ div.armament-btns .tab-armament8-button,
+input.tab-armament9:checked ~ div.armament-btns .tab-armament9-button,
+input.tab-armament10:checked ~ div.armament-btns .tab-armament10-button {
     background-color: #808080;
     color: white;
 }
@@ -2067,8 +2088,13 @@ input[name="attr_health_calc"][value="10"] ~ input[name="attr_health_10"] ~ inpu
 }
 
 /* CHARACTER STRESS */
-
-div.steel-nerves div.more-curves {
+div.small-option-box {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; 
+}
+div.small-option-box div.more-curves {
     line-height: 10px;
     margin-bottom: 5px;
 }
@@ -2114,6 +2140,7 @@ div.radiation .permanent {
 div.radiation .transient {
     display: none; 
 }
+input[name="attr_radiation_perm"] ~ .permanent, 
 input[name="attr_radiation_perm"][value="0"] ~ .permanent {display: none; }
 input[name="attr_radiation_perm"][value="1"] ~ span.p1 ~ .permanent { display: none; }
 input[name="attr_radiation_perm"][value="2"] ~ span.p2 ~ .permanent { display: none; }
@@ -2138,6 +2165,43 @@ input[name="attr_radiation_perm"][value="8"] ~ span.r8 ~ .transient { display: i
 input[name="attr_radiation_perm"][value="9"] ~ span.r9 ~ .transient { display: inline-block; }
 input[name="attr_radiation_perm"][value="10"] ~ .transient { display: none; }
 
+/* RELATIONSHIPS */
+div.relation-rows {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+div.relation-rows span.relationship-title {
+    margin-right: 5px;
+    width: calc(100% - 85% - 12px);
+    float: left;
+    margin-left: 5px;
+}
+div.relation-rows input.relationship-input{
+    width: 85%;
+}
+div.relation-rows hr {
+    width: 100%;
+}
+
+/* CONDITIONS */
+div.condition-rows {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+}
+div.condition-rows div { width: 100%; }
+div.condition-row {
+    
+}
 
 /* SHIPDAMAGE */
 /* Only show radios up to the max value */
@@ -2348,6 +2412,9 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
     text-align: center;
     line-height: 1em; 
     grid-gap: 5px;
+    margin-top: 4px;
+    position: relative;
+    left: -70px;
 }
 .xeno .roll-buttons label.xenowhisper {
     color: #008b8b;
@@ -2367,15 +2434,23 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
     display: inline;
     text-shadow: none;
     cursor: pointer;
+    align-self: flex-end;  
 }
-.xeno .roll-buttons input[type="checkbox"].xenowhisper:checked + label.xenowhisper {
+.charsheet div.xeno div.roll-buttons label.button-narrow {
+    height: 10px;
+    line-height: 10px;
+    align-self: flex-end;  
+}
+.xeno .roll-buttons input[type="checkbox"].xenowhisper:checked + label.xenowhisper,
+.xeno .roll-buttons input[type="checkbox"].xenomodifierquery:checked + label.xenomodifierquery {
     background-color: #008b8b;
     color: rgb(204, 217, 207);
 }
 .charsheet div.xeno div.roll-buttons button[type="roll"].button-alpha,
 .charsheet div.xeno div.roll-buttons button[type="roll"].button-beta {
     width: fit-content;
-    margin: 4px -1px;
+    -margin: 4px -1px;
+    align-self: flex-end;  
 }
 .xeno .armor {
     display: grid;
@@ -2482,7 +2557,7 @@ button.button-skill,
 button[type="action"].button-skill,
 button[type="roll"].button-skill {
     height: 15px;
-    line-height: 14px;
+    line-height: 18px;
     width: 60%;
     margin: 4px 1px;
     background-color: transparent;
