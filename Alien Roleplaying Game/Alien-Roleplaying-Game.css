@@ -23,7 +23,6 @@ html {
     padding: 5px;
     margin: -10px !important;
     min-width: 1140px;
-    -min-width: 830px;
 }
 input.tab-sheet[value="Xeno"] ~ .background-wrap {
     min-width: 800px;
@@ -38,7 +37,6 @@ input.tab-sheet[value="Xeno"] ~ .background-wrap {
     background-repeat: no-repeat;
     background-size: contain;
     padding-top: 25px;
-    -margin-bottom: 10px;
     margin-top: 2px;
 }
 
@@ -150,7 +148,7 @@ div.roll-buttons + hr.dotted-line {
     padding: 0 2px;
     font-size: 12px;
     line-height: 12px;
-    height: 18px;
+    height: 19px;
     border: 1px solid #008b8b;
     border-radius: 5px;
     color: #008b8b;
@@ -449,7 +447,6 @@ div.span-weapons .tab-weapons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    -align-content: flex-start;
 }
 .weapon-item.weight select {
     align-self: center;
@@ -597,14 +594,12 @@ textarea.auto-expand {
 .span-personal-agenda textarea.auto-expand  {
     overflow-y: auto; 
     resize: none;
-    -max-height: 80px;
 }
 
 .tab-container textarea.auto-expand {
     min-height: 75px;
 }
 div.armament-btns {
-    -margin-left: 95px; 
     line-height: 15px;
 }
 .span-armaments textarea.auto-expand,
@@ -781,9 +776,7 @@ div.changelog button.button-link:focus::before {
 .black-floating-header.header-doublerow ~ .xeno-textfield,
 .black-floating-header-clipped.header-doublerow ~ .xeno-textfield {
     min-height: 120px;
-    -max-height: 80px;
     margin-top: 30px;
-    -max-width: 175px;
 }
 .ship-attribute {
     margin-top: 10px; 
@@ -899,15 +892,14 @@ button[type="roll"].button-skill, button[type="action"].button-skill, input[type
 }
  
 .floating-header {
-    -background-color: rgba(0, 0, 0, 1); /* Black #000000 */
-    -border: 1px solid rgba(0, 0, 0, 1); /* Black #000000 */
-    -border-radius: 0px 20px 20px 0px;
+    /* background-color: rgba(0, 0, 0, 1);  Black #000000 */
+    /* border: 1px solid rgba(0, 0, 0, 1);  Black #000000 */
+    /* border-radius: 0px 20px 20px 0px; */
     float: center;
     height: 1em;
     width: 100%;
     line-height: 1em;
     margin: -20px 0 0 0;
-    -text-align: left;
     padding: 0px 0px 0px 0px; 
 }
 /* Firefox specific modification */
@@ -1110,8 +1102,8 @@ input[type="number"].spinner-input:hover::-webkit-inner-spin-button {
     min-width: 100%;
     overflow-y: auto; 
     resize:none;
-    -max-height: 65px;
-    -min-height: 65px;
+/*     max-height: 65px;
+    min-height: 65px; */
 }
 textarea.xeno-textfield::-webkit-scrollbar, 
 .span-gear .vertical-adjust-one::-webkit-scrollbar,
@@ -1394,14 +1386,14 @@ button[type="action"].action-tab {
     button[type="action"].action-tab { padding: 0px 0px 0px 0px; }
     }
 .header-tabs button[type=action].action-tab {
-    -width: 65px;
+    /* width: 65px; */
     color: rgb(204, 204, 204);
     background-color: #696969;
-    -border: 1px solid #696969;
+    /* border: 1px solid #696969; */
     border: 0;
     border-radius: 0;
     margin-right: 0;
-    -border-bottom: 2px solid #d3d3d3;
+    /* border-bottom: 2px solid #d3d3d3; */
     width: fit-content;
     min-width: fit-content;
     padding-left: 10px;
@@ -1492,6 +1484,11 @@ div.box-under-the-bed {
 .span-talents .talent-roll-box {
     accent-color: #008b8b;
     align-self: center;
+}
+.charsheet div.talent-roll label.talent-stress-incl,
+.charsheet div.talent-roll label.talent-stress-excl {
+    padding-left: 2px;
+    padding-right: 2px;
 }
 .charsheet div.talent-roll label.talent-stress-excl {
     text-decoration: line-through;
@@ -1823,7 +1820,7 @@ div.changelog::-webkit-scrollbar-thumb:hover {
 
 /* CUSTOM CHECKBOXES FOR ALIEN RPG */
 
-input.numbered-box {
+.ui-dialog .charsheet input.numbered-box {
     width: 16px;
     height: 16px;
     position: relative;
@@ -1835,9 +1832,9 @@ input.numbered-box {
     opacity: 0;
 }
 
-input.numbered-box + span {
-    -margin-left: -16px;
-}
+/* input.numbered-box + span {
+    margin-left: -16px;
+} */
 
 input.numbered-box + span::before {
     content: attr(title);
@@ -1845,8 +1842,7 @@ input.numbered-box + span::before {
     border: solid 1px #f5f5f5;
     text-align: center;
     display: inline-block;
-    background: #f5f5f5;
-    
+    background: #f5f5f5;    
     width: 16px;
     height: 16px;
     font-size: 10px;
@@ -1854,7 +1850,7 @@ input.numbered-box + span::before {
     margin-left: -15px;
     margin-right: 2px;
     padding: 1px 0px 0px 0px;
-    line-height: 16px;
+    line-height: 19px;
     box-shadow: 0px 0px 5px #008b8b;
 }
 
@@ -1995,10 +1991,9 @@ label.darker-rounded-box {
     margin: 0px 0px 0px 0px;
     font-family: 'Roboto';
     color: rgb(204, 217, 207);
-    -background-color: #008b8b; 
+    /* background-color: #008b8b;  */
     border: 0;
     border-radius: 6px;
-    -padding-bottom: 2px;
     margin-bottom: 1px; 
     padding: 0 0;
     font-weight: normal;
@@ -2037,9 +2032,9 @@ label.darker-rounded-box {
     left: 3px;
     -margin-left: 4px;
 }
-.health .w60 input {
-    -margin-left: 5px;
-}
+/* .health .w60 input {
+    margin-left: 5px;
+} */
 .health-bar.health-calculated {
     text-align: left;
     padding-left: 5px;
@@ -2110,7 +2105,7 @@ div.span-radiation span.permanent {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin: 0px 2px 1px 1px;
+    margin: 0px 2px 1px 5px;
     padding: 0 0 1px 0;
     z-index: 5;
     line-height: normal;
@@ -2124,6 +2119,7 @@ div.span-radiation span.permanent {
     cursor: default;
 }
 div.span-radiation button.button-radiation {
+    display: inline-block;
     width: 14px;
     height: 14px;
     line-height: 14px;
@@ -2199,9 +2195,6 @@ div.condition-rows {
     justify-content: space-evenly;
 }
 div.condition-rows div { width: 100%; }
-div.condition-row {
-    
-}
 
 /* SHIPDAMAGE */
 /* Only show radios up to the max value */
@@ -2423,7 +2416,7 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
     font-size: 10px;
     font-weight: bold;
     height: 16px;
-    line-height: 14px;
+    line-height: 18px;
     width: fit-content;
     margin: 4px -1px 0 0;
     padding: 2px 3px;
@@ -2459,6 +2452,7 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
 }
 .xeno .armor button[type="roll"].button-skill {
     margin-right: 15px;
+    margin-top: 3px;
 }
 .xeno .armor button[type="roll"].button-skill.button-armorvs {
     width: fit-content; 
@@ -2522,7 +2516,6 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
     height: 1.5em;
     max-width: calc(100% - 72px);
     min-width: calc(100% - 72px);
-    -margin-right: 5px;
     padding: 1px;
 }
 .button-copy {
@@ -2538,7 +2531,7 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
 }
 .config-apirolls:not(checked) ~ div .roll-rolltemplate,
 .config-apirolls:checked ~ div .roll-api {
-    display: inline-block;
+    display: inline-flex;
 }
 
 
@@ -2555,7 +2548,10 @@ button[type="roll"].button-alpha:before, button[type="roll"].button-skill:before
 label.button-skill,
 button.button-skill,
 button[type="action"].button-skill,
-button[type="roll"].button-skill {
+button[type="roll"].button-skill {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 15px;
     line-height: 18px;
     width: 60%;
@@ -2564,7 +2560,6 @@ button[type="roll"].button-skill {
     border: 1px solid rgb(204, 217, 207); /* Teal Varient */
     border-radius: 5px;
     background-image: none;
-    display: inline;
     text-shadow: none;   
 }
 
@@ -2585,6 +2580,14 @@ button[type="roll"].button-skill:active {
     background-color: #008b8b; /* Dark Cyan #008b8b */
     border: 1px solid #008b8b; /* Dark Cyan #008b8b */
     box-shadow: 0px 0px 10px #008b8b;
+}
+
+.ui-dialog .charsheet .background-wrap div.consumable button.vertical-adjust-one {
+    margin-top: 5px;
+}
+
+.ui-dialog .charsheet .background-wrap .character button[type="roll"][name="armor"] {
+    margin-top: 5px;
 }
 
 button[type="roll"].bigger-skill {
@@ -2610,6 +2613,9 @@ button[type="roll"].button-gamma {
     margin-bottom: 0px;
     border: 1px solid #008b8b;
     width: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 label.button-alpha, 
