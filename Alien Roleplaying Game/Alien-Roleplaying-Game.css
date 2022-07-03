@@ -7,10 +7,14 @@ html {
 }
 .ui-dialog .charsheet .background-wrap button[type="roll"] {
     font-size: 0.8em;
-    margin: 0;
 }
 .ui-dialog .charsheet .background-wrap label {
     font-size: 0.8rem; 
+}
+@supports (-moz-appearance:none) {
+    div.charactersheet.tab-pane.charsheet div.background-wrap {
+        width: 100%;
+    }
 }
 
 
@@ -107,7 +111,7 @@ input.tab-sheet[value="Xeno"] ~ .background-wrap {
 .roll-buttons {
     display: grid;
     text-align: center;
-    grid-gap: 5px;
+    grid-gap: 4px;
 }
 div.roll-buttons + hr.dotted-line {
     margin: 3px;
@@ -147,7 +151,7 @@ div.roll-buttons + hr.dotted-line {
     display: inline-block; 
     padding: 0 2px;
     font-size: 12px;
-    line-height: 12px;
+    line-height: 19px;
     height: 19px;
     border: 1px solid #008b8b;
     border-radius: 5px;
@@ -407,6 +411,8 @@ div.roll-buttons + hr.dotted-line {
 
 .text-underline { text-decoration: underline; }
 
+/* WEAPON AND GEAR */
+
 div.span-weapons .tab-weapons {
     line-height: 16px;
     margin-top: 3px;
@@ -469,6 +475,11 @@ div.span-weapons .tab-weapons {
 .gearrepeatingonly:checked ~ select,
 .gearrepeatingonly:checked ~ hr {
     display: none !important;
+}
+
+.signature-item .teal-header {
+    float:right; 
+    margin-right: 5px;
 }
 
 /* - - - - - - - - - -  EXPAND AREAS  - - - - - - - - - - */
@@ -757,6 +768,9 @@ div.changelog button.button-link:focus::before {
     z-index: 10;
     padding-top: 2px;    
     clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 100%, 0% 100%);
+    width: auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .ship-header-black {
     background-color: black;
@@ -781,20 +795,14 @@ div.changelog button.button-link:focus::before {
 .ship-attribute {
     margin-top: 10px; 
 }
-.xeno-header-name,
-.ship-header-name {
-    width: 70px;
-}
-.ship-header-manufacturer{
-    width: 120px;
-}
-.ship-header-ai {
-    width: 50px;
-}
 .xeno-header-attribute,
 .ship-attribute-name {
     width: 80%;
     justify-self: center;
+}
+
+.xeno-header-attribute div.weapon-item.range {
+    border: 0;
 }
 .ship-attribute-ai {
     width: 80%;
@@ -826,6 +834,9 @@ button[type="roll"].button-skill, button[type="action"].button-skill, input[type
 .dark-teal-header {
     color: rgba(0, 139, 139, 1); /* Dark Cyan #008b8b */
     font-weight: bold;
+}
+.vertical-adjust-half {
+     margin-top: 3px;
 }
 .vertical-adjust-one {
      margin-top: 6px;
@@ -1001,14 +1012,10 @@ button[type="roll"].button-skill, button[type="action"].button-skill, input[type
     font-family: 'Graduate', cursive;
 }
 
-
-
-.small-box {
-    padding: 0;
+.experience, .story-points {
+    user-select: none;
 }
-.small-box div {
-    margin-top: -6px;
-}
+
 .dark-pink-header {
     color:rgb(165, 52, 52);
 }
@@ -1017,6 +1024,11 @@ button[type="roll"].button-skill, button[type="action"].button-skill, input[type
 }
 .hidden {
     display: none;
+}
+.no-opactiy {
+    opacity: 0;
+    user-select: none;
+    cursor: default;
 }
 input.overencumbered-check:checked ~ span,
 input.overloaded-check:checked ~ span {
@@ -1083,7 +1095,7 @@ input[type="number"].spinner-input:hover::-webkit-inner-spin-button {
     top: 0;
     right: 0;
     bottom: 0;
-    opacity: 0.7;
+    opacity: 0.5;
     margin: 10;
 }
 .span-gear input.spinner-input-total {
@@ -1279,6 +1291,7 @@ input[type="number"].number-input {
     margin-left: 1px;
     box-shadow: none;
     padding: 0px;
+    vertical-align: top;
 }
 
 .ui-dialog .charsheet input[type="number"].small {
@@ -1289,6 +1302,30 @@ input[type="number"].number-input {
     height: 18px;
 }
 
+/* SKILLS */
+
+.skill-heavymachinery,
+.skill-rangedcombat,
+.skill-mobility,
+.skill-piloting,
+.skill-command {
+    width: 110%;
+    display: flex;
+    justify-self: flex-start;
+    justify-content: space-around;
+}
+.skill-stamina,
+.skill-observation,
+.skill-survival,
+.skill-comtech,
+.skill-medicalaid {
+    width: 110%;
+    display: flex;
+    justify-self: flex-end;
+    justify-content: space-around;
+}
+
+/* PERMANENT MODIFIERS */
 .popout-container {
     position: relative; 
     z-index: 49; 
@@ -1301,6 +1338,9 @@ input[type="number"].number-input {
 .permanentmods:checked ~ div div.skill div.popout-container {
     display: flex; 
 }
+/* .permanentmods:not(checked) ~ div.skill input[type="hidden"].skill-modifier:not([value="0"]) ~  div.popout-container {
+    display: flex;
+} */
 /* .charsheet div.popout-container div.skill-modifier, */
 .charsheet div.popout-container div.skill-modifier {
     display: flex; 
@@ -1379,12 +1419,12 @@ button[type="action"].action-tab {
     /* overflow: hidden;  */ 
     width: fit-content;
     /* max-width: 24%; */
-    padding: 0 10px 3px 10px; 
+    padding: 0 6px 3px 6px; 
 }
 /* Firefox specific modification */
-@supports (-moz-appearance:none) {
+/* @supports (-moz-appearance:none) {
     button[type="action"].action-tab { padding: 0px 0px 0px 0px; }
-    }
+    } */
 .header-tabs button[type=action].action-tab {
     /* width: 65px; */
     color: rgb(204, 204, 204);
@@ -1454,7 +1494,7 @@ div.tab-container textarea {
     min-height: 50px;
     max-height: 100px;
     overflow-y: auto;
-    resize: none;
+    resize: vertical;
 }
 div.box-under-the-bed { 
     display: none;
@@ -1526,24 +1566,29 @@ input.talent-type:not(:checked) ~ div.talent-roll label.talent-type-supply {
 input.talent-type:checked ~ div.talent-roll label.talent-type-supply {
     display: none;
 } */
-div.talent-roll input.talent-stress-box:checked ~ label.talent-stress-incl,
+/* div.talent-roll input.talent-stress-box:checked ~ label.talent-stress-incl,
 div.talent-roll input.talent-stress-box:not(:checked) ~ label.talent-stress-excl {
     display: block;
     color: rgb(204, 217, 207);
-}
+} */
 /* div.talent-roll input.talent-stress-box:not(:checked) ~ label.talent-stress-incl,
 div.talent-roll input.talent-stress-box:checked ~ label.talent-stress-excl {
     display: none;
 } */
-input.talent-type:checked ~ div.talent-roll .talent-attribute,
-input.talent-type:checked ~ div.talent-roll .talent-skill,
-input.talent-type:checked ~ div.talent-roll .talent-stress,
-input.talent-type:not(:checked) ~ div.talent-roll .talent-supply,
-input.talent-type:checked ~ div.talent-roll label.talent-type-skill,
-input.talent-type:not(:checked) ~ div.talent-roll label.talent-type-supply {
+div.talent-roll .talent-supply,
+div.talent-roll .talent-skill,
+div.talent-roll .talent-other {
+    display: none;
+}
+
+/* input.talent-type:checked ~ div.talent-roll .talent-skill,
+input.talent-type:not(:checked) ~ div.talent-roll .talent-supply, */
+input.talent-radio-skill:checked ~ div.talent-roll .talent-skill,
+input.talent-radio-supply:checked ~ div.talent-roll .talent-supply,
+input.talent-radio-other:checked ~ div.talent-roll .talent-other {
     display: flex;
 }
-input.talent-type:not(:checked) ~ div.talent-roll .talent-attribute,
+/* input.talent-type:not(:checked) ~ div.talent-roll .talent-attribute,
 input.talent-type:not(:checked) ~ div.talent-roll .talent-skill,
 input.talent-type:not(:checked) ~ div.talent-roll .talent-stress,
 input.talent-type:checked ~ div.talent-roll .talent-supply,
@@ -1552,34 +1597,42 @@ div.talent-roll input.talent-stress-box:checked ~ label.talent-stress-excl,
 input.talent-type:not(:checked) ~ div.talent-roll label.talent-type-skill,
 input.talent-type:checked ~ div.talent-roll label.talent-type-supply {
     display: none;
-}
+} */
+
 input.talent-roll-box:not(:checked) ~ div.talent-roll {
     display: none;
 }
-input.talent-roll-box:not(:checked) ~ div.talent-roll-btn button {
+input.talent-roll-box:not(:checked) ~ span.talent-roll-btn button,
+input.talent-radio-other:checked input.talent-roll-box:checked ~ span.talent-roll-btn button {
     pointer-events: none;
-    background-color: #b6b6b6;
+    -background-color: #b6b6b6;
 }
 /* input.talent-roll-box:not(:checked) ~ div.talent-roll :is(select,label,input,div),
 input.talent-roll-box:not(:checked) ~ div.talent-roll label span {
     pointer-events: none;
     background-color: #b6b6b6;
 } */
-div.span-talents div.tab-container input.talent-type:checked ~ span .talent-roll-skill,
-div.span-talents div.tab-container input.talent-type:not(:checked) ~ span .talent-roll-supply  {
+
+div.span-talents div.tab-container input.talent-radio-skill:checked ~ span.talent-roll-btn button.talent-roll-skill,
+div.span-talents div.tab-container input.talent-radio-other:checked ~ span.talent-roll-btn button.talent-roll-skill,
+div.span-talents div.tab-container input.talent-radio-supply:checked ~ span.talent-roll-btn button.talent-roll-supply  {
     display: inline-block; 
 }
-div.span-talents div.tab-container input.talent-type:not(checked) ~ span .talent-roll-skill,
-div.span-talents div.tab-container input.talent-type:checked ~ span .talent-roll-supply  {
+
+div.span-talents div.tab-container input.talent-radio-skill:not(checked) ~ span.talent-roll-btn button.talent-roll-skill,
+div.span-talents div.tab-container input.talent-radio-other:not(checked) ~ span.talent-roll-btn button.talent-roll-skill,
+div.span-talents div.tab-container input.talent-radio-supply:not(checked) ~ span.talent-roll-btn button.talent-roll-supply   {
     display: none; 
-}
+} 
 div.span-talents span.talent-roll-btn button.button-skill {
     width: fit-content; 
     margin: 0 2px;
+    align-content: center;
+    line-height: 15px;
 }
 div.span-talents div.tab-container input[type="text"].text-input {
     text-align: center; 
-    width: calc(100% - 60px);
+    width: calc(100% - 65px);
 }
 /* ,
 div.span-talents div.tab-container input.talent-roll-active:checked + 
@@ -1849,12 +1902,34 @@ input.numbered-box + span::before {
     font-weight: bold;
     margin-left: -15px;
     margin-right: 2px;
+    margin-bottom: 3px;
     padding: 1px 0px 0px 0px;
-    line-height: 19px;
+    line-height: 16px;
     box-shadow: 0px 0px 5px #008b8b;
+    user-select: none;
 }
 
-input.condition + span::before {
+input.numbered-box + label {
+    content: attr(title);
+    color: #dcdcdc;
+    border: solid 1px #f5f5f5;
+    text-align: center;
+    display: inline-block;
+    background: #f5f5f5;    
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-right: 2px;
+    margin-bottom: 3px;
+    padding: 1px 0px 0px 0px;
+    line-height: 16px;
+    box-shadow: 0px 0px 5px #008b8b;
+    user-select: none;
+    cursor: pointer;
+}
+
+input.condition + label {
     margin-right: 10px;     /* Indent the conditions on the right-hand side */
 }
 
@@ -1872,14 +1947,16 @@ input[type=radio].clear-radio {
     left: 6px;
 }
 
-input.numbered-box:checked + span::before {
+input.numbered-box:checked + span::before,
+input.numbered-box:checked + label {
     color: #ffffff;
     background: #cc0000;
     border: solid 1px #cc0000;
     box-shadow: 0px 0px 10px #b30000;
 }
 
-input.red-radio:checked + span::before {
+input.red-radio:checked + span::before,
+input.red-radio:checked + label {
     color: #ffffff;
     background: #cc0000;
     border: solid 1px #cc0000;
@@ -1888,7 +1965,8 @@ input.red-radio:checked + span::before {
 input.blue-box {
     width: 40px;
 }
-input.blue-box + span::before {
+input.blue-box + span::before,
+input.blue-box + label {
     width: 40px;
     margin-left: -40px;
     color: #696969;
@@ -1896,28 +1974,32 @@ input.blue-box + span::before {
     border: solid 1px #09c2c2;
     box-shadow: 0px 0px 5px #008b8b;
 }
-input.blue-box:checked + span::before {
+input.blue-box:checked + span::before,
+input.blue-box:checked + label {
     color: #696969;
     background: transparent;
     border: solid 1px #bfbfbf;
     box-shadow: unset;
 }
 
-input.grey-box:checked + span::before {
+input.grey-box:checked + span::before,
+input.grey-box:checked + label {
     color: #ffffff;
     background: #808080;
     border: solid 1px #808080;
     box-shadow: 0px 0px 10px #008b8b;
 }
 
-input.green-box:checked + span::before {
+input.green-box:checked + span::before,
+input.green-box:checked + label {
     color: #000000;
     background: #7cfc00;
     border: solid 1px #7cfc00;
     box-shadow: 0px 0px 10px #008000;
 }
 
-input.gold-box:checked + span::before {
+input.gold-box:checked + span::before,
+input.gold-box:checked + label {
     color: #000000;
     background: #ffd700;
     border: solid 1px #ffd700;
@@ -2020,12 +2102,17 @@ label.darker-rounded-box {
 
 
 
-/* CHARACTER HEALTH */
+/* CHARACTER HEALTH & STRESS */
 
 .health, .stress {
     min-width: 315px;
     padding-left: 2px;
+    user-select: none;
 }
+.health .vertical-adjust-one,
+.stress .vertical-adjust-one {
+    margin-bottom: -5px;
+} 
 
 .health input[type="checkbox"].numbered-box {
     top: 0px;
@@ -2035,59 +2122,120 @@ label.darker-rounded-box {
 /* .health .w60 input {
     margin-left: 5px;
 } */
-.health-bar.health-calculated {
+/* .health-bar.health-calculated {
     text-align: left;
     padding-left: 5px;
-}
+} */
 
 input.config-healthcalculation:checked ~.health-calculated,
 input.config-healthcalculation:checked + .tough,
 input.config-healthcalculation:not(:checked) ~.health-manual {
-    display: block;
+    display: inline-block;
 }
 input.config-healthcalculation:not(:checked) ~.health-calculated,
 input.config-healthcalculation:not(:checked) + .tough,
 input.config-healthcalculation:checked ~ .health-manual {
     display: none;
 }
-
-input[name="attr_health_calc"][value="1"] ~ input[name="attr_health_1"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="2"] ~ input[name="attr_health_2"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="3"] ~ input[name="attr_health_3"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="4"] ~ input[name="attr_health_4"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="5"] ~ input[name="attr_health_5"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="6"] ~ input[name="attr_health_6"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="7"] ~ input[name="attr_health_7"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="8"] ~ input[name="attr_health_8"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="9"] ~ input[name="attr_health_9"] ~ input[type="checkbox"].numbered-box,
-input[name="attr_health_calc"][value="10"] ~ input[name="attr_health_10"] ~ input[type="checkbox"].numbered-box {
-    display: none;
+input.health-calculated[type="checkbox"]:checked + label,
+input.health-manual[type="checkbox"]:checked + label {
+    color: #ffffff;
+    background: #cc0000;
+    border: solid 1px #cc0000;
+    box-shadow: 0px 0px 10px #b30000;
 }
-input[name="attr_health_calc"][value="1"] ~ input[name="attr_health_1"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="2"] ~ input[name="attr_health_2"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="3"] ~ input[name="attr_health_3"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="4"] ~ input[name="attr_health_4"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="5"] ~ input[name="attr_health_5"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="6"] ~ input[name="attr_health_6"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="7"] ~ input[name="attr_health_7"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="8"] ~ input[name="attr_health_8"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="9"] ~ input[name="attr_health_9"] ~ input[type="checkbox"] + span:before,
-input[name="attr_health_calc"][value="10"] ~ input[name="attr_health_10"] ~ input[type="checkbox"] + span:before {
+
+input.attr-health-calculated[value="1"] ~ input.health-calculated[name="attr_health_1"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="2"] ~ input.health-calculated[name="attr_health_2"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="3"] ~ input.health-calculated[name="attr_health_3"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="4"] ~ input.health-calculated[name="attr_health_4"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="5"] ~ input.health-calculated[name="attr_health_5"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="6"] ~ input.health-calculated[name="attr_health_6"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="7"] ~ input.health-calculated[name="attr_health_7"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="8"] ~ input.health-calculated[name="attr_health_8"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="9"] ~ input.health-calculated[name="attr_health_9"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="10"] ~ input.health-calculated[name="attr_health_10"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-calculated[value="1"] ~ input.health-calculated[name="attr_health_1"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="2"] ~ input.health-calculated[name="attr_health_2"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="3"] ~ input.health-calculated[name="attr_health_3"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="4"] ~ input.health-calculated[name="attr_health_4"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="5"] ~ input.health-calculated[name="attr_health_5"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="6"] ~ input.health-calculated[name="attr_health_6"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="7"] ~ input.health-calculated[name="attr_health_7"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="8"] ~ input.health-calculated[name="attr_health_8"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="9"] ~ input.health-calculated[name="attr_health_9"] + label.health-calculated ~ label.health-calculated,
+input.attr-health-calculated[value="10"] ~ input.health-calculated[name="attr_health_10"] + label.health-calculated ~ label.health-calculated {
+    -display: none;
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+}
+input.attr-health-manual[value="1"] ~ input.health-manual[name="attr_health_1"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="2"] ~ input.health-manual[name="attr_health_2"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="3"] ~ input.health-manual[name="attr_health_3"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="4"] ~ input.health-manual[name="attr_health_4"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="5"] ~ input.health-manual[name="attr_health_5"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="6"] ~ input.health-manual[name="attr_health_6"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="7"] ~ input.health-manual[name="attr_health_7"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="8"] ~ input.health-manual[name="attr_health_8"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="9"] ~ input.health-manual[name="attr_health_9"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="10"] ~ input.health-manual[name="attr_health_10"] ~ input[type="checkbox"].numbered-box,
+input.attr-health-manual[value="1"] ~ input.health-manual[name="attr_health_1"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="2"] ~ input.health-manual[name="attr_health_2"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="3"] ~ input.health-manual[name="attr_health_3"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="4"] ~ input.health-manual[name="attr_health_4"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="5"] ~ input.health-manual[name="attr_health_5"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="6"] ~ input.health-manual[name="attr_health_6"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="7"] ~ input.health-manual[name="attr_health_7"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="8"] ~ input.health-manual[name="attr_health_8"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="9"] ~ input.health-manual[name="attr_health_9"] + label.health-manual ~ label.health-manual,
+input.attr-health-manual[value="10"] ~ input.health-manual[name="attr_health_10"] + label.health-manual ~ label.health-manual {
+    -display: none;
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+}
+/* input.attr-health-calculated[value="1"] ~ input.health-calculated[name="attr_health_1"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="2"] ~ input.health-calculated[name="attr_health_2"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="3"] ~ input.health-calculated[name="attr_health_3"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="4"] ~ input.health-calculated[name="attr_health_4"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="5"] ~ input.health-calculated[name="attr_health_5"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="6"] ~ input.health-calculated[name="attr_health_6"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="7"] ~ input.health-calculated[name="attr_health_7"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="8"] ~ input.health-calculated[name="attr_health_8"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="9"] ~ input.health-calculated[name="attr_health_9"] ~ input[type="checkbox"] + span:before,
+input.attr-health-calculated[value="10"] ~ input.health-calculated[name="attr_health_10"] ~ input[type="checkbox"] + span:before {
     -display: none;
     -display: inline-block;
-    content: "";
-    width: auto;
+    -content: "";
+    opacity: 0; 
+    -width: auto;
     border: unset;
     box-shadow: unset;
     background-color: unset;
-}
+} */
 
-/* CHARACTER STRESS */
+/* CHARACTER OPTIONS */
+.small-box {
+    padding: 0;
+}
+.small-box div.smallbox-option-input,
+.small-option-box div.smallbox-option-input {
+    margin-top: -4px;
+}
 div.small-option-box {
-    display: flex; 
+    display: flex;     
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center; 
+    justify-items: center;
+    justify-self: center;
+    align-items: center;     
+    align-content: center;
+    align-self: center;
+}
+div.small-box div.more-curves {
+    line-height: 20px;
 }
 div.small-option-box div.more-curves {
     line-height: 10px;
@@ -2095,8 +2243,11 @@ div.small-option-box div.more-curves {
 }
 
 /* CHARACTER RADIATION */ 
-
-div.span-radiation span.permanent {
+div.span-radiation {    
+    user-select: none;
+}
+div.span-radiation span.permanent,
+div.span-radiation label.permanent {
     font-size: 13px;
     font-weight: normal;
     font-family: 'Pictos three';
@@ -2118,6 +2269,12 @@ div.span-radiation span.permanent {
     box-shadow: 0px 0px 10px #008000;
     cursor: default;
 }
+div.span-radiation label.transient {
+    margin-left: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    user-select: none;
+}
 div.span-radiation button.button-radiation {
     display: inline-block;
     width: 14px;
@@ -2129,6 +2286,7 @@ div.span-radiation button.button-radiation {
 }
 div.span-radiation button.button-radiation.radiation-damage {
     font-family: 'Pictos three';
+    margin: 0 0 0 3px;
 }
 div.radiation .permanent {
     display: inline-block; 
@@ -2137,31 +2295,34 @@ div.radiation .transient {
     display: none; 
 }
 input[name="attr_radiation_perm"] ~ .permanent, 
-input[name="attr_radiation_perm"][value="0"] ~ .permanent {display: none; }
-input[name="attr_radiation_perm"][value="1"] ~ span.p1 ~ .permanent { display: none; }
-input[name="attr_radiation_perm"][value="2"] ~ span.p2 ~ .permanent { display: none; }
-input[name="attr_radiation_perm"][value="3"] ~ span.p3 ~ .permanent { display: none; }
-input[name="attr_radiation_perm"][value="4"] ~ span.p4 ~ .permanent { display: none; }
-input[name="attr_radiation_perm"][value="5"] ~ span.p5 ~ .permanent { display: none; }
-input[name="attr_radiation_perm"][value="6"] ~ span.p6 ~ .permanent { display: none; }
-input[name="attr_radiation_perm"][value="7"] ~ span.p7 ~ .permanent { display: none; }
-input[name="attr_radiation_perm"][value="8"] ~ span.p8 ~ .permanent { display: none; }
-input[name="attr_radiation_perm"][value="9"] ~ span.p9 ~ .permanent { display: none; }
+input[name="attr_radiation_perm"][value="0"] ~ .permanent,
+input[name="attr_radiation_perm"][value="1"] ~ span.p1 ~ .permanent,
+input[name="attr_radiation_perm"][value="2"] ~ span.p2 ~ .permanent,
+input[name="attr_radiation_perm"][value="3"] ~ span.p3 ~ .permanent,
+input[name="attr_radiation_perm"][value="4"] ~ span.p4 ~ .permanent,
+input[name="attr_radiation_perm"][value="5"] ~ span.p5 ~ .permanent,
+input[name="attr_radiation_perm"][value="6"] ~ span.p6 ~ .permanent,
+input[name="attr_radiation_perm"][value="7"] ~ span.p7 ~ .permanent,
+input[name="attr_radiation_perm"][value="8"] ~ span.p8 ~ .permanent,
+input[name="attr_radiation_perm"][value="9"] ~ span.p9 ~ .permanent { 
+    display: none; 
+}
 input[name="attr_radiation_perm"][value="10"] ~ .permanent { display: inline-block; }
 
 input[name="attr_radiation_perm"][value="0"] ~ .transient {display: inline-block; }
-input[name="attr_radiation_perm"][value="1"] ~ span.r1 ~ .transient { display: inline-block; }
-input[name="attr_radiation_perm"][value="2"] ~ span.r2 ~ .transient { display: inline-block; }
-input[name="attr_radiation_perm"][value="3"] ~ span.r3 ~ .transient { display: inline-block; }
-input[name="attr_radiation_perm"][value="4"] ~ span.r4 ~ .transient { display: inline-block; }
-input[name="attr_radiation_perm"][value="5"] ~ span.r5 ~ .transient { display: inline-block; }
-input[name="attr_radiation_perm"][value="6"] ~ span.r6 ~ .transient { display: inline-block; }
-input[name="attr_radiation_perm"][value="7"] ~ span.r7 ~ .transient { display: inline-block; }
-input[name="attr_radiation_perm"][value="8"] ~ span.r8 ~ .transient { display: inline-block; }
-input[name="attr_radiation_perm"][value="9"] ~ span.r9 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="1"] ~ label.r1 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="2"] ~ label.r2 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="3"] ~ label.r3 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="4"] ~ label.r4 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="5"] ~ label.r5 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="6"] ~ label.r6 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="7"] ~ label.r7 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="8"] ~ label.r8 ~ .transient { display: inline-block; }
+input[name="attr_radiation_perm"][value="9"] ~ label.r9 ~ .transient { display: inline-block; }
 input[name="attr_radiation_perm"][value="10"] ~ .transient { display: none; }
 
 /* RELATIONSHIPS */
+
 div.relation-rows {
     width: 100%;
     height: 100%;
@@ -2197,84 +2358,26 @@ div.condition-rows {
 div.condition-rows div { width: 100%; }
 
 /* SHIPDAMAGE */
-/* Only show radios up to the max value */
-input[name="attr_shipdamage_max"][value="0"] ~ div .shipdamage:nth-of-type(1n+3),
-input[name="attr_shipdamage_max"][value="0"] ~ div .shipdamage:nth-of-type(1n+3) + span,
-input[name="attr_shipdamage_max"][value="1"] ~ div .shipdamage:nth-of-type(1n+4),
-input[name="attr_shipdamage_max"][value="1"] ~ div .shipdamage:nth-of-type(1n+4) + span,
-input[name="attr_shipdamage_max"][value="2"] ~ div .shipdamage:nth-of-type(1n+5),
-input[name="attr_shipdamage_max"][value="2"] ~ div .shipdamage:nth-of-type(1n+5) + span,
-input[name="attr_shipdamage_max"][value="3"] ~ div .shipdamage:nth-of-type(1n+6),
-input[name="attr_shipdamage_max"][value="3"] ~ div .shipdamage:nth-of-type(1n+6) + span,
-input[name="attr_shipdamage_max"][value="4"] ~ div .shipdamage:nth-of-type(1n+7),
-input[name="attr_shipdamage_max"][value="4"] ~ div .shipdamage:nth-of-type(1n+7) + span,
-input[name="attr_shipdamage_max"][value="5"] ~ div .shipdamage:nth-of-type(1n+8),
-input[name="attr_shipdamage_max"][value="5"] ~ div .shipdamage:nth-of-type(1n+8) + span,
-input[name="attr_shipdamage_max"][value="6"] ~ div .shipdamage:nth-of-type(1n+9),
-input[name="attr_shipdamage_max"][value="6"] ~ div .shipdamage:nth-of-type(1n+9) + span,
-input[name="attr_shipdamage_max"][value="7"] ~ div .shipdamage:nth-of-type(1n+10),
-input[name="attr_shipdamage_max"][value="7"] ~ div .shipdamage:nth-of-type(1n+10) + span,
-input[name="attr_shipdamage_max"][value="8"] ~ div .shipdamage:nth-of-type(1n+11),
-input[name="attr_shipdamage_max"][value="8"] ~ div .shipdamage:nth-of-type(1n+11) + span,
-input[name="attr_shipdamage_max"][value="9"] ~ div .shipdamage:nth-of-type(1n+12),
-input[name="attr_shipdamage_max"][value="9"] ~ div .shipdamage:nth-of-type(1n+12) + span,
-input[name="attr_shipdamage_max"][value="10"] ~ div .shipdamage:nth-of-type(1n+13), 
-input[name="attr_shipdamage_max"][value="10"] ~ div .shipdamage:nth-of-type(1n+13) + span, 
-input[name="attr_shipdamage_max"][value="11"] ~ div .shipdamage:nth-of-type(1n+14), 
-input[name="attr_shipdamage_max"][value="11"] ~ div .shipdamage:nth-of-type(1n+14) + span, 
-input[name="attr_shipdamage_max"][value="12"] ~ div .shipdamage:nth-of-type(1n+15), 
-input[name="attr_shipdamage_max"][value="12"] ~ div .shipdamage:nth-of-type(1n+15) + span, 
-input[name="attr_shipdamage_max"][value="13"] ~ div .shipdamage:nth-of-type(1n+16),
-input[name="attr_shipdamage_max"][value="13"] ~ div .shipdamage:nth-of-type(1n+16) + span,
-input[name="attr_shipdamage_max"][value="14"] ~ div .shipdamage:nth-of-type(1n+17), 
-input[name="attr_shipdamage_max"][value="14"] ~ div .shipdamage:nth-of-type(1n+17) + span, 
-input[name="attr_shipdamage_max"][value="15"] ~ div .shipdamage:nth-of-type(1n+18), 
-input[name="attr_shipdamage_max"][value="15"] ~ div .shipdamage:nth-of-type(1n+18) + span, 
-input[name="attr_shipdamage_max"][value="16"] ~ div .shipdamage:nth-of-type(1n+19), 
-input[name="attr_shipdamage_max"][value="16"] ~ div .shipdamage:nth-of-type(1n+19) + span, 
-input[name="attr_shipdamage_max"][value="17"] ~ div .shipdamage:nth-of-type(1n+20), 
-input[name="attr_shipdamage_max"][value="17"] ~ div .shipdamage:nth-of-type(1n+20) + span, 
-input[name="attr_shipdamage_max"][value="18"] ~ div .shipdamage:nth-of-type(1n+21), 
-input[name="attr_shipdamage_max"][value="18"] ~ div .shipdamage:nth-of-type(1n+21) + span, 
-input[name="attr_shipdamage_max"][value="19"] ~ div .shipdamage:nth-of-type(1n+22), 
-input[name="attr_shipdamage_max"][value="19"] ~ div .shipdamage:nth-of-type(1n+22) + span, 
-input[name="attr_shipdamage_max"][value="20"] ~ div .shipdamage:nth-of-type(1n+23), 
-input[name="attr_shipdamage_max"][value="20"] ~ div .shipdamage:nth-of-type(1n+23) + span {
-  display: none;
+
+div.ship-damage-row label.numbered-box {
+    margin-left: 2px;
+    cursor: pointer; 
+}
+div.ship-damage-row label.clear-button {
+/*     width: 40px;
+    margin-left: -40px;
+    color: #696969;
+    background: #a0dfdf;
+    border: solid 1px #09c2c2;
+    box-shadow: 0px 0px 5px #008b8b; */
 }
 
-input[name="attr_shipdamage"][value="0"] ~ .shipdamage + span::before,
-input.shipdamage1:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage2:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage3:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage4:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage5:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage6:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage7:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage8:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage9:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage10:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage11:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage12:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage13:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage14:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage15:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage16:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage17:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage18:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage19:checked + .shipdamage ~ span:nth-of-type(1n+2)::before,
-input.shipdamage20:checked + .shipdamage ~ span:nth-of-type(1n+2)::before {
-    color: #ffffff;
-    background: #808080;
-    border: solid 1px #808080;
-    box-shadow: 0px 0px 10px #008b8b;
-}
-
-input.shipdamage + span:before {
+input.shipdamage + label {
     color: #ffffff;
     background: #cc0000;
     border: solid 1px #cc0000;
-    box-shadow: 0px 0px 10px #b30000;
+    box-shadow: 0px 0px 5px #b30000;
+    margin-right: calc((100% - 210px) / 10);
 }
 .hullpoints-missing {
     display: none;
@@ -2287,6 +2390,60 @@ input[name="attr_shipdamage_max"][value="0"] ~ .hullpoints-missing {
 .ship-damage-row {
     padding-top: 0;
 }
+
+/* Only show radios up to the max value */
+input[name="attr_shipdamage_max"][value="0"] ~ label.shipdamage0 ~ label,
+input[name="attr_shipdamage_max"][value="1"] ~ label.shipdamage1 ~ label,
+input[name="attr_shipdamage_max"][value="2"] ~ label.shipdamage2 ~ label,
+input[name="attr_shipdamage_max"][value="3"] ~ label.shipdamage3 ~ label,
+input[name="attr_shipdamage_max"][value="4"] ~ label.shipdamage4 ~ label,
+input[name="attr_shipdamage_max"][value="5"] ~ label.shipdamage5 ~ label,
+input[name="attr_shipdamage_max"][value="6"] ~ label.shipdamage6 ~ label,
+input[name="attr_shipdamage_max"][value="7"] ~ label.shipdamage7 ~ label,
+input[name="attr_shipdamage_max"][value="8"] ~ label.shipdamage8 ~ label,
+input[name="attr_shipdamage_max"][value="9"] ~ label.shipdamage9 ~ label,
+input[name="attr_shipdamage_max"][value="10"] ~ label.shipdamage10 ~ label, 
+input[name="attr_shipdamage_max"][value="11"] ~ label.shipdamage11 ~ label, 
+input[name="attr_shipdamage_max"][value="12"] ~ label.shipdamage12 ~ label, 
+input[name="attr_shipdamage_max"][value="13"] ~ label.shipdamage13 ~ label,
+input[name="attr_shipdamage_max"][value="14"] ~ label.shipdamage14 ~ label, 
+input[name="attr_shipdamage_max"][value="15"] ~ label.shipdamage15 ~ label, 
+input[name="attr_shipdamage_max"][value="16"] ~ label.shipdamage16 ~ label, 
+input[name="attr_shipdamage_max"][value="17"] ~ label.shipdamage17 ~ label, 
+input[name="attr_shipdamage_max"][value="18"] ~ label.shipdamage18 ~ label, 
+input[name="attr_shipdamage_max"][value="19"] ~ label.shipdamage19 ~ label, 
+input[name="attr_shipdamage_max"][value="20"] ~ label.shipdamage20 ~ label {
+  display: none;
+}
+
+/**/ input[name="attr_shipdamage"][value="0"] ~ label.shipdamage, 
+input.shipdamage0:checked ~ label.shipdamage ,
+input.shipdamage1:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage2:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage3:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage4:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage5:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage6:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage7:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage8:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage9:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage10:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage11:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage12:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage13:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage14:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage15:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage16:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage17:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage18:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage19:checked + label.shipdamage ~ label.shipdamage ,
+input.shipdamage20:checked + label.shipdamage ~ label.shipdamage  {
+    color: #ffffff;
+    background: #808080;
+    border: solid 1px #808080;
+    box-shadow: 0px 0px 5px #008b8b;
+}
+
 
 /* XENO DAMAGE */
 
@@ -2301,11 +2458,15 @@ input[name="attr_shipdamage_max"][value="0"] ~ .hullpoints-missing {
     align-self: center;
 }
 .xeno-health-boxes {
-    margin-left: 20px;
-    margin-right: 10px;
+    margin-left: 17px;
+    margin-right: 0;
+}
+.ui-dialog .charsheet .xeno .xenohealth input.low-visibility-number {
+    color: #555;
+    margin-left: 3px;
 }
 
-.xeno-health-boxes label {
+div.xeno div.xeno-health-boxes label.xenohealth {
     color: #000000;
     background: #b4f870;
     border: solid 1px #a5e664;
@@ -2316,12 +2477,26 @@ input[name="attr_shipdamage_max"][value="0"] ~ .hullpoints-missing {
     height: 16px;
     font-size: 10px;
     font-weight: bold;
-    margin-right: 7px;
+    margin-right: 5px;
+    margin-left: 5px;
     padding: 0px 0px 0px 0px;
     line-height: 16px;
     margin-top: 5px;
     margin-bottom: 1px;
     cursor: pointer;
+}
+div.xeno div.xeno-health-boxes span.xenohealth-separator {
+    opacity: 0; 
+    user-select: none;
+    cursor: default;
+    width: 18px; /* Added 2px to cover for missing border */
+    height: 16px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 0px 0px 0px 0px;
+    line-height: 16px;
+    margin-top: 5px;
+    margin-bottom: 1px;
 }
 
 input.xenohealth-box:checked + label.xenohealth {
@@ -2407,7 +2582,7 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
     grid-gap: 5px;
     margin-top: 4px;
     position: relative;
-    left: -70px;
+    left: -75px;
 }
 .xeno .roll-buttons label.xenowhisper {
     color: #008b8b;
@@ -2424,9 +2599,9 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
     border: 1px solid #008b8b;
     border-radius: 5px;
     background-image: none;
-    display: inline;
     text-shadow: none;
     cursor: pointer;
+    display: flex;
     align-self: flex-end;  
 }
 .charsheet div.xeno div.roll-buttons label.button-narrow {
@@ -2442,7 +2617,7 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
 .charsheet div.xeno div.roll-buttons button[type="roll"].button-alpha,
 .charsheet div.xeno div.roll-buttons button[type="roll"].button-beta {
     width: fit-content;
-    -margin: 4px -1px;
+    margin: 0;
     align-self: flex-end;  
 }
 .xeno .armor {
@@ -2453,11 +2628,16 @@ input.xenohealth20:checked + label.xenohealth ~ .xenohealth {
 .xeno .armor button[type="roll"].button-skill {
     margin-right: 15px;
     margin-top: 3px;
+    width: 65%;
 }
 .xeno .armor button[type="roll"].button-skill.button-armorvs {
-    width: fit-content; 
+    width: calc(100% - 30px - 45%);;
     margin-right: 0; 
 }
+.xeno .armor button[type="roll"].button-skill.button-armorvs + input {
+    width: calc(100% - 30px - 50%); 
+}
+
 .xeno .armor input[type="text"] {
     background-color: transparent;
     width: 70px;
@@ -2545,6 +2725,10 @@ button[type="roll"].button-alpha:before, button[type="roll"].button-skill:before
 }
 
 
+.ui-dialog .charsheet .background-wrap button.vertical-adjust-half {
+    margin-top: 4px;
+}
+
 label.button-skill,
 button.button-skill,
 button[type="action"].button-skill,
@@ -2554,7 +2738,7 @@ button[type="roll"].button-skill {
     align-items: center;
     height: 15px;
     line-height: 18px;
-    width: 60%;
+    width: 70%;
     margin: 4px 1px;
     background-color: transparent;
     border: 1px solid rgb(204, 217, 207); /* Teal Varient */
@@ -2592,6 +2776,7 @@ button[type="roll"].button-skill:active {
 
 button[type="roll"].bigger-skill {
     width: 70%;
+    margin-top: 3px;
 }
 
 .ui-dialog .charsheet .background-wrap .xeno button.signatureattack {
@@ -2634,7 +2819,44 @@ input[type="checkbox"].button-skill:checked label {
     box-shadow: 0px 0px 10px #008b8b;
 }
 
-
+.attribute-box {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    height: -webkit-fill-available;
+}
+.attribute-strength-box {
+    position: relative;
+    top: 5px;
+    padding-top: 0;
+    margin-top: -10px;
+    margin-bottom: -15px;
+}
+.ui-dialog .charsheet div.attribute-strength-box button {
+    margin-bottom: 5px;
+}
+.attribute-empathy-box {
+    position: relative;
+    top: -5px;
+    padding-bottom: 0;
+    margin-bottom: -15px;
+    margin-top: -15px; 
+}
+.ui-dialog .charsheet div.attribute-empathy-box button {
+    margin-top: 5px;
+}
+.attribute-agility-box {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.attribute-wits-box {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
 .ui-dialog .charsheet button[type="roll"].attribute-button {
     background-color: transparent;
     background-image: none;
@@ -2645,12 +2867,14 @@ input[type="checkbox"].button-skill:checked label {
     font-family: Graduate, cursive;
     font-size:16px;
     font-weight:700;
-    height:auto;
+    height:fit-content;
     letter-spacing:normal;
     line-height:24px;
     text-align:center;
     text-size-adjust:100%;
     text-transform:uppercase;
+    line-height: 18px;
+    padding: 3px 3px 3px 3px;
 }
 
 .ui-dialog .charsheet button[type="roll"].attribute-button:before {

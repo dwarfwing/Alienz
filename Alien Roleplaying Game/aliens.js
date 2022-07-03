@@ -1,3 +1,4 @@
+     
     /* number and log handling */
     const int = (score, on_error = 0) => parseInt(score) || on_error;
     const float = (score, on_error = 0) => parseFloat(score) || on_error;
@@ -85,7 +86,7 @@
     // VERSIONING
     // If need for specific data updates with new version then include as a case comparing sheet version with version in the below Switch statement
     on("sheet:opened", () => {
-        getAttrs(["sheetversion", "version", "newchar"], (values) => {
+        getAttrs(["sheetversion", "version", "newchar"], async (values) => {
             var sheet = float(values.sheetversion),
             actual = float(values.version),
             newchar = int(values.newchar);
@@ -96,11 +97,16 @@
             switch (true) {
                 case newchar == 1 :
                     // A new character would always be on the sheet version, no need to bother with upgrades but need to reset the newchar attribute
+
+                    const newcharAttrs = await asw.getAttrs(["config_gearrepeatingonly","config_healthcalculation","config_apirolls","config_advencumbrance","config_squareinput","config_spacebackground","config_optionalspinners","config_permanentmods","config_modifierquery","config_panicdesc", "config_initiativedice"]);
+                    
                     clog(`New character identified. New char: ${newchar}, sheet version: ${sheet}, actual: ${actual}`);
+                    clog(`New character attributes: ${JSON.stringify(newcharAttrs)}`);
                     setAttrs({
                         version: sheet,
                         newchar: 0,
-                        config_notice: 1
+                        config_notice: 1,
+                        radiation_perm: 0   // Setting permanent radiation to 0 to support the CSS rules, without value they do not work
                     });
                     break;  
                 case actual < float(4.02) : 
@@ -278,9 +284,23 @@
 
 
     // PERMANENT Modifiers
-    modskills = ['heavy_machinery', 'stamina', 'close_combat', 'mobility', 'piloting', 'ranged_combat', 'observation', 'comtech', 'survival', 'manipulation', 'medical_aid', 'command'];
-    modskills.forEach( (modskill) => {
-        const skillmod = modskill.replace(/_/g,''); // (/foo/g, 'moo');
+    const skills = ['heavy_machinery', 'stamina', 'close_combat', 'mobility', 'piloting', 'ranged_combat', 'observation', 'comtech', 'survival', 'manipulation', 'medical_aid', 'command'];
+    const skillmods = _.map(skills, (n) => { return n+"_mod"; });
+    //clog(`Skill modifier attributes list: ${skillsmod}`);
+
+    const backupSkillmods = async () => {
+        const modattrs = await asw.getAttrs(skillmods);
+        clog(`Skill mods for backup : ${JSON.stringify(modattrs)}`);
+        setAttrs({
+            permanentmods_store: JSON.stringify(modattrs)
+        });
+        const restoremods = (await asw.getAttrs(permanentmods_store)).permanentmods_store;
+        clog(`Skill mods for backup : ${JSON.stringify(restoremods)}`);
+    }
+    on('sheet:opened', (ev) => { backupSkillmods(); });
+
+    skills.forEach( (modskill) => {
+        const skillmod = modskill.replace(/_/g,''); 
         //clog(`Creating sheet worker for ${skillmod}`);
         on(`clicked:${skillmod}modadd clicked:${skillmod}modsub`, async (ev) => {
             //clog(`Mod skill is ${modskill} and skill mod is ${skillmod}`);
@@ -290,7 +310,7 @@
             //clog(`Previous permanent modifier for ${modskill} is ${previous}.`);
             let addsub = ev.triggerName.slice(-3);
             //clog(`Sub or add: ${addsub} and add? is ${addsub == 'add'}`);
-            const current = addsub == "add" ? int(previous) + 1 : int(previous) - 1;
+            const current = addsub == "add" ? int(previous) + 1 : ( addsub == "sub" ? int(previous) - 1 : int(previous) );
             clog(`Current permanent modifier for ${modskill} is ${current}.`);
             const modplus = current > 0 ? 1 : 0; 
             const modviz = current == 0 ? 0 : 1; 
@@ -301,6 +321,44 @@
             });
         });
     });
+
+    on('change:config_permanentmods sheet:opened', async (ev) => { 
+        clog(`Mods event: ${JSON.stringify(ev)}`);
+        const modattrs = await asw.getAttrs(skillmods),
+            modconfig = ev.newValue||""; 
+        clog(`Mod config: ${modconfig}, mod Attributes: ${JSON.stringify(modattrs)}`);
+        clog(`Mod Attributes: ${modattrs.heavy_machinery_mod} ${modattrs.mobility_mod}`);
+        
+        const restoremods = (await asw.getAttrs(['permanentmods_store'])).permanentmods_store;
+        clog(`Restore Attributes: ${restoremods.heavy_machinery_mod} ${restoremods.mobility_mod}`);
+        clog(`Restore modifiers: ${JSON.stringify(restoremods)}`);
+        const nullmods = JSON.parse({"heavy_machinery_mod":0,"stamina_mod":"0","close_combat_mod":"0","mobility_mod":0,"piloting_mod":0,"ranged_combat_mod":0,"observation_mod":0,"comtech_mod":0,"survival_mod":0,"manipulation_mod":0,"medical_aid_mod":0,"command_mod":0});
+        nullmods.permanentmods_store = modattrs; 
+        clog(`Nullify modifiers: ${JSON.stringify(nullmods)}`);
+        clog(`Nullify modifiers: ${nullmods.stamina_mod}`);
+        clog(`Nullify modifiers: ${JSON.stringify(nullmods.permanentmods_store)}`);
+        clog(`Testing if attribute changed: ${ev.triggerName != "sheet:opened"}`);
+        if ( ev.triggerName != "sheet:opened" ) {
+            /**/
+            clog(`Testing if disabled: ${( modconfig === "0" )}`);
+            clog(`Testing if ensabled: ${( modconfig === "on" )}`);
+            if ( modconfig === "0" ) { 
+                //await asw.setAttrs({ permanentmods_store: modattrs });
+                //nullmods.permanentmods_store = modattrs; 
+                setAttrs(nullmods);
+                //await asw.setAttrs(nullmods); 
+                clog(`Set modifier store to: ${modattrs.toString()}`);
+                clog('Permanent skill modifiers disabled, storing values as backup.');
+                clog(`Set modifiers to: ${nullmods.toString()}`);
+            }
+            if ( modconfig === "on" ) {
+                clog('Permanent skill modifiers enabled, restored values from backup.'); 
+                setAttrs(restoremods); 
+                clog(`Set modifiers to: ${restoremods.toString()}`);
+            }
+        }
+    });
+
 
     // RESET Dice pool 
     on('clicked:customrollreset', (ev) => {
@@ -400,7 +458,6 @@
         });
     });
 
-    /* */
     // CALCULATE Health from Attribute
     on("change:strength change:tough sheet:opened", (eventinfo) => {
         //clog("Change detected: Health");
@@ -532,10 +589,10 @@
     armas.forEach( (arma) => { 
         const target = arma+"_targetrange";
         const rangemod = arma+"_rangemod";
-        clog("Armament: "+arma+" Target: "+target+" Range mod: "+rangemod);
+        //clog("Armament: "+arma+" Target: "+target+" Range mod: "+rangemod);
         on(`change:${target} sheet:opened`, (eventInfo) => {           
             getAttrs([target, rangemod], (values) => {
-                clog("Armament changed: "+target+" value: "+values[target]+" current range mod: "+values[rangemod]);
+                //clog("Armament changed: "+target+" value: "+values[target]+" current range mod: "+values[rangemod]);
                 var actual = 0;
                 switch(values[target]) {
                     case "Contact": actual = 2; break;
@@ -545,13 +602,13 @@
                     case "Extreme": actual = -2; break;
                 }
                 setAttrs({[rangemod]: actual},{silent: true});
-                clog("Armament range modification changed: "+target+", range mod "+rangemod+", range mod value: "+actual);
+                //clog("Armament range modification changed: "+target+", range mod "+rangemod+", range mod value: "+actual);
             })
         })
     });
     // Set Armament tab indicator
     const arma_buttons = {"armament1":"I","armament2":"II","armament3":"III","armament4":"IV","armament5":"V","armament6":"VI","armament7":"VII","armament8":"VIII","armament9":"IX","armament10":"X"};
-    clog("Arma buttons: "+ JSON.stringify(arma_buttons));
+    //clog("Arma buttons: "+ JSON.stringify(arma_buttons));
     //clog("Arma button1 : "+ JSON.stringify(arma_buttons["armament1"]));
     armas.forEach( (arma) => { 
         const armament = arma,
@@ -559,15 +616,15 @@
         bonus = arma+"_bonus",
         damage = arma+"_damage",
         button = arma+"_tab";
-        clog(`Armament name attribute: ${name}, bonus: ${bonus}, damage: ${damage}`);
+        //clog(`Armament name attribute: ${name}, bonus: ${bonus}, damage: ${damage}`);
         on(`change:${name} change:${bonus} change:${damage} sheet:opened`, (eventInfo) => {
             getAttrs([name, bonus, damage, button], (values) => {
-                clog("armament values for button status: "+JSON.stringify(values)); 
+                //clog("armament values for button status: "+JSON.stringify(values)); 
                 var active = "-";
                 if( values[name] != "" || values[bonus] != "0" || values[damage] != "0" ) {
                     active = arma_buttons[arma];
                 }
-                clog("active : "+active);
+                //clog("active : "+active);
                 setAttrs({
                     [button]: active
                 },{silent:true});
@@ -639,347 +696,145 @@
       });
   });
 
-	// Highlight buttons if talents / weapons are populated
+	// Highlight buttons if talents are populated
     talents = {"one": "I", "two": "II", "three": "III", "four": "IV", "five": "V", "six": "VI", "seven": "VII", "eight": "VIII", "nine": "IX", "ten": "X"};
     _.each(Object.keys(talents), (tal) => {
         on(`change:talent_${tal} sheet:opened`, function() {
             //clog(`Current talent: ${tal}, current value: ${talents[tal]}`);
             getAttrs([`talent_${tal}`], function(v){
-                var talentname = v[`talent_${tal}`];
+                var talentname = v[`talent_${tal}`]||"";
                 //clog("Talent output: "+ (talentname.length > 0) ? talents[`${tal}`] : "-");
                 //var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
                 var txt = (talentname.length > 0) ? talentname : "-";
-                setAttrs({[`tal_${tal}`]: txt});
+                setAttrs({
+                    [`tal_${tal}`]: txt
                 });
             });
+        });
     });
-
-	on("change:weapon_one_name sheet:opened", function(){
-    getAttrs(["weapon_one_name"], function(v){
-        var wpn = v.weapon_one_name;
-        var txt = (wpn.length > 0) ? "I" : "-";
-		setAttrs({wpn_one: txt});
-		});
-	});
-
-	on("change:weapon_two_name sheet:opened", function(){
-    getAttrs(["weapon_two_name"], function(v){
-        var wpn = v.weapon_two_name;
-        var txt = (wpn.length > 0) ? "II" : "-";
-		setAttrs({wpn_two: txt});
-		});
-	});
-
-	on("change:weapon_three_name sheet:opened", function(){
-    getAttrs(["weapon_three_name"], function(v){
-        var wpn = v.weapon_three_name;
-        var txt = (wpn.length > 0) ? "III" : "-";
-		setAttrs({wpn_three: txt});
-		});
-	});
-
-	on("change:weapon_four_name sheet:opened", function(){
-    getAttrs(["weapon_four_name"], function(v){
-        var wpn = v.weapon_four_name;
-        var txt = (wpn.length > 0) ? "IV" : "-";
-		setAttrs({wpn_four: txt});
-		});
-	});
-
-	on("change:weapon_five_name sheet:opened", function(){
-    getAttrs(["weapon_five_name"], function(v){
-        var wpn = v.weapon_five_name;
-        var txt = (wpn.length > 0) ? "V" : "-";
-		setAttrs({wpn_five: txt});
-		});
-	});
-
-	on("change:weapon_six_name sheet:opened", function(){
-    getAttrs(["weapon_six_name"], function(v){
-        var wpn = v.weapon_six_name;
-        var txt = (wpn.length > 0) ? "VI" : "-";
-		setAttrs({wpn_six: txt});
-		});
-	});
+     
+    /* Weapons tabs names*/
+    const tab_weapons = {"1": "I", "2": "II", "3": "III", "4": "IV", "5": "V", "6": "VI"};
+    const tab_weaponnames = {"1": "one", "2": "two", "3": "three", "4": "four", "5": "five", "6": "six"};
+	_.mapObject(tab_weaponnames, (tab,weapon) => {
+        //clog(`Worker weapon: weapon_${tab} with id ${weapon}`);
+        on(`change:weapon_${tab}_name sheet:opened`, () => {
+            clog(`Current weapon tab: weapon_${tab} with id ${weapon}`);
+            getAttrs([`weapon_${tab}_name`], (v) => {
+                var weaponname = v[`weapon_${tab}_name`]||"";
+                //clog("Weapon tab name: "+ weaponname);
+                //clog("Weapon tab number: "+ tab_weapons[`${weapon}`]);
+                //var txt = (weaponname.length > 0) ? tabs[`${tab}`] : "-";
+                //var txt = (weaponname.length > 0) ? weaponname.substring(0, 18) : "-"];
+                var txt = (weaponname.length > 0) ? weaponname.substring(0, 18) : tab_weapons[`${weapon}`]||"-";
+                //clog("Weapon tab output: "+ txt);
+                setAttrs({
+                    [`wpn_${tab}`]: txt
+                });
+            });
+        });
+    });
 
     // Signature attack exapand / collapse all
 
     var expandall = {'xenoattack1_check':1, 'xenoattack2_check':1, 'xenoattack3_check':1, 'xenoattack4_check':1, 'xenoattack5_check':1, 'xenoattack6_check':1};
     var collapseall = {'xenoattack1_check':0, 'xenoattack2_check':0, 'xenoattack3_check':0, 'xenoattack4_check':0, 'xenoattack5_check':0, 'xenoattack6_check':0};
     on("clicked:expandattacks", function() {
-        log("Expanding all signature attack!");
+        //clog("Expanding all signature attack!");
         setAttrs(expandall);
     });
     on("clicked:collapseattacks", function() {
-        log("Collapsing all signature attack!");
+        //clog("Collapsing all signature attack!");
         setAttrs(collapseall);
     });
 		
     // Action Button Tabs
-
-    on("clicked:tab_character", function() {
-        console.log("tab_character button clicked");
-        setAttrs({ 
-            tab_sheet: "Character"
+    /* main sheet tabs */
+    const main_tabs = {"tab_character":"Character","tab_ship":"Ship","tab_xeno":"Xeno","tab_config":"Config"};
+    _.mapObject(main_tabs, (main,tab) => {
+        on(`clicked:${tab}`, function() {
+            //clog(`${tab} button clicked`);
+            setAttrs({ 
+                tab_sheet: main
+            });
+            //clog(`Sheet tab Set To: ${main}`);
         });
-        console.log("Sheet tab Set To: Character");
-    });
-
-    on("clicked:tab_ship", function() {
-        console.log("tab_ship button clicked");
-        setAttrs({ 
-            tab_sheet: "Ship"
-        });
-        console.log("Sheet tab Set To: Ship");
     });
 
-    on("clicked:tab_xeno", function() {
-        console.log("tab_xeno button clicked");
-        setAttrs({ 
-            tab_sheet: "Xeno"
+    /* Talent tabs */
+    const tal_tabs = {"1":"tab_one","2":"tab_two","3":"tab_three","4":"tab_four","5":"tab_five","6":"tab_six","7":"tab_seven","8":"tab_eight",}
+    _.mapObject(tal_tabs, (tab,talent) => {
+        on(`clicked:${tab}`, function() {
+            //clog(`${tab} button clicked`);
+            setAttrs({ 
+                tab: talent
+            });
+            //clog(`tab Set To: ${talent}`);
         });
-        console.log("Sheet tab Set To: Xeno");
     });
 
-    on("clicked:tab_config", function() {
-        console.log("tab_config button clicked");
-        setAttrs({ 
-            tab_sheet: "Config",
-            config_notice: ""
+    /* Weapon tabs */
+    const weapon_tabs = {"1":"tab_alpha","2":"tab_beta","3":"tab_gamma","4":"tab_delta","5":"tab_epsilon","6":"tab_zeta"};
+    _.mapObject(weapon_tabs, (tab,weapon) => {
+        on(`clicked:${tab}`, () => {
+            //clog(`${tab} button clicked`);
+            setAttrs({ 
+                tab_weapon: weapon
+            });
+            clog(`tab_weapon Set To: ${weapon}`);
         });
-        console.log("Sheet tab Set To: Config");
     });
 
-    on("clicked:tab_one", function() {
-        console.log("tab_one button clicked");
-        setAttrs({ 
-            tab: 1
+    /* Ship internal modules tabs */
+    const moduletabs = {"1":"tab_modules1", "2":"tab_modules2"}; 
+    _.mapObject(moduletabs, (tab, module) => {
+        //clog(`Creating shet worker for ${tab} with id ${module}`); 
+        on(`clicked:${tab}`, () => {
+            //clog(`${tab} button clicked`);
+            setAttrs({ 
+                tab_modules: module
+            });
         });
-        console.log("tab Set To: 1");
-    });
-    
-    on("clicked:tab_two", function() {
-        console.log("tab_two button clicked");
-        setAttrs({ 
-            tab: 2
-        });
-        console.log("tab Set To: 2");
-    });
-    
-    on("clicked:tab_three", function() {
-        console.log("tab_three button clicked");
-        setAttrs({ 
-            tab: 3
-        });
-        console.log("tab Set To: 3");
-    });
-    
-    on("clicked:tab_four", function() {
-        console.log("tab_four button clicked");
-        setAttrs({ 
-            tab: 4
-        });
-        console.log("tab Set To: 4");
-    });
-    
-    on("clicked:tab_five", function() {
-        console.log("tab_five button clicked");
-        setAttrs({ 
-            tab: 5
-        });
-        console.log("tab Set To: 5");
-    });
-    
-    on("clicked:tab_six", function() {
-        console.log("tab_six button clicked");
-        setAttrs({ 
-            tab: 6
-        });
-        console.log("tab Set To: 6");
-    });
-    
-    on("clicked:tab_seven", function() {
-        console.log("tab_seven button clicked");
-        setAttrs({ 
-            tab: 7
-        });
-        console.log("tab Set To: 7");
-    });
-    
-    on("clicked:tab_eight", function() {
-        console.log("tab_eight button clicked");
-        setAttrs({ 
-            tab: 8
-        });
-        console.log("tab Set To: 8");
-    });
-    
-    on("clicked:tab_alpha", function() {
-        console.log("tab_alpha button clicked");
-        setAttrs({ 
-            tab_weapon: 1
-        });
-        console.log("tab_weapon Set To: 1");
-    });
-    
-    on("clicked:tab_beta", function() {
-        console.log("tab_beta button clicked");
-        setAttrs({ 
-            tab_weapon: 2
-        });
-        console.log("tab_weapon Set To: 2");
-    });
-    
-    on("clicked:tab_gamma", function() {
-        console.log("tab_gamma button clicked");
-        setAttrs({ 
-            tab_weapon: 3
-        });
-        console.log("tab_wweapon Set To: 3");
-    });
-    
-    on("clicked:tab_delta", function() {
-        console.log("tab_delta button clicked");
-        setAttrs({ 
-            tab_weapon: 4
-        });
-        console.log("tab_weapon Set To: 4");
-    });
-    
-    on("clicked:tab_epsilon", function(eventinfo) {
-        console.log("tab_epsilon button clicked");
-        //console.log("sourceAttribute=" + eventinfo.sourceAttribute);
-        //console.log("previousValue=" + eventinfo.previousValue);
-        //console.log("newValue =" + eventinfo.newValue );
-        //console.log("sourceType=" + eventinfo.sourceType);
-        setAttrs({ 
-            tab_weapon: 5
-        })
-        console.log("tab_weapon Set To: 5");
-    });
-    
-    on("clicked:tab_zeta", function() {
-        console.log("tab_zeta button clicked");
-        setAttrs({ 
-            tab_weapon: 6
-        });
-        console.log("tab_weapon Set To: 6");
-    });
-    
-    on("clicked:tab_modules1", function() {
-        console.log("tab_modules1 button clicked");
-        setAttrs({ 
-            tab_modules: 1
-        });
-        console.log("tab_modules Set To: 1");
-    });
-    
-    on("clicked:tab_modules2", function() {
-        console.log("tab_modules2 button clicked");
-        setAttrs({ 
-            tab_modules: 2
-        });
-        console.log("tab_modules Set To: 2");
-    });
-    
-    on("clicked:tab_log1", function() {
-        console.log("tab_log1 button clicked");
-        setAttrs({ 
-            tab_log: 1
-        });
-        console.log("tab_log Set To: 1");
-    });
-    
-    on("clicked:tab_log2", function() {
-        console.log("tab_log2 button clicked");
-        setAttrs({ 
-            tab_log: 2
-        });
-        console.log("tab_log Set To: 2");
-    });
-    
-    on("clicked:tab_log3", function() {
-        console.log("tab_log3 button clicked");
-        setAttrs({ 
-            tab_log: 3
-        });
-        console.log("tab_log Set To: 3");
-    });
-    
-    on("clicked:tab_log4", function() {
-        console.log("tab_log4 button clicked");
-        setAttrs({ 
-            tab_log: 4
-        });
-        console.log("tab_log Set To: 4");
     });
 
-    /* Armament tabs names*/
+    /* Ship log tabs */
+    const logtabs = {"1":"tab_log1", "2":"tab_log2","3": "tab_log3", "4":"tab_log4"}; 
+    _.mapObject(logtabs, (tab, log) => {
+        //clog(`Creating shet worker for ${tab} with id ${log}`); 
+        on(`clicked:${tab}`, () => {
+            //clog(`Clicked ${tab}`); 
+            setAttrs({ 
+                tab_log: log
+            });
+        });
+    });
+
+    /* Armament tab display */
     const tabs = {"1": "I", "2": "II", "3": "III", "4": "IV", "5": "V", "6": "VI", "7": "VII", "8": "VIII", "9": "IX", "10": "X"};
-	// Highlight buttons if armament is populated
+	_.each(Object.keys(tabs), (tab) => {
+        on(`clicked:tab_armament${tab}`,() => {
+            //clog(`tab_armament${tab} button clicked`);
+            setAttrs({ 
+                tab_armament: `${tab}`
+            });
+            //clog(`tab_armament Set To: ${tab}`);
+        });
+    });     
+    /* Armament tabs names*/
+    // Highlight buttons if armament is populated
     _.each(Object.keys(tabs), (tab) => {
         on(`change:armament${tab}_name sheet:opened`, function() {
             //clog(`Current tab: ${tab}, current value: ${tabs[tab]}`);
             getAttrs([`armament${tab}_name`], function(v) {
                 var tabname = v[`armament${tab}_name`]||"";
-                clog("Tab name: "+ tabname);
-                clog("Tab output: "+ (tabname.length > 0) ? tabs[`${tab}`] : "-");
+                //clog("Armament Tab name: "+ tabname);
+                //clog("Armament Tab output: "+ (tabname.length > 0) ? tabs[`${tab}`] : "-");
                 //var txt = (tabname.length > 0) ? tabs[`${tab}`] : "-";
                 //var txt = (tabname.length > 0) ? tabname.substring(0, 18) : "-"];
-                var txt = (tabname.length > 0) ? tabname.substring(0, 18) : tabs[`${tab}`];
-                setAttrs({[`armament${tab}_tab`]: txt});
+                var txt = (tabname.length > 0) ? tabname.substring(0, 15) : tabs[`${tab}`];
+                setAttrs({
+                    [`armament${tab}_tab`]: txt
+                });
             });
         });
     });
-    /* Armament tab display */
-    _.each(Object.keys(tabs), (tab) => {
-        on(`clicked:tab_armament${tab}`,() => {
-            console.log(`tab_armament${tab} button clicked`);
-            setAttrs({ 
-                tab_armament: `${tab}`
-            });
-            console.log(`tab_armament Set To: ${tab}`);
-        });
-    }); 
-   
-    /*
-    on("clicked:tab_armament1", function() {
-        console.log("tab_armament1 button clicked");
-        setAttrs({ 
-            tab_armament: 1
-        });
-        console.log("tab_armament Set To: 1");
-    });
-    
-    on("clicked:tab_armament2", function() {
-        console.log("tab_armament2 button clicked");
-        setAttrs({ 
-            tab_armament: 2
-        });
-        console.log("tab_armament Set To: 2");
-    });
-    
-    on("clicked:tab_armament3", function() {
-        console.log("tab_armament3 button clicked");
-        setAttrs({ 
-            tab_armament: 3
-        });
-        console.log("tab_armament Set To: 3");
-    });
-    
-    on("clicked:tab_armament4", function() {
-        console.log("tab_armament4 button clicked");
-        setAttrs({ 
-            tab_armament: 4
-        });
-        console.log("tab_armament Set To: 4");
-    });
-    
-    on("clicked:tab_armament5", function() {
-        console.log("tab_armament5 button clicked");
-        setAttrs({ 
-            tab_armament: 5
-        });
-        console.log("tab_armament Set To: 5");
-    });
-    */
