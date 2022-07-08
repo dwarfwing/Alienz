@@ -1335,7 +1335,8 @@ input[type="number"].number-input {
 .permanentmods:not(checked) ~ div div.skill div.popout-container {
     display: none; 
 }
-.permanentmods:checked ~ div div.skill div.popout-container {
+.permanentmods:checked ~ div div.skill div.popout-container,
+.permanentmods[value="1"] ~ div div.skill div.popout-container {
     display: flex; 
 }
 /* .permanentmods:not(checked) ~ div.skill input[type="hidden"].skill-modifier:not([value="0"]) ~  div.popout-container {
@@ -2113,6 +2114,9 @@ label.darker-rounded-box {
 .stress .vertical-adjust-one {
     margin-bottom: -5px;
 } 
+.stress {
+    padding-bottom: 0;
+}
 
 .health input[type="checkbox"].numbered-box {
     top: 0px;
@@ -2240,6 +2244,18 @@ div.small-box div.more-curves {
 div.small-option-box div.more-curves {
     line-height: 10px;
     margin-bottom: 5px;
+}
+div.small-option-box label,
+div.small-option-box div.smallbox-option-input span:before {
+    -display: flex;
+    height: 14px;
+    width: 14px;
+    font-size: 10px;
+    align-content: center;
+    justify-content: center;
+}
+div.small-box-option.steelnerves .smallbox-option-input {
+    margin-top: -8px;
 }
 
 /* CHARACTER RADIATION */ 
