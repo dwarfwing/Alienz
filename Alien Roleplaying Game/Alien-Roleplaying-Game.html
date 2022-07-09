@@ -3511,6 +3511,7 @@
                 <textarea name="attr_xeno_notes" class="xeno-textfield auto-expand" value="" data-i18n-placeholder="xeno-notes.place" placeholder="Notes..." title="@{xeno_notes}" spellcheck="false" ></textarea>
             <!-- </div> -->
         </div>  
+        <!-- <div class="span-row-8 span-one-thru-four h100pc">&nbsp;</div> -->
 
 
         <!-- RIGHT COLUMN -->
@@ -3643,7 +3644,8 @@
                     <button type="roll" name="sheet-xenoattackroll1" class="button-skill button-gamma span-four signatureattack left w60" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack1_name} }} {{roll-type=1}} {{current-comment=@{xenoattack1_desc} }} {{current-damage=@{xenoattack1_dmg} }} {{roll-dice-cmd=@{xenoattack1_dice} }} {{roll-dice=[[@{xenoattack1_dice}]] }} {{current-dice=@{xenoattack1_base} }} {{base-dice=[[@{xenoattack1_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" data-i18n="attack-u" data-i18n-title="signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Attack</button>
                 </span>
                 
-                <input class="expand" name="attr_xenoattack1_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <input class="expand hidden" name="attr_xenoattack1_check" id="xenoattack1_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <label for="xenoattack1_check" class="expand-label">&</label>
                 <span></span>
 
                 <span></span>
@@ -3714,7 +3716,8 @@
                     <button type="roll" name="sheet-xenoattackroll2" class="button-skill button-gamma span-four signatureattack left w60" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack2_name} }} {{roll-type=2}} {{current-comment=@{xenoattack2_desc} }} {{current-damage=@{xenoattack2_dmg} }} {{roll-dice-cmd=@{xenoattack2_dice} }} {{roll-dice=[[@{xenoattack2_dice}]] }} {{current-dice=@{xenoattack2_base} }} {{base-dice=[[@{xenoattack2_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" data-i18n="attack-u" data-i18n-title="signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Attack</button>
                 </span>
                 
-                <input class="expand" name="attr_xenoattack2_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <input class="expand hidden" name="attr_xenoattack2_check" id="xenoattack2_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <label for="xenoattack2_check" class="expand-label">&</label>
                 <span></span>
 
                 <span></span>
@@ -3785,7 +3788,8 @@
                     <button type="roll" name="sheet-xenoattackroll3" class="button-skill button-gamma span-four signatureattack left w60" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack3_name} }} {{roll-type=3}} {{current-comment=@{xenoattack3_desc} }} {{current-damage=@{xenoattack3_dmg} }} {{roll-dice-cmd=@{xenoattack3_dice} }} {{roll-dice=[[@{xenoattack3_dice}]] }} {{current-dice=@{xenoattack3_base} }} {{base-dice=[[@{xenoattack3_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" data-i18n="attack-u" data-i18n-title="signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Attack</button>
                 </span>
                 
-                <input class="expand" name="attr_xenoattack3_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <input class="expand hidden" name="attr_xenoattack3_check" id="xenoattack3_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <label for="xenoattack3_check" class="expand-label">&</label>
                 <span></span>
 
                 <span></span>
@@ -3856,7 +3860,8 @@
                     <button type="roll" name="sheet-xenoattackroll4" class="button-skill button-gamma span-four signatureattack left w60" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack4_name} }} {{roll-type=4}} {{current-comment=@{xenoattack4_desc} }} {{current-damage=@{xenoattack4_dmg} }} {{roll-dice-cmd=@{xenoattack4_dice} }} {{roll-dice=[[@{xenoattack4_dice}]] }} {{current-dice=@{xenoattack4_base} }} {{base-dice=[[@{xenoattack4_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" data-i18n="attack-u" data-i18n-title="signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Attack</button>
                 </span>
                 
-                <input class="expand" name="attr_xenoattack4_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <input class="expand hidden" name="attr_xenoattack4_check" id="xenoattack4_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <label for="xenoattack4_check" class="expand-label">&</label>
                 <span></span>
 
                 <span></span>
@@ -3926,8 +3931,9 @@
                     <input type="text" name="attr_xenoattack5_name" class="xeno-attack-input xeno-attack-name">
                     <button type="roll" name="sheet-xenoattackroll5" class="button-skill button-gamma span-four signatureattack left w60" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack5_name} }} {{roll-type=5}} {{current-comment=@{xenoattack5_desc} }} {{current-damage=@{xenoattack5_dmg} }} {{roll-dice-cmd=@{xenoattack5_dice} }} {{roll-dice=[[@{xenoattack5_dice}]] }} {{current-dice=@{xenoattack5_base} }} {{base-dice=[[@{xenoattack5_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" data-i18n="attack-u" data-i18n-title="signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Attack</button>
                 </span>
-                
-                <input class="expand" name="attr_xenoattack5_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                 
+                <input class="expand hidden" name="attr_xenoattack5_check" id="xenoattack5_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <label for="xenoattack5_check" class="expand-label">&</label>
                 <span></span>
 
                 <span></span>
@@ -3998,7 +4004,8 @@
                     <button type="roll" name="sheet-xenoattackroll6" class="button-skill button-gamma span-four signatureattack left w60" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack6_name} }} {{roll-type=6}} {{current-comment=@{xenoattack6_desc} }} {{current-damage=@{xenoattack6_dmg} }} {{roll-dice-cmd=@{xenoattack6_dice} }} {{roll-dice=[[@{xenoattack6_dice}]] }} {{current-dice=@{xenoattack6_base} }} {{base-dice=[[@{xenoattack6_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" data-i18n="attack-u" data-i18n-title="signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Attack</button>
                 </span>
                 
-                <input class="expand" name="attr_xenoattack6_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <input class="expand hidden" name="attr_xenoattack6_check" id="xenoattack6_check" type="checkbox" data-i18n-title="show-hide" title="show/hide" value="1" checked />
+                <label for="xenoattack6_check" class="expand-label">&</label>
                 <span></span>
 
                 <span></span>
