@@ -1,0 +1,70 @@
+
+
+x Add permanent modifier for Ranged and CC to weapon rolls
+x Make text in Talent roll smaller, e.g. 80%.
+x Add a button to include stress, ticked by default
+x Move talent roll Active checkbox to top row and hide rolls when not active
+x Add actual rolltemplate and API commands to the talent roll
+x Copy the talent roll to all talents
+x Fix Hostile attack formatting
+x Add permanent modifier to the Talent rolls
+x Add handling of permanent rads - x sheet worker, x display different icon, x rolling for rads
+x Roll for recovery (no automation included).  Add titles for buttons to explain.
+x Size of boxes at top of character tab
+x Fix Textareas in Character, remove any span showing the vlaue, fix fonts in textareas
+x Add title and translation for new things
+	Radiation, permanent, buttons, modifiers
+x Add another row of Armaments for Ships
+x Fix button formatting! line-height: 14px? Align to center?
+- Make modifier popup optional, set default in game config?
+- Make toggleable the Permanent modifiers, set default in game config?
+- Make toggleable the character Health vs Damage, in configuration and sheet defaults
+- Make sections in the Configuration list, and add new configurations
+	- Roll options, Sheet layout, Calculations?, Automations?, 
+x Make health and stress use same layout and css
+- Use label for
+	x Use label for in Radiation too
+	x Character Health bar 
+	x Shipdamage
+	x Xeno health
+	x Experience
+	x Story points
+	- Weapons CC/RC, Armaments CC/RC
+	x Conditions
+	- Config buttons
+x Fix Ship damage showing only up to Hull level
+x Change spacing around attributes to allow longer/wider buttons. 
+	x Move the Attribute name button to same div as the input, change margin top and bottom to negatives to allow
+	x Extend the skills out into the freed up space using width 110% and justify-self. 
+- Make the @selected a togglable option for Initiative rolls.
+- Fix roll commands for talent rolls (fix replace)
+- Rework Supply talent option - include the modifier -2 in the option, no need for modifier dropdown.
+- Update talent supply options using a sheet worker, calculate number of dice for supply rolls in talent in sheet worker
+
+- Update Change log
+- Create new post
+- Update Roll20 Sheet wiki?
+
+- Firefox
+	- Fix tab buttons in Firefox - they have too little padding
+	- Fix Talent Roll button, align center
+	- Fix top level tabs, space between tab and edge of box
+	- Fix sizes of Roll buttons in Xeno tab
+	- Fix sizes of Armor buttons, make them %
+	- REview fonts in Options, Buttons (compare to Chrome)
+
+CSE and remove legacy
+x .ui-dialog .charsheet button[type="roll"] override
+x .ui-dialog .charsheet input[type=number] override
+x fix attribute label/button
+x fix number input width
+x fix talent roll buttons
+x Set up permanent modifiers to follow squarer input
+
+
+
+
+/r [[([[(@{selected|talent_two_supply}+@{selected|talent_two_mod}),1)kh1]])d6]]
+
+works
+[[{@{selected|talent_two_supply}+@{selected|talent_two_mod},1}kh1]]

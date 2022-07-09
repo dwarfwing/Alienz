@@ -1,5 +1,4 @@
-
-      
+     
     /* number and log handling */
     const int = (score, on_error = 0) => parseInt(score) || on_error;
     const float = (score, on_error = 0) => parseFloat(score) || on_error;
@@ -87,7 +86,7 @@
     // VERSIONING
     // If need for specific data updates with new version then include as a case comparing sheet version with version in the below Switch statement
     on("sheet:opened", () => {
-        getAttrs(["sheetversion", "version", "newchar"], (values) => {
+        getAttrs(["sheetversion", "version", "newchar"], async (values) => {
             var sheet = float(values.sheetversion),
             actual = float(values.version),
             newchar = int(values.newchar);
@@ -98,11 +97,16 @@
             switch (true) {
                 case newchar == 1 :
                     // A new character would always be on the sheet version, no need to bother with upgrades but need to reset the newchar attribute
+
+                    const newcharAttrs = await asw.getAttrs(["config_gearrepeatingonly","config_healthcalculation","config_apirolls","config_advencumbrance","config_squareinput","config_spacebackground","config_optionalspinners","config_permanentmods","config_modifierquery","config_panicdesc", "config_initiativedice"]);
+                    
                     clog(`New character identified. New char: ${newchar}, sheet version: ${sheet}, actual: ${actual}`);
+                    clog(`New character attributes: ${JSON.stringify(newcharAttrs)}`);
                     setAttrs({
                         version: sheet,
                         newchar: 0,
-                        config_notice: 1
+                        config_notice: 1,
+                        radiation_perm: 0   // Setting permanent radiation to 0 to support the CSS rules, without value they do not work
                     });
                     break;  
                 case actual < float(4.02) : 
@@ -124,29 +128,87 @@
         });
     });
     const upg_4_02 = () => {
-        clog("==== Upgrading to version 4.02 ====");
+        //clog("==== Upgrading to version 4.02 ====");
         getAttrs(['config_apirolls', 'secret_roll_api','secret_roll', 'config_apirolls', 'config_advencumbrance'], (values) => {
             // // // Secret Rolls // // // 
             const sa = values.secret_roll_api, 
                 s = values.secret_roll,
                 api = values.config_apirolls; 
             var val = "";            
-            clog(`secret roll api : ${sa}, secret roll : ${s}, api rolls : ${api}`);
-            if ( api != "on" || api != 1 || !api ) {
-                val = ( s == "1" || s == "/w gm") ? 1 : 0; 
+            clog(`upgrading secret rolls. secret api: ${sa}, secret rolls : ${s}, api enabled : ${api}`);
+            clog(`upgrading secret rolls. secret api: ${!!sa}, secret rolls : ${!!s}, api enabled : ${!!api}`);
+            if ( (api == "on" || api == 1) && typeof sa !== "undefined" ) {
+                val = ( sa == "1" || sa == "!alienrw" || sa == "w" ) ? 1 : 0; 
             } else {
-                val = ( sa == "1" || sa == "!alienrw" || sa == "w" ) ? 1 : 0;
+                val = ( s == "1" || s == "/w gm" ) ? 1 : 0;
             }
-            clog(`secret roll new : ${val}`);
+            clog(`secret roll new : ${val}`);   
+            const r = ( val == 1 || val == "1" ) ? "/w gm" : "", 
+                a = ( val == 1 || val == "1" ) ?"!alienrw" : "!alienr";
+            clog(`Secret roll ${r}, secret api ${a}`);
             setAttrs({
-                secret_roll: val
+                secret_roll: val,
+                roll_command: r,
+                roll_command_api: a
             });
-            // // // Config options // // //
-            clog(`Api rolls: ${values.config_apirolls}, Encumbrance: ${values.config_advencumbrance}`);
-
         });  
     }
+
+    // SIGNATURE ATTACKS
+    // Randomize attack button
+    on('clicked:randomizeattack', async (ev) => {
+        clog(`Starting randomized signature attack parsed roll`);
+        await signatureAttack(ev);
+        clog(`Completed randomized signature attack parsed roll`);
+    });
+    // Randomize signature attacks
+    const signatureAttack = async (ev) => {
+        
+        //clog(`First event: ${JSON.stringify(ev)}`);
+        //clog(`Event name: ${ev.htmlAttributes.name}`);
+
+        const attackId = Math.ceil(Math.random()*6); 
+
+        const attrs = await asw.getAttrs(["character_name"]);
+        const rollBase = `@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=@{xenoattack${attackId}_name} }} {{roll-type=${attackId}}} {{current-comment=@{xenoattack${attackId}_desc} }} {{current-damage=@{xenoattack${attackId}_dmg} }} {{roll-dice-cmd=@{xenoattack${attackId}_dice} }} {{roll-dice=[[@{xenoattack${attackId}_dice}]] }} {{current-dice=@{xenoattack${attackId}_base} }} {{base-dice=[[@{xenoattack${attackId}_base}]] }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}`;
+        // Removed range from the command since it isnt sure it is needed: {{current-range=@{xenoattack${attackId}_range} }}
+        const firstRoll = await startRoll(rollBase);
+        //clog(`First roll data: ${JSON.stringify(firstRoll)}`);
+        //clog(`First roll data: ${JSON.stringify(firstRoll.rolls)}`);
+
+        finishRoll(firstRoll.rollId);
+    }
+    // Copy a signature attack, with a popup alert to ensure data is not overwritten by mistake.
+    const copybuttons = ["attackcopy1","attackcopy2","attackcopy3","attackcopy4","attackcopy5",];
+    copybuttons.forEach( async (button) => {
+        on(`clicked:${button}`, async (eventInfo) => {
+            //clog(`Button eventinfo: ${JSON.stringify(eventInfo)}`);
+            let id = eventInfo.triggerName.slice(-1);
+            let newId = int(id)+1; 
+            clog(`Button id: ${id}, new id: ${newId}`);
+            const confirm = await getQuery(`?{Are you sure you want to replace the attack ${id} with the data from ${id-1}? This action cannot be undone. |Yes,1|No,0}`);
+            clog(`Copy confirmed? ${confirm}`);
+            if ( confirm == 1 ) {
+                const attrs = await asw.getAttrs([`xenoattack${id}_name`, `xenoattack${id}_desc`, `xenoattack${id}_dice`, `xenoattack${id}_base`, `xenoattack${id}_dmg`, `xenoattack${newId}_name`, `xenoattack${newId}_desc`, `xenoattack${newId}_dice`, `xenoattack${newId}_base`, `xenoattack${newId}_dmg`]);
+                //clog(JSON.stringify(attrs));
+                clog("Data before copy - name: "+attrs[`xenoattack${newId}_name`]+", dice: "+attrs[`xenoattack${newId}_dice`]+", base: "+attrs[`xenoattack${newId}_base`]+", damage: "+attrs[`xenoattack${newId}_dmg`]+", description: "+attrs[`xenoattack${newId}_desc`]);
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_desc`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_dice`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_base`]));
+                //clog(JSON.stringify(attrs[`xenoattack${newId}_dmg`]));
+                /* Set attributes for new attack */
+                await asw.setAttrs({
+                    [`xenoattack${newId}_name`]: attrs[`xenoattack${id}_name`],
+                    [`xenoattack${newId}_desc`]: attrs[`xenoattack${id}_desc`],
+                    [`xenoattack${newId}_dice`]: attrs[`xenoattack${id}_dice`],
+                    [`xenoattack${newId}_base`]: attrs[`xenoattack${id}_base`],
+                    [`xenoattack${newId}_dmg`]: attrs[`xenoattack${id}_dmg`],
+                });                
+            }
+        }); 
+    });
     
+    // EXPERIMENTAL SPACE
     // Parsed Roll, triggered from sheet. Need to add logic and attributes for pushing rolls, keeping this for future additions. 
     const rollFirst = async (ev) => {
         // We'll pretend we've done a getAttrs on the attacker's weapon for all the required values
@@ -166,7 +228,7 @@
         for(let i = 1; i <= total; i++) { baseStr += "[[1d6]] "; }
         for(let i = 1; i <= stress; i++) { stressStr += "[[1d6]] "; }
         
-        let rollBase = `@{secret_roll} &{template:aliens} {{character-name=${attrs.character_name} }} {{roll-name=${rollName} }} {{base-dice=${baseStr} }} {{stress-dice=${stressStr} }} {{passthroughdata=[[0]]}} {{buttonlabel=Push Roll}} {{buttonlink=pushroll}}`;
+        let rollBase = `@{roll_command} &{template:aliens} {{character-name=${attrs.character_name} }} {{roll-name=${rollName} }} {{base-dice=${baseStr} }} {{stress-dice=${stressStr} }} {{passthroughdata=[[0]]}} {{buttonlabel=Push Roll}} {{buttonlink=pushroll}}`;
         let firstRoll = await startRoll(rollBase);
         //    rollValue = firstRoll.results.roll1.result;
         clog(`First roll data: ${JSON.stringify(firstRoll)}`);
@@ -218,8 +280,99 @@
         clog(`Completed push roll`);
     });
     */
+    // END EXPERIMENTAL SPACE
 
-    on('change:secret_roll', (ev) => {
+
+    // PERMANENT Modifiers
+    const skills = ['heavy_machinery', 'stamina', 'close_combat', 'mobility', 'piloting', 'ranged_combat', 'observation', 'comtech', 'survival', 'manipulation', 'medical_aid', 'command'];
+    const skillmods = _.map(skills, (n) => { return n+"_mod"; });
+    //clog(`Skill modifier attributes list: ${skillsmod}`);
+
+    const backupSkillmods = async () => {
+        const modattrs = await asw.getAttrs(skillmods);
+        clog(`Skill mods for backup : ${JSON.stringify(modattrs)}`);
+        setAttrs({
+            permanentmods_store: JSON.stringify(modattrs)
+        });
+        const restoremods = (await asw.getAttrs(permanentmods_store)).permanentmods_store;
+        clog(`Skill mods for backup : ${JSON.stringify(restoremods)}`);
+    }
+    on('sheet:opened', (ev) => { backupSkillmods(); });
+
+    skills.forEach( (modskill) => {
+        const skillmod = modskill.replace(/_/g,''); 
+        //clog(`Creating sheet worker for ${skillmod}`);
+        on(`clicked:${skillmod}modadd clicked:${skillmod}modsub`, async (ev) => {
+            //clog(`Mod skill is ${modskill} and skill mod is ${skillmod}`);
+            const attrs = await asw.getAttrs([`${modskill}_mod`]);
+            //clog(`Values = ${JSON.stringify(attrs)}`);
+            const previous = attrs[`${modskill}_mod`]; 
+            //clog(`Previous permanent modifier for ${modskill} is ${previous}.`);
+            let addsub = ev.triggerName.slice(-3);
+            //clog(`Sub or add: ${addsub} and add? is ${addsub == 'add'}`);
+            const current = addsub == "add" ? int(previous) + 1 : ( addsub == "sub" ? int(previous) - 1 : int(previous) );
+            clog(`Current permanent modifier for ${modskill} is ${current}.`);
+            const modplus = current > 0 ? 1 : 0; 
+            const modviz = current == 0 ? 0 : 1; 
+            await asw.setAttrs({
+                [`${modskill}_mod`]: current,
+                [`${modskill}_modplus`]: modplus,
+                [`${modskill}_modviz`]: modviz,
+            });
+        });
+    });
+
+    on('change:config_permanentmods sheet:opened', async (ev) => { 
+        clog(`Mods event: ${JSON.stringify(ev)}`);
+        const modattrs = await asw.getAttrs(skillmods),
+            modconfig = ev.newValue||""; 
+        clog(`Mod config: ${modconfig}, mod Attributes: ${JSON.stringify(modattrs)}`);
+        clog(`Mod Attributes: ${modattrs.heavy_machinery_mod} ${modattrs.mobility_mod}`);
+        
+        const restoremods = (await asw.getAttrs(['permanentmods_store'])).permanentmods_store;
+        clog(`Restore Attributes: ${restoremods.heavy_machinery_mod} ${restoremods.mobility_mod}`);
+        clog(`Restore modifiers: ${JSON.stringify(restoremods)}`);
+        const nullmods = JSON.parse({"heavy_machinery_mod":0,"stamina_mod":"0","close_combat_mod":"0","mobility_mod":0,"piloting_mod":0,"ranged_combat_mod":0,"observation_mod":0,"comtech_mod":0,"survival_mod":0,"manipulation_mod":0,"medical_aid_mod":0,"command_mod":0});
+        nullmods.permanentmods_store = modattrs; 
+        clog(`Nullify modifiers: ${JSON.stringify(nullmods)}`);
+        clog(`Nullify modifiers: ${nullmods.stamina_mod}`);
+        clog(`Nullify modifiers: ${JSON.stringify(nullmods.permanentmods_store)}`);
+        clog(`Testing if attribute changed: ${ev.triggerName != "sheet:opened"}`);
+        if ( ev.triggerName != "sheet:opened" ) {
+            /**/
+            clog(`Testing if disabled: ${( modconfig === "0" )}`);
+            clog(`Testing if ensabled: ${( modconfig === "on" )}`);
+            if ( modconfig === "0" ) { 
+                //await asw.setAttrs({ permanentmods_store: modattrs });
+                //nullmods.permanentmods_store = modattrs; 
+                setAttrs(nullmods);
+                //await asw.setAttrs(nullmods); 
+                clog(`Set modifier store to: ${modattrs.toString()}`);
+                clog('Permanent skill modifiers disabled, storing values as backup.');
+                clog(`Set modifiers to: ${nullmods.toString()}`);
+            }
+            if ( modconfig === "on" ) {
+                clog('Permanent skill modifiers enabled, restored values from backup.'); 
+                setAttrs(restoremods); 
+                clog(`Set modifiers to: ${restoremods.toString()}`);
+            }
+        }
+    });
+
+
+    // RESET Dice pool 
+    on('clicked:customrollreset', (ev) => {
+        clog("Resetting custom roll!");
+        setAttrs({
+            customroll_name: 'Custom roll',
+            customroll_base: 0,
+            customroll_stress: 0
+        }); 
+    });
+
+
+    // SET SECRET ROLL 
+    on('change:secret_roll sheet:opened', (ev) => {
         getAttrs(['secret_roll', 'roll_command', 'roll_command_api', ], (values) => {
             clog(`Secret roll update: ${JSON.stringify(ev)}`);
             const s = values.secret_roll;
@@ -237,22 +390,6 @@
         });
     });
 
-    const configs = ["config_advencumbrance", "config_apirolls", "config_initiativedice", "config_healthcalculation", "config_gearrepeatingonly", "config_squareinput", "config_optionalspinners", "config_spacebackground", "config_panicdesc"];
-    configs.forEach( (config) => {
-        const conf = config,
-            conf_t = config+"_t";
-        on(`change:${config} sheet:opened`, (eventInfo) => {
-            clog(`starting config backup for ${config}`);
-            getAttrs([conf], (values) => {
-                const c = values[config];
-                clog(`Setting temp attribute ${conf_t} to ${c}`);
-                setAttrs({
-                    [conf_t]: c
-                });
-            });
-        });
-    });
-
     // CALCULATE STRESS - HEALTH - RADIATION - VALUE FROM CHECKBOXES OR ATTRIBUTE
     const variableAttributes = ["stress","health","radiation"];
     variableAttributes.forEach(function (variableAttribute) {
@@ -263,14 +400,14 @@
                 console.log("%c|*** Character Sheet Calculating Attribute Value Change ***|", "color:Black; background-color: LawnGreen");
                 console.log(eventinfo.sourceAttribute + " was activated by " + eventinfo.sourceType);
                 console.log("Previous Value: " + eventinfo.previousValue + " changed to a New Value of: " + eventinfo.newValue);
-                console.log(JSON.stringify(eventinfo));
-                console.log('checkbox names: ' + variableAttributeChecks.join(', '));
+                //console.log(JSON.stringify(eventinfo));
+                //console.log('checkbox names: ' + variableAttributeChecks.join(', '));
                 if (eventinfo.sourceAttribute == variableAttribute) {
                     // stress or health token bar change
                     const newValue = values[variableAttribute]*1||0;
                     const setAttributeValuesAttrs = variableAttributeChecks.reduce((final,item,index) => {
                         final[item] = (index < newValue ? 1: 0);  // index will be 0 to 9, so we use < instead of <=
-                        console.log(`Setting Attribute Values: ${item} = ${index < newValue ? 1: 0}`);
+                        //console.log(`Setting Attribute Values: ${item} = ${index < newValue ? 1: 0}`);
                         return final;
                     },{});
                     setAttrs(setAttributeValuesAttrs, {silent: true});
@@ -278,15 +415,50 @@
                     const attributeTotal = variableAttributeChecks.reduce((total,item) => total + values[item] *1||0, 0);
                     const setAttributeFinalAttrs = {};
                     setAttributeFinalAttrs[variableAttribute] = attributeTotal;
-                    console.log("Setting Attribute Values: " + attributeTotal);
+                    //console.log("Setting Attribute Values: " + attributeTotal);
                     setAttrs(setAttributeFinalAttrs, {silent: true});
                 }
             });
         });
     });
 
-    /* */
-    // CALCULATE Health
+    // PERMANENT RADIATION
+    on('change:radiation_perm', (eventInfo) => {
+        clog('Starting permanent radiation method');
+        getAttrs(['radiation_perm', 'radiation_1', 'radiation_2', 'radiation_3', 'radiation_4', 'radiation_5', 'radiation_6', 'radiation_7', 'radiation_8', 'radiation_9', 'radiation_10'], (values) => {
+            //clog(`radiation values pre-permanent modification: ${JSON.stringify(values)}`);
+            const perm = int(values.radiation_perm),
+                max = 10; 
+            //let rads = new Array(10);
+            let attributeObj = {};
+            let rads = [null, int(values.radiation_1), int(values.radiation_2), int(values.radiation_3), int(values.radiation_4), int(values.radiation_5), int(values.radiation_6), int(values.radiation_7), int(values.radiation_8), int(values.radiation_9), int(values.radiation_10) ];
+            //clog(`radiation values pre-modification: ${JSON.stringify(rads)}`);
+            let remove = 0; 
+            for( let i = 1; i <= max; i++ ) {
+                //clog(`Testing if less than permanent value: ${(i <= perm)}`);
+                if ( i <= perm ) {
+                    //clog(`Testing if rad value is not 1: ${(rads[i] != 1)}`);
+                    if ( rads[i] != 1 ) {
+                        remove++;
+                    } 
+                    rads[i] = 1; 
+                } else {
+                    //clog(`Testing if value 1 and remove active: ${(rads[i] == 1 && remove > 0)}`);
+                    if ( rads[i] == 1 && remove > 0 ) {
+                        rads[i] = 0;
+                        --remove;
+                    }
+                }
+                attributeObj[`radiation_${i}`] = rads[i].toString();
+                //clog(`radiation values during modification: ${JSON.stringify(rads)}`);
+            }
+            //clog(`attribute object after modification: ${JSON.stringify(attributeObj)}`);
+            setAttrs(attributeObj);
+            clog(`Permanent radiation changed. Shifting rads indicator to permanent state.`); 
+        });
+    });
+
+    // CALCULATE Health from Attribute
     on("change:strength change:tough sheet:opened", (eventinfo) => {
         //clog("Change detected: Health");
         //clog(`Eventinfo: ${JSON.stringify(eventinfo)}`);
@@ -413,55 +585,55 @@
     });
 
     // Set Armament range modifier
-    const armas = ["armament1","armament2","armament3","armament4","armament5"];
+    const armas = ["armament1","armament2","armament3","armament4","armament5","armament6","armament7","armament8","armament9","armament10"];
     armas.forEach( (arma) => { 
         const target = arma+"_targetrange";
         const rangemod = arma+"_rangemod";
         //clog("Armament: "+arma+" Target: "+target+" Range mod: "+rangemod);
-         on(`change:${target} sheet:opened`, (eventInfo) => {           
-             getAttrs([target, rangemod], (values) => {
-                 //clog("Armament changed: "+target+" value: "+values[target]+" current range mod: "+values[rangemod]);
-                 var actual = 0;
-                 switch(values[target]) {
-                     case "Contact": actual = 2; break;
-                     case "Short": actual = 1; break;
-                     case "Medium": actual = 0; break;
-                     case "Long": actual = -1; break;
-                     case "Extreme": actual = -2; break;
-                 }
-                 setAttrs({[rangemod]: actual},{silent: true});
-                 //clog("Armament range modification changed: "+target+", range mod "+rangemod+", range mod value: "+actual);
-             })
-         })
-     });
+        on(`change:${target} sheet:opened`, (eventInfo) => {           
+            getAttrs([target, rangemod], (values) => {
+                //clog("Armament changed: "+target+" value: "+values[target]+" current range mod: "+values[rangemod]);
+                var actual = 0;
+                switch(values[target]) {
+                    case "Contact": actual = 2; break;
+                    case "Short": actual = 1; break;
+                    case "Medium": actual = 0; break;
+                    case "Long": actual = -1; break;
+                    case "Extreme": actual = -2; break;
+                }
+                setAttrs({[rangemod]: actual},{silent: true});
+                //clog("Armament range modification changed: "+target+", range mod "+rangemod+", range mod value: "+actual);
+            })
+        })
+    });
+    // Set Armament tab indicator
+    const arma_buttons = {"armament1":"I","armament2":"II","armament3":"III","armament4":"IV","armament5":"V","armament6":"VI","armament7":"VII","armament8":"VIII","armament9":"IX","armament10":"X"};
+    //clog("Arma buttons: "+ JSON.stringify(arma_buttons));
+    //clog("Arma button1 : "+ JSON.stringify(arma_buttons["armament1"]));
+    armas.forEach( (arma) => { 
+        const armament = arma,
+        name = arma+"_name",
+        bonus = arma+"_bonus",
+        damage = arma+"_damage",
+        button = arma+"_tab";
+        //clog(`Armament name attribute: ${name}, bonus: ${bonus}, damage: ${damage}`);
+        on(`change:${name} change:${bonus} change:${damage} sheet:opened`, (eventInfo) => {
+            getAttrs([name, bonus, damage, button], (values) => {
+                //clog("armament values for button status: "+JSON.stringify(values)); 
+                var active = "-";
+                if( values[name] != "" || values[bonus] != "0" || values[damage] != "0" ) {
+                    active = arma_buttons[arma];
+                }
+                //clog("active : "+active);
+                setAttrs({
+                    [button]: active
+                },{silent:true});
+            });
+        });
+    });
 
-     // Set Armament tab indicator
-     const arma_buttons = {"armament1":"I","armament2":"II","armament3":"III","armament4":"IV","armament5":"V"};
-     //clog("Arma buttons: "+ JSON.stringify(arma_buttons));
-     //clog("Arma button1 : "+ JSON.stringify(arma_buttons["armament1"]));
-     armas.forEach( (arma) => { 
-         const armament = arma,
-         name = arma+"_name",
-         bonus = arma+"_bonus",
-         damage = arma+"_damage",
-         button = arma+"_tab";
-         on(`change:${name} change:${bonus} change:${damage} sheet:opened`, (eventInfo) => {
-             getAttrs([name, bonus, damage, button], (values) => {
-                 //clog("armament values for button status: "+JSON.stringify(values)); 
-                 var active = "-";
-                 if( values[name] != "" || values[bonus] != "0" || values[damage] != "0" ) {
-                     active = arma_buttons[arma];
-                 }
-                 //clog("active : "+active);
-                 setAttrs({
-                     [button]: active
-                 },{silent:true});
-             });
-         });
-     });
-
-     // Set Internal modules tab indicator (only for second tab)
-     on(`change:module16 change:module17 change:module18 change:module19 change:module20 change:module21 change:module22 change:module23 change:module24 change:module25 change:module26 change:module27 change:module28 change:module29 change:module30 sheet:opened`, (eventInfo) => {
+    // Set Internal modules tab indicator (only for second tab)
+    on(`change:module16 change:module17 change:module18 change:module19 change:module20 change:module21 change:module22 change:module23 change:module24 change:module25 change:module26 change:module27 change:module28 change:module29 change:module30 sheet:opened`, (eventInfo) => {
         getAttrs(["module16", "module17", "module18", "module19", "module20", "module21", "module22", "module23", "module24", "module25", "module26", "module27", "module28", "module29", "module30"], (values) => {
             //clog("modules values for button status: "+JSON.stringify(values)); 
             const button = "modules2_tab";
@@ -524,349 +696,145 @@
       });
   });
 
-	// Highlight buttons if talents / weapons are populated
-    talents = {"one": "I", "two": "II", "three": "III", "four": "IV", "five": "V", "six": "VI", "seven": "VII", "eight": "VIII"};
+	// Highlight buttons if talents are populated
+    talents = {"one": "I", "two": "II", "three": "III", "four": "IV", "five": "V", "six": "VI", "seven": "VII", "eight": "VIII", "nine": "IX", "ten": "X"};
     _.each(Object.keys(talents), (tal) => {
         on(`change:talent_${tal} sheet:opened`, function() {
             //clog(`Current talent: ${tal}, current value: ${talents[tal]}`);
             getAttrs([`talent_${tal}`], function(v){
-                var talentname = v[`talent_${tal}`];
+                var talentname = v[`talent_${tal}`]||"";
                 //clog("Talent output: "+ (talentname.length > 0) ? talents[`${tal}`] : "-");
-                var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
-                setAttrs({[`tal_${tal}`]: txt});
+                //var txt = (talentname.length > 0) ? talents[`${tal}`] : "-";
+                var txt = (talentname.length > 0) ? talentname : "-";
+                setAttrs({
+                    [`tal_${tal}`]: txt
                 });
             });
+        });
     });
-	/*
-	on("change:talent_one sheet:opened", function(){
-    getAttrs(["talent_one"], function(v){
-        var tal = v.talent_one;
-        var txt = (tal.length > 0) ? "I" : "-";
-		setAttrs({tal_one: txt});
-		});
-	});
-
-	on("change:talent_two sheet:opened", function(){
-    getAttrs(["talent_two"], function(v){
-        var tal = v.talent_two;
-        var txt = (tal.length > 0) ? "II" : "-";
-		setAttrs({tal_two: txt});
-		});
-	});
-	
-	on("change:talent_three sheet:opened", function(){
-    getAttrs(["talent_three"], function(v){
-        var tal = v.talent_three;
-        var txt = (tal.length > 0) ? "III" : "-";
-		setAttrs({tal_three: txt});
-		});
-	});
-	
-	on("change:talent_four sheet:opened", function(){
-    getAttrs(["talent_four"], function(v){
-        var tal = v.talent_four;		
-        var txt = (tal.length > 0) ? "IV" : "-";	
-		setAttrs({tal_four: txt});
-		});
-	});
-    */
-
-	on("change:weapon_one_name sheet:opened", function(){
-    getAttrs(["weapon_one_name"], function(v){
-        var wpn = v.weapon_one_name;
-        var txt = (wpn.length > 0) ? "I" : "-";
-		setAttrs({wpn_one: txt});
-		});
-	});
-
-	on("change:weapon_two_name sheet:opened", function(){
-    getAttrs(["weapon_two_name"], function(v){
-        var wpn = v.weapon_two_name;
-        var txt = (wpn.length > 0) ? "II" : "-";
-		setAttrs({wpn_two: txt});
-		});
-	});
-
-	on("change:weapon_three_name sheet:opened", function(){
-    getAttrs(["weapon_three_name"], function(v){
-        var wpn = v.weapon_three_name;
-        var txt = (wpn.length > 0) ? "III" : "-";
-		setAttrs({wpn_three: txt});
-		});
-	});
-
-	on("change:weapon_four_name sheet:opened", function(){
-    getAttrs(["weapon_four_name"], function(v){
-        var wpn = v.weapon_four_name;
-        var txt = (wpn.length > 0) ? "IV" : "-";
-		setAttrs({wpn_four: txt});
-		});
-	});
-
-	on("change:weapon_five_name sheet:opened", function(){
-    getAttrs(["weapon_five_name"], function(v){
-        var wpn = v.weapon_five_name;
-        var txt = (wpn.length > 0) ? "V" : "-";
-		setAttrs({wpn_five: txt});
-		});
-	});
-
-	on("change:weapon_six_name sheet:opened", function(){
-    getAttrs(["weapon_six_name"], function(v){
-        var wpn = v.weapon_six_name;
-        var txt = (wpn.length > 0) ? "VI" : "-";
-		setAttrs({wpn_six: txt});
-		});
-	});
+     
+    /* Weapons tabs names*/
+    const tab_weapons = {"1": "I", "2": "II", "3": "III", "4": "IV", "5": "V", "6": "VI"};
+    const tab_weaponnames = {"1": "one", "2": "two", "3": "three", "4": "four", "5": "five", "6": "six"};
+	_.mapObject(tab_weaponnames, (tab,weapon) => {
+        //clog(`Worker weapon: weapon_${tab} with id ${weapon}`);
+        on(`change:weapon_${tab}_name sheet:opened`, () => {
+            clog(`Current weapon tab: weapon_${tab} with id ${weapon}`);
+            getAttrs([`weapon_${tab}_name`], (v) => {
+                var weaponname = v[`weapon_${tab}_name`]||"";
+                //clog("Weapon tab name: "+ weaponname);
+                //clog("Weapon tab number: "+ tab_weapons[`${weapon}`]);
+                //var txt = (weaponname.length > 0) ? tabs[`${tab}`] : "-";
+                //var txt = (weaponname.length > 0) ? weaponname.substring(0, 18) : "-"];
+                var txt = (weaponname.length > 0) ? weaponname.substring(0, 18) : tab_weapons[`${weapon}`]||"-";
+                //clog("Weapon tab output: "+ txt);
+                setAttrs({
+                    [`wpn_${tab}`]: txt
+                });
+            });
+        });
+    });
 
     // Signature attack exapand / collapse all
 
     var expandall = {'xenoattack1_check':1, 'xenoattack2_check':1, 'xenoattack3_check':1, 'xenoattack4_check':1, 'xenoattack5_check':1, 'xenoattack6_check':1};
     var collapseall = {'xenoattack1_check':0, 'xenoattack2_check':0, 'xenoattack3_check':0, 'xenoattack4_check':0, 'xenoattack5_check':0, 'xenoattack6_check':0};
     on("clicked:expandattacks", function() {
-        log("Expanding all signature attack!");
+        //clog("Expanding all signature attack!");
         setAttrs(expandall);
     });
     on("clicked:collapseattacks", function() {
-        log("Collapsing all signature attack!");
+        //clog("Collapsing all signature attack!");
         setAttrs(collapseall);
     });
 		
     // Action Button Tabs
-
-    on("clicked:tab_character", function() {
-        console.log("tab_character button clicked");
-        setAttrs({ 
-            tab_sheet: "Character"
+    /* main sheet tabs */
+    const main_tabs = {"tab_character":"Character","tab_ship":"Ship","tab_xeno":"Xeno","tab_config":"Config"};
+    _.mapObject(main_tabs, (main,tab) => {
+        on(`clicked:${tab}`, function() {
+            //clog(`${tab} button clicked`);
+            setAttrs({ 
+                tab_sheet: main
+            });
+            //clog(`Sheet tab Set To: ${main}`);
         });
-        console.log("Sheet tab Set To: Character");
     });
 
-    on("clicked:tab_ship", function() {
-        console.log("tab_ship button clicked");
-        setAttrs({ 
-            tab_sheet: "Ship"
+    /* Talent tabs */
+    const tal_tabs = {"1":"tab_one","2":"tab_two","3":"tab_three","4":"tab_four","5":"tab_five","6":"tab_six","7":"tab_seven","8":"tab_eight",}
+    _.mapObject(tal_tabs, (tab,talent) => {
+        on(`clicked:${tab}`, function() {
+            //clog(`${tab} button clicked`);
+            setAttrs({ 
+                tab: talent
+            });
+            //clog(`tab Set To: ${talent}`);
         });
-        console.log("Sheet tab Set To: Ship");
     });
 
-    on("clicked:tab_xeno", function() {
-        console.log("tab_xeno button clicked");
-        setAttrs({ 
-            tab_sheet: "Xeno"
+    /* Weapon tabs */
+    const weapon_tabs = {"1":"tab_alpha","2":"tab_beta","3":"tab_gamma","4":"tab_delta","5":"tab_epsilon","6":"tab_zeta"};
+    _.mapObject(weapon_tabs, (tab,weapon) => {
+        on(`clicked:${tab}`, () => {
+            //clog(`${tab} button clicked`);
+            setAttrs({ 
+                tab_weapon: weapon
+            });
+            clog(`tab_weapon Set To: ${weapon}`);
         });
-        console.log("Sheet tab Set To: Xeno");
     });
 
-    on("clicked:tab_config", function() {
-        console.log("tab_config button clicked");
-        setAttrs({ 
-            tab_sheet: "Config",
-            config_notice: ""
+    /* Ship internal modules tabs */
+    const moduletabs = {"1":"tab_modules1", "2":"tab_modules2"}; 
+    _.mapObject(moduletabs, (tab, module) => {
+        //clog(`Creating shet worker for ${tab} with id ${module}`); 
+        on(`clicked:${tab}`, () => {
+            //clog(`${tab} button clicked`);
+            setAttrs({ 
+                tab_modules: module
+            });
         });
-        console.log("Sheet tab Set To: Config");
     });
 
-    on("clicked:tab_one", function() {
-        console.log("tab_one button clicked");
-        setAttrs({ 
-            tab: 1
+    /* Ship log tabs */
+    const logtabs = {"1":"tab_log1", "2":"tab_log2","3": "tab_log3", "4":"tab_log4"}; 
+    _.mapObject(logtabs, (tab, log) => {
+        //clog(`Creating shet worker for ${tab} with id ${log}`); 
+        on(`clicked:${tab}`, () => {
+            //clog(`Clicked ${tab}`); 
+            setAttrs({ 
+                tab_log: log
+            });
         });
-        console.log("tab Set To: 1");
     });
-    
-    on("clicked:tab_two", function() {
-        console.log("tab_two button clicked");
-        setAttrs({ 
-            tab: 2
+
+    /* Armament tab display */
+    const tabs = {"1": "I", "2": "II", "3": "III", "4": "IV", "5": "V", "6": "VI", "7": "VII", "8": "VIII", "9": "IX", "10": "X"};
+	_.each(Object.keys(tabs), (tab) => {
+        on(`clicked:tab_armament${tab}`,() => {
+            //clog(`tab_armament${tab} button clicked`);
+            setAttrs({ 
+                tab_armament: `${tab}`
+            });
+            //clog(`tab_armament Set To: ${tab}`);
         });
-        console.log("tab Set To: 2");
-    });
-    
-    on("clicked:tab_three", function() {
-        console.log("tab_three button clicked");
-        setAttrs({ 
-            tab: 3
+    });     
+    /* Armament tabs names*/
+    // Highlight buttons if armament is populated
+    _.each(Object.keys(tabs), (tab) => {
+        on(`change:armament${tab}_name sheet:opened`, function() {
+            //clog(`Current tab: ${tab}, current value: ${tabs[tab]}`);
+            getAttrs([`armament${tab}_name`], function(v) {
+                var tabname = v[`armament${tab}_name`]||"";
+                //clog("Armament Tab name: "+ tabname);
+                //clog("Armament Tab output: "+ (tabname.length > 0) ? tabs[`${tab}`] : "-");
+                //var txt = (tabname.length > 0) ? tabs[`${tab}`] : "-";
+                //var txt = (tabname.length > 0) ? tabname.substring(0, 18) : "-"];
+                var txt = (tabname.length > 0) ? tabname.substring(0, 15) : tabs[`${tab}`];
+                setAttrs({
+                    [`armament${tab}_tab`]: txt
+                });
+            });
         });
-        console.log("tab Set To: 3");
-    });
-    
-    on("clicked:tab_four", function() {
-        console.log("tab_four button clicked");
-        setAttrs({ 
-            tab: 4
-        });
-        console.log("tab Set To: 4");
-    });
-    
-    on("clicked:tab_five", function() {
-        console.log("tab_five button clicked");
-        setAttrs({ 
-            tab: 5
-        });
-        console.log("tab Set To: 5");
-    });
-    
-    on("clicked:tab_six", function() {
-        console.log("tab_six button clicked");
-        setAttrs({ 
-            tab: 6
-        });
-        console.log("tab Set To: 6");
-    });
-    
-    on("clicked:tab_seven", function() {
-        console.log("tab_seven button clicked");
-        setAttrs({ 
-            tab: 7
-        });
-        console.log("tab Set To: 7");
-    });
-    
-    on("clicked:tab_eight", function() {
-        console.log("tab_eight button clicked");
-        setAttrs({ 
-            tab: 8
-        });
-        console.log("tab Set To: 8");
-    });
-    
-    on("clicked:tab_alpha", function() {
-        console.log("tab_alpha button clicked");
-        setAttrs({ 
-            tab_weapon: 1
-        });
-        console.log("tab_weapon Set To: 1");
-    });
-    
-    on("clicked:tab_beta", function() {
-        console.log("tab_beta button clicked");
-        setAttrs({ 
-            tab_weapon: 2
-        });
-        console.log("tab_weapon Set To: 2");
-    });
-    
-    on("clicked:tab_gamma", function() {
-        console.log("tab_gamma button clicked");
-        setAttrs({ 
-            tab_weapon: 3
-        });
-        console.log("tab_wweapon Set To: 3");
-    });
-    
-    on("clicked:tab_delta", function() {
-        console.log("tab_delta button clicked");
-        setAttrs({ 
-            tab_weapon: 4
-        });
-        console.log("tab_weapon Set To: 4");
-    });
-    
-    on("clicked:tab_epsilon", function(eventinfo) {
-        console.log("tab_epsilon button clicked");
-        //console.log("sourceAttribute=" + eventinfo.sourceAttribute);
-        //console.log("previousValue=" + eventinfo.previousValue);
-        //console.log("newValue =" + eventinfo.newValue );
-        //console.log("sourceType=" + eventinfo.sourceType);
-        setAttrs({ 
-            tab_weapon: 5
-        })
-        console.log("tab_weapon Set To: 5");
-    });
-    
-    on("clicked:tab_zeta", function() {
-        console.log("tab_zeta button clicked");
-        setAttrs({ 
-            tab_weapon: 6
-        });
-        console.log("tab_weapon Set To: 6");
-    });
-    
-    on("clicked:tab_modules1", function() {
-        console.log("tab_modules1 button clicked");
-        setAttrs({ 
-            tab_modules: 1
-        });
-        console.log("tab_modules Set To: 1");
-    });
-    
-    on("clicked:tab_modules2", function() {
-        console.log("tab_modules2 button clicked");
-        setAttrs({ 
-            tab_modules: 2
-        });
-        console.log("tab_modules Set To: 2");
-    });
-    
-    on("clicked:tab_log1", function() {
-        console.log("tab_log1 button clicked");
-        setAttrs({ 
-            tab_log: 1
-        });
-        console.log("tab_log Set To: 1");
-    });
-    
-    on("clicked:tab_log2", function() {
-        console.log("tab_log2 button clicked");
-        setAttrs({ 
-            tab_log: 2
-        });
-        console.log("tab_log Set To: 2");
-    });
-    
-    on("clicked:tab_log3", function() {
-        console.log("tab_log3 button clicked");
-        setAttrs({ 
-            tab_log: 3
-        });
-        console.log("tab_log Set To: 3");
-    });
-    
-    on("clicked:tab_log4", function() {
-        console.log("tab_log4 button clicked");
-        setAttrs({ 
-            tab_log: 4
-        });
-        console.log("tab_log Set To: 4");
-    });
-    
-    on("clicked:tab_armament1", function() {
-        console.log("tab_armament1 button clicked");
-        setAttrs({ 
-            tab_armament: 1
-        });
-        console.log("tab_armament Set To: 1");
-    });
-    
-    on("clicked:tab_armament2", function() {
-        console.log("tab_armament2 button clicked");
-        setAttrs({ 
-            tab_armament: 2
-        });
-        console.log("tab_armament Set To: 2");
-    });
-    
-    on("clicked:tab_armament3", function() {
-        console.log("tab_armament3 button clicked");
-        setAttrs({ 
-            tab_armament: 3
-        });
-        console.log("tab_armament Set To: 3");
-    });
-    
-    on("clicked:tab_armament4", function() {
-        console.log("tab_armament4 button clicked");
-        setAttrs({ 
-            tab_armament: 4
-        });
-        console.log("tab_armament Set To: 4");
-    });
-    
-    on("clicked:tab_armament5", function() {
-        console.log("tab_armament5 button clicked");
-        setAttrs({ 
-            tab_armament: 5
-        });
-        console.log("tab_armament Set To: 5");
     });
