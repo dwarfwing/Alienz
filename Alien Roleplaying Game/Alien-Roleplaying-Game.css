@@ -408,6 +408,7 @@ div.roll-buttons + hr.dotted-line {
 .w300 { max-width: 300px; min-width: 300px; }
 .w-fit { width: fit-content; }
 .h-fit { height: fit-content; }
+.h100pc { height: 100%; }
 
 .text-underline { text-decoration: underline; }
 
@@ -484,7 +485,7 @@ div.span-weapons .tab-weapons {
 
 /* - - - - - - - - - -  EXPAND AREAS  - - - - - - - - - - */
 
-.charsheet .expand {
+/* .charsheet .expand {
     -left: -8px;
     opacity: 0;
     -position: absolute;
@@ -492,25 +493,43 @@ div.span-weapons .tab-weapons {
     -width: 18px;
     z-index: 6;
     margin-top: 5px;
-} 
+}  */
  
-.charsheet .expand + span::before {
+/* .charsheet .expand + span::before {
     color: #c3996b;
-    content: "4";
+    content: "&";
     cursor: pointer;
-    font-family: pictos;
+    font-family: 'Pictos';
     font-size: 10px;
     z-index: 3;
-    border: 1px solid #c3996b;
-    border-radius: 50%;
+    -border: 1px solid #c3996b;
+    -border-radius: 50%;
     height: 11px;
     width: 11px;
     padding: 1px 2px;
-}
-.charsheet input.expand + span {
+} */
+.charsheet .expand + label.expand-label {
+    color: #c3996b;
+    cursor: pointer;
+    font-family: 'Pictos';
     padding: 0;
     margin: 0;
-    transform: rotate(90deg);
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    align-self: center;
+}
+.charsheet .expand:checked + label {
+    transform: rotate(45deg);
+    width: 18px;
+    height: 18px;
+}
+/* .charsheet input.expand + span {
+    padding: 0;
+    margin: 0;
+    -transform: rotate(90deg);
     position: relative;
     right: 8px;
     bottom: 5px;
@@ -518,11 +537,10 @@ div.span-weapons .tab-weapons {
 .charsheet input.expand:checked + span {
     padding: 0;
     margin: 0;
-    transform: rotate(-90deg);position: relative;
+    -transform: rotate(-90deg);position: relative;
     -right: 8px;
     top: 3px;
-
-}
+} */
 
 /*.charsheet input.expand + span::before,
 .charsheet input.expand:checked + span::before {
@@ -534,11 +552,15 @@ div.span-weapons .tab-weapons {
     opacity: 0.85;
 } */
 .charsheet input.expand + span + span + div.expandable,
-.charsheet input.expand + span + span + div + span + span + span + textarea.expandable {
+.charsheet input.expand + span + span + div + span + span + span + textarea.expandable,
+.charsheet input.expand + label + span + span + div.expandable,
+.charsheet input.expand + label + span + span + div + span + span + span + textarea.expandable {
     display: none;
 }
 .charsheet input.expand:checked + span + span + div.expandable,
-.charsheet input.expand:checked + span + span + div + span + span + span + textarea.expandable {
+.charsheet input.expand:checked + span + span + div + span + span + span + textarea.expandable,
+.charsheet input.expand:checked + label + span + span + div.expandable,
+.charsheet input.expand:checked + label + span + span + div + span + span + span + textarea.expandable {
     display: flex;
     justify-content: flex-end;
 }
@@ -657,6 +679,13 @@ textarea.xeno-textfield  {
     max-width: 100%;
     min-width: 100%;
 }
+div.xeno-notes {    
+    max-height: 300px;
+}
+/* div.xeno-spec-abil,
+div.xeno-cont-term {    
+    max-height: 200px;
+} */
 
 
 .textarea-margin-correct {
