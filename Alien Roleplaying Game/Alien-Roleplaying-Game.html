@@ -3613,7 +3613,7 @@
                     <input type="text" name="attr_armorvsname" placeholder="...">
                     <input type="number" name="attr_armorvs" value="0" class="no-spin-input optional-spinner-input" title="@{armorvs}" min="0"/>
                     <hr class="dotted-line">
-                    <button type="roll" name="sheet-acidsplash_roll" class="button-skill float-left" data-i18n="acid-splash" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Acid Splash }} {{base-dice=[[@{acidsplash} + ?{Damage taken|0} ]] }} {{current-damage=@{acidsplash} }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" >
+                    <button type="roll" name="sheet-acidsplash_roll" class="button-skill float-left" data-i18n="acid-splash" value="@{roll_command} &{template:alien} {{character-name=@{character_name} }} {{roll-name=Acid Splash }} {{base-dice=[[@{acidsplash} + @{modifierquery} ]] }} {{current-damage=@{acidsplash} }} {{base-roll-one=[[1d6]] }} {{base-roll-two=[[1d6]] }} {{base-roll-three=[[1d6]] }} {{base-roll-four=[[1d6]] }} {{base-roll-five=[[1d6]] }}  {{base-roll-six=[[1d6]] }} {{base-roll-seven=[[1d6]] }} {{base-roll-eight=[[1d6]] }} {{base-roll-nine=[[1d6]] }} {{base-roll-ten=[[1d6]] }} {{base-roll-eleven=[[1d6]] }} {{base-roll-twelve=[[1d6]] }} {{base-roll-thirteen=[[1d6]] }} {{base-roll-fourteen=[[1d6]] }} {{base-roll-fifteen=[[1d6]] }} {{base-roll-sixteen=[[1d6]] }} {{base-roll-seventeen=[[1d6]] }} {{base-roll-eighteen=[[1d6]] }}" >
                         Acid splash
                     </button>   
                     <input type="number" name="attr_acidsplash" value="0" class="no-spin-input optional-spinner-input" title="@{acidsplash}" min="0"/>
@@ -3630,7 +3630,9 @@
                 <button type="action" name="act_expandattacks" class="dark-teal-header attack-control-label text-underline" title="Expand all" data-i18n="expand-u-abbr" data-i18n-title="expand-all">Exp.</button>
                 &nbsp;<span class="dark-teal-header">/</span>&nbsp;
                 <button type="action" name="act_collapseattacks" class="dark-teal-header attack-control-label text-underline" title="Collapse all" data-i18n="collapse-u-abbr" data-i18n-title="collapse-all">Col.</button>             
-                <button type="action" class="button-skill button-gamma span-four signatureattack" name="act_randomizeattack" data-i18n="random-attack-u" data-i18n-title="random-signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Random Attack</button>
+                <button type="action" class="button-skill button-gamma span-four signatureattack hidden" name="act_randomizeattackaction" data-i18n="random-attack-u" data-i18n-title="random-signature-attack-desc" title="Signature attacks are always whispered to the GM, to be played out in combat.">Random Attack</button>
+                <input type="hidden" name="attr_randomizeattack-attr" class="hidden" value=""> 
+                <button type="roll" name="sheet-randomizeattack" class="button-skill button-gamma span-four signatureattack" value="@{randomizeattack-attr}">ATTACK</button> 
             </div>
             <div class="align-right vertical-adjust-two-more flexlist xeno-attack xeno-textfield">
 
@@ -4203,45 +4205,51 @@
              -->
             <div class="grid-item-black span-one-thru-six cover-100-flex flex-content-right">
                 <div class="grid-item clip-edges w120 h-fit marg-right">
-                    <span class="centered bold">v5.00 <br/>(2022-06-05)</span>
+                    <span class="centered bold">v5.00 <br/>(2022-07-09)</span>
                 </div>  
                 <div class="cover-75 flex-content-right flex-column">               
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right">
                         <span class="text-input cover-100 align-left" title="">
                             Major version update but no changes to used attributes. Implemented the Char Sheet Enhancement (CSE) and thus moved away from Legacy styling. As part of this, a lot of improvements in the styling was done, e.g. implementing label "for" tag attributes for inputs. </span>
-                    </div>                                                       
+                    </div>
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">
                             Added options to include specific rolls for talents, based on Attribute and Skill with modifier or for specific Consumable supply roll. The latter is meant to cover talents like Light Eater by selecting Food and -2 modifier.  </span>
-                    </div>                                                        
+                    </div>
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">
                               Added names of talents, weapons and armament to their respective tab to make navigating easier. <br>Also added more Armament tabs to cover for more powerful ships. </span>
-                    </div>                                                         
+                    </div>
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">
-                            Added an option to include more Permanent skill modifiers, to cover bonuses or penalties from gear. <br>Also added a button to disable the Modifier Query popup for rolls, which can be lost if using the sheet popped out.  </span>
-                    </div>                                                         
+                            Added an option to include more Permanent skill modifiers, to cover bonuses or penalties from gear. <br>Also added a button to disable the Modifier Query popup for rolls, the popup can get lost if using the sheet popped out.  </span>
+                    </div>
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">
                             Added handling of Permanent Rads through a dropdown underneath the radiation boxes, as well as rolls for Radiation damage and Radiation recovery.  </span>
-                    </div>                                                          
+                    </div>
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">
                             Added an option Token Initiative to remove the attempts to add a token initiative to turn tracker, thus avoiding any unnecessary and annoying error messages in chat. The button is above and to the right of the Roll buttons section.  </span>
-                    </div>                                                          
+                    </div>
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">
                             Added an option for Nerves of Steel talent. Please note that specific talent modifications like this may later on be moved to the talent slots.  </span>
-                    </div>                                                          
+                    </div>
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">
                             Made sure there is a Secret Rolls and Modifier Query option on each tab, for easy access. </span>
-                    </div>                                                          
+                    </div>
                     <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
                         <span class="text-input cover-100 align-left" title="">
                             Tested upgrade from previous legacy styling, fixed identified issue with macro quick bar rolls. Roll names now are prefixed with "sheet-" to provide consistency with previous version, 
-                            the prefix was added automatically by the system in legacy styling. It is then removed for macros but leaving the "-" still as prefix (PM for questions or issues). </span>
+                            the prefix seemed to be added automatically by the system in legacy styling. It is then removed for macros but leaving the "-" still as prefix (PM for questions or issues). </span>
+                    </div> 
+                    <div class="grid-item clip-edges align-left marg-right pad-left pad-right shift-down-5">
+                        <span class="text-input cover-100 align-left" title="">
+                            Made the Randomize attack button for Hostiles work with the quick macro bar. <br>
+                            Please note this means the roll button name is now "sheet-randomizeattack" and the 
+                            action button is "randomizeattackaction", for abilities to use "%{selected|randomizeattackaction}" for token action. </span>
                     </div>                                           
                 </div> 
             </div>
@@ -5496,7 +5504,7 @@
 
     // SIGNATURE ATTACKS
     // Randomize attack button
-    on('clicked:randomizeattack', async (ev) => {
+    on('clicked:randomizeattackaction', async (ev) => {
         clog(`Starting randomized signature attack parsed roll`);
         await signatureAttack(ev);
         clog(`Completed randomized signature attack parsed roll`);
@@ -5693,6 +5701,14 @@
         }
     });
 
+    // Setting roll button attributes for action button actions
+    on("sheet:opened change:character_name", function(eventInfo) {
+        getAttrs(["character_name", "randomizeattackattr"], function(v) {
+            var attrsToChange = {};
+            attrsToChange["randomizeattack-attr"] = "%{" + v["character_name"] + "|randomizeattackaction}";
+            setAttrs(attrsToChange);
+        });
+    });
 
     // RESET Dice pool 
     on('clicked:customrollreset', async (ev) => {
